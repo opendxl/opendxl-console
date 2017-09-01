@@ -1,0 +1,41 @@
+isc.DynamicForm.create({
+    autoDraw:false,
+    ID: "certs_generate_form",
+    numCols: 2,
+    fields: [
+        {name: "cn", title:"Common Name", type:"text", required:true, hint: "(e.g. server FQDN or YOUR name)", wrapTitle:false, wrapHintText: false},
+        {name: "country", title:"Country Name", type:"text", required:false, hint: "(2 letter code)", wrapTitle:false, wrapHintText: false},
+        {name: "state", title:"State or Province Name", type:"text", required:false, hint: "(full name)", wrapTitle:false, wrapHintText: false},
+        {name: "locality", title:"Locality Name", type:"text", required:false, hint: "(eg, city)", wrapTitle:false, wrapHintText: false},
+        {name: "org", title:"Organization Name", type:"text", required:false, hint: "(eg, company)", wrapTitle:false, wrapHintText: false},
+        {name: "ou", title:"Organizational Unit Name", type:"text", required:false, hint: "(eg, section)", wrapTitle:false, wrapHintText: false},
+        {name: "email", title:"Email Address", type:"text", required:false, wrapTitle:false, wrapHintText: false},
+    ],
+});
+
+isc.VLayout.create({
+    autoDraw:false,
+    ID: "certs_layout",
+    margin: 15,
+    membersMargin: 20,
+    members: [
+        "certs_generate_form",
+        isc.IButton.create({
+            title: "Generate",
+            click : function () {
+                certs_generate_form.validate();
+            },
+            layoutAlign:"middle",
+        })
+    ]
+});
+
+isc.SectionStack.create({
+    autoDraw:false,
+    ID:"certs_stack",
+    visibilityMode:"multiple",
+    membersMargin: 6,
+    sections : [
+        { title:"Generate Client Configuration", items:["certs_layout"], expanded:true, canCollapse: false },
+    ]
+});

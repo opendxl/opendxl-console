@@ -1,0 +1,39 @@
+<HTML>
+    <HEAD>
+        <TITLE>OpenDXL Console</TITLE>
+        <SCRIPT>var isomorphicDir="/public/isomorphic/";</SCRIPT>
+        <SCRIPT SRC=/public/isomorphic/system/modules/ISC_Core.js></SCRIPT>
+        <SCRIPT SRC=/public/isomorphic/system/modules/ISC_Foundation.js></SCRIPT>
+        <SCRIPT SRC=/public/isomorphic/system/modules/ISC_Containers.js></SCRIPT>
+        <SCRIPT SRC=/public/isomorphic/system/modules/ISC_Grids.js></SCRIPT>
+        <SCRIPT SRC=/public/isomorphic/system/modules/ISC_Forms.js></SCRIPT>
+        <SCRIPT SRC=/public/isomorphic/system/modules/ISC_DataBinding.js></SCRIPT>
+        <SCRIPT SRC=/public/isomorphic/skins/Graphite/load_skin.js></SCRIPT>
+    </HEAD>
+<BODY>
+<SCRIPT>
+
+Canvas.resizeFonts(3);
+Canvas.resizeControls(5);
+
+isc.ToolStrip.create({
+    autoDraw:false,
+    ID: "console_toolstrip",
+    width:"110",
+    height:"100%",
+    membersMargin:10,
+    vertical: true,
+    members:[isc.ToolStripSpacer.create({space:10})]
+});
+
+isc.Label.create({
+    ID: "console_version_label",
+    autoDraw:false,
+    align: "left",
+    valign: "center",
+    wrap: true,
+    contents:
+        '<div style="padding:10px; font-size:1.0em; text-align:center; font-weight:bold">OpenDXL Console</div>' +
+        '<div style="padding:0px 10px 10px 10px; font-size:0.7em; text-align: center;">Version: @VERSION@</div>' +
+        '<div style="text-align:center; padding:0px 10px 10px 10px"><a href="http://www.opendxl.com" target="_blank"><img src="/public/images/help.png"></a></img></div>'
+});
