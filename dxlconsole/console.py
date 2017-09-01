@@ -26,8 +26,7 @@ class ConsoleRequestHandler(RequestHandler):
         super(ConsoleRequestHandler, self).__init__(application, request)
 
     def get(self):
-        resource_path = '/'.join(("templates", "console.html"))
-        console_html = pkg_resources.resource_string(__name__, resource_path)
+        console_html = pkg_resources.resource_string(__name__, "console.html")
         console_html = console_html.replace("@VERSION@", dxlconsole.get_version())
         module_names = ""
         first_button = None

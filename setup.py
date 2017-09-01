@@ -35,10 +35,9 @@ dist = setup(
     packages=[
         "dxlconsole",
         "dxlconsole.modules",
-        "dxlconsole.templates",
-        "dxlconsole.web",
         "dxlconsole.modules.broker",
         "dxlconsole.modules.certificates",
+        "dxlconsole.web",
         "dxlconsole.web.images",
         "dxlconsole.web.isomorphic",
         "dxlconsole.web.isomorphic.locales",
