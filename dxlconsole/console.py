@@ -7,9 +7,13 @@ from tornado.ioloop import IOLoop
 import dxlconsole
 from .modules.certificates.module import CertificateModule
 from .modules.broker.module import BrokerModule
+from .modules.monitor.module import MonitorModule
 
 
 class ConsoleStaticFileRequestHandler(RequestHandler):
+
+    def data_received(self, chunk):
+        pass
 
     def __init__(self, application, request):
         super(ConsoleStaticFileRequestHandler, self).__init__(application, request)
@@ -21,6 +25,9 @@ class ConsoleStaticFileRequestHandler(RequestHandler):
 
 
 class ConsoleRequestHandler(RequestHandler):
+
+    def data_received(self, chunk):
+        pass
 
     def __init__(self, application, request):
         super(ConsoleRequestHandler, self).__init__(application, request)
@@ -74,8 +81,10 @@ class ConsoleRequestHandler(RequestHandler):
 
 class WebConsole(Application):
 
-    def __init__(self):
+    def __init__(self, app):
+        self._bootstrap_app = app
         self._modules = [
+            MonitorModule(self),
             CertificateModule(self),
             BrokerModule(self)
         ]
@@ -85,7 +94,15 @@ class WebConsole(Application):
             (r'/', ConsoleRequestHandler)
         ]
 
+        for module in self._modules:
+            if module.enabled:
+                handlers.extend(module.handlers)
+
         super(WebConsole, self).__init__(handlers)
+
+    @property
+    def bootstrap_app(self):
+        return self._bootstrap_app
 
     @property
     def modules(self):
@@ -93,5 +110,5 @@ class WebConsole(Application):
 
     def start(self):
         server = HTTPServer(self)
-        server.listen(8080)  # TODO: Set port
+        server.listen(self._bootstrap_app.port)  # TODO: Set port
         IOLoop.instance().start()

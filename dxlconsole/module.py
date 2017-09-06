@@ -8,8 +8,12 @@ class Module(object):
         self._root_content_name = root_content_name
 
     @property
+    def app(self):
+        return self._app
+
+    @property
     def name(self):
-        return  self._name
+        return self._name
 
     @property
     def title(self):
@@ -30,3 +34,7 @@ class Module(object):
     @property
     def root_content_name(self):
         return self._root_content_name
+
+    @property
+    def handlers(self):
+        return []

@@ -37,6 +37,7 @@ dist = setup(
         "dxlconsole.modules",
         "dxlconsole.modules.broker",
         "dxlconsole.modules.certificates",
+        "dxlconsole.modules.monitor",
         "dxlconsole.web",
         "dxlconsole.web.images",
         "dxlconsole.web.isomorphic",

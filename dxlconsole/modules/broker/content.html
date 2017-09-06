@@ -1,6 +1,11 @@
-isc.VLayout.create({
+isc.Window.create({
+    ID:"broker_layout",
+    title: "Broker Details",
     autoDraw:false,
-    ID: "broker_layout",
-    width: "100%",
-    height: "100%"
+    canDragResize:false,
+    canDragReposition:false,
+    width:"100%",
+    height:"100%",
+    headerControls : [ "headerLabel" ],
+    items: []
 });

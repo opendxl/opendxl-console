@@ -30,12 +30,16 @@ isc.VLayout.create({
     ]
 });
 
-isc.SectionStack.create({
-    autoDraw:false,
+
+isc.Window.create({
     ID:"certs_stack",
-    visibilityMode:"multiple",
-    membersMargin: 6,
-    sections : [
-        { title:"Generate Client Configuration", items:["certs_layout"], expanded:true, canCollapse: false },
-    ]
+    title: "Generate Client Configuration",
+    autoDraw:false,
+    canDragResize:false,
+    canDragReposition:false,
+    width:"100%",
+    height:"100%",
+    headerControls : [ "headerLabel" ],
+    items: [ "certs_layout" ]
 });
+

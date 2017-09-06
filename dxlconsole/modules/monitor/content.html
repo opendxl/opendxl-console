@@ -1,0 +1,593 @@
+var monitor_serviceDS = isc.RestDataSource.create({
+    ID:"monitor_serviceDS",
+    fields:[
+        {name:"itemId", title:"ID", primaryKey:true},
+        {name:"itemName", title:"Name"},
+        {name:"parentId", title:"Parent", foreignKey:"itemId"}
+    ],
+    dataFormat:"json",
+    dataProtocol:"postParams",
+    canSort: false,
+    useClientSorting: false,
+    useClientFiltering: false,
+    jsonPrefix:"",
+    jsonSuffix:"",
+    dataProtocol: "getParams",
+    dataURL:"/update_services"
+});
+
+var monitor_serviceListPane = isc.TreeGrid.create({
+    ID: "monitor_serviceTree",
+    autoDraw:false,
+    height: "65%",
+    dataSource: "monitor_serviceDS",
+    selectionType: "single",
+    showOpenIcons: false,
+    showDropIcons: false,
+    loadDataOnDemand: false,
+    closedIconSuffix: "",
+    showResizeBar: false,
+    defaultIsFolder: false,
+    autoDraw: false,
+    canCollapse: false,
+    leaveScrollbarGap: false,
+    autoFetchData: false,
+    reportCollisions: false,
+    autoPreserveOpenState: true,
+    nodeIcon: "/public/images/service_topic.png",
+    folderIcon: "/public/images/service.png",
+    emptyMessage: "No services found on fabric.",
+    fields: [
+        {name: "itemName", title: "Services"}
+    ],
+    rowDoubleClick: function (record) {
+        if(record.parentId === null)
+        {
+            isc.Window.create({
+                title: "Service Details",
+                autoDraw:true,
+                autoSize:true,
+                canDragResize:true,
+                autoCenter:true,
+                overflow:"hidden",
+                keepInParentRect: true,
+                minWidth:365,
+                items: [
+                    isc.DetailViewer.create({
+                        autoDraw:false,
+                        data:record,
+                        canSelectText:true,
+                        margin:"5",
+                        fields:[
+                            {name:"itemId", title:"ID", primaryKey:true},
+                            {name:"serviceType", title:"Service Type", type: "string"},
+                            {name:"brokerGuid", title:"Broker ID", type: "string"},
+                            {name:"clientGuid", title:"Client ID", type: "string"},
+                            {name:"managed", title:"Managed", type: "string"},
+                            {name:"registrationTime", title:"Registration Time", type: "string"},
+                            {name:"ttlMins", title:"TTL(min)", type: "string"},
+                            {name:"requestChannels", title:"Request Topics", type: "string"},
+                            {name:"unauthorizedChannels", title:"Unauthorized Topics", type: "string"},
+                            {name:"certificates", title:"Certificates", type: "string"},
+                            {name:"metaData", title:"META Data", type: "string"}
+                        ],
+                        formatCellValue: function formatCellValue(value, record, field) {
+
+                            if(value != null)
+                            {
+                                if(field.name === "requestChannels" || field.name === "certificates")
+                                {
+                                    return value.join(",<br/>");
+                                }
+                                else if(field.name === "unauthorizedChannels")
+                                {
+                                    return "<span style=\"color: red;\">" + value.join(",<br/>") + "</span>";
+                                }
+                                else if(field.name === "registrationTime")
+                                {
+                                    var registrationDate = new Date(value * 1000);
+                                    return registrationDate.toLocaleString();
+                                }
+                            }
+                            return value;
+                         }
+                }) ]
+            });
+
+            return false;
+        }
+    },
+    rowClick: function (record) {
+        if(record.parentId != null)
+        {
+            monitor_sendMessageForm.getField('type').setValue('Request');
+            monitor_sendMessageForm.getField('channel').setValue(record.itemName);
+        }
+        return false;
+    }
+});
+
+isc.RestDataSource.create({
+    ID:"monitor_subscriptionDS",
+    fields:[
+        {name:"channel", title:"Topic", primaryKey:true}
+    ],
+    dataFormat:"json",
+    operationBindings : [
+        {operationType:"fetch", dataProtocol:"getParams"},
+        {operationType:"add", dataProtocol:"getParams"},
+        {operationType:"remove", dataProtocol:"getParams"}
+    ],
+    jsonPrefix:"",
+    jsonSuffix:"",
+    dataURL:"/subscriptions"
+});
+
+var monitor_subscriptionList = isc.ListGrid.create({
+    ID:"monitor_subscriptionList",
+    autoDraw:false,
+    alternateRecordStyles: true,
+    selectionType: "none",
+    canCollapseGroup: false,
+    canReorderFields: false,
+    canSort: false,
+    autoFetchData: false,
+    dataSource: "monitor_subscriptionDS",
+    showHeader: false,
+    canRemoveRecords: true,
+    leaveScrollbarGap:false,
+    emptyMessage: "No subscriptions have been added.",
+    fields:[
+        { name:"channel", title:"Subscriptions", required: true, }
+    ]
+});
+
+var monitor_messagesDS = isc.RestDataSource.create({
+    ID:"monitor_messagesDS",
+    fields:[
+        { name:"channel", title:"Topic" },
+        { name:"id", title:"ID", type: "string", primaryKey: true },
+        { name:"type", title:"Type", type: "string" },
+        { name:"payload", title:"Payload", type: "string" },
+        { name:"sourceBroker", title:"Source Broker", type: "string" },
+        { name:"sourceClient", title:"Source Client", type: "string" },
+        { name:"otherFields", title:"Other Fields", type: "string" },
+        { name:"received", title:"Date", type: "datetime" },
+        { name:"originalPayload", title:"Payload", type: "string" }
+    ],
+    dataFormat:"json",
+    autorefreshData:false,
+    jsonPrefix:"",
+    jsonSuffix:"",
+    dataURL:"/messages"
+});
+
+
+var monitor_messagesGrid = isc.ListGrid.create({
+    ID: "monitor_messagesGrid",
+    autoDraw:false,
+    width: "100%",
+    height: "100%",
+    alternateRecordStyles: true,
+    selectionType: "none",
+    canCollapseGroup: false,
+    canReorderFields: false,
+    canSort: false,
+    autoFetchData: false,
+    dataSource: "monitor_messagesDS",
+    canRemoveRecords: false,
+    leaveScrollbarGap:false,
+    enforceVClipping: true,
+    showSortArrow: false,
+    padding: 2,
+    sortField: 3,
+    valueIconRightPadding: 5,
+    emptyMessage: "No messages have been received.",
+    sortDirection: "descending",
+    fields:[
+        { name:"type", title:"Type", width: 100 },
+        { name:"channel", title:"Topic" },
+        { name:"originalPayload", title:"Payload", type: "string", showHover: true },
+        { name:"received", title:"Date", type: "datetime", width: 150, format: "MMM d, yyyy HH:mm:ss" }
+    ],
+    getCellCSSText : function( record, rowNum, colNum ) {
+        var style = "";
+        if( record.type == "Error Response" ) {
+            style += "color:red";
+        }
+
+        if( record.received != null) {
+            var delta = new Date().getTime() - record.received.getTime();
+            var blinkPeriod = 2000;
+            if (delta < blinkPeriod) {
+                var grid = this;
+                isc.Timer.setTimeout(function () {
+                    grid.refreshCell( rowNum, colNum );
+                }, 100);
+                var changeValue = record.changeValue;
+                var ratio = (blinkPeriod-delta)/blinkPeriod;
+                var red = 255 - Math.round(136*ratio);
+                var green = 255 - Math.round(109*ratio);
+                var blue = 255 - Math.round(88*ratio);
+                style += ";background-color:#"+red.toString(16)+green.toString(16)+blue.toString(16);
+            }
+        }
+
+        return style;
+    },
+    getValueIcon : function(field, value, record) {
+        if( field.name == "type" )
+        {
+            if( record.type == "Error Response" ) {
+                return "/public/images/error_message.png";
+            }
+            else if( record.type == "Response" ) {
+                return "/public/images/response.png";
+            }
+            else if( record.type == "Event" ) {
+                return "/public/images/event.png";
+            }
+        }
+        return "";
+    },
+    cellHoverHTML : function(record, rowNum, colNum) {
+        var field = this.fields[colNum];
+        return (field.name == "originalPayload" ? record["payload"] : record[field.name]);
+    },
+    getCellCSSText : function( record, rowNum, colNum ) {
+        var style = "";
+        if( record.type == "Error Response" ) {
+            style += "color:red";
+        }
+
+        if( record.received != null) {
+            var delta = new Date().getTime() - record.received.getTime();
+            var blinkPeriod = 2000;
+            if (delta < blinkPeriod) {
+                var grid = this;
+                isc.Timer.setTimeout(function () {
+                    grid.refreshCell( rowNum, colNum );
+                }, 100);
+                var changeValue = record.changeValue;
+                var ratio = (blinkPeriod-delta)/blinkPeriod;
+                var red = 255 - Math.round(136*ratio);
+                var green = 255 - Math.round(109*ratio);
+                var blue = 255 - Math.round(88*ratio);
+                style += ";background-color:#"+red.toString(16)+green.toString(16)+blue.toString(16);
+            }
+        }
+
+        return style;
+    },
+    cellDoubleClick: function (record) {
+        isc.Window.create({
+            title: "Message Details",
+            autoDraw:true,
+            autoSize:false,
+            width:700,
+            height:500,
+            canDragResize:true,
+            keepInParentRect: true,
+            showMinimizeButton: false,
+            autoCenter:true,
+            showHeaderIcon: false,
+            items: [
+                isc.DetailViewer.create({
+                    autoDraw:false,
+                    data:record,
+                    canSelectText:true,
+                    border: "10px solid transparent",
+                    fields:[
+                        { name:"id", title:"ID", type: "string", primaryKey: true },
+                        { name:"channel", title:"Topic" },
+                        { name:"type", title:"Type", type: "string" },
+                        { name:"payload", title:"Payload", type: "string" },
+                        { name:"sourceBroker", title:"Source Broker", type: "string" },
+                        { name:"sourceClient", title:"Source Client", type: "string" },
+                        { name:"otherFields", title:"Other Fields", type: "string" },
+                        { name:"received", title:"Date", type: "datetime" }
+                    ]
+            }) ]
+        });
+    }
+});
+
+var monitor_hiddenRecords = [];
+
+function monitor_filterMessage(messages)
+{
+    var filters = []
+    if( monitor_filterEvents.isSelected() )
+        filters.add('Event');
+    if( monitor_filterResponses.isSelected() )
+    {
+        filters.add('Response');
+    }
+    if( monitor_filterErrors.isSelected() )
+    {
+        filters.add('Error Response');
+    }
+
+    for( var i = messages.length - 1; i >= 0; i-- )
+    {
+        var rec = messages[i];
+        if( filters.indexOf( rec['type'] ) == -1 )
+        {
+            monitor_hiddenRecords.add( rec );
+            messages.remove( rec );
+        }
+    }
+
+    for( var i = monitor_hiddenRecords.length - 1; i >= 0; i-- )
+    {
+        var rec = monitor_hiddenRecords[i];
+        if( filters.indexOf( rec['type'] ) != -1 )
+        {
+            messages.add( rec );
+            monitor_hiddenRecords.remove( rec );
+        }
+    }
+    return messages;
+}
+
+function monitor_updateMessageFilters()
+{
+    var gridData = monitor_messagesGrid.getOriginalData();
+    var filteredData = monitor_filterMessage( gridData );
+    monitor_messagesGrid.setData( gridData );
+    var visibleRows = monitor_messagesGrid.getVisibleRows();
+    var etFld = monitor_messagesGrid.getFieldNum( "received" );
+    for( var i = visibleRows[0]; i <= visibleRows[1]; i++ ) {
+        if( i != -1 ) {
+            monitor_messagesGrid.refreshCell( i, etFld );
+        }
+    }
+    monitor_messagesGrid.resort();
+}
+
+var monitor_sendMessageForm = isc.DynamicForm.create({
+    ID: "monitor_sendMessageForm",
+    autoDraw:false,
+    canSubmit: true,
+    numCols: 2,
+    colWidths: [1, "*"],
+    fields: [
+        {
+            name: "type",
+            title: "Type",
+            type: "select",
+            required: true,
+            value: "Event",
+            valueMap: ["Request", "Event"]
+        },
+        {
+            name: "channel",
+            type: "text",
+            width: 400,
+            title: "Topic",
+            required: true,
+        },
+        {
+            name: "payload",
+            type: "textArea",
+            width: 400,
+            height: 150,
+            wrap: "OFF",
+            title: "Payload"
+        }
+    ],
+    submit : function () {
+        if( monitor_sendMessageForm.validate() ) {
+            messageStatusResponse.setContents("");
+            RPCManager.sendRequest({
+                data: JSON.stringify(monitor_sendMessageForm.getValues()),
+                callback: 'messageStatusResponse.setContents(data)',
+                actionURL: "/send_message",
+                useSimpleHttp: true,
+                httpMethod: "POST",
+                showPrompt: true,
+                paramsOnly: true
+            })
+        }
+    }
+});
+
+
+isc.VLayout.create({
+    autoDraw:false,
+    ID: "monitor_sendMessageFormLayout",
+    margin: 15,
+    membersMargin: 20,
+    members: [
+        "monitor_sendMessageForm",
+        isc.HLayout.create({
+            membersMargin: 10,
+            defaultLayoutAlign: "top",
+            members: [
+                isc.IButton.create({
+                    title: "Send Message",
+                    width: 150,
+                    click : function () { monitor_sendMessageForm.submit(); },
+                }),
+                isc.HTMLFlow.create({
+                    ID: "messageStatusResponse",
+                    width:"100%",
+                    overflow: "clip-v",
+                    autoDraw:false,
+                    border: "5px solid transparent"
+                })
+            ]
+        })
+    ]
+});
+
+monitor_filterEvents = isc.ToolStripButton.create({
+    ID: "monitor_filterEvents",
+    actionType: "checkbox",
+    showFocused: false,
+    showFocusOutline: true,
+    showRollOver: false,
+    selected: true,
+    title: "Events",
+    icon: "/public/images/event.png",
+    click: "monitor_updateMessageFilters()"
+});
+
+monitor_filterResponses = isc.ToolStripButton.create({
+    ID: "monitor_filterResponses",
+    actionType: "checkbox",
+    showFocused: false,
+    showFocusOutline: true,
+    showRollOver: false,
+    selected: true,
+    title: "Responses",
+    icon: "/public/images/response.png",
+    click: "monitor_updateMessageFilters()"
+});
+
+monitor_filterErrors = isc.ToolStripButton.create({
+    ID: "monitor_filterErrors",
+    actionType: "checkbox",
+    showFocused: false,
+    showFocusOutline: true,
+    showRollOver: false,
+    selected: true,
+    title: "Errors",
+    icon: "/public/images/error_message.png",
+    click: "monitor_updateMessageFilters()"
+});
+
+isc.HLayout.create({
+    ID: "monitor_content_layout",
+    autoDraw:true,
+    members: [
+        isc.SectionStack.create({
+            autoDraw: false,
+            visibilityMode: "multiple",
+            width: 325,
+            showResizeBar: true,
+            sections: [
+                {title: "Services", expanded: true, showHeader: false, items: [ "monitor_serviceTree" ]},
+                {title: "Subscriptions", expanded: true, items: [
+                    isc.ToolStrip.create({
+                        padding:5,
+                        membersMargin:5,
+                        members: [
+                            isc.ToolStripButton.create({
+                                icon: "/public/images/add.png",
+                                title: "Add",
+                                click: "monitor_subscriptionList.startEditingNew()"
+                            }),
+                            isc.ToolStripSpacer.create(),
+                        ]
+                    }),
+                    "monitor_subscriptionList"
+                ]}
+            ]
+        }),
+        isc.SectionStack.create({
+            autoDraw: false,
+            visibilityMode: "multiple",
+            sections: [
+                {title: "Send Message", expanded: true, items: [
+                    isc.VLayout.create({
+                        height: "300",
+                        members: [
+                            "monitor_sendMessageFormLayout"
+                        ]
+                    })
+                ]},
+                {title: "Received Messages", expanded: true, items: [
+                    isc.ToolStrip.create({
+                        padding:5,
+                        membersMargin:5,
+                        members: [
+                            isc.Label.create({
+                                width: 1,
+                                wrap: false,
+                                contents: "Filter by Type:"
+                            }),
+                            "monitor_filterEvents",
+                            "monitor_filterResponses",
+                            "monitor_filterErrors",
+                            isc.ToolStripSpacer.create(),
+                        ]
+                    }),
+                    "monitor_messagesGrid"
+                ]}
+            ]
+        })
+    ]
+});
+
+isc.Window.create({
+    ID:"monitor_layout",
+    title: "Fabric Monitor",
+    autoDraw:false,
+    canDragResize:false,
+    canDragReposition:false,
+    width:"100%",
+    height:"100%",
+    headerControls : [ "headerLabel" ],
+    items: [ "monitor_content_layout" ]
+});
+
+monitor_subscriptionList.fetchData();
+
+function monitor_fetch_new_messages()
+{
+    monitor_messagesDS.fetchData( null,
+        function( dsResponse, data ) {
+            var gridData = monitor_messagesGrid.getOriginalData();
+            for( var i = 0; i < data.length; i++ ) {
+                var rec = data[i];
+                rec.received = new Date();
+                gridData.add( rec )
+            }
+            monitor_messagesGrid.setData( monitor_filterMessage(gridData) );
+            var visibleRows = monitor_messagesGrid.getVisibleRows();
+            var etFld = monitor_messagesGrid.getFieldNum( "received" );
+            for( var i = visibleRows[0]; i <= visibleRows[1]; i++ ) {
+                if( i != -1 ) {
+                    monitor_messagesGrid.refreshCell( i, etFld );
+                }
+            }
+            monitor_messagesGrid.resort();
+        }, { showPrompt: false }
+    );
+}
+monitor_serviceListPane.fetchData();
+
+function monitor_fetch_service_data()
+{
+    monitor_serviceDS.fetchData( null,
+        function( dsResponse, data ) {
+            var openState = monitor_serviceListPane.getOpenState();
+            var selectedPaths = monitor_serviceListPane.getSelectedState();
+            var gridData = monitor_serviceListPane.getData();
+            gridData.reportCollisions = false;
+
+            Object.keys(gridData.nodeIndex).forEach(function(key) {
+                if( !gridData.nodeIndex.hasOwnProperty(key) )
+                    return;
+                if( data.find( x => x.itemId === gridData.nodeIndex[key].itemId ) === null ) {
+                    gridData.remove(gridData.nodeIndex[key]);
+                }
+            });
+            gridData.linkNodes(data);
+
+            monitor_serviceListPane.setOpenState(openState);
+            monitor_serviceListPane.setSelectedState(selectedPaths);
+        }, { showPrompt: false }
+    );
+}
+
+monitor_fetch_service_data();
+monitor_fetch_new_messages();
+
+var monitor_ws = new WebSocket("ws://localhost:@PORT@/websocket");
+monitor_ws.onmessage = function(e) {
+    //TODO: get service updates and distinguish from message updates
+    monitor_fetch_new_messages();
+    monitor_fetch_service_data();
+};

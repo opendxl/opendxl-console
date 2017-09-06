@@ -12,6 +12,11 @@ class OpenDxlConsole(Application):
     The "OpenDXL Console" application class.
     """
 
+    #: The name of the "General" section within the application configuration file
+    GENERAL_CONFIG_SECTION = "General"
+    #: The web server port property
+    GENERAL_PORT_CONFIG_PROP = "port"
+
     def __init__(self, config_dir):
         """
         Constructor parameters:
@@ -21,7 +26,12 @@ class OpenDxlConsole(Application):
         """
         super(OpenDxlConsole, self).__init__(config_dir, "dxlconsole.config")
 
-        self.web_console = WebConsole()
+        self._web_console = None
+        self._port = 8080
+
+    @property
+    def port(self):
+        return self._port
 
     @property
     def client(self):
@@ -30,6 +40,10 @@ class OpenDxlConsole(Application):
         fabric
         """
         return self._dxl_client
+
+    @property
+    def client_config_path(self):
+        return self._dxlclient_config_path
 
     @property
     def config(self):
@@ -55,6 +69,15 @@ class OpenDxlConsole(Application):
         """
         logger.info("On 'load configuration' callback.")
 
+        # Port
+        try:
+            self._port = int(config.get(self.GENERAL_CONFIG_SECTION, self.GENERAL_PORT_CONFIG_PROP))
+        except Exception:
+            pass
+        if not self._port:
+            raise Exception("Port not found in configuration file: {0}"
+                            .format(self._app_config_path))
+
     def on_dxl_connect(self):
         """
         Invoked after the client associated with the application has connected
@@ -62,4 +85,5 @@ class OpenDxlConsole(Application):
         """
         logger.info("On 'DXL connect' callback.")
 
-        self.web_console.start()
+        self._web_console = WebConsole(self)
+        self._web_console.start()
