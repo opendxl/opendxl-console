@@ -7,9 +7,6 @@ var monitor_serviceDS = isc.RestDataSource.create({
     ],
     dataFormat:"json",
     dataProtocol:"postParams",
-    canSort: false,
-    useClientSorting: false,
-    useClientFiltering: false,
     jsonPrefix:"",
     jsonSuffix:"",
     dataProtocol: "getParams",
@@ -37,6 +34,8 @@ var monitor_serviceListPane = isc.TreeGrid.create({
     nodeIcon: "/public/images/service_topic.png",
     folderIcon: "/public/images/service.png",
     emptyMessage: "No services found on fabric.",
+    sortField: 0,
+    sortDirection: "ascending",
     fields: [
         {name: "itemName", title: "Services"}
     ],
@@ -46,18 +45,25 @@ var monitor_serviceListPane = isc.TreeGrid.create({
             isc.Window.create({
                 title: "Service Details",
                 autoDraw:true,
-                autoSize:true,
-                canDragResize:true,
-                autoCenter:true,
-                overflow:"hidden",
+                autoSize:false,
+                width:700,
+                height:500,
+                canDragResize:false,
+                canDragReposition:false,
                 keepInParentRect: true,
-                minWidth:365,
+                showMinimizeButton: false,
+                autoCenter:true,
+                showHeaderIcon: false,
+                isModal: true,
+                showModalMask: true,
+                modalMaskOpacity: 35,
                 items: [
                     isc.DetailViewer.create({
                         autoDraw:false,
                         data:record,
                         canSelectText:true,
-                        margin:"5",
+                        border: "10px solid transparent",
+                        labelSuffix: ":&nbsp;",
                         fields:[
                             {name:"itemId", title:"ID", primaryKey:true},
                             {name:"serviceType", title:"Service Type", type: "string"},
@@ -102,6 +108,7 @@ var monitor_serviceListPane = isc.TreeGrid.create({
         {
             monitor_sendMessageForm.getField('type').setValue('Request');
             monitor_sendMessageForm.getField('channel').setValue(record.itemName);
+            monitor_sendMessageForm.getField('payload').setValue('');
         }
         return false;
     }
@@ -178,7 +185,6 @@ var monitor_messagesGrid = isc.ListGrid.create({
     canRemoveRecords: false,
     leaveScrollbarGap:false,
     enforceVClipping: true,
-    showSortArrow: false,
     padding: 2,
     sortField: 3,
     valueIconRightPadding: 5,
@@ -266,17 +272,22 @@ var monitor_messagesGrid = isc.ListGrid.create({
             autoSize:false,
             width:700,
             height:500,
-            canDragResize:true,
+            canDragResize:false,
+            canDragReposition:false,
             keepInParentRect: true,
             showMinimizeButton: false,
             autoCenter:true,
             showHeaderIcon: false,
+            isModal: true,
+            showModalMask: true,
+            modalMaskOpacity: 35,
             items: [
                 isc.DetailViewer.create({
                     autoDraw:false,
                     data:record,
                     canSelectText:true,
                     border: "10px solid transparent",
+                    labelSuffix: ":&nbsp;",
                     fields:[
                         { name:"id", title:"ID", type: "string", primaryKey: true },
                         { name:"channel", title:"Topic" },

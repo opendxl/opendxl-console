@@ -12,3 +12,8 @@ class BrokerModule(Module):
     @property
     def content(self):
         return pkg_resources.resource_string(__name__, "content.html")
+
+    @property
+    def enabled(self):
+        return self.app.bootstrap_app.local_broker
+

@@ -16,6 +16,8 @@ class OpenDxlConsole(Application):
     GENERAL_CONFIG_SECTION = "General"
     #: The web server port property
     GENERAL_PORT_CONFIG_PROP = "port"
+    #: Whether the console is embedded in the broker
+    GENERAL_LOCAL_BROKER_PROP = "localBroker"
 
     def __init__(self, config_dir):
         """
@@ -28,10 +30,15 @@ class OpenDxlConsole(Application):
 
         self._web_console = None
         self._port = 8080
+        self._local_broker = False
 
     @property
     def port(self):
         return self._port
+
+    @property
+    def local_broker(self):
+        return self._local_broker
 
     @property
     def client(self):
@@ -77,6 +84,12 @@ class OpenDxlConsole(Application):
         if not self._port:
             raise Exception("Port not found in configuration file: {0}"
                             .format(self._app_config_path))
+
+        # Local broker
+        try:
+            self._local_broker = bool(config.get(self.GENERAL_CONFIG_SECTION, self.GENERAL_LOCAL_BROKER_PROP))
+        except Exception:
+            pass
 
     def on_dxl_connect(self):
         """
