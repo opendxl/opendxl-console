@@ -599,9 +599,13 @@ function monitor_fetch_service_data()
 monitor_fetch_service_data();
 monitor_fetch_new_messages();
 
-var monitor_ws = new WebSocket("wss://" + location.host + "/websocket");
-monitor_ws.onmessage = function(e) {
-    //TODO: get service updates and distinguish from message updates
-    monitor_fetch_new_messages();
-    monitor_fetch_service_data();
-};
+var monitor_ws = null;
+
+$( document ).ready(function() {
+    monitor_ws = new WebSocket("wss://" + location.host + "/websocket");
+    monitor_ws.onmessage = function(e) {
+        //TODO: get service updates and distinguish from message updates
+        monitor_fetch_new_messages();
+        monitor_fetch_service_data();
+    };
+});
