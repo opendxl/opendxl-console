@@ -87,7 +87,7 @@ class OpenDxlConsole(Application):
 
         # Local broker
         try:
-            self._local_broker = bool(config.get(self.GENERAL_CONFIG_SECTION, self.GENERAL_LOCAL_BROKER_PROP))
+            self._local_broker = config.getboolean(self.GENERAL_CONFIG_SECTION, self.GENERAL_LOCAL_BROKER_PROP)
         except Exception:
             pass
 

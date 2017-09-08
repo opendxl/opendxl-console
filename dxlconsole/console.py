@@ -1,8 +1,10 @@
 import pkg_resources
 
-from tornado.web import RequestHandler, Application
+from tornado.web import RequestHandler, Application, StaticFileHandler
 from tornado.httpserver import HTTPServer
 from tornado.ioloop import IOLoop
+
+from dxlclient.client_config import DxlClientConfig
 
 import dxlconsole
 from .modules.certificates.module import CertificateModule
@@ -10,18 +12,21 @@ from .modules.broker.module import BrokerModule
 from .modules.monitor.module import MonitorModule
 
 
-class ConsoleStaticFileRequestHandler(RequestHandler):
+class ConsoleStaticFileRequestHandler(StaticFileHandler):
 
     def data_received(self, chunk):
         pass
 
-    def __init__(self, application, request):
-        super(ConsoleStaticFileRequestHandler, self).__init__(application, request)
+    def initialize(self, path, default_filename=None):
+        super(ConsoleStaticFileRequestHandler, self).initialize(path, default_filename)
 
-    def get(self, path):
+    @classmethod
+    def get_absolute_path(cls, root, path):
         resource_path = '/'.join(("web", path))
-        html = pkg_resources.resource_string(__name__, resource_path)
-        self.write(html)
+        return pkg_resources.resource_filename(__name__, resource_path)
+
+    def validate_absolute_path(self, root, absolute_path):
+        return absolute_path
 
 
 class ConsoleRequestHandler(RequestHandler):
@@ -90,7 +95,7 @@ class WebConsole(Application):
         ]
 
         handlers = [
-            (r'/public/(.*)', ConsoleStaticFileRequestHandler),
+            (r'/public/(.*)', ConsoleStaticFileRequestHandler, {'path': '__unused__'}),
             (r'/', ConsoleRequestHandler)
         ]
 
@@ -109,6 +114,10 @@ class WebConsole(Application):
         return self._modules
 
     def start(self):
-        server = HTTPServer(self)
-        server.listen(self._bootstrap_app.port)  # TODO: Set port
+        client_config = DxlClientConfig.create_dxl_config_from_file(self.bootstrap_app.client_config_path)
+        http_server = HTTPServer(self, ssl_options={
+            "certfile": client_config.cert_file,
+            "keyfile": client_config.private_key,
+        })
+        http_server.listen(self._bootstrap_app.port)
         IOLoop.instance().start()

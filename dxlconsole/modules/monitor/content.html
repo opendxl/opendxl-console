@@ -25,7 +25,6 @@ var monitor_serviceListPane = isc.TreeGrid.create({
     closedIconSuffix: "",
     showResizeBar: false,
     defaultIsFolder: false,
-    autoDraw: false,
     canCollapse: false,
     leaveScrollbarGap: false,
     autoFetchData: false,
@@ -48,7 +47,7 @@ var monitor_serviceListPane = isc.TreeGrid.create({
                 autoSize:false,
                 width:700,
                 height:500,
-                canDragResize:false,
+                canDragResize:true,
                 canDragReposition:false,
                 keepInParentRect: true,
                 showMinimizeButton: false,
@@ -103,6 +102,33 @@ var monitor_serviceListPane = isc.TreeGrid.create({
             return false;
         }
     },
+/*
+    getCellCSSText : function( record, rowNum, colNum ) {
+        style = "";
+        if( record.received != null ) {
+            var delta = new Date().getTime() - record.received.getTime();
+            var blinkPeriod = 2000;
+            if (delta < blinkPeriod) {
+                var grid = this;
+                isc.Timer.setTimeout(function () {
+                    grid.refreshCell( rowNum, colNum );
+                }, 100);
+                var changeValue = record.changeValue;
+                var ratio = (blinkPeriod-delta)/blinkPeriod;
+                var red = 255 - Math.round(136*ratio);
+                var green = 255 - Math.round(109*ratio);
+                var blue = 255 - Math.round(88*ratio);
+                style += ";background-color:#"+red.toString(16)+green.toString(16)+blue.toString(16);
+            }
+            else
+            {
+                record.received = null;
+            }
+        }
+
+        return style;
+    },
+*/
     rowClick: function (record) {
         if(record.parentId != null)
         {
@@ -193,7 +219,7 @@ var monitor_messagesGrid = isc.ListGrid.create({
     fields:[
         { name:"type", title:"Type", width: 100 },
         { name:"channel", title:"Topic" },
-        { name:"originalPayload", title:"Payload", type: "string", showHover: true },
+        { name:"originalPayload", title:"Payload", type: "string" },
         { name:"received", title:"Date", type: "datetime", width: 150, format: "MMM d, yyyy HH:mm:ss" }
     ],
     getCellCSSText : function( record, rowNum, colNum ) {
@@ -240,31 +266,6 @@ var monitor_messagesGrid = isc.ListGrid.create({
         var field = this.fields[colNum];
         return (field.name == "originalPayload" ? record["payload"] : record[field.name]);
     },
-    getCellCSSText : function( record, rowNum, colNum ) {
-        var style = "";
-        if( record.type == "Error Response" ) {
-            style += "color:red";
-        }
-
-        if( record.received != null) {
-            var delta = new Date().getTime() - record.received.getTime();
-            var blinkPeriod = 2000;
-            if (delta < blinkPeriod) {
-                var grid = this;
-                isc.Timer.setTimeout(function () {
-                    grid.refreshCell( rowNum, colNum );
-                }, 100);
-                var changeValue = record.changeValue;
-                var ratio = (blinkPeriod-delta)/blinkPeriod;
-                var red = 255 - Math.round(136*ratio);
-                var green = 255 - Math.round(109*ratio);
-                var blue = 255 - Math.round(88*ratio);
-                style += ";background-color:#"+red.toString(16)+green.toString(16)+blue.toString(16);
-            }
-        }
-
-        return style;
-    },
     cellDoubleClick: function (record) {
         isc.Window.create({
             title: "Message Details",
@@ -272,7 +273,7 @@ var monitor_messagesGrid = isc.ListGrid.create({
             autoSize:false,
             width:700,
             height:500,
-            canDragResize:false,
+            canDragResize:true,
             canDragReposition:false,
             keepInParentRect: true,
             showMinimizeButton: false,
@@ -346,13 +347,6 @@ function monitor_updateMessageFilters()
     var gridData = monitor_messagesGrid.getOriginalData();
     var filteredData = monitor_filterMessage( gridData );
     monitor_messagesGrid.setData( gridData );
-    var visibleRows = monitor_messagesGrid.getVisibleRows();
-    var etFld = monitor_messagesGrid.getFieldNum( "received" );
-    for( var i = visibleRows[0]; i <= visibleRows[1]; i++ ) {
-        if( i != -1 ) {
-            monitor_messagesGrid.refreshCell( i, etFld );
-        }
-    }
     monitor_messagesGrid.resort();
 }
 
@@ -556,13 +550,6 @@ function monitor_fetch_new_messages()
                 gridData.add( rec )
             }
             monitor_messagesGrid.setData( monitor_filterMessage(gridData) );
-            var visibleRows = monitor_messagesGrid.getVisibleRows();
-            var etFld = monitor_messagesGrid.getFieldNum( "received" );
-            for( var i = visibleRows[0]; i <= visibleRows[1]; i++ ) {
-                if( i != -1 ) {
-                    monitor_messagesGrid.refreshCell( i, etFld );
-                }
-            }
             monitor_messagesGrid.resort();
         }, { showPrompt: false }
     );
@@ -578,10 +565,25 @@ function monitor_fetch_service_data()
             var gridData = monitor_serviceListPane.getData();
             gridData.reportCollisions = false;
 
+            for( var i = 0; i < data.length; i++ ) {
+                var rec = data[i];
+                if( typeof rec.parentId === "undefined" ) {
+                    rec.received = new Date();
+                }
+            }
+
             Object.keys(gridData.nodeIndex).forEach(function(key) {
                 if( !gridData.nodeIndex.hasOwnProperty(key) )
                     return;
-                if( data.find( x => x.itemId === gridData.nodeIndex[key].itemId ) === null ) {
+                var found = false;
+                for( var i = 0; i < data.length; i++ ) {
+                    if( data[i].itemId === gridData.nodeIndex[key].itemId ) {
+                        data[i].received = null;
+                        found = true;
+                        break;
+                    }
+                }
+                if( !found ) {
                     gridData.remove(gridData.nodeIndex[key]);
                 }
             });
@@ -589,6 +591,7 @@ function monitor_fetch_service_data()
 
             monitor_serviceListPane.setOpenState(openState);
             monitor_serviceListPane.setSelectedState(selectedPaths);
+            monitor_serviceListPane.resort();
         }, { showPrompt: false }
     );
 }
@@ -596,7 +599,7 @@ function monitor_fetch_service_data()
 monitor_fetch_service_data();
 monitor_fetch_new_messages();
 
-var monitor_ws = new WebSocket("ws://localhost:@PORT@/websocket");
+var monitor_ws = new WebSocket("wss://" + location.host + "/websocket");
 monitor_ws.onmessage = function(e) {
     //TODO: get service updates and distinguish from message updates
     monitor_fetch_new_messages();

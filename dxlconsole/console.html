@@ -1,5 +1,8 @@
+<!DOCTYPE html>
 <HTML>
     <HEAD>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
         <TITLE>OpenDXL Console</TITLE>
         <SCRIPT>var isomorphicDir="/public/isomorphic/";</SCRIPT>
         <SCRIPT SRC=/public/isomorphic/system/modules/ISC_Core.js></SCRIPT>
@@ -15,6 +18,8 @@
 
 Canvas.resizeFonts(3);
 Canvas.resizeControls(5);
+
+isc.Page.leaveScrollbarGap=false;
 
 isc.ToolStrip.create({
     autoDraw:false,

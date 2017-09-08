@@ -94,7 +94,7 @@ class MonitorModule(Module):
 
     @property
     def client_config(self):
-        return self._client_config
+        return DxlClientConfig.create_dxl_config_from_file(self.app.bootstrap_app.client_config_path)
 
     def get_dxl_client(self, request_handler):
         """
@@ -238,7 +238,10 @@ class _ServiceEventCallback(EventCallback):
                 del self._module.services[service_event['serviceGuid']]
 
         for key in self._module.web_socket_dict:
-            self._module.web_socket_dict[key].write_message(u"serviceUpdates")
+            try:
+                self._module.web_socket_dict[key].write_message(u"serviceUpdates")
+            except:
+                pass
 
 
 class _WebSocketEventCallback(EventCallback):
@@ -434,6 +437,15 @@ class MessagesHandler(tornado.web.RequestHandler):
     def data_received(self, chunk):
         pass
 
+    def escape(self, html):
+        """Returns the given HTML with ampersands, quotes and carets encoded."""
+        return html\
+            .replace('&', '&amp;') \
+            .replace('<', '&lt;') \
+            .replace('>', '&gt;') \
+            .replace('"', '&quot;') \
+            .replace("'", ' &#39;')
+
     def get(self):
         response_wrapper = MonitorModule.create_smartclient_response_wrapper()
 
@@ -446,16 +458,17 @@ class MessagesHandler(tornado.web.RequestHandler):
                 # If we have a topic stored as a response for this message ID use it instead of the response channel
                 topic = self._module.get_message_topic(message)
                 if message.message_type == Message.MESSAGE_TYPE_ERROR:
-                    payload = message.error_message
+                    payload = self.escape(message.error_message + " (" + str(message.error_code) + ")")
                     original_payload = payload
                 else:
-                    original_payload = MessageUtils.decode_payload(message)
+                    original_payload = self.escape(MessageUtils.decode_payload(message))
                     try:
                         payload = "<pre><code>" + \
-                                  MessageUtils.dict_to_json(MessageUtils.json_payload_to_dict(message), True) + \
-                                  "</pre></code>"
+                                  self.escape(
+                                      MessageUtils.dict_to_json(MessageUtils.json_payload_to_dict(message), True)) \
+                                  + "</pre></code>"
                     except:
-                        payload = message.payload.decode()
+                        payload = original_payload
 
                 message_entry = {
                     'channel': topic,
@@ -471,10 +484,10 @@ class MessagesHandler(tornado.web.RequestHandler):
                     'originalPayload': original_payload,
                     'sourceBroker': message.source_broker_id,
                     'sourceClient': message.source_client_id,
-                    'otherFields': "<pre><code>" + MessageUtils.dict_to_json(message.other_fields, True) +
+                    'otherFields': "<pre><code>" +
+                                   self.escape( MessageUtils.dict_to_json(message.other_fields, True)) +
                                    "</pre></code>"
                 }
-                print("appending entry " + str(message_entry))
                 response["data"].append(message_entry)
 
         self._module.clear_messages(self.get_cookie(MonitorModule.CLIENT_COOKIE_KEY))
