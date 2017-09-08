@@ -29,7 +29,7 @@ class OpenDxlConsole(Application):
         super(OpenDxlConsole, self).__init__(config_dir, "dxlconsole.config")
 
         self._web_console = None
-        self._port = 8080
+        self._port = 8443
         self._local_broker = False
 
     @property
