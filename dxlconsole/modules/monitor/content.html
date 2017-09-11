@@ -115,9 +115,9 @@ var monitor_serviceListPane = isc.TreeGrid.create({
                 }, 100);
                 var changeValue = record.changeValue;
                 var ratio = (blinkPeriod-delta)/blinkPeriod;
-                var red = 255 - Math.round(136*ratio);
-                var green = 255 - Math.round(109*ratio);
-                var blue = 255 - Math.round(88*ratio);
+                var red = 255 - Math.round(119*ratio);
+                var green = 255 - Math.round(45*ratio);
+                var blue = 255 - Math.round(0*ratio);
                 style += ";background-color:#"+red.toString(16)+green.toString(16)+blue.toString(16);
             }
             else
@@ -216,6 +216,7 @@ var monitor_messagesGrid = isc.ListGrid.create({
     valueIconRightPadding: 5,
     emptyMessage: "No messages have been received.",
     sortDirection: "descending",
+    canHover: true,
     fields:[
         { name:"type", title:"Type", width: 100 },
         { name:"channel", title:"Topic" },
@@ -238,9 +239,9 @@ var monitor_messagesGrid = isc.ListGrid.create({
                 }, 100);
                 var changeValue = record.changeValue;
                 var ratio = (blinkPeriod-delta)/blinkPeriod;
-                var red = 255 - Math.round(136*ratio);
-                var green = 255 - Math.round(109*ratio);
-                var blue = 255 - Math.round(88*ratio);
+                var red = 255 - Math.round(119*ratio);
+                var green = 255 - Math.round(45*ratio);
+                var blue = 255 - Math.round(0*ratio);
                 style += ";background-color:#"+red.toString(16)+green.toString(16)+blue.toString(16);
             }
         }

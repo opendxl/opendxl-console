@@ -73,7 +73,6 @@ class ConsoleRequestHandler(RequestHandler):
                 module_names += "'" + module.root_content_name + "'"
         console_html += "console_toolstrip.addMember(isc.ToolStripSpacer.create());"
         console_html += "console_toolstrip.addMember('console_version_label');"
-        console_html += "console_toolstrip.addMember(isc.ToolStripSpacer.create({space:5}));"
         console_html += \
             "isc.Deck.create({autoDraw:false, ID: 'console_deck', panes: [" + module_names + "] });"
         if first_button:
