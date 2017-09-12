@@ -4,6 +4,12 @@
 
 [General]
 
+# The user name for the console
+username=admin
+
+# The password for the console
+password=password
+
 # The port for the server (required)
 port=8443
 

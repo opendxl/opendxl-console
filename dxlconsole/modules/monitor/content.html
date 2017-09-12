@@ -41,9 +41,9 @@ var monitor_serviceListPane = isc.TreeGrid.create({
     rowDoubleClick: function (record) {
         if(record.parentId === null)
         {
-            isc.Window.create({
+            var w = isc.Window.create({
                 title: "Service Details",
-                autoDraw:true,
+                autoDraw:false,
                 autoSize:false,
                 width:700,
                 height:500,
@@ -56,6 +56,8 @@ var monitor_serviceListPane = isc.TreeGrid.create({
                 isModal: true,
                 showModalMask: true,
                 modalMaskOpacity: 35,
+                showResizer: true,
+                showFooter: true,
                 items: [
                     isc.DetailViewer.create({
                         autoDraw:false,
@@ -98,6 +100,7 @@ var monitor_serviceListPane = isc.TreeGrid.create({
                          }
                 }) ]
             });
+            w.animateShow("fade");
 
             return false;
         }
@@ -268,9 +271,9 @@ var monitor_messagesGrid = isc.ListGrid.create({
         return (field.name == "originalPayload" ? record["payload"] : record[field.name]);
     },
     cellDoubleClick: function (record) {
-        isc.Window.create({
+        var w = isc.Window.create({
             title: "Message Details",
-            autoDraw:true,
+            autoDraw:false,
             autoSize:false,
             width:700,
             height:500,
@@ -283,6 +286,8 @@ var monitor_messagesGrid = isc.ListGrid.create({
             isModal: true,
             showModalMask: true,
             modalMaskOpacity: 35,
+            showResizer: true,
+            showFooter: true,
             items: [
                 isc.DetailViewer.create({
                     autoDraw:false,
@@ -302,6 +307,7 @@ var monitor_messagesGrid = isc.ListGrid.create({
                     ]
             }) ]
         });
+        w.animateShow("fade");
     }
 });
 

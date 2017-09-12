@@ -18,6 +18,10 @@ class OpenDxlConsole(Application):
     GENERAL_PORT_CONFIG_PROP = "port"
     #: Whether the console is embedded in the broker
     GENERAL_LOCAL_BROKER_PROP = "localBroker"
+    #: The console user name
+    GENERAL_USERNAME_PROP = "username"
+    #: The console password
+    GENERAL_PASSWORD_PROP = "password"
 
     def __init__(self, config_dir):
         """
@@ -31,6 +35,15 @@ class OpenDxlConsole(Application):
         self._web_console = None
         self._port = 8443
         self._local_broker = False
+        self._username = None
+        self._password = None
+
+    @property
+    def console_name(self):
+        if self.local_broker:
+            return "OpenDXL Broker Console"
+        else:
+            return "OpenDXL Console"
 
     @property
     def port(self):
@@ -39,6 +52,14 @@ class OpenDxlConsole(Application):
     @property
     def local_broker(self):
         return self._local_broker
+
+    @property
+    def username(self):
+        return self._username
+
+    @property
+    def password(self):
+        return self._password
 
     @property
     def client(self):
@@ -90,6 +111,24 @@ class OpenDxlConsole(Application):
             self._local_broker = config.getboolean(self.GENERAL_CONFIG_SECTION, self.GENERAL_LOCAL_BROKER_PROP)
         except Exception:
             pass
+
+        # Username
+        try:
+            self._username = config.get(self.GENERAL_CONFIG_SECTION, self.GENERAL_USERNAME_PROP)
+        except Exception:
+            pass
+        if not self._username:
+            raise Exception("Username not found in configuration file: {0}"
+                            .format(self._app_config_path))
+
+        # Password
+        try:
+            self._password = config.get(self.GENERAL_CONFIG_SECTION, self.GENERAL_PASSWORD_PROP)
+        except Exception:
+            pass
+        if not self._password:
+            raise Exception("Password not found in configuration file: {0}"
+                            .format(self._app_config_path))
 
     def on_dxl_connect(self):
         """

@@ -1855,7 +1855,8 @@ into the listGrid filterEditor  */
 .toolStripButtonSelectedDisabled {
   /*background-color: #616161;*/
   /*background-color: #8D8D8D;*/
-  background-color: #47A7E3;  
+  /*background-color: #47A7E3;*/ 
+  background-color: #176899;
   color: #f0f0f0;
   border: 1px solid #9e9e9e;
 }
@@ -6453,7 +6454,7 @@ select[disabled] option {
 .detail,
 .detailLabel,
 .detailHeader {
-  background-color: #eff9ff;
+  /*background-color: #eff9ff;*/
   border-bottom: 1px solid #929292;
   border-right: 1px solid #929292;
   color: #363636;

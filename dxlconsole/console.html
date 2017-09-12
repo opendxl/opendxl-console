@@ -3,7 +3,7 @@
     <HEAD>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
-        <TITLE>OpenDXL Console</TITLE>
+        <TITLE>@CONSOLE_NAME@</TITLE>
         <SCRIPT>var isomorphicDir="/public/isomorphic/";</SCRIPT>
         <SCRIPT SRC=/public/isomorphic/system/modules/ISC_Core.js></SCRIPT>
         <SCRIPT SRC=/public/isomorphic/system/modules/ISC_Foundation.js></SCRIPT>
@@ -39,7 +39,8 @@ isc.Label.create({
     valign: "center",
     wrap: true,
     contents:
-        '<div style="padding:10px; font-size:1.0em; text-align:center; font-weight:bold">OpenDXL Console</div>' +
+        '<div style="padding:10px; font-size:1.0em; text-align:center; font-weight:bold">@CONSOLE_NAME@</div>' +
         '<div style="padding:0px 10px 10px 10px; font-size:0.7em; text-align: center;">Version: @VERSION@</div>' +
-        '<div style="text-align:center; padding:0px 10px 10px 10px"><a href="http://www.opendxl.com" target="_blank"><img src="/public/images/help.png"></a></img></div>'
+        '<div style="text-align:center; padding:0px 10px 25px 10px"><a href="http://www.opendxl.com" target="_blank"><img src="/public/images/help.png"></a></img></div>' +
+        '<div style="padding:0px 10px 20px 10px; text-align: center;"><div style="cursor: pointer; cursor: hand; background-color:#176899; border-color:#176899;" onclick="window.location=\'/logout\'" class="buttonRounded">Logout</div></div>'
 });

@@ -1,6 +1,8 @@
 import pkg_resources
+import tornado
+import uuid
 
-from tornado.web import RequestHandler, Application, StaticFileHandler
+from tornado.web import RequestHandler, Application, StaticFileHandler, authenticated
 from tornado.httpserver import HTTPServer
 from tornado.ioloop import IOLoop
 
@@ -10,6 +12,7 @@ import dxlconsole
 from .modules.certificates.module import CertificateModule
 from .modules.broker.module import BrokerModule
 from .modules.monitor.module import MonitorModule
+from handlers import BaseRequestHandler
 
 
 class ConsoleStaticFileRequestHandler(StaticFileHandler):
@@ -22,14 +25,17 @@ class ConsoleStaticFileRequestHandler(StaticFileHandler):
 
     @classmethod
     def get_absolute_path(cls, root, path):
-        resource_path = '/'.join(("web", path))
+        if root:
+            resource_path = '/'.join(("web", root))
+        else:
+            resource_path = '/'.join(("web", path))
         return pkg_resources.resource_filename(__name__, resource_path)
 
     def validate_absolute_path(self, root, absolute_path):
         return absolute_path
 
 
-class ConsoleRequestHandler(RequestHandler):
+class ConsoleRequestHandler(BaseRequestHandler):
 
     def data_received(self, chunk):
         pass
@@ -37,9 +43,11 @@ class ConsoleRequestHandler(RequestHandler):
     def __init__(self, application, request):
         super(ConsoleRequestHandler, self).__init__(application, request)
 
+    @tornado.web.authenticated
     def get(self):
         console_html = pkg_resources.resource_string(__name__, "console.html")
         console_html = console_html.replace("@VERSION@", dxlconsole.get_version())
+        console_html = console_html.replace("@CONSOLE_NAME@", self.application.bootstrap_app.console_name)
         module_names = ""
         first_button = None
         first_pane = None
@@ -83,6 +91,43 @@ class ConsoleRequestHandler(RequestHandler):
         self.write(console_html + "\n</SCRIPT></BODY></HTML>")
 
 
+class LoginHandler(RequestHandler):
+
+    def data_received(self, chunk):
+        pass
+
+    def __init__(self, application, request):
+        super(LoginHandler, self).__init__(application, request)
+
+    def get(self):
+        console_html = pkg_resources.resource_string(__name__, "login.html")
+        console_html = console_html.replace("@CONSOLE_NAME@", self.application.bootstrap_app.console_name)
+        self.write(console_html)
+
+    def post(self):
+        name = self.get_argument("username")
+        password = self.get_argument("password")
+        if name == self.application.bootstrap_app.username and \
+                password == self.application.bootstrap_app.password:
+            self.set_secure_cookie("user", self.get_argument("username"))
+            self.redirect("/")
+        else:
+            self.redirect("/login")
+
+
+class LogoutHandler(RequestHandler):
+
+    def data_received(self, chunk):
+        pass
+
+    def __init__(self, application, request):
+        super(LogoutHandler, self).__init__(application, request)
+
+    def get(self):
+        self.clear_cookie("user")
+        self.redirect("/login")
+
+
 class WebConsole(Application):
 
     def __init__(self, app):
@@ -94,15 +139,23 @@ class WebConsole(Application):
         ]
 
         handlers = [
-            (r'/public/(.*)', ConsoleStaticFileRequestHandler, {'path': '__unused__'}),
+            (r'/public/(.*)', ConsoleStaticFileRequestHandler, {'path': ''}),
+            (r'/favicon.ico(.*)', ConsoleStaticFileRequestHandler, {'path': 'images/favicon.ico'}),
+            (r'/login', LoginHandler),
+            (r'/logout', LogoutHandler),
             (r'/', ConsoleRequestHandler)
         ]
+
+        settings = {
+            "cookie_secret": str(uuid.uuid4()),
+            "login_url": "/login",
+        }
 
         for module in self._modules:
             if module.enabled:
                 handlers.extend(module.handlers)
 
-        super(WebConsole, self).__init__(handlers)
+        super(WebConsole, self).__init__(handlers,  **settings)
 
     @property
     def bootstrap_app(self):

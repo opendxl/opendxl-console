@@ -4,8 +4,8 @@ import pkg_resources
 import json
 import uuid
 
-import tornado.web
-import tornado.websocket
+import tornado
+from tornado.websocket import WebSocketHandler
 
 from dxlclient.client import DxlClient
 from dxlclient.client_config import DxlClientConfig
@@ -14,6 +14,7 @@ from dxlclient.message import Event, Request, Message
 from dxlbootstrap.util import MessageUtils
 
 from dxlconsole.module import Module
+from dxlconsole.handlers import BaseRequestHandler
 
 # Configure local logger
 logger = logging.getLogger(__name__)
@@ -72,7 +73,7 @@ class MonitorModule(Module):
             (r'/subscriptions', SubscriptionsHandler, dict(module=self)),
             (r'/messages', MessagesHandler, dict(module=self)),
             (r'/send_message', SendMessageHandler, dict(module=self)),
-            (r'/websocket', WebSocketHandler, dict(module=self))
+            (r'/websocket', ConsoleWebSocketHandler, dict(module=self))
         ]
 
     @property
@@ -288,21 +289,25 @@ class _WebSocketResponseCallback(ResponseCallback):
         self._socket.write_message(u"Messages pending")
 
 
-class WebSocketHandler(tornado.websocket.WebSocketHandler):
+class ConsoleWebSocketHandler(WebSocketHandler):
     """
     Handles the WebSocket connection used to notify the client of updates in real time
     """
 
-    def data_received(self, chunk):
-        pass
-
     def __init__(self, application, request, module):
-        super(WebSocketHandler, self).__init__(application, request)
+        super(ConsoleWebSocketHandler, self).__init__(application, request)
         self._event_callback = None
         self._response_callback = None
         self._client = None
         self._module = module
 
+    def get_current_user(self):
+        return self.get_secure_cookie("user")
+
+    def data_received(self, chunk):
+        pass
+
+    @tornado.web.authenticated
     def open(self):
         self._event_callback = _WebSocketEventCallback(self, self._module)
         self._response_callback = _WebSocketResponseCallback(self, self._module)
@@ -328,7 +333,7 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
         # self.client.disconnect()
 
 
-class ServiceUpdateHandler(tornado.web.RequestHandler):
+class ServiceUpdateHandler(BaseRequestHandler):
     """
     Handles requests for updates to the service listing
     """
@@ -340,6 +345,7 @@ class ServiceUpdateHandler(tornado.web.RequestHandler):
     def data_received(self, chunk):
         pass
 
+    @tornado.web.authenticated
     def get(self):
         # We're only ever one level deep so if a parent is specified return an empty response
         if self.get_query_argument("parentId", "null") != "null":
@@ -384,7 +390,7 @@ class ServiceUpdateHandler(tornado.web.RequestHandler):
         self.write(json.dumps(response_wrapper))
 
 
-class SubscriptionsHandler(tornado.web.RequestHandler):
+class SubscriptionsHandler(BaseRequestHandler):
     """
     Handles requests for the subscriptions list including fetch, add, and remove.
     """
@@ -396,6 +402,7 @@ class SubscriptionsHandler(tornado.web.RequestHandler):
     def data_received(self, chunk):
         pass
 
+    @tornado.web.authenticated
     def get(self):
         client = self._module.get_dxl_client(self)
 
@@ -425,7 +432,7 @@ class SubscriptionsHandler(tornado.web.RequestHandler):
         self.write(response_wrapper)
 
 
-class MessagesHandler(tornado.web.RequestHandler):
+class MessagesHandler(BaseRequestHandler):
     """
     Handles fetch requests for pending messages.
     """
@@ -446,6 +453,7 @@ class MessagesHandler(tornado.web.RequestHandler):
             .replace('"', '&quot;') \
             .replace("'", ' &#39;')
 
+    @tornado.web.authenticated
     def get(self):
         response_wrapper = MonitorModule.create_smartclient_response_wrapper()
 
@@ -496,7 +504,7 @@ class MessagesHandler(tornado.web.RequestHandler):
         self.write(response_wrapper)
 
 
-class SendMessageHandler(tornado.web.RequestHandler):
+class SendMessageHandler(BaseRequestHandler):
     """
     Handles post requests to send messages
     """
@@ -508,6 +516,7 @@ class SendMessageHandler(tornado.web.RequestHandler):
     def data_received(self, chunk):
         pass
 
+    @tornado.web.authenticated
     def post(self):
         client = self._module.get_dxl_client(self)
 
@@ -528,7 +537,7 @@ class SendMessageHandler(tornado.web.RequestHandler):
             else:
                 message_payload = ""
 
-            logger.error(
+            logger.debug(
                 "Sending " + message_type + " on topic " + message_channel + " with payload: " + message_payload)
             message_id = None
             if message_type == 'Event':
