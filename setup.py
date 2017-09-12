@@ -39,6 +39,7 @@ dist = setup(
         "dxlconsole.modules.certificates",
         "dxlconsole.modules.monitor",
         "dxlconsole.web",
+        "dxlconsole.web.jquery",
         "dxlconsole.web.images",
         "dxlconsole.web.isomorphic",
         "dxlconsole.web.isomorphic.locales",
