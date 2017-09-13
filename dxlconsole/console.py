@@ -2,7 +2,7 @@ import pkg_resources
 import tornado
 import uuid
 
-from tornado.web import RequestHandler, Application, StaticFileHandler, authenticated
+from tornado.web import RequestHandler, Application, StaticFileHandler
 from tornado.httpserver import HTTPServer
 from tornado.ioloop import IOLoop
 

@@ -3,6 +3,7 @@ import logging
 import pkg_resources
 import json
 import uuid
+import traceback
 
 import tornado
 from tornado.websocket import WebSocketHandler
@@ -555,4 +556,5 @@ class SendMessageHandler(BaseRequestHandler):
             self.write("Message successfully sent.&nbsp;&nbsp;&nbsp;[ID : " + message_id + "]")
         except Exception as e:
             logger.error("Exception while processing send message request." + str(e))
+            logger.error(traceback.format_exc())
             self.write("Failed to send message: " + str(e))

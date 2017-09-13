@@ -16,12 +16,12 @@ class OpenDxlConsole(Application):
     GENERAL_CONFIG_SECTION = "General"
     #: The web server port property
     GENERAL_PORT_CONFIG_PROP = "port"
-    #: Whether the console is embedded in the broker
-    GENERAL_LOCAL_BROKER_PROP = "localBroker"
     #: The console user name
     GENERAL_USERNAME_PROP = "username"
     #: The console password
     GENERAL_PASSWORD_PROP = "password"
+    #: Whether the console is embedded in the broker
+    GENERAL_LOCAL_BROKER_PROP = "localBroker"
 
     def __init__(self, config_dir):
         """
@@ -44,6 +44,10 @@ class OpenDxlConsole(Application):
             return "OpenDXL Broker Console"
         else:
             return "OpenDXL Console"
+
+    @property
+    def config(self):
+        return self._config
 
     @property
     def port(self):
