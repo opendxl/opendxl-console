@@ -29,7 +29,7 @@ class CertificateModule(Module):
     # Client key file name in the zip file
     ZIP_CLIENT_KEY_FILE_NAME = "client.key"
     # Broker CA bundle file name in the zip file
-    ZIP_BROKER_CA_BUNDLE_FILE_NAME = "ca-broker.cert"
+    ZIP_BROKER_CA_BUNDLE_FILE_NAME = "ca-broker.crt"
     # The DXL client configuration file name in the zip file
     DXL_CONFIG_FILE_NAME = "dxlclient.config"
 

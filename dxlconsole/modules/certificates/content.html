@@ -1,8 +1,6 @@
 <!--The form for providing information for the generated cert -->
-isc.DynamicForm.create({
-    autoDraw:false,
+openConsole.DynamicForm.create({
     ID: "certs_generate_form",
-    numCols: 2,
     fields: [
         {name: "cn", title:"Common Name", type:"text", required:true, hint: "(e.g. server FQDN or YOUR name)", wrapTitle:false, wrapHintText: false},
         {name: "country", title:"Country Name", required:false,hint: "(2 letter code)",
@@ -12,24 +10,41 @@ isc.DynamicForm.create({
         {name: "locality", title:"Locality Name", type:"text", required:false, hint: "(eg, city)", wrapTitle:false, wrapHintText: false},
         {name: "org", title:"Organization Name", type:"text", required:false, hint: "(eg, company)", wrapTitle:false, wrapHintText: false},
         {name: "ou", title:"Organizational Unit Name", type:"text", required:false, hint: "(eg, section)", wrapTitle:false, wrapHintText: false},
-        {name: "email", title:"Email Address", type:"text", required:false, wrapTitle:false,wrapHintText: false},
+        {name: "email", title:"Email Address", type:"text", required:false, wrapTitle:false,wrapHintText: false}
     ],
-    submit : function () {
-        if( certs_generate_form.validate() )
-        {
-            certs_generateResponse.setContents("Generating client configuration...")
-            RPCManager.sendRequest({
-                data: JSON.stringify(certs_generate_form.getValues()),
-                actionURL: "/generate_cert",
-                callback: 'certs_downloadClientPackage(rpcResponse, data)',
-                useSimpleHttp: true,
-                httpMethod: "POST",
-                showPrompt: true,
-                willHandleError: true,
-                paramsOnly: true
-                })
-        }
+    doSubmit : function () {
+        certs_generateResponse.setContents("Generating client configuration...")
+        openConsole.RPCManager.sendRequest({
+            data: JSON.stringify(certs_generate_form.getValues()),
+            actionURL: "/generate_cert",
+            callback: 'certs_downloadClientPackage(rpcResponse, data)',
+            willHandleError: true
+        })
     }
+});
+
+openConsole.Form.VLayout.create({
+    ID: "certs_layout",
+    members: [
+        "certs_generate_form",
+        openConsole.Form.HLayout.create({
+            members: [
+                openConsole.IButton.create({
+                    title: "Generate",
+                    click : function () { certs_generate_form.submit(); }
+                }),
+                openConsole.Form.StatusHTMLFlow.create({
+                    ID: "certs_generateResponse"
+                })
+            ]
+        })
+    ]
+});
+
+openConsole.ModuleWindow.create({
+    ID:"certs_stack",
+    title: "Generate Client Configuration",
+    items: [ "certs_layout" ]
 });
 
 <!--https://github.com/danguer/blog-examples/blob/master/LICENSE-->
@@ -40,15 +55,12 @@ isc.DynamicForm.create({
  * @param {Object} data
  */
 function certs_downloadClientPackage(rpcResponse, data) {
-    if(rpcResponse.httpResponseCode == 200)
-    {
+    if(rpcResponse.httpResponseCode == 200) {
         certs_generateResponse.setContents("Downloading cert package for...")
         var filedata = Base64Binary.decodeArrayBuffer(data);
         certs_saveByteArrayToFile([filedata], 'opendxlclientconfig.zip');
         certs_generateResponse.setContents("Successfully downloaded client package")
-    }
-    else
-    {
+    } else {
         //failure response
         certs_generateResponse.setContents(rpcResponse.httpResponseText)
     }
@@ -69,7 +81,7 @@ var certs_saveByteArrayToFile = (function () {
             url = window.URL.createObjectURL(blob);
         <!-- In microsoft IE, anchor click and download is not allowed/valid-->
         if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-        window.navigator.msSaveOrOpenBlob(blob, name);
+            window.navigator.msSaveOrOpenBlob(blob, name);
         } else {
             a.href = url;
             a.download = name;
@@ -78,44 +90,3 @@ var certs_saveByteArrayToFile = (function () {
         }
     };
 }());
-
-isc.VLayout.create({
-    autoDraw:false,
-    ID: "certs_layout",
-    margin: 15,
-    membersMargin: 20,
-    members: [
-        "certs_generate_form",
-        isc.HLayout.create({
-            membersMargin: 10,
-            defaultLayoutAlign: "top",
-            members: [
-                isc.IButton.create({
-                    title: "Generate",
-                    click : function () { certs_generate_form.submit();},
-                    layoutAlign:"middle"
-                    }),
-                isc.HTMLFlow.create({
-                    ID: "certs_generateResponse",
-                    width:"100%",
-                    overflow: "clip-v",
-                    autoDraw:false,
-                    border: "5px solid transparent"
-                })
-            ]
-        })
-    ]
-});
-
-isc.Window.create({
-    ID:"certs_stack",
-    title: "Generate Client Configuration",
-    autoDraw:false,
-    canDragResize:false,
-    canDragReposition:false,
-    width:"100%",
-    height:"100%",
-    headerControls : [ "headerLabel" ],
-    items: [ "certs_layout" ]
-});
-

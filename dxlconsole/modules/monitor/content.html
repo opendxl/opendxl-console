@@ -1,70 +1,31 @@
-var monitor_serviceDS = isc.RestDataSource.create({
+var monitor_serviceDS = openConsole.RestDataSource.create({
     ID:"monitor_serviceDS",
     fields:[
         {name:"itemId", title:"ID", primaryKey:true},
         {name:"itemName", title:"Name"},
         {name:"parentId", title:"Parent", foreignKey:"itemId"}
     ],
-    dataFormat:"json",
-    dataProtocol:"postParams",
-    jsonPrefix:"",
-    jsonSuffix:"",
-    dataProtocol: "getParams",
     dataURL:"/update_services"
 });
 
-var monitor_serviceListPane = isc.TreeGrid.create({
+var monitor_serviceListPane = openConsole.TreeGrid.create({
     ID: "monitor_serviceTree",
-    autoDraw:false,
     height: "65%",
     dataSource: "monitor_serviceDS",
-    selectionType: "single",
-    showOpenIcons: false,
-    showDropIcons: false,
-    loadDataOnDemand: false,
-    closedIconSuffix: "",
-    showResizeBar: false,
-    defaultIsFolder: false,
-    canCollapse: false,
-    leaveScrollbarGap: false,
-    autoFetchData: false,
-    reportCollisions: false,
-    autoPreserveOpenState: true,
     nodeIcon: "/public/images/service_topic.png",
     folderIcon: "/public/images/service.png",
     emptyMessage: "No services found on fabric.",
-    sortField: 0,
-    sortDirection: "ascending",
     fields: [
         {name: "itemName", title: "Services"}
     ],
     rowDoubleClick: function (record) {
         if(record.parentId === null)
         {
-            var w = isc.Window.create({
+            var w = openConsole.Window.create({
                 title: "Service Details",
-                autoDraw:false,
-                autoSize:false,
-                width:700,
-                height:500,
-                canDragResize:true,
-                canDragReposition:false,
-                keepInParentRect: true,
-                showMinimizeButton: false,
-                autoCenter:true,
-                showHeaderIcon: false,
-                isModal: true,
-                showModalMask: true,
-                modalMaskOpacity: 35,
-                showResizer: true,
-                showFooter: true,
                 items: [
-                    isc.DetailViewer.create({
-                        autoDraw:false,
+                    openConsole.DetailViewer.create({
                         data:record,
-                        canSelectText:true,
-                        border: "10px solid transparent",
-                        labelSuffix: ":&nbsp;",
                         fields:[
                             {name:"itemId", title:"ID", primaryKey:true},
                             {name:"serviceType", title:"Service Type", type: "string"},
@@ -79,32 +40,33 @@ var monitor_serviceListPane = isc.TreeGrid.create({
                             {name:"metaData", title:"META Data", type: "string"}
                         ],
                         formatCellValue: function formatCellValue(value, record, field) {
-
-                            if(value != null)
-                            {
-                                if(field.name === "requestChannels" || field.name === "certificates")
-                                {
+                            if(value != null) {
+                                if(field.name === "requestChannels" || field.name === "certificates") {
                                     return value.join(",<br/>");
-                                }
-                                else if(field.name === "unauthorizedChannels")
-                                {
+                                } else if(field.name === "unauthorizedChannels") {
                                     return "<span style=\"color: red;\">" + value.join(",<br/>") + "</span>";
-                                }
-                                else if(field.name === "registrationTime")
-                                {
+                                } else if(field.name === "registrationTime") {
                                     var registrationDate = new Date(value * 1000);
                                     return registrationDate.toLocaleString();
                                 }
                             }
                             return value;
-                         }
-                }) ]
+                        }
+                    })
+                ]
             });
-            w.animateShow("fade");
-
+            openConsole.Window.show(w);
             return false;
         }
     },
+    rowClick: function (record) {
+        if(record.parentId != null) {
+            monitor_sendMessageForm.getField('type').setValue('Request');
+            monitor_sendMessageForm.getField('channel').setValue(record.itemName);
+            monitor_sendMessageForm.getField('payload').setValue('');
+        }
+        return false;
+    }
 /*
     getCellCSSText : function( record, rowNum, colNum ) {
         style = "";
@@ -122,63 +84,41 @@ var monitor_serviceListPane = isc.TreeGrid.create({
                 var green = 255 - Math.round(45*ratio);
                 var blue = 255 - Math.round(0*ratio);
                 style += ";background-color:#"+red.toString(16)+green.toString(16)+blue.toString(16);
-            }
-            else
-            {
+            } else {
                 record.received = null;
             }
         }
 
         return style;
-    },
-*/
-    rowClick: function (record) {
-        if(record.parentId != null)
-        {
-            monitor_sendMessageForm.getField('type').setValue('Request');
-            monitor_sendMessageForm.getField('channel').setValue(record.itemName);
-            monitor_sendMessageForm.getField('payload').setValue('');
-        }
-        return false;
     }
+*/
 });
 
-isc.RestDataSource.create({
+openConsole.RestDataSource.create({
     ID:"monitor_subscriptionDS",
     fields:[
         {name:"channel", title:"Topic", primaryKey:true}
     ],
-    dataFormat:"json",
     operationBindings : [
         {operationType:"fetch", dataProtocol:"getParams"},
         {operationType:"add", dataProtocol:"getParams"},
         {operationType:"remove", dataProtocol:"getParams"}
     ],
-    jsonPrefix:"",
-    jsonSuffix:"",
     dataURL:"/subscriptions"
 });
 
-var monitor_subscriptionList = isc.ListGrid.create({
+var monitor_subscriptionList = openConsole.ListGrid.create({
     ID:"monitor_subscriptionList",
-    autoDraw:false,
-    alternateRecordStyles: true,
-    selectionType: "none",
-    canCollapseGroup: false,
-    canReorderFields: false,
-    canSort: false,
-    autoFetchData: false,
     dataSource: "monitor_subscriptionDS",
+    emptyMessage: "No subscriptions have been added.",
     showHeader: false,
     canRemoveRecords: true,
-    leaveScrollbarGap:false,
-    emptyMessage: "No subscriptions have been added.",
     fields:[
         { name:"channel", title:"Subscriptions", required: true, }
     ]
 });
 
-var monitor_messagesDS = isc.RestDataSource.create({
+var monitor_messagesDS = openConsole.RestDataSource.create({
     ID:"monitor_messagesDS",
     fields:[
         { name:"channel", title:"Topic" },
@@ -191,32 +131,14 @@ var monitor_messagesDS = isc.RestDataSource.create({
         { name:"received", title:"Date", type: "datetime" },
         { name:"originalPayload", title:"Payload", type: "string" }
     ],
-    dataFormat:"json",
-    autorefreshData:false,
-    jsonPrefix:"",
-    jsonSuffix:"",
     dataURL:"/messages"
 });
 
-
-var monitor_messagesGrid = isc.ListGrid.create({
+var monitor_messagesGrid = openConsole.ListGrid.create({
     ID: "monitor_messagesGrid",
-    autoDraw:false,
-    width: "100%",
-    height: "100%",
-    alternateRecordStyles: true,
-    selectionType: "none",
-    canCollapseGroup: false,
-    canReorderFields: false,
-    canSort: false,
-    autoFetchData: false,
     dataSource: "monitor_messagesDS",
     canRemoveRecords: false,
-    leaveScrollbarGap:false,
-    enforceVClipping: true,
-    padding: 2,
     sortField: 3,
-    valueIconRightPadding: 5,
     emptyMessage: "No messages have been received.",
     sortDirection: "descending",
     canHover: true,
@@ -231,7 +153,6 @@ var monitor_messagesGrid = isc.ListGrid.create({
         if( record.type == "Error Response" ) {
             style += "color:red";
         }
-
         if( record.received != null) {
             var delta = new Date().getTime() - record.received.getTime();
             var blinkPeriod = 2000;
@@ -256,11 +177,9 @@ var monitor_messagesGrid = isc.ListGrid.create({
         {
             if( record.type == "Error Response" ) {
                 return "/public/images/error_message.png";
-            }
-            else if( record.type == "Response" ) {
+            } else if( record.type == "Response" ) {
                 return "/public/images/response.png";
-            }
-            else if( record.type == "Event" ) {
+            } else if( record.type == "Event" ) {
                 return "/public/images/event.png";
             }
         }
@@ -271,30 +190,11 @@ var monitor_messagesGrid = isc.ListGrid.create({
         return (field.name == "originalPayload" ? record["payload"] : record[field.name]);
     },
     cellDoubleClick: function (record) {
-        var w = isc.Window.create({
+        var w = openConsole.Window.create({
             title: "Message Details",
-            autoDraw:false,
-            autoSize:false,
-            width:700,
-            height:500,
-            canDragResize:true,
-            canDragReposition:false,
-            keepInParentRect: true,
-            showMinimizeButton: false,
-            autoCenter:true,
-            showHeaderIcon: false,
-            isModal: true,
-            showModalMask: true,
-            modalMaskOpacity: 35,
-            showResizer: true,
-            showFooter: true,
             items: [
-                isc.DetailViewer.create({
-                    autoDraw:false,
+                openConsole.DetailViewer.create({
                     data:record,
-                    canSelectText:true,
-                    border: "10px solid transparent",
-                    labelSuffix: ":&nbsp;",
                     fields:[
                         { name:"id", title:"ID", type: "string", primaryKey: true },
                         { name:"channel", title:"Topic" },
@@ -307,41 +207,32 @@ var monitor_messagesGrid = isc.ListGrid.create({
                     ]
             }) ]
         });
-        w.animateShow("fade");
+        openConsole.Window.show(w);
     }
 });
 
 var monitor_hiddenRecords = [];
 
-function monitor_filterMessage(messages)
-{
+function monitor_filterMessage(messages) {
     var filters = []
     if( monitor_filterEvents.isSelected() )
         filters.add('Event');
-    if( monitor_filterResponses.isSelected() )
-    {
+    if( monitor_filterResponses.isSelected() ) {
         filters.add('Response');
     }
-    if( monitor_filterErrors.isSelected() )
-    {
+    if( monitor_filterErrors.isSelected() ) {
         filters.add('Error Response');
     }
-
-    for( var i = messages.length - 1; i >= 0; i-- )
-    {
+    for( var i = messages.length - 1; i >= 0; i-- ) {
         var rec = messages[i];
-        if( filters.indexOf( rec['type'] ) == -1 )
-        {
+        if( filters.indexOf( rec['type'] ) == -1 ) {
             monitor_hiddenRecords.add( rec );
             messages.remove( rec );
         }
     }
-
-    for( var i = monitor_hiddenRecords.length - 1; i >= 0; i-- )
-    {
+    for( var i = monitor_hiddenRecords.length - 1; i >= 0; i-- ) {
         var rec = monitor_hiddenRecords[i];
-        if( filters.indexOf( rec['type'] ) != -1 )
-        {
+        if( filters.indexOf( rec['type'] ) != -1 ) {
             messages.add( rec );
             monitor_hiddenRecords.remove( rec );
         }
@@ -349,143 +240,84 @@ function monitor_filterMessage(messages)
     return messages;
 }
 
-function monitor_updateMessageFilters()
-{
+function monitor_updateMessageFilters() {
     var gridData = monitor_messagesGrid.getOriginalData();
     var filteredData = monitor_filterMessage( gridData );
     monitor_messagesGrid.setData( gridData );
     monitor_messagesGrid.resort();
 }
 
-var monitor_sendMessageForm = isc.DynamicForm.create({
+var monitor_sendMessageForm = openConsole.DynamicForm.create({
     ID: "monitor_sendMessageForm",
-    autoDraw:false,
-    canSubmit: true,
-    numCols: 2,
-    colWidths: [1, "*"],
     fields: [
-        {
-            name: "type",
-            title: "Type",
-            type: "select",
-            required: true,
-            value: "Event",
-            valueMap: ["Request", "Event"]
-        },
-        {
-            name: "channel",
-            type: "text",
-            width: 400,
-            title: "Topic",
-            required: true,
-        },
-        {
-            name: "payload",
-            type: "textArea",
-            width: 400,
-            height: 150,
-            wrap: "OFF",
-            title: "Payload"
-        }
+        { name: "type", title: "Type", type: "select", required: true, value: "Event", valueMap: ["Request", "Event"] },
+        { name: "channel", type: "text", width: 400, title: "Topic", required: true, },
+        { name: "payload", type: "textArea", width: 400, height: 150, wrap: "OFF", title: "Payload" }
     ],
-    submit : function () {
-        if( monitor_sendMessageForm.validate() ) {
-            messageStatusResponse.setContents("");
-            RPCManager.sendRequest({
-                data: JSON.stringify(monitor_sendMessageForm.getValues()),
-                callback: 'messageStatusResponse.setContents(data)',
-                actionURL: "/send_message",
-                useSimpleHttp: true,
-                httpMethod: "POST",
-                showPrompt: true,
-                paramsOnly: true
-            })
-        }
+    doSubmit : function () {
+        messageStatusResponse.setContents("");
+        openConsole.RPCManager.sendRequest({
+            data: JSON.stringify(this.getValues()),
+            callback: 'messageStatusResponse.setContents(data)',
+            actionURL: "/send_message"
+        })
     }
 });
 
-
-isc.VLayout.create({
-    autoDraw:false,
+openConsole.Form.VLayout.create({
     ID: "monitor_sendMessageFormLayout",
-    margin: 15,
-    membersMargin: 20,
     members: [
         "monitor_sendMessageForm",
-        isc.HLayout.create({
-            membersMargin: 10,
-            defaultLayoutAlign: "top",
+        openConsole.Form.HLayout.create({
             members: [
-                isc.IButton.create({
+                openConsole.IButton.create({
                     title: "Send Message",
                     width: 150,
-                    click : function () { monitor_sendMessageForm.submit(); },
+                    click : function () { monitor_sendMessageForm.submit(); }
                 }),
-                isc.HTMLFlow.create({
-                    ID: "messageStatusResponse",
-                    width:"100%",
-                    overflow: "clip-v",
-                    autoDraw:false,
-                    border: "5px solid transparent"
+                openConsole.Form.StatusHTMLFlow.create({
+                    ID: "messageStatusResponse"
                 })
             ]
         })
     ]
 });
 
-monitor_filterEvents = isc.ToolStripButton.create({
+monitor_filterEvents = openConsole.CheckboxToolStripButton.create({
     ID: "monitor_filterEvents",
-    actionType: "checkbox",
-    showFocused: false,
-    showFocusOutline: true,
-    showRollOver: false,
     selected: true,
     title: "Events",
     icon: "/public/images/event.png",
     click: "monitor_updateMessageFilters()"
 });
 
-monitor_filterResponses = isc.ToolStripButton.create({
+monitor_filterResponses = openConsole.CheckboxToolStripButton.create({
     ID: "monitor_filterResponses",
-    actionType: "checkbox",
-    showFocused: false,
-    showFocusOutline: true,
-    showRollOver: false,
     selected: true,
     title: "Responses",
     icon: "/public/images/response.png",
     click: "monitor_updateMessageFilters()"
 });
 
-monitor_filterErrors = isc.ToolStripButton.create({
+monitor_filterErrors = openConsole.CheckboxToolStripButton.create({
     ID: "monitor_filterErrors",
-    actionType: "checkbox",
-    showFocused: false,
-    showFocusOutline: true,
-    showRollOver: false,
     selected: true,
     title: "Errors",
     icon: "/public/images/error_message.png",
     click: "monitor_updateMessageFilters()"
 });
 
-isc.HLayout.create({
+openConsole.HLayout.create({
     ID: "monitor_content_layout",
-    autoDraw:true,
     members: [
-        isc.SectionStack.create({
-            autoDraw: false,
-            visibilityMode: "multiple",
+        openConsole.SectionStack.create({
             width: 325,
-            showResizeBar: true,
             sections: [
                 {title: "Services", expanded: true, showHeader: false, items: [ "monitor_serviceTree" ]},
                 {title: "Subscriptions", expanded: true, items: [
-                    isc.ToolStrip.create({
-                        padding:5,
-                        membersMargin:5,
+                    openConsole.ToolStrip.create({
                         members: [
-                            isc.ToolStripButton.create({
+                            openConsole.ToolStripButton.create({
                                 icon: "/public/images/add.png",
                                 title: "Add",
                                 click: "monitor_subscriptionList.startEditingNew()"
@@ -497,9 +329,7 @@ isc.HLayout.create({
                 ]}
             ]
         }),
-        isc.SectionStack.create({
-            autoDraw: false,
-            visibilityMode: "multiple",
+        openConsole.SectionStack.create({
             sections: [
                 {title: "Send Message", expanded: true, items: [
                     isc.VLayout.create({
@@ -510,11 +340,9 @@ isc.HLayout.create({
                     })
                 ]},
                 {title: "Received Messages", expanded: true, items: [
-                    isc.ToolStrip.create({
-                        padding:5,
-                        membersMargin:5,
+                    openConsole.ToolStrip.create({
                         members: [
-                            isc.Label.create({
+                            openConsole.Label.create({
                                 width: 1,
                                 wrap: false,
                                 contents: "Filter by Type:"
@@ -532,15 +360,9 @@ isc.HLayout.create({
     ]
 });
 
-isc.Window.create({
+openConsole.ModuleWindow.create({
     ID:"monitor_layout",
     title: "Fabric Monitor",
-    autoDraw:false,
-    canDragResize:false,
-    canDragReposition:false,
-    width:"100%",
-    height:"100%",
-    headerControls : [ "headerLabel" ],
     items: [ "monitor_content_layout" ]
 });
 
@@ -608,7 +430,7 @@ monitor_fetch_new_messages();
 
 var monitor_ws = null;
 
-$( document ).ready(function() {
+$(document).ready(function() {
     monitor_ws = new WebSocket("wss://" + location.host + "/websocket");
     monitor_ws.onmessage = function(e) {
         //TODO: get service updates and distinguish from message updates
