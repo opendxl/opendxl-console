@@ -59,7 +59,7 @@ function certs_downloadClientPackage(rpcResponse, data) {
         certs_generateResponse.setContents("Downloading cert package for...")
         var filedata = Base64Binary.decodeArrayBuffer(data);
         certs_saveByteArrayToFile([filedata], 'opendxlclientconfig.zip');
-        certs_generateResponse.setContents("Successfully downloaded client package")
+        certs_generateResponse.setContents("Successfully downloaded client package.")
     } else {
         //failure response
         certs_generateResponse.setContents(rpcResponse.httpResponseText)
