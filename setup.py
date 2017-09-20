@@ -19,7 +19,6 @@ dist = setup(
     install_requires=[
         "tornado",
         "dxlbootstrap",
-        "pyopenssl",
         "dxlclient"
     ],
 

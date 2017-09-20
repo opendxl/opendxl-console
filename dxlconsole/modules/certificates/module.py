@@ -1,22 +1,20 @@
-import pkg_resources
-import logging
-import codecs
-import zipfile
+from codecs import encode
 import json
-import uuid
-import tornado
+import logging
 import os
 import socket
-import tornado.httputil
 import subprocess
 import traceback
 
+import pkg_resources
 from StringIO import StringIO
-from os.path import join
-from OpenSSL import crypto
+from tempfile import NamedTemporaryFile
+import tornado
+import tornado.httputil
+from zipfile import ZipFile
 
-from dxlconsole.module import Module
 from dxlconsole.handlers import BaseRequestHandler
+from dxlconsole.module import Module
 
 # Configure local logger
 logger = logging.getLogger(__name__)
@@ -151,102 +149,42 @@ class GenerateCertHandler(BaseRequestHandler):
     def data_received(self, chunk):
         pass
 
-    def __generate_client_cert(self, commonname, country=None, state=None, locality=None,
-                               orgname=None, orgunit=None, emailaddress=None):
-        client_ca_cert_file = self._module.client_ca_cert_file
+    def _generate_client_cert(self, subject, temp_key_file, temp_csr_file, temp_cert_file):
+        """
+        Uses openssl to create a csr with the info provided and sign the cert with the CA key
+        The cert is written to the disk using the specified file names
+        :param subject: 
+        :param temp_key_file: temp key file name to persist the key
+        :param temp_csr_file: temp csr file to persist the csr
+        :param temp_cert_file: temp csr file to persist the certificate
+        """
+
+        # Create the private key and csr using openssl command
+        # stderr=open(os.devnull, 'wb') to suppress the err output from the openssl command
+        rc = subprocess.call(['openssl', 'req', '-nodes', '-new', '-newkey', 'rsa:2048',
+                              '-keyout', temp_key_file.name, '-out', temp_csr_file.name, '-subj', subject],
+                             stderr=open(os.devnull, 'wb'))
+        if rc != 0:
+            raise Exception("Error creating key and csr")
+
+        logger.debug("Temp key file:" + temp_key_file.name)
+        logger.debug("Temp csr file:" + temp_csr_file.name)
+
+        client_ca_file = self._module.client_ca_cert_file
         client_ca_key_file = self._module.client_ca_key_file
-        client_ca_password = self._module.client_ca_password
-        broker_ca_bundle_file = self._module.broker_ca_bundle_file
 
-        # load the CA key
-        ca_keyfile = None
-        try:
-            ca_keyfile = open(client_ca_key_file, "rt")
-            ca_keyfile_str = ca_keyfile.read()
-            self._ca_key = crypto.load_privatekey(crypto.FILETYPE_PEM, ca_keyfile_str, client_ca_password)
-        except IOError as e:
-            logger.info("Cannot find Certificate Authority key file:" + client_ca_key_file)
-            raise e
-        finally:
-            if ca_keyfile is not None:
-                ca_keyfile.close()
+        password = 'pass:' + self._module.client_ca_password
+        # Sign the CSR with the client cert file
+        rc = subprocess.call(['openssl', 'x509', '-req', '-passin', password,
+                              '-CAcreateserial', '-days', '3650',
+                              '-CA', client_ca_file, '-CAkey', client_ca_key_file,
+                              '-out', temp_cert_file.name, '-in', temp_csr_file.name],
+                             stderr=open(os.devnull, 'wb'))
 
-        # load the CA cert
-        ca_cert_file = None
-        try:
-            ca_cert_file = open(client_ca_cert_file, "rt")
-            ca_cert_file_str = ca_cert_file.read()
-            self._ca_cert = crypto.load_certificate(crypto.FILETYPE_PEM, ca_cert_file_str)
-        except IOError as e:
-            print join("Cannot find Certificate Authority file:", client_ca_cert_file)
-            raise e
-        finally:
-            if ca_cert_file is not None:
-                ca_cert_file.close()
+        if rc != 0:
+            raise Exception("Error creating certificate")
 
-        # load the Broker CA cert chain
-        ca_certchain_file = None
-        try:
-            ca_certchain_file = open(broker_ca_bundle_file, "rt")
-            self._ca_certchain = ca_certchain_file.read()
-        except IOError as e:
-            print join("Cannot find Broker Certificate trust store file:", broker_ca_bundle_file)
-            raise e
-        finally:
-            if ca_certchain_file is not None:
-                ca_certchain_file.close()
-
-        logger.debug("Gathering certificate information")
-        # create a key pair for cert
-        bits = 2048
-        cert_key = crypto.PKey()
-        cert_key.generate_key(crypto.TYPE_RSA, bits)
-
-        # create a csr
-        req = crypto.X509Req()
-        req_subj = req.get_subject()
-        # use the values specified by the user
-        req.get_subject().CN = commonname  # we have already checked for none
-        if country is not None:
-            req_subj.C = country
-        if state is not None:
-            req_subj.ST = state
-        if locality is not None:
-            req_subj.L = locality
-        if orgname is not None:
-            req_subj.O = orgname
-        if orgunit is not None:
-            req_subj.OU = orgunit
-        if emailaddress is not None:
-            req_subj.emailAddress = emailaddress
-        base_constraints = ([
-            crypto.X509Extension("basicConstraints", False, "CA:FALSE")
-        ])
-        x509_extensions = base_constraints
-        req.add_extensions(x509_extensions)
-
-        req.set_pubkey(cert_key)
-        req.sign(cert_key, CertificateModule.DIGEST)
-
-        logger.info("Generating cert for subject:" + str(req_subj))
-
-        # create a client cert signed by the ca using the req built above
-        cert = crypto.X509()
-        cert.set_subject(req_subj)
-        # generate a random serial number
-        cert.set_serial_number(uuid.uuid4().int)
-        # set validity (10 years) from now
-        cert.gmtime_adj_notBefore(0)
-        # 10 years
-        cert.gmtime_adj_notAfter(10 * 365 * 24 * 60 * 60)
-        # the issuer is the ca that was loaded earlier
-        cert.set_issuer(self._ca_cert.get_subject())
-        cert.set_pubkey(cert_key)
-
-        # Sign with CA Key
-        cert.sign(self._ca_key, CertificateModule.DIGEST)
-
-        return {'cert': cert, 'key': cert_key}
+        logger.debug("Temp cert name:" + temp_cert_file.name)
 
     def _updateconfig_file(self):
 
@@ -268,70 +206,112 @@ class GenerateCertHandler(BaseRequestHandler):
         content = content.replace("@DOCKER_BROKER_IP@", docker_ip.strip())
         return content
 
+    def _generate_subject_str_from_request(self, request_params):
+        """
+        Reads the parameters from the requests and builds the subject string for the certificate
+        :param request_params: request parameters from the request
+        :return: subject string
+        """
+
+        if 'cn' in request_params:
+            common_name = request_params['cn'].strip()
+            if common_name is None:
+                raise Exception("No common name specified")
+
+        else:
+            raise Exception("No common name specified")
+
+        subject = "/CN=" + common_name
+
+        # this has to be 2 chars
+        country = None
+        if 'country' in request_params:
+            country = request_params['country'].strip()
+
+        # openssl expects Country to have maxsize of 2.
+        # asn1 encoding routines:ASN1_mbstring_ncopy:string too long:.\crypto\asn1\a_mbstr.c:158:maxsize=2
+        if country is not None and len(str(country)) != 2:
+            raise Exception("Country Name has to be 2 characters")
+
+        state = None
+        if 'state' in request_params:
+            state = request_params['state'].strip()
+
+        locality = None
+        if 'locality' in request_params:
+            locality = request_params['locality'].strip()
+
+        org = None
+        if 'org' in request_params:
+            org = request_params['org'].strip()
+
+        ou = None
+        if 'ou' in request_params:
+            ou = request_params['ou'].strip()
+
+        email = None
+        if 'email' in request_params:
+            email = request_params['email'].strip()
+
+        if country is not None:
+            subject += "/C=" + country
+        if state is not None:
+            subject += "/ST=" + state
+        if locality is not None:
+            subject += "/L=" + locality
+        if org is not None:
+            subject += "/O=" + org
+        if ou is not None:
+            subject += "/OU=" + ou
+        if email is not None:
+            subject += "/E=" + email
+
+        return subject
+
     @tornado.web.authenticated
     def post(self):
         """ 
         Returns a client cert package using specified values
         """
 
+        # in memory zip file
         in_memory_output_file = None
+        # temp files for the key,csr and cert
+        temp_key_file = None
+        temp_cert_file = None
+        temp_csr_file = None
 
         try:
             request_params = json.loads(self.request.body)
 
-            if 'cn' in request_params:
-                common_name = request_params['cn'].strip()
-                if common_name is None:
-                    raise Exception("No common name specified")
-            else:
-                raise Exception("No common name specified")
+            # generate the cert subject string
+            subject = self._generate_subject_str_from_request(request_params)
 
-            # this has to be 2 characters
-            country = None
-            if 'country' in request_params:
-                country = request_params['country'].strip()
+            temp_key_file = NamedTemporaryFile('w+b', delete=False)
+            temp_csr_file = NamedTemporaryFile('w+b', delete=False)
+            temp_cert_file = NamedTemporaryFile('w+b', delete=False)
 
-            if country is not None and len(str(country)) != 2:
-                raise Exception("Country Name has to be 2 characters")
-
-            state = None
-            if 'state' in request_params:
-                state = request_params['state'].strip()
-
-            locality = None
-            if 'locality' in request_params:
-                locality = request_params['locality'].strip()
-
-            org = None
-            if 'org' in request_params:
-                org = request_params['org'].strip()
-
-            ou = None
-            if 'ou' in request_params:
-                ou = request_params['ou'].strip()
-
-            email = None
-            if 'email' in request_params:
-                email = request_params['email'].strip()
-
-            certandkey = self.__generate_client_cert(common_name, country, state, locality, org, ou, email)
+            # generate the cert with the subject string using the temp files above
+            self._generate_client_cert(subject, temp_key_file, temp_csr_file, temp_cert_file)
 
             logger.debug("Updating dxlclient.config information")
+
+            # create the dxlclient.config file
             config_out = self._updateconfig_file()
 
-            # build the zip file in memory
+            # build the zip file in memory that is sent back to the caller
             in_memory_output_file = StringIO()
-            zf = zipfile.ZipFile(in_memory_output_file, mode='w')
+            zf = ZipFile(in_memory_output_file, mode='w')
+
+            broker_ca_bundle_file = self._module.broker_ca_bundle_file
 
             try:
                 logger.debug("Adding client certificate file to zip")
-                zf.writestr(CertificateModule.ZIP_CLIENT_CERT_FILE_NAME,
-                            crypto.dump_certificate(crypto.FILETYPE_PEM, certandkey['cert']))
+                zf.write(temp_cert_file.name, arcname=CertificateModule.ZIP_CLIENT_CERT_FILE_NAME)
                 logger.debug("Adding client certificate key file to zip")
-                zf.writestr(CertificateModule.ZIP_CLIENT_KEY_FILE_NAME,
-                            crypto.dump_privatekey(crypto.FILETYPE_PEM, certandkey['key']))
+                zf.write(temp_key_file.name, arcname=CertificateModule.ZIP_CLIENT_KEY_FILE_NAME)
                 logger.debug("Adding DXL Broker certificate authority to zip")
-                zf.writestr(CertificateModule.ZIP_BROKER_CA_BUNDLE_FILE_NAME, self._ca_certchain)
+                zf.write(broker_ca_bundle_file, arcname=CertificateModule.ZIP_BROKER_CA_BUNDLE_FILE_NAME)
                 logger.debug("Adding DXL Config file to zip")
                 zf.writestr(CertificateModule.DXL_CONFIG_FILE_NAME, config_out)
             finally:
@@ -340,8 +320,8 @@ class GenerateCertHandler(BaseRequestHandler):
             in_memory_output_file.seek(0)
             contents = in_memory_output_file.getvalue()
 
-            # write the zip file to the response stream
-            self.write(codecs.encode(contents, 'base64'))
+            # write the base64 encoded zip file to the response stream
+            self.write(encode(contents, 'base64'))
 
         except Exception as e:
             if in_memory_output_file is not None:
@@ -350,3 +330,13 @@ class GenerateCertHandler(BaseRequestHandler):
             logger.error(traceback.format_exc())
             self.set_status(500)
             self.write("Failed to generate certs:" + str(e))
+        finally:
+            if temp_key_file is not None:
+                temp_key_file.close()
+                os.remove(temp_key_file.name)
+            if temp_cert_file is not None:
+                temp_cert_file.close()
+                os.remove(temp_cert_file.name)
+            if temp_csr_file is not None:
+                temp_csr_file.close()
+                os.remove(temp_csr_file.name)
