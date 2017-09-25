@@ -1,3 +1,5 @@
+import os
+
 from setuptools import setup
 import distutils.command.sdist
 
@@ -6,19 +8,22 @@ import setuptools.command.sdist
 # Patch setuptools' sdist behaviour with distutils' sdist behaviour
 setuptools.command.sdist.sdist.run = distutils.command.sdist.sdist.run
 
-VERSION = __import__('dxlconsole').get_version()
+version_info = {}
+cwd=os.path.abspath(os.path.dirname(__file__))
+with open(os.path.join(cwd, "dxlconsole", "_version.py")) as f:
+    exec(f.read(), version_info)
 
 dist = setup(
     # Package name:
     name="dxlconsole",
 
     # Version number:
-    version=VERSION,
+    version=version_info["__version__"],
 
     # Requirements
     install_requires=[
         "tornado",
-        "dxlbootstrap",
+        "dxlbootstrap>=0.1.3",
         "dxlclient"
     ],
 
@@ -34,6 +39,9 @@ dist = setup(
     # Packages
     packages=[
         "dxlconsole",
+        "dxlconsole._config",
+        "dxlconsole._config.sample",
+        "dxlconsole._config.app",
         "dxlconsole.modules",
         "dxlconsole.modules.broker",
         "dxlconsole.modules.certificates",
@@ -102,7 +110,9 @@ dist = setup(
         "dxlconsole.web.isomorphic.skins.Tahoe.images.Window.icons"
     ],
 
-    package_data={'': ['*.*']},
+    package_data={'': ['*.*'],
+        "dxlconsole._config.sample" : ['*'],
+        "dxlconsole._config.app" : ['*']},
 
     # Details
     url="",

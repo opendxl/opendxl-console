@@ -8,9 +8,6 @@ import threading
 
 from .app import OpenDxlConsole
 
-# The location of the logging configuration file (optional)
-LOGGING_CONFIG_FILE = "logging.config"
-
 # Whether the application is running
 running = False
 
@@ -49,7 +46,7 @@ if len(sys.argv) != 2:
 #
 
 config_dir = sys.argv[1]
-logging_config_path = os.path.join(config_dir, LOGGING_CONFIG_FILE)
+logging_config_path = os.path.join(config_dir, OpenDxlConsole.LOGGING_CONFIG_FILE)
 if os.access(logging_config_path, os.R_OK):
     # Log configuration via configuration file
     fileConfig(logging_config_path, disable_existing_loggers=False)
@@ -81,3 +78,4 @@ with OpenDxlConsole(sys.argv[1]) as app:
         pass
     except:
         logger.exception("Error occurred, exiting")
+        sys.exit(1)

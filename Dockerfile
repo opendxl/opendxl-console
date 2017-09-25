@@ -1,12 +1,10 @@
-# Base image from Python 2.7 (alpine)
-FROM python:2.7-alpine
+# Base image from Python 2.7 (slim)
+FROM python:2.7-slim
 
 VOLUME ["/opt/dxlconsole-config"]
 
 # Install required packages
-RUN pip install "tornado"
-RUN pip install "dxlbootstrap"
-RUN pip install "dxlclient"
+RUN pip install "tornado" "dxlbootstrap>=0.1.3" "dxlclient"
 
 # Copy application files
 COPY . /tmp/build
