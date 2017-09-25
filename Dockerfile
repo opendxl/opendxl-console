@@ -3,6 +3,8 @@ FROM python:2.7-slim
 
 VOLUME ["/opt/dxlconsole-config"]
 
+EXPOSE 8443
+
 # Install required packages
 RUN pip install "tornado" "dxlbootstrap>=0.1.3" "dxlclient"
 
