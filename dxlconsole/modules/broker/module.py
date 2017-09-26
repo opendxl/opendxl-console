@@ -67,10 +67,9 @@ class BrokerInfoHandler(BaseRequestHandler):
             # the dxlclient for retrieving broker info
             dxlclient = self._bootstrap_app.client
 
-            current_broker = dxlclient.current_broker
             req = Request(BrokerModule.BROKER_REGISTRY_QUERY_TOPIC)
             # targeting the connected broker
-            MessageUtils.dict_to_json_payload(req, {"brokerGuid": current_broker.unique_id})
+            MessageUtils.dict_to_json_payload(req, {})
 
             # Send the broker registry request
             dxl_response = dxlclient.sync_request(req, 5)
@@ -86,15 +85,11 @@ class BrokerInfoHandler(BaseRequestHandler):
             # Send the broker health request
             req = Request(BrokerModule.BROKER_HEALTH_TOPIC)
             # targeting the connected broker
-            broker_list = [current_broker.unique_id]
-            req.broker_ids = broker_list
             MessageUtils.dict_to_json_payload(req, {})
             dxl_response = dxlclient.sync_request(req, 15)
 
             if dxl_response.message_type != Message.MESSAGE_TYPE_ERROR:
                 dxl_response_dict = MessageUtils.json_payload_to_dict(dxl_response)
-                print MessageUtils.dict_to_json(dxl_response_dict, pretty_print=True)
-                print current_broker.unique_id
             else:
                 err_msg = "Error invoking service with topic '{0}': {1} ({2})".format(
                     BrokerModule.BROKER_HEALTH_TOPIC, dxl_response.error_message, dxl_response.error_code)
