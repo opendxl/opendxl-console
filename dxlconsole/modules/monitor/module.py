@@ -22,7 +22,6 @@ logger = logging.getLogger(__name__)
 
 
 class MonitorModule(Module):
-
     # Request topic for service registry queries
     SERVICE_REGISTRY_QUERY_TOPIC = '/mcafee/service/dxl/svcregistry/query'
 
@@ -224,7 +223,6 @@ class MonitorModule(Module):
                 logger.debug("Refreshing service list.")
                 self._refresh_all_services()
 
-
     def _refresh_all_services(self):
         """
         Queries the broker for the service list and replaces the currently stored one with the new
@@ -245,7 +243,6 @@ class MonitorModule(Module):
 
         self.notify_web_sockets()
 
-
     def update_service(self, service_event):
         """
         Replaces a stored service data withe the one from the provided DXL service event
@@ -254,7 +251,6 @@ class MonitorModule(Module):
         """
         with self._service_dict_lock:
             self._services[service_event['serviceGuid']] = service_event
-
 
     def remove_service(self, service_event):
         """
@@ -297,7 +293,6 @@ class MonitorModule(Module):
                     self._web_socket_dict[key].write_message(u"serviceUpdates")
                 except:
                     pass
-
 
     def get_message_topic(self, message):
         """

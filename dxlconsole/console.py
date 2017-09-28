@@ -16,7 +16,6 @@ from handlers import BaseRequestHandler
 
 
 class ConsoleStaticFileRequestHandler(StaticFileHandler):
-
     def data_received(self, chunk):
         pass
 
@@ -36,7 +35,6 @@ class ConsoleStaticFileRequestHandler(StaticFileHandler):
 
 
 class ConsoleRequestHandler(BaseRequestHandler):
-
     def data_received(self, chunk):
         pass
 
@@ -93,7 +91,6 @@ class ConsoleRequestHandler(BaseRequestHandler):
 
 
 class LoginHandler(RequestHandler):
-
     def data_received(self, chunk):
         pass
 
@@ -109,7 +106,7 @@ class LoginHandler(RequestHandler):
         name = self.get_argument("username")
         password = self.get_argument("password")
         if name == self.application.bootstrap_app.username and \
-                password == self.application.bootstrap_app.password:
+                        password == self.application.bootstrap_app.password:
             self.set_secure_cookie("user", self.get_argument("username"))
             self.redirect("/")
         else:
@@ -117,7 +114,6 @@ class LoginHandler(RequestHandler):
 
 
 class LogoutHandler(RequestHandler):
-
     def data_received(self, chunk):
         pass
 
@@ -130,7 +126,6 @@ class LogoutHandler(RequestHandler):
 
 
 class WebConsole(Application):
-
     def __init__(self, app):
         self._bootstrap_app = app
         self._modules = [
@@ -156,7 +151,7 @@ class WebConsole(Application):
             if module.enabled:
                 handlers.extend(module.handlers)
 
-        super(WebConsole, self).__init__(handlers,  **settings)
+        super(WebConsole, self).__init__(handlers, **settings)
 
     @property
     def bootstrap_app(self):

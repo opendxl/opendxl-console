@@ -7,6 +7,7 @@ from dxlconsole.handlers import BaseRequestHandler
 
 logger = logging.getLogger(__name__)
 
+
 class SubscriptionsHandler(BaseRequestHandler):
     """
     Handles requests for the subscriptions list including fetch, add, and remove.
@@ -53,5 +54,3 @@ class SubscriptionsHandler(BaseRequestHandler):
 
         logger.debug("Subscription handler response: " + json.dumps(response_wrapper))
         self.write(response_wrapper)
-
-

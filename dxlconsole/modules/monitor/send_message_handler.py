@@ -8,6 +8,7 @@ from dxlconsole.handlers import BaseRequestHandler
 
 logger = logging.getLogger(__name__)
 
+
 class SendMessageHandler(BaseRequestHandler):
     """
     Handles post requests to send messages

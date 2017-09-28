@@ -5,6 +5,7 @@ from tornado.websocket import WebSocketHandler
 
 logger = logging.getLogger(__name__)
 
+
 class _WebSocketEventCallback(EventCallback):
     """
     A DXL event callback to handle all events by adding them to delivery queues and notifying the browser
@@ -95,4 +96,3 @@ class ConsoleWebSocketHandler(WebSocketHandler):
             self._client.remove_response_callback(None, self._response_callback)
 
         self._module.remove_web_socket(self._client_id)
-

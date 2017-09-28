@@ -1,6 +1,5 @@
 import logging
 
-
 import tornado
 from bs4 import BeautifulSoup
 from dxlbootstrap.util import MessageUtils
@@ -9,6 +8,7 @@ from dxlclient import Message, json
 from dxlconsole.handlers import BaseRequestHandler
 
 logger = logging.getLogger(__name__)
+
 
 class MessagesHandler(BaseRequestHandler):
     """
@@ -27,7 +27,7 @@ class MessagesHandler(BaseRequestHandler):
 
     def escape(self, html):
         """Returns the given HTML with ampersands, quotes and carets encoded."""
-        return html\
+        return html \
             .replace('&', '&amp;') \
             .replace('<', '&lt;') \
             .replace('>', '&gt;') \
@@ -69,7 +69,8 @@ class MessagesHandler(BaseRequestHandler):
                         except:
                             try:
                                 xml_payload = BeautifulSoup(original_payload)
-                                payload = "<pre lang='xml'><code>" + self.escape(xml_payload.prettify()) + "</code></pre>"
+                                payload = "<pre lang='xml'><code>" + self.escape(
+                                    xml_payload.prettify()) + "</code></pre>"
                                 original_payload = self.escape(original_payload)
                             except Exception as e:
                                 logger.exception(e)
@@ -89,7 +90,7 @@ class MessagesHandler(BaseRequestHandler):
                     'sourceBroker': message.source_broker_id,
                     'sourceClient': message.source_client_id,
                     'otherFields': "<pre><code>" +
-                                   self.escape( MessageUtils.dict_to_json(message.other_fields, True)) +
+                                   self.escape(MessageUtils.dict_to_json(message.other_fields, True)) +
                                    "</pre></code>"
                 }
                 response["data"].append(message_entry)
@@ -98,4 +99,3 @@ class MessagesHandler(BaseRequestHandler):
 
         logger.debug("Message handler response: " + json.dumps(response_wrapper))
         self.write(response_wrapper)
-

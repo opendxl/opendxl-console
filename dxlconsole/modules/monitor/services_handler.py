@@ -7,6 +7,7 @@ from dxlconsole.handlers import BaseRequestHandler
 
 logger = logging.getLogger(__name__)
 
+
 class ServiceUpdateHandler(BaseRequestHandler):
     """
     Handles requests for updates to the service listing
