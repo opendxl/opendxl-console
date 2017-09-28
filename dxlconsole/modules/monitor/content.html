@@ -1,3 +1,5 @@
+var monitor_clientId = (new Date()).getTime();
+
 var monitor_serviceDS = openConsole.RestDataSource.create({
     ID:"monitor_serviceDS",
     fields:[
@@ -34,16 +36,16 @@ var monitor_serviceListPane = openConsole.TreeGrid.create({
                             {name:"managed", title:"Managed", type: "string"},
                             {name:"registrationTime", title:"Registration Time", type: "string"},
                             {name:"ttlMins", title:"TTL(min)", type: "string"},
-                            {name:"requestChannels", title:"Request Topics", type: "string"},
-                            {name:"unauthorizedChannels", title:"Unauthorized Topics", type: "string"},
+                            {name:"requestTopics", title:"Request Topics", type: "string"},
+                            {name:"unauthorizedTopics", title:"Unauthorized Topics", type: "string"},
                             {name:"certificates", title:"Certificates", type: "string"},
                             {name:"metaData", title:"META Data", type: "string"}
                         ],
                         formatCellValue: function formatCellValue(value, record, field) {
                             if(value != null) {
-                                if(field.name === "requestChannels" || field.name === "certificates") {
+                                if(field.name === "requestTopics" || field.name === "certificates") {
                                     return value.join(",<br/>");
-                                } else if(field.name === "unauthorizedChannels") {
+                                } else if(field.name === "unauthorizedTopics") {
                                     return "<span style=\"color: red;\">" + value.join(",<br/>") + "</span>";
                                 } else if(field.name === "registrationTime") {
                                     var registrationDate = new Date(value * 1000);
@@ -62,7 +64,7 @@ var monitor_serviceListPane = openConsole.TreeGrid.create({
     rowClick: function (record) {
         if(record.parentId != null) {
             monitor_sendMessageForm.getField('type').setValue('Request');
-            monitor_sendMessageForm.getField('channel').setValue(record.itemName);
+            monitor_sendMessageForm.getField('topic').setValue(record.itemName);
             monitor_sendMessageForm.getField('payload').setValue('');
         }
         return false;
@@ -97,14 +99,18 @@ var monitor_serviceListPane = openConsole.TreeGrid.create({
 openConsole.RestDataSource.create({
     ID:"monitor_subscriptionDS",
     fields:[
-        {name:"channel", title:"Topic", primaryKey:true}
+        {name:"topic", title:"Topic", primaryKey:true}
     ],
     operationBindings : [
         {operationType:"fetch", dataProtocol:"getParams"},
         {operationType:"add", dataProtocol:"getParams"},
         {operationType:"remove", dataProtocol:"getParams"}
     ],
-    dataURL:"/subscriptions"
+    dataURL:"/subscriptions",
+    transformRequest : function (dsRequest) {
+        dsRequest.data.clientId = monitor_clientId;
+        return this.Super("transformRequest", arguments);
+    }
 });
 
 var monitor_subscriptionList = openConsole.ListGrid.create({
@@ -114,14 +120,14 @@ var monitor_subscriptionList = openConsole.ListGrid.create({
     showHeader: false,
     canRemoveRecords: true,
     fields:[
-        { name:"channel", title:"Subscriptions", required: true, }
+        { name:"topic", title:"Subscriptions", required: true, }
     ]
 });
 
 var monitor_messagesDS = openConsole.RestDataSource.create({
     ID:"monitor_messagesDS",
     fields:[
-        { name:"channel", title:"Topic" },
+        { name:"topic", title:"Topic" },
         { name:"id", title:"ID", type: "string", primaryKey: true },
         { name:"type", title:"Type", type: "string" },
         { name:"payload", title:"Payload", type: "string" },
@@ -131,7 +137,12 @@ var monitor_messagesDS = openConsole.RestDataSource.create({
         { name:"received", title:"Date", type: "datetime" },
         { name:"originalPayload", title:"Payload", type: "string" }
     ],
-    dataURL:"/messages"
+    dataURL:"/messages",
+    transformRequest : function (dsRequest) {
+        if(dsRequest.data)
+            dsRequest.data.clientId = monitor_clientId;
+        return this.Super("transformRequest", arguments);
+    }
 });
 
 var monitor_messagesGrid = openConsole.ListGrid.create({
@@ -144,7 +155,7 @@ var monitor_messagesGrid = openConsole.ListGrid.create({
     canHover: true,
     fields:[
         { name:"type", title:"Type", width: 100 },
-        { name:"channel", title:"Topic" },
+        { name:"topic", title:"Topic" },
         { name:"originalPayload", title:"Payload", type: "string" },
         { name:"received", title:"Date", type: "datetime", width: 150, format: "MMM d, yyyy HH:mm:ss" }
     ],
@@ -197,7 +208,7 @@ var monitor_messagesGrid = openConsole.ListGrid.create({
                     data:record,
                     fields:[
                         { name:"id", title:"ID", type: "string", primaryKey: true },
-                        { name:"channel", title:"Topic" },
+                        { name:"topic", title:"Topic" },
                         { name:"type", title:"Type", type: "string" },
                         { name:"payload", title:"Payload", type: "string" },
                         { name:"sourceBroker", title:"Source Broker", type: "string" },
@@ -250,9 +261,23 @@ function monitor_updateMessageFilters() {
 var monitor_sendMessageForm = openConsole.DynamicForm.create({
     ID: "monitor_sendMessageForm",
     fields: [
-        { name: "type", title: "Type", type: "select", required: true, value: "Event", valueMap: ["Request", "Event"] },
-        { name: "channel", type: "text", width: 400, title: "Topic", required: true, },
-        { name: "payload", type: "textArea", width: 400, height: 150, wrap: "OFF", title: "Payload" }
+        { name: "type",
+            title: "Type",
+            type: "select",
+            required: true,
+            value: "Event",
+            valueMap: ["Request", "Event"],
+            changed: "monitor_serviceListPane.setSelectedState(null)"
+        },
+        { name: "topic",
+            type: "text",
+            width: 400,
+            title: "Topic",
+            required: true,
+            changed: "monitor_serviceListPane.setSelectedState(null)"
+        },
+        { name: "payload", type: "textArea", width: 400, height: 150, wrap: "OFF", title: "Payload" },
+        { name: "clientId", type: "hidden", value: monitor_clientId }
     ],
     doSubmit : function () {
         messageStatusResponse.setContents("");
@@ -371,7 +396,7 @@ monitor_subscriptionList.fetchData();
 
 function monitor_fetch_new_messages()
 {
-    monitor_messagesDS.fetchData( null,
+    monitor_messagesDS.fetchData( { clientId: monitor_clientId },
         function( dsResponse, data ) {
             var gridData = monitor_messagesGrid.getOriginalData();
             for( var i = 0; i < data.length; i++ ) {
@@ -432,9 +457,8 @@ monitor_fetch_new_messages();
 var monitor_ws = null;
 
 $(document).ready(function() {
-    monitor_ws = new WebSocket("wss://" + location.host + "/websocket");
+    monitor_ws = new WebSocket("wss://" + location.host + "/websocket?id=" + monitor_clientId);
     monitor_ws.onmessage = function(e) {
-        //TODO: get service updates and distinguish from message updates
         monitor_fetch_new_messages();
         monitor_fetch_service_data();
     };

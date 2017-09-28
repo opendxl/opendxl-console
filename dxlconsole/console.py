@@ -54,6 +54,7 @@ class ConsoleRequestHandler(BaseRequestHandler):
 
         for module in self.application.modules:
             if module.enabled:
+                module.on_load(self.request)
                 name = module.name
                 button_name = name + "_button"
                 if not first_button:

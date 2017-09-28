@@ -1,21 +1,21 @@
 import logging
+import threading
 
 import pkg_resources
-import json
-import uuid
-import traceback
-
-import tornado
-from tornado.websocket import WebSocketHandler
 
 from dxlclient.client import DxlClient
 from dxlclient.client_config import DxlClientConfig
-from dxlclient.callbacks import EventCallback, ResponseCallback
-from dxlclient.message import Event, Request, Message
+from dxlclient.callbacks import EventCallback
+from dxlclient.message import Request, Message
 from dxlbootstrap.util import MessageUtils
 
+from .services_handler import ServiceUpdateHandler
+from .subscriptions_handler import SubscriptionsHandler
+from .messages_handler import MessagesHandler
+from .send_message_handler import SendMessageHandler
+from .websocket_handler import ConsoleWebSocketHandler
+
 from dxlconsole.module import Module
-from dxlconsole.handlers import BaseRequestHandler
 
 # Configure local logger
 logger = logging.getLogger(__name__)
@@ -30,11 +30,17 @@ class MonitorModule(Module):
     SERVICE_REGISTRY_REGISTER_EVENT_TOPIC = '/mcafee/event/dxl/svcregistry/register'
     SERVICE_REGISTRY_UNREGISTER_EVENT_TOPIC = '/mcafee/event/dxl/svcregistry/unregister'
 
-    # The cookie to store client IDs in to maintain a session
-    CLIENT_COOKIE_KEY = 'client_id'
+    # How often(in seconds) to refresh the service list
+    SERVICE_UPDATE_INTERVAL = 60
 
     # A default SmartClient JSON response to show no results
     NO_RESULT_JSON = u"""{response:{status:0,startRow:0,endRow:0,totalRows:0,data:[]}}"""
+
+    # Locks for the different dictionaries shared between Monitor Handlers
+    _service_dict_lock = threading.Lock()
+    _client_dict_lock = threading.Lock()
+    _web_socket_dict_lock = threading.Lock()
+    _pending_messages_lock = threading.Lock()
 
     def __init__(self, app):
         super(MonitorModule, self).__init__(
@@ -67,6 +73,10 @@ class MonitorModule(Module):
 
         self._refresh_all_services()
 
+        self._service_updater_thread = threading.Thread(target=self._service_updater)
+        self._service_updater_thread.daemon = True
+        self._service_updater_thread.start()
+
     @property
     def handlers(self):
         return [
@@ -84,11 +94,8 @@ class MonitorModule(Module):
 
     @property
     def services(self):
-        return self._services
-
-    @property
-    def web_socket_dict(self):
-        return self._web_socket_dict
+        with self._service_dict_lock:
+            return self._services.copy()
 
     @property
     def message_id_topics(self):
@@ -98,7 +105,7 @@ class MonitorModule(Module):
     def client_config(self):
         return DxlClientConfig.create_dxl_config_from_file(self.app.bootstrap_app.client_config_path)
 
-    def get_dxl_client(self, request_handler):
+    def get_dxl_client(self, client_id):
         """
         Retrieves the DxlClient for the given request. If there is not one associated with
         the incoming request it creates a new one and saves the generated client_id as a cookie
@@ -106,19 +113,16 @@ class MonitorModule(Module):
         :param request_handler: the handler for the incoming request
         :return: the DxlClient specific to this "session"
         """
-        # TODO concurrency
-        client_id = request_handler.get_cookie(MonitorModule.CLIENT_COOKIE_KEY)
-        if not client_id:
-            client_id = str(uuid.uuid4())
-            self._create_client_for_connection(client_id)
-            request_handler.set_cookie(MonitorModule.CLIENT_COOKIE_KEY, client_id)
-        elif not self._client_exists_for_connection(client_id):
+        if not self._client_exists_for_connection(client_id):
             self._create_client_for_connection(client_id)
 
-        client = self._client_dict[client_id]
+        with self._client_dict_lock:
+            client = self._client_dict[client_id]
+
         if not client.connected:
             client.connect()
 
+        logger.debug("Returning DXL client for id: " + str(client_id))
         return client
 
     def _create_client_for_connection(self, client_id):
@@ -127,11 +131,11 @@ class MonitorModule(Module):
 
         :param client_id: the client_id for the DxlClient
         """
-        # TODO concurrency
         client = DxlClient(self.client_config)
         client.connect()
         logger.info("Initializing new dxl client for client_id: " + str(client_id))
-        self._client_dict[client_id] = client
+        with self._client_dict_lock:
+            self._client_dict[client_id] = client
 
     def _client_exists_for_connection(self, client_id):
         """
@@ -140,8 +144,8 @@ class MonitorModule(Module):
         :param client_id: the ID of the DxlClient to check for
         :return: whether there is an existing DxlClient for this ID
         """
-        # TODO concurrency
-        return client_id in self._client_dict
+        with self._client_dict_lock:
+            return client_id in self._client_dict
 
     @staticmethod
     def create_smartclient_response_wrapper():
@@ -159,6 +163,20 @@ class MonitorModule(Module):
         response["data"] = []
         return response_wrapper
 
+    @staticmethod
+    def create_smartclient_error_response(self, error_message):
+        """
+        Creates an error response for the SmartClient UI with the given message
+
+        :param error_message: The error message
+        :return: The SmartClient response in dict form
+        """
+        response_wrapper = self.create_smartclient_response_wrapper()
+        response = response_wrapper["response"]
+        response["status"] = -1
+        response["data"] = error_message
+        return response
+
     def queue_message(self, message, client_id):
         """
         Adds the given message to the pending messages queue for the give client.
@@ -166,11 +184,11 @@ class MonitorModule(Module):
         :param message: the message to enqueue
         :param client_id: the client the message is intended for
         """
-        # TODO concurrency
-        if client_id not in self._pending_messages:
-            self._pending_messages[client_id] = []
+        with self._pending_messages_lock:
+            if client_id not in self._pending_messages:
+                self._pending_messages[client_id] = []
 
-        self._pending_messages[client_id].append(message)
+            self._pending_messages[client_id].append(message)
 
     def get_messages(self, client_id):
         """
@@ -179,9 +197,9 @@ class MonitorModule(Module):
         :param client_id: the client to retrieve messages for
         :return: a List of messages for the client
         """
-        # TODO concurrency
-        if client_id in self._pending_messages:
-            return self._pending_messages[client_id]
+        with self._pending_messages_lock:
+            if client_id in self._pending_messages:
+                return self._pending_messages[client_id]
         return None
 
     def clear_messages(self, client_id):
@@ -190,10 +208,28 @@ class MonitorModule(Module):
 
         :param client_id: the client to clear messages for
         """
-        # TODO concurrency
-        self._pending_messages[client_id] = []
+        with self._pending_messages_lock:
+            self._pending_messages[client_id] = []
+
+    def _service_updater(self):
+        """
+        A thread target that will run forever and do a complete refresh of the service list on an interval
+        or if the DXL client reconnects
+        """
+        while True:
+            with self._dxl_service_client._connected_lock:
+                self._dxl_service_client._connected_wait_condition.wait(self.SERVICE_UPDATE_INTERVAL)
+
+            if self._dxl_service_client.connected:
+                logger.debug("Refreshing service list.")
+                self._refresh_all_services()
+
 
     def _refresh_all_services(self):
+        """
+        Queries the broker for the service list and replaces the currently stored one with the new
+        results. Notifies all connected web sockets that new services are available.
+        """
         req = Request(MonitorModule.SERVICE_REGISTRY_QUERY_TOPIC)
 
         req.payload = "{}"
@@ -202,10 +238,75 @@ class MonitorModule(Module):
         dxl_response_dict = MessageUtils.json_payload_to_dict(dxl_response)
         logger.info("Service registry response: " + str(dxl_response_dict))
 
-        for serviceGuid in dxl_response_dict["services"]:
-            self._services[serviceGuid] = dxl_response_dict["services"][serviceGuid]
+        with self._service_dict_lock:
+            self._services = {}
+            for service_guid in dxl_response_dict["services"]:
+                self._services[service_guid] = dxl_response_dict["services"][service_guid]
+
+        self.notify_web_sockets()
+
+
+    def update_service(self, service_event):
+        """
+        Replaces a stored service data withe the one from the provided DXL service event
+
+        :param service_event: the  DXL service event containing the service
+        """
+        with self._service_dict_lock:
+            self._services[service_event['serviceGuid']] = service_event
+
+
+    def remove_service(self, service_event):
+        """
+        Removes a stored service using the provided DXL service event
+
+        :param service_event: the DXL service event containing the service to be removed
+        """
+        with self._service_dict_lock:
+            if service_event['serviceGuid'] in self._services:
+                del self._services[service_event['serviceGuid']]
+
+    def add_web_socket(self, client_id, web_socket):
+        """
+        Stores a web socket associated with the given client id
+
+        :param client_id: the client id key the web socket to
+        :param web_socket:  the web socket to store
+        """
+        logger.debug("Adding web socket for client: " + client_id)
+        with self._web_socket_dict_lock:
+            self._web_socket_dict[client_id] = web_socket
+
+    def remove_web_socket(self, client_id):
+        """
+        Removes any web socket associated with the given client_id
+
+        :param client_id: The client ID
+        """
+        logger.debug("Removing web socket for client: " + client_id)
+        with self._web_socket_dict_lock:
+            self._web_socket_dict.pop(client_id, None)
+
+    def notify_web_sockets(self):
+        """
+        Notifies all web sockets that there are pending service updates
+        """
+        with self._web_socket_dict_lock:
+            for key in self._web_socket_dict:
+                try:
+                    self._web_socket_dict[key].write_message(u"serviceUpdates")
+                except:
+                    pass
+
 
     def get_message_topic(self, message):
+        """
+        Determines the topic for the provided message. Replaces the response channel in
+        responses with the topic of the original request
+
+        :param message: The DXL message
+        :return:  The topic to use
+        """
         if (message.message_type == Message.MESSAGE_TYPE_RESPONSE
             or message.message_type == Message.MESSAGE_TYPE_ERROR) and \
                         message.request_message_id in self.message_id_topics:
@@ -234,327 +335,8 @@ class _ServiceEventCallback(EventCallback):
         service_event = MessageUtils.json_payload_to_dict(event)
         logger.info("Received service registry event: " + str(service_event))
         if event.destination_topic == MonitorModule.SERVICE_REGISTRY_REGISTER_EVENT_TOPIC:
-            self._module.services[service_event['serviceGuid']] = service_event
+            self._module.update_service(service_event)
         elif event.destination_topic == MonitorModule.SERVICE_REGISTRY_UNREGISTER_EVENT_TOPIC:
-            if service_event['serviceGuid'] in self._module.services:
-                del self._module.services[service_event['serviceGuid']]
+            self._module.remove_service(service_event)
 
-        for key in self._module.web_socket_dict:
-            try:
-                self._module.web_socket_dict[key].write_message(u"serviceUpdates")
-            except:
-                pass
-
-
-class _WebSocketEventCallback(EventCallback):
-    """
-    A DXL event callback to handle all events by adding them to delivery queues and notifying the browser
-    through WebSockets.
-    """
-
-    def __init__(self, web_socket, module):
-        super(EventCallback, self).__init__()
-        self._socket = web_socket
-        self._module = module
-
-    def on_event(self, event):
-        """
-        Adds the event to a pending messages queue and notifies the associated WebSocket that an event is waiting
-
-        :param event: the incoming event
-        """
-        logger.debug("Received event: " + event.payload.decode())
-        self._module.queue_message(event, self._socket.get_cookie(MonitorModule.CLIENT_COOKIE_KEY))
-        self._socket.write_message(u"Messages pending")
-
-
-class _WebSocketResponseCallback(ResponseCallback):
-    """
-    A DXL Response callback to handle all responses by adding them to delivery queues and notifying the browser
-    through WebSockets.
-    """
-
-    def __init__(self, web_socket, module):
-        super(ResponseCallback, self).__init__()
-        self._socket = web_socket
-        self._module = module
-
-    def on_response(self, response):
-        """
-        Adds the response to a pending messages queue and notifies the associated WebSocket that a response is waiting
-
-        :param response: the incoming response
-        """
-        logger.debug("Received response: " + response.payload.decode())
-        self._module.queue_message(response, self._socket.get_cookie(MonitorModule.CLIENT_COOKIE_KEY))
-        self._socket.write_message(u"Messages pending")
-
-
-class ConsoleWebSocketHandler(WebSocketHandler):
-    """
-    Handles the WebSocket connection used to notify the client of updates in real time
-    """
-
-    def __init__(self, application, request, module):
-        super(ConsoleWebSocketHandler, self).__init__(application, request)
-        self._event_callback = None
-        self._response_callback = None
-        self._client = None
-        self._module = module
-
-    def get_current_user(self):
-        return self.get_secure_cookie("user")
-
-    def data_received(self, chunk):
-        pass
-
-    @tornado.web.authenticated
-    def open(self):
-        self._event_callback = _WebSocketEventCallback(self, self._module)
-        self._response_callback = _WebSocketResponseCallback(self, self._module)
-        # WebSocketHandlers can not set cookies, so ensure it exists before attempting to get the client
-        if self.get_cookie(MonitorModule.CLIENT_COOKIE_KEY):
-            self._client = self._module.get_dxl_client(self)
-            self._module.web_socket_dict[self.get_cookie(MonitorModule.CLIENT_COOKIE_KEY)] = self
-        else:
-            self._client = DxlClient(self._module.client_config)
-            self._client.connect()
-
-        self._client.add_event_callback(None, self._event_callback)
-        self._client.add_response_callback(None, self._response_callback)
-
-    def on_message(self, message):
-        pass
-
-    def on_close(self):
-        # TODO: Reap stale DXL clients
-        # TODO: Reap stale web socket references
-        self._client.remove_event_callback(None, self._event_callback)
-        self._client.remove_response_callback(None, self._response_callback)
-        # self.client.disconnect()
-
-
-class ServiceUpdateHandler(BaseRequestHandler):
-    """
-    Handles requests for updates to the service listing
-    """
-
-    def __init__(self, application, request, module):
-        super(ServiceUpdateHandler, self).__init__(application, request)
-        self._module = module
-
-    def data_received(self, chunk):
-        pass
-
-    @tornado.web.authenticated
-    def get(self):
-        # We're only ever one level deep so if a parent is specified return an empty response
-        if self.get_query_argument("parentId", "null") != "null":
-            self.write(MonitorModule.NO_RESULT_JSON)
-            return
-
-        response_wrapper = MonitorModule.create_smartclient_response_wrapper()
-
-        response = response_wrapper["response"]
-
-        for serviceGuid in self._module.services:
-            service = self._module.services[serviceGuid]
-            logger.debug("Adding service, serviceGuid: " + serviceGuid)
-            entry = {"itemId": service.get("serviceGuid"),
-                     "itemName": service.get("serviceType"),
-                     "serviceType": service.get("serviceType"),
-                     "managed": str(service.get("managed")),
-                     "registrationTime": service.get("registrationTime"),
-                     "ttlMins": service.get("ttlMins"),
-                     "unauthorizedChannels": service.get("unauthorizedChannels"),
-                     "clientGuid": service.get("clientGuid"),
-                     "certificates": service.get("certificates"),
-                     "requestChannels": service.get("requestChannels"),
-                     "brokerGuid": service.get("brokerGuid"),
-                     "local": service.get("local"),
-                     "metaData": "<pre><code>" + json.dumps(service.get("metaData"), indent=4, sort_keys=True) +
-                                 "</code></pre>"}
-            response["data"].append(entry)
-
-            response['totalRows'] += 1
-
-            for request_channel in service["requestChannels"]:
-                entry = {"itemId": service["serviceGuid"] + request_channel,
-                         "itemName": request_channel,
-                         "parentId": service["serviceGuid"]}
-                response["data"].append(entry)
-
-                response['totalRows'] += 1
-
-        response["endRow"] = max(0, response['totalRows'] - 1)
-        logger.debug("Service update handler response: %s", json.dumps(response_wrapper))
-        self.write(json.dumps(response_wrapper))
-
-
-class SubscriptionsHandler(BaseRequestHandler):
-    """
-    Handles requests for the subscriptions list including fetch, add, and remove.
-    """
-
-    def __init__(self, application, request, module):
-        super(SubscriptionsHandler, self).__init__(application, request)
-        self._module = module
-
-    def data_received(self, chunk):
-        pass
-
-    @tornado.web.authenticated
-    def get(self):
-        client = self._module.get_dxl_client(self)
-
-        response_wrapper = MonitorModule.create_smartclient_response_wrapper()
-
-        response = response_wrapper["response"]
-
-        if self.get_query_argument("_operationType") == "add":
-            # add operations require an empty response?
-            channel = str(self.get_query_argument("channel"))
-            client.subscribe(channel)
-        elif self.get_query_argument("_operationType") == "remove":
-            # remove operations require an empty response?
-            channel = str(self.get_query_argument("channel"))
-            client.unsubscribe(channel)
-        else:
-            for subscription in client.subscriptions:
-                # don't include the client response channel
-                if "/mcafee/client" not in subscription:
-                    subscription_entry = {'channel': subscription}
-                    response["data"].append(subscription_entry)
-
-            response["endRow"] = len(client.subscriptions) - 1
-            response["totalRows"] = len(client.subscriptions) - 1
-
-        logger.debug("Subscription handler response: " + json.dumps(response_wrapper))
-        self.write(response_wrapper)
-
-
-class MessagesHandler(BaseRequestHandler):
-    """
-    Handles fetch requests for pending messages.
-    """
-
-    def __init__(self, application, request, module):
-        super(MessagesHandler, self).__init__(application, request)
-        self._module = module
-
-    def data_received(self, chunk):
-        pass
-
-    def escape(self, html):
-        """Returns the given HTML with ampersands, quotes and carets encoded."""
-        return html\
-            .replace('&', '&amp;') \
-            .replace('<', '&lt;') \
-            .replace('>', '&gt;') \
-            .replace('"', '&quot;') \
-            .replace("'", ' &#39;')
-
-    @tornado.web.authenticated
-    def get(self):
-        response_wrapper = MonitorModule.create_smartclient_response_wrapper()
-
-        response = response_wrapper["response"]
-
-        messages = self._module.get_messages(self.get_cookie(MonitorModule.CLIENT_COOKIE_KEY))
-
-        if messages:
-            for message in messages:
-                # If we have a topic stored as a response for this message ID use it instead of the response channel
-                topic = self._module.get_message_topic(message)
-                if message.message_type == Message.MESSAGE_TYPE_ERROR:
-                    payload = self.escape(message.error_message + " (" + str(message.error_code) + ")")
-                    original_payload = payload
-                else:
-                    original_payload = self.escape(MessageUtils.decode_payload(message))
-                    try:
-                        payload = "<pre><code>" + \
-                                  self.escape(
-                                      MessageUtils.dict_to_json(MessageUtils.json_payload_to_dict(message), True)) \
-                                  + "</pre></code>"
-                    except:
-                        payload = original_payload
-
-                message_entry = {
-                    'channel': topic,
-                    'received': '',
-                    'id': message.message_id,
-                    'type': "Event" if message.message_type == Message.MESSAGE_TYPE_EVENT
-                    else "Response" if message.message_type == Message.MESSAGE_TYPE_RESPONSE
-                    else "Request" if message.message_type == Message.MESSAGE_TYPE_REQUEST
-                    else "Error Response" if message.message_type == Message.MESSAGE_TYPE_ERROR
-                    else "Unknown",
-                    # TODO: Limit max payload size it will return
-                    'payload': payload,
-                    'originalPayload': original_payload,
-                    'sourceBroker': message.source_broker_id,
-                    'sourceClient': message.source_client_id,
-                    'otherFields': "<pre><code>" +
-                                   self.escape( MessageUtils.dict_to_json(message.other_fields, True)) +
-                                   "</pre></code>"
-                }
-                response["data"].append(message_entry)
-
-        self._module.clear_messages(self.get_cookie(MonitorModule.CLIENT_COOKIE_KEY))
-
-        logger.debug("Message handler response: " + json.dumps(response_wrapper))
-        self.write(response_wrapper)
-
-
-class SendMessageHandler(BaseRequestHandler):
-    """
-    Handles post requests to send messages
-    """
-
-    def __init__(self, application, request, module):
-        super(SendMessageHandler, self).__init__(application, request)
-        self._module = module
-
-    def data_received(self, chunk):
-        pass
-
-    @tornado.web.authenticated
-    def post(self):
-        client = self._module.get_dxl_client(self)
-
-        try:
-            request_params = json.loads(self.request.body)
-            if 'type' in request_params:
-                message_type = request_params['type']
-            else:
-                raise Exception("No type specified.")
-
-            if 'channel' in request_params:
-                message_channel = request_params['channel']
-            else:
-                raise Exception("No topic specified.")
-
-            if 'payload' in request_params:
-                message_payload = request_params['payload']
-            else:
-                message_payload = ""
-
-            logger.debug(
-                "Sending " + message_type + " on topic " + message_channel + " with payload: " + message_payload)
-            message_id = None
-            if message_type == 'Event':
-                event = Event(message_channel)
-                event.payload = message_payload
-                client.send_event(event)
-                message_id = event.message_id
-            elif message_type == 'Request':
-                req = Request(message_channel)
-                req.payload = message_payload
-                self._module.message_id_topics[req.message_id] = message_channel
-                client.async_request(req)
-                message_id = req.message_id
-
-            self.write("Message successfully sent.&nbsp;&nbsp;&nbsp;[ID : " + message_id + "]")
-        except Exception as e:
-            logger.error("Exception while processing send message request." + str(e))
-            logger.error(traceback.format_exc())
-            self.write("Failed to send message: " + str(e))
+        self._module.notify_web_sockets()

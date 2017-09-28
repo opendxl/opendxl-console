@@ -153,7 +153,7 @@ class GenerateCertHandler(BaseRequestHandler):
         """
         Uses openssl to create a csr with the info provided and sign the cert with the CA key
         The cert is written to the disk using the specified file names
-        :param subject: 
+        :param subject:
         :param temp_key_file: temp key file name to persist the key
         :param temp_csr_file: temp csr file to persist the csr
         :param temp_cert_file: temp csr file to persist the certificate
@@ -270,7 +270,7 @@ class GenerateCertHandler(BaseRequestHandler):
 
     @tornado.web.authenticated
     def post(self):
-        """ 
+        """
         Returns a client cert package using specified values
         """
 

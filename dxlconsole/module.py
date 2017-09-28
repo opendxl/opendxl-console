@@ -7,6 +7,9 @@ class Module(object):
         self._icon_path = icon_path
         self._root_content_name = root_content_name
 
+    def on_load(self, request):
+        pass
+
     @property
     def app(self):
         return self._app
