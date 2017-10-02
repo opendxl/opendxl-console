@@ -25,7 +25,6 @@ class _WebSocketEventCallback(EventCallback):
         """
         logger.debug("Received event on topic: " + event.destination_topic)
         self._module.queue_message(event, self._socket._client_id)
-        logger.error("Writing message for " + str(self._socket._client_id))
         self._socket.write_message(u"Messages pending")
 
 
