@@ -1,6 +1,8 @@
 import logging
 import threading
 
+import time
+import datetime
 import pkg_resources
 
 from dxlclient.client import DxlClient
@@ -31,6 +33,9 @@ class MonitorModule(Module):
 
     # How often(in seconds) to refresh the service list
     SERVICE_UPDATE_INTERVAL = 60
+
+    # How long to retain clients without any keep alive before evicting them
+    CLIENT_RETENTION_MINUTES = 30
 
     # A default SmartClient JSON response to show no results
     NO_RESULT_JSON = u"""{response:{status:0,startRow:0,endRow:0,totalRows:0,data:[]}}"""
@@ -76,6 +81,10 @@ class MonitorModule(Module):
         self._service_updater_thread.daemon = True
         self._service_updater_thread.start()
 
+        self._dxl_client_cleanup_thread = threading.Thread(target=self._cleanup_dxl_clients)
+        self._dxl_client_cleanup_thread.daemon = True
+        self._dxl_client_cleanup_thread.start()
+
     @property
     def handlers(self):
         return [
@@ -116,7 +125,7 @@ class MonitorModule(Module):
             self._create_client_for_connection(client_id)
 
         with self._client_dict_lock:
-            client = self._client_dict[client_id]
+            client = self._client_dict[client_id][0]
 
         if not client.connected:
             client.connect()
@@ -134,7 +143,7 @@ class MonitorModule(Module):
         client.connect()
         logger.info("Initializing new dxl client for client_id: " + str(client_id))
         with self._client_dict_lock:
-            self._client_dict[client_id] = client
+            self._client_dict[client_id] = (client, datetime.datetime.now())
 
     def _client_exists_for_connection(self, client_id):
         """
@@ -223,6 +232,20 @@ class MonitorModule(Module):
                 logger.debug("Refreshing service list.")
                 self._refresh_all_services()
 
+    def _cleanup_dxl_clients(self):
+        """
+        A thread target that will run forever and evict DXL clients if their clients have not sent a keep-alive
+        """
+        logger.debug("DXL client cleanup thread initialized.")
+        while True:
+            with self._client_dict_lock:
+                for key in list(self._client_dict):
+                    if self._client_dict[key][1] < (datetime.datetime.now() - datetime.timedelta(minutes=self.CLIENT_RETENTION_MINUTES)):
+                        logger.debug("Evicting DXL client for client_id: " + key)
+                        del self._client_dict[key]
+
+            time.sleep(5)
+
     def _refresh_all_services(self):
         """
         Queries the broker for the service list and replaces the currently stored one with the new
@@ -261,6 +284,12 @@ class MonitorModule(Module):
         with self._service_dict_lock:
             if service_event['serviceGuid'] in self._services:
                 del self._services[service_event['serviceGuid']]
+
+    def client_keep_alive(self, message, client_id):
+        logger.debug("Client keep-alive received for client id: " + client_id)
+        if self._client_exists_for_connection(client_id):
+            with self._client_dict_lock:
+                self._client_dict[client_id] = (self._client_dict[client_id], datetime.datetime.now())
 
     def add_web_socket(self, client_id, web_socket):
         """

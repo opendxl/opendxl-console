@@ -119,6 +119,7 @@ var monitor_subscriptionList = openConsole.ListGrid.create({
     emptyMessage: "No subscriptions have been added.",
     showHeader: false,
     canRemoveRecords: true,
+    editEvent: "none",
     fields:[
         { name:"topic", title:"Subscriptions", required: true, }
     ]
@@ -457,9 +458,47 @@ monitor_fetch_new_messages();
 var monitor_ws = null;
 
 $(document).ready(function() {
+    connectWebSocket();
+});
+
+function connectWebSocket()
+{
     monitor_ws = new WebSocket("wss://" + location.host + "/websocket?id=" + monitor_clientId);
     monitor_ws.onmessage = function(e) {
         monitor_fetch_new_messages();
         monitor_fetch_service_data();
     };
-});
+    monitor_ws.onclose = function() {
+        isc.Window.create({
+            ID: "disconnectedWindow",
+            title: "Client Disconnected",
+            autoSize: true,
+            width: 500,
+            autoCenter: true,
+            isModal: true,
+            showModalMask: true,
+            autoDraw: true,
+            showCloseButton: false,
+            canDragReposition: false,
+            canDragResize: false,
+            items: [
+                isc.HTMLFlow.create({
+                    ID: "disconnectedMessage",
+                    contents: "The DXL Console has been disconnected from the server. Please refresh the console to continue.",
+                    width: "100%",
+                    height: 200,
+                    padding:5
+                }),
+            ]
+        });
+    };
+}
+
+// Function to send a keep-alive over the web socket
+function clientKeepAlive()
+{
+    monitor_ws.send("still alive");
+}
+
+// Send a keep-alive every minute
+setInterval(clientKeepAlive, 60000);

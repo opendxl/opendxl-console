@@ -87,7 +87,7 @@ class ConsoleWebSocketHandler(WebSocketHandler):
         self._client.add_response_callback(None, self._response_callback)
 
     def on_message(self, message):
-        pass
+        self._module.client_keep_alive(message, self._client_id)
 
     def on_close(self):
         # TODO: Reap stale DXL clients
