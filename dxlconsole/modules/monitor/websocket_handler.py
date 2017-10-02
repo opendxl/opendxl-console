@@ -47,7 +47,7 @@ class _WebSocketResponseCallback(ResponseCallback):
         """
         logger.debug("Received response to message: " + response.request_message_id)
         self._module.queue_message(response, self._socket._client_id)
-        self._socket.write_message(u"Messages pending")
+        self._socket.write_message(u"messagesPending")
 
 
 class ConsoleWebSocketHandler(WebSocketHandler):

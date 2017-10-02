@@ -15,8 +15,11 @@ class MessagesHandler(BaseRequestHandler):
     Handles fetch requests for pending messages.
     """
 
-    # The largest payload that will be sent to
-    _MAX_PAYLOAD_LENGTH = 500
+    # The max size to send down for the details payload
+    _MAX_DETAILS_PAYLOAD_LENGTH = 10000
+
+    # The max size to send down for the table payload
+    _MAX_TABLE_PAYLOAD_LENGTH = 500
 
     def __init__(self, application, request, module):
         super(MessagesHandler, self).__init__(application, request)
@@ -56,25 +59,25 @@ class MessagesHandler(BaseRequestHandler):
                     original_payload = payload
                 else:
                     decoded_payload = MessageUtils.decode_payload(message)
-                    if len(decoded_payload) > self._MAX_PAYLOAD_LENGTH:
-                        original_payload = decoded_payload[0:self._MAX_PAYLOAD_LENGTH]
-                        payload = original_payload
-                    else:
-                        original_payload = decoded_payload
+                    original_payload = decoded_payload
+                    try:
+                        payload = "<pre><code>" + \
+                                  self.escape(
+                                      MessageUtils.dict_to_json(MessageUtils.json_payload_to_dict(message), True)) \
+                                  + "</pre></code>"
+                    except:
                         try:
-                            payload = "<pre><code>" + \
-                                      self.escape(
-                                          MessageUtils.dict_to_json(MessageUtils.json_payload_to_dict(message), True)) \
-                                      + "</pre></code>"
-                        except:
-                            try:
-                                xml_payload = BeautifulSoup(original_payload, "xml")
-                                payload = "<pre lang='xml'><code>" + self.escape(
-                                    xml_payload.prettify()) + "</code></pre>"
-                                original_payload = self.escape(original_payload)
-                            except Exception as e:
-                                logger.exception(e)
-                                payload = original_payload
+                            xml_payload = BeautifulSoup(original_payload, "html.parser")
+                            payload = "<pre lang='xml'><code>" + self.escape(
+                                xml_payload.prettify()) + "</code></pre>"
+                            original_payload = self.escape(original_payload)
+                        except Exception as e:
+                            logger.exception(e)
+                            payload = original_payload
+                    if len(payload) > self._MAX_DETAILS_PAYLOAD_LENGTH:
+                        payload = payload[0:self._MAX_DETAILS_PAYLOAD_LENGTH] + " ..."
+                    if len(payload) > self._MAX_TABLE_PAYLOAD_LENGTH:
+                        original_payload = original_payload[0:self._MAX_TABLE_PAYLOAD_LENGTH] + " ..."
 
                 message_entry = {
                     'topic': topic,
