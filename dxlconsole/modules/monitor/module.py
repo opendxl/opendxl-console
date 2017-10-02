@@ -289,7 +289,7 @@ class MonitorModule(Module):
         logger.debug("Client keep-alive received for client id: " + client_id)
         if self._client_exists_for_connection(client_id):
             with self._client_dict_lock:
-                self._client_dict[client_id] = (self._client_dict[client_id], datetime.datetime.now())
+                self._client_dict[client_id] = (self._client_dict[client_id][0], datetime.datetime.now())
 
     def add_web_socket(self, client_id, web_socket):
         """
