@@ -25,7 +25,7 @@ class _WebSocketEventCallback(EventCallback):
         """
         logger.debug("Received event on topic: " + event.destination_topic)
         self._module.queue_message(event, self._socket._client_id)
-        self._socket.write_message(u"Messages pending")
+        self._socket.write_message(u"messagesPending")
 
 
 class _WebSocketResponseCallback(ResponseCallback):
@@ -89,7 +89,6 @@ class ConsoleWebSocketHandler(WebSocketHandler):
         self._module.client_keep_alive(message, self._client_id)
 
     def on_close(self):
-        # TODO: Reap stale DXL clients
         if self._client:
             self._client.remove_event_callback(None, self._event_callback)
             self._client.remove_response_callback(None, self._response_callback)

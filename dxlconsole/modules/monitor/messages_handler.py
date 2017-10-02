@@ -68,7 +68,7 @@ class MessagesHandler(BaseRequestHandler):
                                       + "</pre></code>"
                         except:
                             try:
-                                xml_payload = BeautifulSoup(original_payload)
+                                xml_payload = BeautifulSoup(original_payload, "xml")
                                 payload = "<pre lang='xml'><code>" + self.escape(
                                     xml_payload.prettify()) + "</code></pre>"
                                 original_payload = self.escape(original_payload)

@@ -465,8 +465,10 @@ function connectWebSocket()
 {
     monitor_ws = new WebSocket("wss://" + location.host + "/websocket?id=" + monitor_clientId);
     monitor_ws.onmessage = function(e) {
-        monitor_fetch_new_messages();
-        monitor_fetch_service_data();
+        if(e.data.includes("messagesPending"))
+            monitor_fetch_new_messages();
+        else if(e.data.includes("serviceUpdates"))
+            monitor_fetch_service_data();
     };
     monitor_ws.onclose = function() {
         isc.Window.create({
