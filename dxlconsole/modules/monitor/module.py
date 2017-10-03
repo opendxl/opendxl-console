@@ -10,6 +10,7 @@ from dxlclient.client_config import DxlClientConfig
 from dxlclient.callbacks import EventCallback
 from dxlclient.message import Request, Message
 from dxlbootstrap.util import MessageUtils
+from tornado.ioloop import IOLoop
 
 from .services_handler import ServiceUpdateHandler
 from .subscriptions_handler import SubscriptionsHandler
@@ -319,7 +320,7 @@ class MonitorModule(Module):
         with self._web_socket_dict_lock:
             for key in self._web_socket_dict:
                 try:
-                    self._web_socket_dict[key].write_message(u"serviceUpdates")
+                    IOLoop.current().add_callback(self._web_socket_dict[key].write_message, u"serviceUpdates")
                 except:
                     pass
 
