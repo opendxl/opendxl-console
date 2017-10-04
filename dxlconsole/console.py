@@ -1,4 +1,6 @@
+
 import pkg_resources
+import base64
 import tornado
 import uuid
 
@@ -98,9 +100,30 @@ class LoginHandler(RequestHandler):
         super(LoginHandler, self).__init__(application, request)
 
     def get(self):
-        console_html = pkg_resources.resource_string(__name__, "login.html")
-        console_html = console_html.replace("@CONSOLE_NAME@", self.application.bootstrap_app.console_name)
-        self.write(console_html)
+        """
+         If used from the browser the login page is displayed.
+         From the python provisionconfig cli, this will be handled by the 
+         certificate module
+        :return: 
+        """
+        auth_header = self.request.headers.get('Authorization')
+        if auth_header is not None:
+            auth_decoded = base64.decodestring(auth_header[6:])
+            username, password = auth_decoded.split(':', 2)
+            details = ""
+            for f in self.request.arguments.values():
+                details += ",".join(f)
+            if username == self.application.bootstrap_app.username and \
+                            password == self.application.bootstrap_app.password:
+                self.set_secure_cookie("user", username)
+                self.redirect(details)
+            else:
+                self.set_status(401)
+                self.write("Invalid credentials.Check username/password")
+        else:
+            console_html = pkg_resources.resource_string(__name__, "login.html")
+            console_html = console_html.replace("@CONSOLE_NAME@", self.application.bootstrap_app.console_name)
+            self.write(console_html)
 
     def post(self):
         name = self.get_argument("username")

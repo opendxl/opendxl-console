@@ -14,9 +14,9 @@ openConsole.DetailViewer.create({
         dataSource: broker_detailsDS,
         fields:[
             {name: "version", title: "Version"},
-            {name: "guid", title: "Guid"},
+            {name: "guid", title: "Identifier"},
             {name: "connectedClients", title: "Clients Connected"},
-            {name: "localServiceCounter", title: "Local Services"},
+            {name: "localServiceCounter", title: "Services"},
             {name: "incomingMessages", title: "In Messages/Second"},
             {name: "outgoingMessages", title: "Out Messages/Second"},
             {name: "startTime", title: "Start Time"}
@@ -35,9 +35,13 @@ openConsole.DetailViewer.create({
 })
 
 broker_content_details.fetchData();
+
 /* refresh the broker data every 30 seconds */
 function reloadBrokerInfoData() {
-    broker_content_details.invalidateCache();
+    broker_detailsDS.fetchData(null,
+        function( dsResponse, data ) {
+            broker_content_details.setData( data );
+        });
     setTimeout(reloadBrokerInfoData, 30000);
 }
 

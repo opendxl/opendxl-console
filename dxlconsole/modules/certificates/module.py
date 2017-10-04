@@ -5,6 +5,7 @@ import os
 import socket
 import subprocess
 import traceback
+import ConfigParser
 
 import pkg_resources
 from StringIO import StringIO
@@ -132,15 +133,94 @@ class CertificateModule(Module):
     @property
     def handlers(self):
         return [
-            (r'/generate_cert', GenerateCertHandler, dict(module=self))
+            (r'/generate_cert', GenerateCertHandler, dict(module=self)),
+            (r'/remote/DxlBrokerMgmt.generateOpenDXLClientProvisioningPackageCmd', ProvisionManagementServiceHandler,
+             dict(module=self))
         ]
 
 
-class GenerateCertHandler(BaseRequestHandler):
+class _BaseCertHandler(BaseRequestHandler):
     """
     Handles post request to generate certs with the provided parameters
     """
 
+    def data_received(self, chunk):
+        pass
+
+    def _updateconfig_file(self):
+        """
+        Creates the dxlclient.config file
+        :return: dxlclient.config contents
+        """
+        with open(self._module.client_config_template_file, 'r') as f:
+            content = f.read()
+
+        content = content.replace("@BROKER_CA_BUNDLE_FILE@", CertificateModule.ZIP_BROKER_CA_BUNDLE_FILE_NAME)
+        content = content.replace("@CLIENT_CERT_FILE@", CertificateModule.ZIP_CLIENT_CERT_FILE_NAME)
+        content = content.replace("@CLIENT_KEY_FILE@", CertificateModule.ZIP_CLIENT_KEY_FILE_NAME)
+
+        # Host and IP address from incoming request
+        server_host = tornado.httputil.split_host_and_port(self.request.host)[0]
+        server_addr = socket.gethostbyname(server_host)
+        content = content.replace("@EXTERNAL_BROKER_HOST@", server_host)
+        content = content.replace("@EXTERNAL_BROKER_IP@", server_addr)
+
+        # Local docker network
+        docker_ip = subprocess.check_output("route -n | awk '/^\s*0.0.0.0/ {print $2}'", shell=True)
+        content = content.replace("@DOCKER_BROKER_IP@", docker_ip.strip())
+        return content
+
+    def _get_broker_list(self):
+        """
+        Build the broker list one per line from the config file.This is used by the managememt service
+        :return: list of brokers
+        """
+        # create the dxlclient.config file
+        config_contents = self._updateconfig_file()
+
+        content= []
+        buf = StringIO(config_contents)
+        # read as a config
+        config_parser = ConfigParser.ConfigParser()
+        config_parser.readfp(buf)
+        #extract the broker list from the config
+        for name, value in config_parser.items("Brokers"):
+            content.append('{}={}\n'.format(name, value))
+
+        return ''.join(content)
+
+    def _create_client_cert(self, temp_csr_file, temp_cert_file):
+        """
+        Create a client certificate signed by the Client CA of the standalone broker.
+        :param temp_csr_file: CSR file for creating the certificate
+        :param temp_cert_file: Certificate file created 
+        :raise Exception: Error running the openssl command to create the certificate
+        """
+
+        # load the client ca cert for signing
+        client_ca_file = self._module.client_ca_cert_file
+        client_ca_key_file = self._module.client_ca_key_file
+
+        password = 'pass:' + self._module.client_ca_password
+        # Sign the CSR with the client cert file
+        rc = subprocess.call(['openssl', 'x509', '-req', '-passin', password,
+                              '-CAcreateserial', '-days', '3650',
+                              '-CA', client_ca_file, '-CAkey', client_ca_key_file,
+                              '-outform' ,'PEM',
+                              '-out', temp_cert_file.name, '-in',
+                              temp_csr_file.name],
+                             stderr=open(os.devnull, 'wb'))
+
+        if rc != 0:
+            raise Exception("Error creating certificate")
+
+        logger.debug("Temp cert name:" + temp_cert_file.name)
+
+
+class GenerateCertHandler(_BaseCertHandler):
+    """
+    Handles post request to generate certs with the provided parameters
+    """
     def __init__(self, application, request, module):
         super(GenerateCertHandler, self).__init__(application, request)
         self._module = module
@@ -170,41 +250,9 @@ class GenerateCertHandler(BaseRequestHandler):
         logger.debug("Temp key file:" + temp_key_file.name)
         logger.debug("Temp csr file:" + temp_csr_file.name)
 
-        client_ca_file = self._module.client_ca_cert_file
-        client_ca_key_file = self._module.client_ca_key_file
+        # call openssl command to create the cert
+        self._create_client_cert(temp_csr_file, temp_cert_file)
 
-        password = 'pass:' + self._module.client_ca_password
-        # Sign the CSR with the client cert file
-        rc = subprocess.call(['openssl', 'x509', '-req', '-passin', password,
-                              '-CAcreateserial', '-days', '3650',
-                              '-CA', client_ca_file, '-CAkey', client_ca_key_file,
-                              '-out', temp_cert_file.name, '-in', temp_csr_file.name],
-                             stderr=open(os.devnull, 'wb'))
-
-        if rc != 0:
-            raise Exception("Error creating certificate")
-
-        logger.debug("Temp cert name:" + temp_cert_file.name)
-
-    def _updateconfig_file(self):
-
-        with open(self._module.client_config_template_file, 'r') as f:
-            content = f.read()
-
-        content = content.replace("@BROKER_CA_BUNDLE_FILE@", CertificateModule.ZIP_BROKER_CA_BUNDLE_FILE_NAME)
-        content = content.replace("@CLIENT_CERT_FILE@", CertificateModule.ZIP_CLIENT_CERT_FILE_NAME)
-        content = content.replace("@CLIENT_KEY_FILE@", CertificateModule.ZIP_CLIENT_KEY_FILE_NAME)
-
-        # Host and IP address from incoming request
-        server_host = tornado.httputil.split_host_and_port(self.request.host)[0]
-        server_addr = socket.gethostbyname(server_host)
-        content = content.replace("@EXTERNAL_BROKER_HOST@", server_host)
-        content = content.replace("@EXTERNAL_BROKER_IP@", server_addr)
-
-        # Local docker network
-        docker_ip = subprocess.check_output("route -n | awk '/^\s*0.0.0.0/ {print $2}'", shell=True)
-        content = content.replace("@DOCKER_BROKER_IP@", docker_ip.strip())
-        return content
 
     def _generate_subject_str_from_request(self, request_params):
         """
@@ -221,7 +269,16 @@ class GenerateCertHandler(BaseRequestHandler):
         else:
             raise Exception("No common name specified")
 
-        subject = "/CN=" + common_name
+        # weird quirk of openssl. It wants email first if present
+        email = None
+        if 'email' in request_params:
+            email = request_params['email'].strip()
+
+        subject =''
+        if email is not None:
+            subject = "/emailAddress=" + email
+
+        subject += "/CN=" + common_name
 
         # this has to be 2 chars
         country = None
@@ -249,10 +306,6 @@ class GenerateCertHandler(BaseRequestHandler):
         if 'ou' in request_params:
             ou = request_params['ou'].strip()
 
-        email = None
-        if 'email' in request_params:
-            email = request_params['email'].strip()
-
         if country is not None:
             subject += "/C=" + country
         if state is not None:
@@ -263,8 +316,6 @@ class GenerateCertHandler(BaseRequestHandler):
             subject += "/O=" + org
         if ou is not None:
             subject += "/OU=" + ou
-        if email is not None:
-            subject += "/E=" + email
 
         return subject
 
@@ -334,6 +385,80 @@ class GenerateCertHandler(BaseRequestHandler):
             if temp_key_file is not None:
                 temp_key_file.close()
                 os.remove(temp_key_file.name)
+            if temp_cert_file is not None:
+                temp_cert_file.close()
+                os.remove(temp_cert_file.name)
+            if temp_csr_file is not None:
+                temp_csr_file.close()
+                os.remove(temp_csr_file.name)
+
+
+class ProvisionManagementServiceHandler(_BaseCertHandler):
+    """
+    This mimics the ePO service which is called by the Python client CLI provisionconfig command
+    The response is similar to the ePO remote command "DxlBrokerMgmt.generateOpenDXLClientProvisioningPackageCmd"
+    """
+
+    def __init__(self, application, request, module):
+        super(ProvisionManagementServiceHandler, self).__init__(application, request)
+        self._module = module
+        self._bootstrap_app = application.bootstrap_app
+
+    @tornado.web.authenticated
+    def get(self):
+        """ 
+        Returns a client cert package using submitted CSR
+        return: results similar to the Management Service remote command
+        """
+        logging.debug("Provisioning Management service invoked")
+
+        # temp files for the csr and cert
+        temp_cert_file = None
+        temp_csr_file = None
+
+        try:
+            csrString = self.get_argument('csrString', True)
+
+            if csrString is None:
+                raise Exception("No CSR string passed")
+
+            temp_csr_file = NamedTemporaryFile('wb', delete=False)
+            temp_cert_file = NamedTemporaryFile('wb', delete=False)
+
+            with open(temp_csr_file.name, 'w') as csr_file:
+                csr_file.write(csrString.encode('utf8'))# do we need to encode??
+            #
+            # generate the cert with the subject string using the temp files above
+            self._create_client_cert(temp_csr_file, temp_cert_file)
+
+            broker_ca_bundle_file = self._module.broker_ca_bundle_file
+
+            # First part of the response is the ca bundle
+            ca_content = None
+            with open(broker_ca_bundle_file, 'r') as cert_ca_file:
+                ca_content = cert_ca_file.read()
+            # Second part of the response is the signed cert
+            cert_content = None
+            with open(temp_cert_file.name,'r') as cert_file:
+                cert_content = cert_file.read()
+
+            # Third part of the response is the broker list
+            config_out = self._get_broker_list()
+
+            # Response includes chain of CAs, cert signed by the client CA, list of brokers.
+            # These parts are delimited by ','
+            response_str = ",".join((ca_content,cert_content,config_out))
+            # mimicking the ePO response for output string = json. Needs to be OK:"body"
+            json_string = "OK:\r\n{}\r\n".format(json.dumps(response_str))
+
+            self.write(json_string)
+
+        except Exception as e:
+            logger.error("Exception while processing Provision config request." + str(e))
+            logger.error(traceback.format_exc())
+            self.set_status(500)
+            self.write("Failed to generate Provision config with the specified CSR:" + str(e))
+        finally:
             if temp_cert_file is not None:
                 temp_cert_file.close()
                 os.remove(temp_cert_file.name)
