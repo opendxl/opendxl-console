@@ -161,13 +161,21 @@ class _BaseCertHandler(BaseRequestHandler):
 
         # Host and IP address from incoming request
         server_host = tornado.httputil.split_host_and_port(self.request.host)[0]
-        server_addr = socket.gethostbyname(server_host)
+        try:
+            server_addr = socket.gethostbyname(server_host)
+        except socket.gaierror as e:
+            server_addr = ""
         content = content.replace("@EXTERNAL_BROKER_HOST@", server_host)
         content = content.replace("@EXTERNAL_BROKER_IP@", server_addr)
 
         # Local docker network
-        docker_ip = subprocess.check_output("route -n | awk '/^\s*0.0.0.0/ {print $2}'", shell=True)
-        content = content.replace("@DOCKER_BROKER_IP@", docker_ip.strip())
+        docker_ip = subprocess.check_output(
+            "route -n | awk '/^\s*0.0.0.0/ {print $2}'", shell=True).strip()
+        if not docker_ip:
+            docker_ip = subprocess.check_output(
+                "ip route | sed -n 's/.*default via \\([^ ]*\\).*/\\1/p'",
+                shell=True).strip()
+        content = content.replace("@DOCKER_BROKER_IP@", docker_ip)
         return content
 
     def _get_broker_list(self):
