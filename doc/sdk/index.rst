@@ -19,25 +19,10 @@ Installation and Configuration
 	configuration
 	running
 
-Samples
--------
-
-Configuration
+Docker
+------
 
 .. toctree::
-    :maxdepth: 1
+	:maxdepth: 1
 
-    sampleconfig
-
-Basic
-
-    TODO: Provide samples documentation
-
-Python API
-----------
-
-.. toctree::
-    :titlesonly:
-
-    dxlconsole
-
+	docker

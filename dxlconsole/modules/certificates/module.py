@@ -22,6 +22,9 @@ logger = logging.getLogger(__name__)
 
 
 class CertificateModule(Module):
+    """
+    Module used to generate client certificates that are compatible with the OpenDXL broker
+    """
 
     # Client certificate file name in the zip file
     ZIP_CLIENT_CERT_FILE_NAME = "client.crt"
@@ -49,6 +52,11 @@ class CertificateModule(Module):
     CLIENT_CONFIG_TEMPLATE_FILE_PROP = "clientConfigTemplateFile"
 
     def __init__(self, app):
+        """
+        Constructor parameters:
+
+        :param app: The application that the module is a part of
+        """
         super(CertificateModule, self).__init__(
             app, "certificates", "Certificate Management", "/public/images/cert.png", "certs_stack")
         bootstrap_app = self.app.bootstrap_app
@@ -86,36 +94,72 @@ class CertificateModule(Module):
 
         # Client configuration template file
         try:
-            self._client_config_template_file = config.get(self.CERTS_CONFIG_SECTION, self.CLIENT_CONFIG_TEMPLATE_FILE_PROP)
+            self._client_config_template_file = config.get(
+                self.CERTS_CONFIG_SECTION, self.CLIENT_CONFIG_TEMPLATE_FILE_PROP)
         except Exception:
             pass
 
     @property
     def client_ca_cert_file(self):
+        """
+        Returns the path to the CA certificate file
+
+        :return: The path to the CA certificate file
+        """
         return self._client_ca_cert_file
 
     @property
     def client_ca_key_file(self):
+        """
+        Returns the path to the CA key file
+
+        :return: The path to the CA key file
+        """
         return self._client_ca_key_file
 
     @property
     def client_ca_password(self):
+        """
+        Returns the password for the client CA
+
+        :return: The password for the client CA
+        """
         return self._client_ca_password
 
     @property
     def broker_ca_bundle_file(self):
+        """
+        Returns the path to the broker CA bundle file
+
+        :return: The path to the broker CA bundle file
+        """
         return self._broker_ca_bundle_file
 
     @property
     def client_config_template_file(self):
+        """
+        Returns the path to the client configuration template file
+
+        :return: The path to the client configuration template file
+        """
         return self._client_config_template_file
 
     @property
     def content(self):
+        """
+        The content of the module (JS code)
+
+        :return: The content of the module (JS code)
+        """
         return pkg_resources.resource_string(__name__, "content.html")
 
     @property
     def enabled(self):
+        """
+        Returns whether the module is enabled
+
+        :return: Whether the module is enabled
+        """
         bootstrap_app = self.app.bootstrap_app
 
         return \
@@ -132,6 +176,11 @@ class CertificateModule(Module):
 
     @property
     def handlers(self):
+        """
+        Web (Tornado) handlers for the module
+
+        :return: The web (Tornado) handlers for the module
+        """
         return [
             (r'/generate_cert', GenerateCertHandler, dict(module=self)),
             (r'/remote/DxlBrokerMgmt.generateOpenDXLClientProvisioningPackageCmd',
@@ -149,12 +198,18 @@ class _BaseCertHandler(BaseRequestHandler):
     """
 
     def data_received(self, chunk):
+        """
+        Invoked when streamed request data is received
+
+        :param: chunk The next chuck of data
+        """
         pass
 
     def _updateconfig_file(self):
         """
         Creates the dxlclient.config file
-        :return: dxlclient.config contents
+
+        :return: The ``dxlclient.config`` contents
         """
         with open(self._module.client_config_template_file, 'r') as f:
             content = f.read()
@@ -167,7 +222,7 @@ class _BaseCertHandler(BaseRequestHandler):
         server_host = tornado.httputil.split_host_and_port(self.request.host)[0]
         try:
             server_addr = socket.gethostbyname(server_host)
-        except socket.gaierror as e:
+        except socket.gaierror:
             server_addr = ""
         content = content.replace("@EXTERNAL_BROKER_HOST@", server_host)
         content = content.replace("@EXTERNAL_BROKER_IP@", server_addr)
@@ -184,8 +239,9 @@ class _BaseCertHandler(BaseRequestHandler):
 
     def _get_configparser(self):
         """
-        Loads the dxlclient.config contents into a ConfigParser
-        :return: ConfigParser  
+        Loads the ``dxlclient.config`` contents into a ConfigParser
+
+        :return: The config parser
         """
         # create the dxlclient.config file
         config_contents = self._updateconfig_file()
@@ -200,11 +256,11 @@ class _BaseCertHandler(BaseRequestHandler):
     def _create_client_cert(self, temp_csr_file, temp_cert_file):
         """
         Create a client certificate signed by the Client CA of the standalone broker.
+
         :param temp_csr_file: CSR file for creating the certificate
         :param temp_cert_file: Certificate file created 
         :raise Exception: Error running the openssl command to create the certificate
         """
-
         # load the client ca cert for signing
         client_ca_file = self._module.client_ca_cert_file
         client_ca_key_file = self._module.client_ca_key_file
@@ -214,7 +270,7 @@ class _BaseCertHandler(BaseRequestHandler):
         rc = subprocess.call(['openssl', 'x509', '-req', '-passin', password,
                               '-CAcreateserial', '-days', '3650',
                               '-CA', client_ca_file, '-CAkey', client_ca_key_file,
-                              '-outform' ,'PEM',
+                              '-outform', 'PEM',
                               '-out', temp_cert_file.name, '-in',
                               temp_csr_file.name],
                              stderr=open(os.devnull, 'wb'))
@@ -235,13 +291,19 @@ class GenerateCertHandler(_BaseCertHandler):
         self._bootstrap_app = application.bootstrap_app
 
     def data_received(self, chunk):
+        """
+        Invoked when streamed request data is received
+
+        :param: chunk The next chuck of data
+        """
         pass
 
     def _generate_client_cert(self, subject, temp_key_file, temp_csr_file, temp_cert_file):
         """
         Uses openssl to create a csr with the info provided and sign the cert with the CA key
         The cert is written to the disk using the specified file names
-        :param subject:
+
+        :param subject: The subject string
         :param temp_key_file: temp key file name to persist the key
         :param temp_csr_file: temp csr file to persist the csr
         :param temp_cert_file: temp csr file to persist the certificate
@@ -264,6 +326,7 @@ class GenerateCertHandler(_BaseCertHandler):
     def _generate_subject_str_from_request(self, request_params):
         """
         Reads the parameters from the requests and builds the subject string for the certificate
+
         :param request_params: request parameters from the request
         :return: subject string
         """
@@ -414,6 +477,7 @@ class ProvisionManagementServiceHandler(_BaseCertHandler):
     def _get_broker_list_string(self):
         """
         Builds the broker list one per line from the config file.
+
         :return: comma delimited list of brokers
         """
         content = []
@@ -478,11 +542,9 @@ class ProvisionManagementServiceHandler(_BaseCertHandler):
             broker_ca_bundle_file = self._module.broker_ca_bundle_file
 
             # First part of the response is the ca bundle
-            ca_content = None
             with open(broker_ca_bundle_file, 'r') as cert_ca_file:
                 ca_content = cert_ca_file.read()
             # Second part of the response is the signed cert
-            cert_content = None
             with open(temp_cert_file.name, 'r') as cert_file:
                 cert_content = cert_file.read()
 
@@ -546,7 +608,6 @@ class CreateClientBundleManagementServiceHandler(_BaseCertHandler):
             broker_ca_bundle_file = self._module.broker_ca_bundle_file
 
             # First part of the response is the ca bundle
-            ca_content = None
             with open(broker_ca_bundle_file, 'r') as cert_ca_file:
                 ca_content = cert_ca_file.read()
 

@@ -18,6 +18,9 @@ logger = logging.getLogger(__name__)
 
 
 class BrokerModule(Module):
+    """
+    Module that provides information about the OpenDXL broker that is being managed
+    """
 
     # Request topic for Broker registry queries
     BROKER_REGISTRY_QUERY_TOPIC = '/mcafee/service/dxl/brokerregistry/query'
@@ -25,22 +28,43 @@ class BrokerModule(Module):
     BROKER_HEALTH_TOPIC = '/mcafee/service/dxl/broker/health'
 
     def __init__(self, app):
+        """
+        Constructor parameters:
+
+        :param app: The application that the module is a part of
+        """
         super(BrokerModule, self).__init__(
-            app, "broker", "Broker Details", "/public/images/broker.png", "broker_layout" )
+            app, "broker", "Broker Details", "/public/images/broker.png", "broker_layout")
 
     @property
     def content(self):
+        """
+        The content of the module (JS code)
+
+        :return: The content of the module (JS code)
+        """
         return pkg_resources.resource_string(__name__, "content.html")
 
     @property
     def enabled(self):
+        """
+        Returns whether the module is enabled
+
+        :return: Whether the module is enabled
+        """
         return self.app.bootstrap_app.local_broker
 
     @property
     def handlers(self):
+        """
+        Web (Tornado) handlers for the module
+
+        :return: The web (Tornado) handlers for the module
+        """
         return [
             (r'/broker_info', BrokerInfoHandler, dict(module=self))
         ]
+
 
 class BrokerInfoHandler(BaseRequestHandler):
     """
@@ -48,6 +72,13 @@ class BrokerInfoHandler(BaseRequestHandler):
     """
 
     def __init__(self, application, request, module):
+        """
+        Constructor parameters:
+
+        :param application: The application associated with the request handler
+        :param request: The request
+        :param module: The module this request handler is associated with
+        """
         super(BrokerInfoHandler, self).__init__(application, request)
         self._module = module
         self._bootstrap_app = application.bootstrap_app

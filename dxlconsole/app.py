@@ -27,8 +27,7 @@ class OpenDxlConsole(Application):
         """
         Constructor parameters:
 
-        :param config_dir: The location of the configuration files for the
-            application
+        :param config_dir: The location of the configuration files for the application
         """
         super(OpenDxlConsole, self).__init__(config_dir, "dxlconsole.config")
 
@@ -40,6 +39,11 @@ class OpenDxlConsole(Application):
 
     @property
     def console_name(self):
+        """
+        Returns the console name (title)
+
+        :return: The console name (title)
+        """
         if self.local_broker:
             return "OpenDXL Broker Console"
         else:
@@ -47,29 +51,53 @@ class OpenDxlConsole(Application):
 
     @property
     def config(self):
+        """
+        Returns the console configuration
+
+        :return: The console configuration
+        """
         return self._config
 
     @property
     def port(self):
+        """
+        Returns the console port
+
+        :return: The console port
+        """
         return self._port
 
     @property
     def local_broker(self):
+        """
+        Returns whether the console is for managing an OpenDXL broker
+
+        :return: Whether the console is for managing an OpenDXL broker
+        """
         return self._local_broker
 
     @property
     def username(self):
+        """
+        Returns the console user name
+
+        :return: The console username
+        """
         return self._username
 
     @property
     def password(self):
+        """
+        Returns the console password
+
+        :return: The console password
+        """
         return self._password
 
     @property
     def client(self):
         """
-        The DXL client used by the application to communicate with the DXL
-        fabric
+        The DXL client used by the application to communicate with the DXL fabric
         """
         return self._dxl_client
 

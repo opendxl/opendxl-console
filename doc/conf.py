@@ -62,3 +62,5 @@ autoclass_content = 'both'
 
 modindex_common_prefix = ['dxlconsole.']
 
+html_use_smartypants = False
+

@@ -22,10 +22,22 @@ class MessagesHandler(BaseRequestHandler):
     _MAX_TABLE_PAYLOAD_LENGTH = 500
 
     def __init__(self, application, request, module):
+        """
+        Constructor parameters:
+
+        :param application: The application associated with the request handler
+        :param request: The request
+        :param module: The module this request handler is associated with
+        """
         super(MessagesHandler, self).__init__(application, request)
         self._module = module
 
     def data_received(self, chunk):
+        """
+        Invoked when streamed request data is received
+
+        :param: chunk The next chuck of data
+        """
         pass
 
     def escape(self, html):
@@ -39,6 +51,7 @@ class MessagesHandler(BaseRequestHandler):
 
     @tornado.web.authenticated
     def get(self):
+        """HTTP GET"""
         client_id = self.get_query_argument("clientId", "null")
         if client_id == "null":
             self.write(self._module.create_smartclient_error_response("No client ID sent with request."))
