@@ -1,0 +1,7 @@
+dxlconsole.modules.monitor.messages_handler module
+==================================================
+
+.. automodule:: dxlconsole.modules.monitor.messages_handler
+    :members:
+    :undoc-members:
+    :show-inheritance:

@@ -1,0 +1,341 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>dxlconsole.modules.monitor.module module &#8212; OpenDXL Console 0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">OpenDXL Console 0.1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-dxlconsole.modules.monitor.module">
+<span id="dxlconsole-modules-monitor-module-module"></span><h1>dxlconsole.modules.monitor.module module<a class="headerlink" href="#module-dxlconsole.modules.monitor.module" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="dxlconsole.modules.monitor.module.MonitorModule">
+<em class="property">class </em><code class="descclassname">dxlconsole.modules.monitor.module.</code><code class="descname">MonitorModule</code><span class="sig-paren">(</span><em>app</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.monitor.module.MonitorModule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dxlconsole.module.html#dxlconsole.module.Module" title="dxlconsole.module.Module"><code class="xref py py-class docutils literal"><span class="pre">dxlconsole.module.Module</span></code></a></p>
+<dl class="attribute">
+<dt id="dxlconsole.modules.monitor.module.MonitorModule.CLIENT_RETENTION_MINUTES">
+<code class="descname">CLIENT_RETENTION_MINUTES</code><em class="property"> = 30</em><a class="headerlink" href="#dxlconsole.modules.monitor.module.MonitorModule.CLIENT_RETENTION_MINUTES" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.modules.monitor.module.MonitorModule.NO_RESULT_JSON">
+<code class="descname">NO_RESULT_JSON</code><em class="property"> = u'{response:{status:0,startRow:0,endRow:0,totalRows:0,data:[]}}'</em><a class="headerlink" href="#dxlconsole.modules.monitor.module.MonitorModule.NO_RESULT_JSON" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.modules.monitor.module.MonitorModule.SERVICE_REGISTRY_QUERY_TOPIC">
+<code class="descname">SERVICE_REGISTRY_QUERY_TOPIC</code><em class="property"> = '/mcafee/service/dxl/svcregistry/query'</em><a class="headerlink" href="#dxlconsole.modules.monitor.module.MonitorModule.SERVICE_REGISTRY_QUERY_TOPIC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.modules.monitor.module.MonitorModule.SERVICE_REGISTRY_REGISTER_EVENT_TOPIC">
+<code class="descname">SERVICE_REGISTRY_REGISTER_EVENT_TOPIC</code><em class="property"> = '/mcafee/event/dxl/svcregistry/register'</em><a class="headerlink" href="#dxlconsole.modules.monitor.module.MonitorModule.SERVICE_REGISTRY_REGISTER_EVENT_TOPIC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.modules.monitor.module.MonitorModule.SERVICE_REGISTRY_UNREGISTER_EVENT_TOPIC">
+<code class="descname">SERVICE_REGISTRY_UNREGISTER_EVENT_TOPIC</code><em class="property"> = '/mcafee/event/dxl/svcregistry/unregister'</em><a class="headerlink" href="#dxlconsole.modules.monitor.module.MonitorModule.SERVICE_REGISTRY_UNREGISTER_EVENT_TOPIC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.modules.monitor.module.MonitorModule.SERVICE_UPDATE_INTERVAL">
+<code class="descname">SERVICE_UPDATE_INTERVAL</code><em class="property"> = 60</em><a class="headerlink" href="#dxlconsole.modules.monitor.module.MonitorModule.SERVICE_UPDATE_INTERVAL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dxlconsole.modules.monitor.module.MonitorModule.add_web_socket">
+<code class="descname">add_web_socket</code><span class="sig-paren">(</span><em>client_id</em>, <em>web_socket</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.monitor.module.MonitorModule.add_web_socket" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stores a web socket associated with the given client id</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>client_id</strong> -- the client id key the web socket to</li>
+<li><strong>web_socket</strong> -- the web socket to store</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="dxlconsole.modules.monitor.module.MonitorModule.clear_messages">
+<code class="descname">clear_messages</code><span class="sig-paren">(</span><em>client_id</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.monitor.module.MonitorModule.clear_messages" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clears the pending messages for the given client.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>client_id</strong> -- the client to clear messages for</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.modules.monitor.module.MonitorModule.client_config">
+<code class="descname">client_config</code><a class="headerlink" href="#dxlconsole.modules.monitor.module.MonitorModule.client_config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dxlconsole.modules.monitor.module.MonitorModule.client_keep_alive">
+<code class="descname">client_keep_alive</code><span class="sig-paren">(</span><em>message</em>, <em>client_id</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.monitor.module.MonitorModule.client_keep_alive" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.modules.monitor.module.MonitorModule.content">
+<code class="descname">content</code><a class="headerlink" href="#dxlconsole.modules.monitor.module.MonitorModule.content" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dxlconsole.modules.monitor.module.MonitorModule.create_smartclient_error_response">
+<code class="descname">create_smartclient_error_response</code><span class="sig-paren">(</span><em>error_message</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.monitor.module.MonitorModule.create_smartclient_error_response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an error response for the SmartClient UI with the given message</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>error_message</strong> -- The error message</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The SmartClient response in dict form</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="dxlconsole.modules.monitor.module.MonitorModule.create_smartclient_response_wrapper">
+<em class="property">static </em><code class="descname">create_smartclient_response_wrapper</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.monitor.module.MonitorModule.create_smartclient_response_wrapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a wrapper object containing the standard fields required by SmartClient responses</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">an initial SmartClient response wrapper</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="dxlconsole.modules.monitor.module.MonitorModule.get_dxl_client">
+<code class="descname">get_dxl_client</code><span class="sig-paren">(</span><em>client_id</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.monitor.module.MonitorModule.get_dxl_client" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves the DxlClient for the given request. If there is not one associated with
+the incoming request it creates a new one and saves the generated client_id as a cookie</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>client_id</strong> -- The client identifier</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the DxlClient specific to this &quot;session&quot;</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="dxlconsole.modules.monitor.module.MonitorModule.get_message_topic">
+<code class="descname">get_message_topic</code><span class="sig-paren">(</span><em>message</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.monitor.module.MonitorModule.get_message_topic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines the topic for the provided message. Replaces the response channel in
+responses with the topic of the original request</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>message</strong> -- The DXL message</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The topic to use</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="dxlconsole.modules.monitor.module.MonitorModule.get_messages">
+<code class="descname">get_messages</code><span class="sig-paren">(</span><em>client_id</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.monitor.module.MonitorModule.get_messages" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves the messages pending for the given client. This does not clear the queue after retrieving.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>client_id</strong> -- the client to retrieve messages for</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a List of messages for the client</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.modules.monitor.module.MonitorModule.handlers">
+<code class="descname">handlers</code><a class="headerlink" href="#dxlconsole.modules.monitor.module.MonitorModule.handlers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.modules.monitor.module.MonitorModule.message_id_topics">
+<code class="descname">message_id_topics</code><a class="headerlink" href="#dxlconsole.modules.monitor.module.MonitorModule.message_id_topics" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dxlconsole.modules.monitor.module.MonitorModule.notify_web_sockets">
+<code class="descname">notify_web_sockets</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.monitor.module.MonitorModule.notify_web_sockets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Notifies all web sockets that there are pending service updates</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dxlconsole.modules.monitor.module.MonitorModule.queue_message">
+<code class="descname">queue_message</code><span class="sig-paren">(</span><em>message</em>, <em>client_id</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.monitor.module.MonitorModule.queue_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds the given message to the pending messages queue for the give client.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>message</strong> -- the message to enqueue</li>
+<li><strong>client_id</strong> -- the client the message is intended for</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="dxlconsole.modules.monitor.module.MonitorModule.remove_service">
+<code class="descname">remove_service</code><span class="sig-paren">(</span><em>service_event</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.monitor.module.MonitorModule.remove_service" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes a stored service using the provided DXL service event</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>service_event</strong> -- the DXL service event containing the service to be removed</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="dxlconsole.modules.monitor.module.MonitorModule.remove_web_socket">
+<code class="descname">remove_web_socket</code><span class="sig-paren">(</span><em>client_id</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.monitor.module.MonitorModule.remove_web_socket" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes any web socket associated with the given client_id</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>client_id</strong> -- The client ID</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.modules.monitor.module.MonitorModule.services">
+<code class="descname">services</code><a class="headerlink" href="#dxlconsole.modules.monitor.module.MonitorModule.services" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dxlconsole.modules.monitor.module.MonitorModule.update_service">
+<code class="descname">update_service</code><span class="sig-paren">(</span><em>service_event</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.monitor.module.MonitorModule.update_service" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replaces a stored service data withe the one from the provided DXL service event</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>service_event</strong> -- the  DXL service event containing the service</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/dxlconsole.modules.monitor.module.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">OpenDXL Console 0.1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, McAfee LLC.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.
+    </div>
+  </body>
+</html>

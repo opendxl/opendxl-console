@@ -1,0 +1,440 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>dxlconsole.modules.certificates.module module &#8212; OpenDXL Console 0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">OpenDXL Console 0.1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-dxlconsole.modules.certificates.module">
+<span id="dxlconsole-modules-certificates-module-module"></span><h1>dxlconsole.modules.certificates.module module<a class="headerlink" href="#module-dxlconsole.modules.certificates.module" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="dxlconsole.modules.certificates.module.CertificateModule">
+<em class="property">class </em><code class="descclassname">dxlconsole.modules.certificates.module.</code><code class="descname">CertificateModule</code><span class="sig-paren">(</span><em>app</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.certificates.module.CertificateModule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dxlconsole.module.html#dxlconsole.module.Module" title="dxlconsole.module.Module"><code class="xref py py-class docutils literal"><span class="pre">dxlconsole.module.Module</span></code></a></p>
+<p>Module used to generate client certificates that are compatible with the OpenDXL broker</p>
+<p>Constructor parameters:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>app</strong> -- The application that the module is a part of</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="dxlconsole.modules.certificates.module.CertificateModule.CERTS_BROKER_CA_BUNDLE_FILE_PROP">
+<code class="descname">CERTS_BROKER_CA_BUNDLE_FILE_PROP</code><em class="property"> = 'brokerCaBundleFile'</em><a class="headerlink" href="#dxlconsole.modules.certificates.module.CertificateModule.CERTS_BROKER_CA_BUNDLE_FILE_PROP" title="Permalink to this definition">¶</a></dt>
+<dd><p>The location of the broker CA bundle file</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.modules.certificates.module.CertificateModule.CERTS_CLIENT_CA_CERT_FILE_PROP">
+<code class="descname">CERTS_CLIENT_CA_CERT_FILE_PROP</code><em class="property"> = 'clientCaCertFile'</em><a class="headerlink" href="#dxlconsole.modules.certificates.module.CertificateModule.CERTS_CLIENT_CA_CERT_FILE_PROP" title="Permalink to this definition">¶</a></dt>
+<dd><p>The location of the client CA certificate file (used for signing)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.modules.certificates.module.CertificateModule.CERTS_CLIENT_CA_KEY_FILE_PROP">
+<code class="descname">CERTS_CLIENT_CA_KEY_FILE_PROP</code><em class="property"> = 'clientCaKeyFile'</em><a class="headerlink" href="#dxlconsole.modules.certificates.module.CertificateModule.CERTS_CLIENT_CA_KEY_FILE_PROP" title="Permalink to this definition">¶</a></dt>
+<dd><p>The location of the client CA key file (used for signing)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.modules.certificates.module.CertificateModule.CERTS_CLIENT_CA_PASSWORD_PROP">
+<code class="descname">CERTS_CLIENT_CA_PASSWORD_PROP</code><em class="property"> = 'clientCaPassword'</em><a class="headerlink" href="#dxlconsole.modules.certificates.module.CertificateModule.CERTS_CLIENT_CA_PASSWORD_PROP" title="Permalink to this definition">¶</a></dt>
+<dd><p>The password for the client CA</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.modules.certificates.module.CertificateModule.CERTS_CONFIG_SECTION">
+<code class="descname">CERTS_CONFIG_SECTION</code><em class="property"> = 'Certificates'</em><a class="headerlink" href="#dxlconsole.modules.certificates.module.CertificateModule.CERTS_CONFIG_SECTION" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the &quot;Certificates&quot; section within the application configuration file</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.modules.certificates.module.CertificateModule.CLIENT_CONFIG_TEMPLATE_FILE_PROP">
+<code class="descname">CLIENT_CONFIG_TEMPLATE_FILE_PROP</code><em class="property"> = 'clientConfigTemplateFile'</em><a class="headerlink" href="#dxlconsole.modules.certificates.module.CertificateModule.CLIENT_CONFIG_TEMPLATE_FILE_PROP" title="Permalink to this definition">¶</a></dt>
+<dd><p>The location of the client configuration template file</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.modules.certificates.module.CertificateModule.DIGEST">
+<code class="descname">DIGEST</code><em class="property"> = 'sha256'</em><a class="headerlink" href="#dxlconsole.modules.certificates.module.CertificateModule.DIGEST" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.modules.certificates.module.CertificateModule.DXL_CONFIG_FILE_NAME">
+<code class="descname">DXL_CONFIG_FILE_NAME</code><em class="property"> = 'dxlclient.config'</em><a class="headerlink" href="#dxlconsole.modules.certificates.module.CertificateModule.DXL_CONFIG_FILE_NAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.modules.certificates.module.CertificateModule.ZIP_BROKER_CA_BUNDLE_FILE_NAME">
+<code class="descname">ZIP_BROKER_CA_BUNDLE_FILE_NAME</code><em class="property"> = 'ca-broker.crt'</em><a class="headerlink" href="#dxlconsole.modules.certificates.module.CertificateModule.ZIP_BROKER_CA_BUNDLE_FILE_NAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.modules.certificates.module.CertificateModule.ZIP_CLIENT_CERT_FILE_NAME">
+<code class="descname">ZIP_CLIENT_CERT_FILE_NAME</code><em class="property"> = 'client.crt'</em><a class="headerlink" href="#dxlconsole.modules.certificates.module.CertificateModule.ZIP_CLIENT_CERT_FILE_NAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.modules.certificates.module.CertificateModule.ZIP_CLIENT_KEY_FILE_NAME">
+<code class="descname">ZIP_CLIENT_KEY_FILE_NAME</code><em class="property"> = 'client.key'</em><a class="headerlink" href="#dxlconsole.modules.certificates.module.CertificateModule.ZIP_CLIENT_KEY_FILE_NAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.modules.certificates.module.CertificateModule.broker_ca_bundle_file">
+<code class="descname">broker_ca_bundle_file</code><a class="headerlink" href="#dxlconsole.modules.certificates.module.CertificateModule.broker_ca_bundle_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the path to the broker CA bundle file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The path to the broker CA bundle file</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.modules.certificates.module.CertificateModule.client_ca_cert_file">
+<code class="descname">client_ca_cert_file</code><a class="headerlink" href="#dxlconsole.modules.certificates.module.CertificateModule.client_ca_cert_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the path to the CA certificate file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The path to the CA certificate file</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.modules.certificates.module.CertificateModule.client_ca_key_file">
+<code class="descname">client_ca_key_file</code><a class="headerlink" href="#dxlconsole.modules.certificates.module.CertificateModule.client_ca_key_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the path to the CA key file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The path to the CA key file</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.modules.certificates.module.CertificateModule.client_ca_password">
+<code class="descname">client_ca_password</code><a class="headerlink" href="#dxlconsole.modules.certificates.module.CertificateModule.client_ca_password" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the password for the client CA</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The password for the client CA</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.modules.certificates.module.CertificateModule.client_config_template_file">
+<code class="descname">client_config_template_file</code><a class="headerlink" href="#dxlconsole.modules.certificates.module.CertificateModule.client_config_template_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the path to the client configuration template file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The path to the client configuration template file</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.modules.certificates.module.CertificateModule.content">
+<code class="descname">content</code><a class="headerlink" href="#dxlconsole.modules.certificates.module.CertificateModule.content" title="Permalink to this definition">¶</a></dt>
+<dd><p>The content of the module (JS code)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The content of the module (JS code)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.modules.certificates.module.CertificateModule.enabled">
+<code class="descname">enabled</code><a class="headerlink" href="#dxlconsole.modules.certificates.module.CertificateModule.enabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether the module is enabled</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Whether the module is enabled</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.modules.certificates.module.CertificateModule.handlers">
+<code class="descname">handlers</code><a class="headerlink" href="#dxlconsole.modules.certificates.module.CertificateModule.handlers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Web (Tornado) handlers for the module</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The web (Tornado) handlers for the module</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dxlconsole.modules.certificates.module.CreateClientBundleManagementServiceHandler">
+<em class="property">class </em><code class="descclassname">dxlconsole.modules.certificates.module.</code><code class="descname">CreateClientBundleManagementServiceHandler</code><span class="sig-paren">(</span><em>application</em>, <em>request</em>, <em>module</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.certificates.module.CreateClientBundleManagementServiceHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">dxlconsole.modules.certificates.module._BaseCertHandler</span></code></p>
+<p>This mimics the ePO service which is called by the Python client CLI updateconfig command
+The response is similar to the ePO remote command &quot;DxlClientMgmt.createClientCaBundle&quot;</p>
+<dl class="method">
+<dt id="dxlconsole.modules.certificates.module.CreateClientBundleManagementServiceHandler.get">
+<code class="descname">get</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.certificates.module.CreateClientBundleManagementServiceHandler.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>The HTTP response payload for this request should look
+like the following:</p>
+<p>OK:
+&quot;[ca bundle]&quot;</p>
+<p>Sections of the response include:</p>
+<ul class="simple">
+<li>A line with the text &quot;OK:&quot; if the request was successful, else error on failure.</li>
+<li>A JSON-encoded string with a double-quote character at the beginning
+and end. The string contains a concatenation of one or more PEM-encoded
+CA certificates.</li>
+</ul>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">CA certificates</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dxlconsole.modules.certificates.module.GenerateCertHandler">
+<em class="property">class </em><code class="descclassname">dxlconsole.modules.certificates.module.</code><code class="descname">GenerateCertHandler</code><span class="sig-paren">(</span><em>application</em>, <em>request</em>, <em>module</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.certificates.module.GenerateCertHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">dxlconsole.modules.certificates.module._BaseCertHandler</span></code></p>
+<p>Handles post request to generate certs with the provided subject parameters</p>
+<dl class="method">
+<dt id="dxlconsole.modules.certificates.module.GenerateCertHandler.data_received">
+<code class="descname">data_received</code><span class="sig-paren">(</span><em>chunk</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.certificates.module.GenerateCertHandler.data_received" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invoked when streamed request data is received</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">chunk The next chuck of data</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="dxlconsole.modules.certificates.module.GenerateCertHandler.post">
+<code class="descname">post</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.certificates.module.GenerateCertHandler.post" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a client cert package using specified values</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dxlconsole.modules.certificates.module.GetBrokerListManagementServiceHandler">
+<em class="property">class </em><code class="descclassname">dxlconsole.modules.certificates.module.</code><code class="descname">GetBrokerListManagementServiceHandler</code><span class="sig-paren">(</span><em>application</em>, <em>request</em>, <em>module</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.certificates.module.GetBrokerListManagementServiceHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">dxlconsole.modules.certificates.module._BaseCertHandler</span></code></p>
+<p>This mimics the ePO service which is called by the Python client CLI updateconfig command
+The response is similar to the ePO remote command &quot;DxlClientMgmt.getBrokerList&quot;</p>
+<dl class="method">
+<dt id="dxlconsole.modules.certificates.module.GetBrokerListManagementServiceHandler.get">
+<code class="descname">get</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.certificates.module.GetBrokerListManagementServiceHandler.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the broker list.The HTTP response payload for this request should look
+like the following:</p>
+<p>OK:
+&quot;[broker config]&quot;</p>
+<p>Sections of the response include:</p>
+<ul>
+<li><p class="first">A line with the text &quot;OK:&quot; if the request was successful, else error on failure.</p>
+</li>
+<li><p class="first">A JSON-encoded string with a double-quote character at the beginning
+and end. The string should contain a JSON document which looks similar
+to the following</p>
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;brokers&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+          <span class="nt">&quot;guid&quot;</span><span class="p">:</span> <span class="s2">&quot;{2c5b107c-7f51-11e7-0ebf-0800271cfa58}&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;hostName&quot;</span><span class="p">:</span> <span class="s2">&quot;broker1&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;ipAddress&quot;</span><span class="p">:</span> <span class="s2">&quot;10.10.100.100&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;port&quot;</span><span class="p">:</span> <span class="mi">8883</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+          <span class="nt">&quot;guid&quot;</span><span class="p">:</span> <span class="s2">&quot;{e90335b2-8dc8-11e7-1bc3-0800270989e4}&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;hostName&quot;</span><span class="p">:</span> <span class="s2">&quot;broker2&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;ipAddress&quot;</span><span class="p">:</span> <span class="s2">&quot;10.10.100.101&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;port&quot;</span><span class="p">:</span> <span class="mi">8883</span>
+      <span class="p">}</span>                                                                            
+  <span class="p">],</span>
+  <span class="nt">&quot;certVersion&quot;</span><span class="p">:</span> <span class="mi">0</span>  
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Json broker list</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dxlconsole.modules.certificates.module.ProvisionManagementServiceHandler">
+<em class="property">class </em><code class="descclassname">dxlconsole.modules.certificates.module.</code><code class="descname">ProvisionManagementServiceHandler</code><span class="sig-paren">(</span><em>application</em>, <em>request</em>, <em>module</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.certificates.module.ProvisionManagementServiceHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">dxlconsole.modules.certificates.module._BaseCertHandler</span></code></p>
+<p>This mimics the ePO service which is called by the Python client CLI provisionconfig command
+The response is similar to the ePO remote command &quot;DxlBrokerMgmt.generateOpenDXLClientProvisioningPackageCmd&quot;</p>
+<dl class="method">
+<dt id="dxlconsole.modules.certificates.module.ProvisionManagementServiceHandler.get">
+<code class="descname">get</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.certificates.module.ProvisionManagementServiceHandler.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a client cert package using submitted CSR</p>
+<p>The HTTP response payload for this request should look
+like the following:</p>
+<p>OK:
+&quot;[ca bundle],[signed client cert],[broker config]&quot;</p>
+<p>Sections of the response include:</p>
+<ul class="simple">
+<li>A line with the text 'OK:' if the request was successful, else error on failure.</li>
+<li>A JSON-encoded string with a double-quote character at the beginning
+and end and with the following parts, comma-delimited:</li>
+<li>[ca bundle] - a concatenation of one or more PEM-encoded CA
+certificates</li>
+<li>[signed client cert] - a PEM-encoded certificate signed from the
+certificate request</li>
+<li>[broker config] - zero or more lines, each delimited by a line feed
+character, for each of the brokers known to the management service.
+Each line contains a key and value, delimited by an equal sign. The
+key contains a broker guid. The value contains other metadata for the
+broker, e.g., the broker guid, port, hostname, and ip address. For
+example:'[guid1]=[guid1];8883;broker;10.10.1.1&lt;newline&gt;[guid2]=[guid2]...'.</li>
+</ul>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">provisioning information</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/dxlconsole.modules.certificates.module.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">OpenDXL Console 0.1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, McAfee LLC.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.
+    </div>
+  </body>
+</html>

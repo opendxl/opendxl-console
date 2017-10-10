@@ -1,0 +1,7 @@
+dxlconsole.modules.monitor.services_handler module
+==================================================
+
+.. automodule:: dxlconsole.modules.monitor.services_handler
+    :members:
+    :undoc-members:
+    :show-inheritance:

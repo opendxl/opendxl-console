@@ -1,0 +1,7 @@
+dxlconsole.modules.certificates.module module
+=============================================
+
+.. automodule:: dxlconsole.modules.certificates.module
+    :members:
+    :undoc-members:
+    :show-inheritance:

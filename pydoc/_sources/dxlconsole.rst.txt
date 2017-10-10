@@ -1,0 +1,28 @@
+dxlconsole package
+==================
+
+Subpackages
+-----------
+
+.. toctree::
+
+    dxlconsole.modules
+    dxlconsole.web
+
+Submodules
+----------
+
+.. toctree::
+
+   dxlconsole.app
+   dxlconsole.console
+   dxlconsole.handlers
+   dxlconsole.module
+
+Module contents
+---------------
+
+.. automodule:: dxlconsole
+    :members:
+    :undoc-members:
+    :show-inheritance:

@@ -1,0 +1,7 @@
+dxlconsole.modules.broker.module module
+=======================================
+
+.. automodule:: dxlconsole.modules.broker.module
+    :members:
+    :undoc-members:
+    :show-inheritance:

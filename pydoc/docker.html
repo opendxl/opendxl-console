@@ -1,0 +1,265 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Docker Support &#8212; OpenDXL Console 0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Running" href="running.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="running.html" title="Running"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">OpenDXL Console 0.1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="docker-support">
+<h1>Docker Support<a class="headerlink" href="#docker-support" title="Permalink to this headline">¶</a></h1>
+<p>A pre-built Docker image can be used as an alternative to installing a Python environment with the
+modules required for the OpenDXL Console. Docker images for the OpenDXL Console are posted to the
+following Docker repository:</p>
+<p><a class="reference external" href="https://hub.docker.com/r/opendxl/opendxl-console/">https://hub.docker.com/r/opendxl/opendxl-console/</a></p>
+<p>The remainder of this page walks through the steps required to configure the console,
+pull the image from the repository, and run the console via a Docker container.</p>
+<div class="section" id="console-configuration">
+<h2>Console Configuration<a class="headerlink" href="#console-configuration" title="Permalink to this headline">¶</a></h2>
+<p>The first step is to connect to the host that is running Docker and configure the OpenDXL Console. The configuration
+files that are required for the console will reside on the host system and be made available to the Docker
+container via a data volume.</p>
+<p>Once you have logged into the host system, perform the following steps:</p>
+<blockquote>
+<div><p>1.) Create a directory to contain the configuration files</p>
+<blockquote>
+<div><div class="note admonition docutils container">
+mkdir dxlconsole-config</div>
+</div></blockquote>
+<p>2.) Change to the newly created directory</p>
+<blockquote>
+<div><div class="note admonition docutils container">
+cd dxlconsole-config</div>
+</div></blockquote>
+<p>3.) Download the latest configuration files for the OpenDXL Console</p>
+<blockquote>
+<div><p>The latest release of the console can be found at the following page:</p>
+<p><a class="reference external" href="https://github.com/opendxl/opendxl-console/releases/latest">https://github.com/opendxl/opendxl-console/releases/latest</a></p>
+<p>Download the latest configuration package (dxlconsole-python-dist-config). For example:</p>
+<div class="note admonition docutils container">
+wget https://github.com/opendxl/opendxl-console/releases/download/0.1.0/dxlconsole-python-dist-config-0.1.0.zip</div>
+</div></blockquote>
+<p>4.) Extract the configuration package</p>
+<blockquote>
+<div><div class="note admonition docutils container">
+unzip dxlconsole-python-dist-config-0.1.0.zip</div>
+</div></blockquote>
+<p>5.) Populate the configuration files:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="configuration.html#dxl-client-config-file-label"><span class="std std-ref">Client Configuration File</span></a></li>
+<li><a class="reference internal" href="configuration.html#dxl-console-config-file-label"><span class="std std-ref">Console Configuration File</span></a></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+</div>
+<div class="section" id="pull-docker-image">
+<h2>Pull Docker Image<a class="headerlink" href="#pull-docker-image" title="Permalink to this headline">¶</a></h2>
+<p>The next step is to <cite>pull</cite> the OpenDXL Console image from the Docker repository.</p>
+<p>The image can be pulled using the following Docker command:</p>
+<blockquote>
+<div><p><code class="docutils literal"><span class="pre">docker</span> <span class="pre">pull</span> <span class="pre">opendxl/opendxl-console:&lt;release-version&gt;</span></code></p>
+<p>The following parameters must be specified:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">release-version</span></code>
+The release version of the OpenDXL Console</li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<p>For example:</p>
+<blockquote>
+<div><div class="note admonition docutils container">
+docker pull opendxl/opendxl-console:0.1.0</div>
+</div></blockquote>
+</div>
+<div class="section" id="create-docker-container">
+<h2>Create Docker Container<a class="headerlink" href="#create-docker-container" title="Permalink to this headline">¶</a></h2>
+<p>The final step is to create a Docker container based on the pulled image.</p>
+<p>The container can be created using the following Docker command:</p>
+<blockquote>
+<div><p><code class="docutils literal"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">-d</span> <span class="pre">--name</span> <span class="pre">dxlconsole</span> <span class="pre">-v</span> <span class="pre">&lt;host-config-dir&gt;:/opt/dxlconsole-config</span> <span class="pre">opendxl/opendxl-console:&lt;release-version&gt;</span></code></p>
+<p>The following parameters must be specified:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">host-config-dir</span></code>
+The directory on the host that contains the console configuration files</li>
+<li><code class="docutils literal"><span class="pre">release-version</span></code>
+The version of the image (See &quot;Pull Docker Image&quot; section above)</li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<p>For example:</p>
+<blockquote>
+<div><div class="note admonition docutils container">
+docker run -d --name dxlconsole -v /home/myuser/dxlconsole-config:/opt/dxlconsole-config opendxl/opendxl-console:0.1.0</div>
+</div></blockquote>
+<p><strong>Note:</strong> A restart policy can be specified via the restart flag (<code class="docutils literal"><span class="pre">--restart</span> <span class="pre">&lt;policy&gt;</span></code>). This flag can be used to restart
+the container when the system reboots or if the service terminates abnormally. The <code class="docutils literal"><span class="pre">unless-stopped</span></code> policy will
+restart the container unless it has been explicitly stopped.</p>
+</div>
+<div class="section" id="additional-docker-commands">
+<h2>Additional Docker Commands<a class="headerlink" href="#additional-docker-commands" title="Permalink to this headline">¶</a></h2>
+<p>The following Docker commands are useful once the container has been created.</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><strong>Container Status</strong></p>
+<blockquote>
+<div><p>The <code class="docutils literal"><span class="pre">ps</span></code> command can be used to show the status of the container.</p>
+<blockquote>
+<div><p><code class="docutils literal"><span class="pre">docker</span> <span class="pre">ps</span> <span class="pre">--filter</span> <span class="pre">name=dxlconsole</span></code></p>
+</div></blockquote>
+<p>Example output:</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">CONTAINER</span> <span class="n">ID</span>  <span class="n">COMMAND</span>                 <span class="n">CREATED</span>        <span class="n">STATUS</span>
+<span class="n">c60eaf0788fe</span>  <span class="s2">&quot;python -m dxlconsole&quot;</span>  <span class="mi">7</span> <span class="n">minutes</span> <span class="n">ago</span>  <span class="n">Up</span> <span class="mi">7</span> <span class="n">minutes</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Container Logs</strong></p>
+<blockquote>
+<div><p>The <code class="docutils literal"><span class="pre">logs</span></code> command can be used to display the log messages for the container.</p>
+<blockquote>
+<div><p><code class="docutils literal"><span class="pre">docker</span> <span class="pre">logs</span> <span class="pre">dxlconsole</span></code></p>
+</div></blockquote>
+<p>Example output:</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Running</span> <span class="n">application</span> <span class="o">...</span>
+<span class="n">On</span> <span class="s1">&#39;run&#39;</span> <span class="n">callback</span><span class="o">.</span>
+<span class="n">On</span> <span class="s1">&#39;load configuration&#39;</span> <span class="n">callback</span><span class="o">.</span>
+<span class="n">Incoming</span> <span class="n">message</span> <span class="n">configuration</span><span class="p">:</span> <span class="n">queueSize</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">threadCount</span><span class="o">=</span><span class="mi">10</span>
+<span class="n">Message</span> <span class="n">callback</span> <span class="n">configuration</span><span class="p">:</span> <span class="n">queueSize</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">threadCount</span><span class="o">=</span><span class="mi">10</span>
+<span class="n">Attempting</span> <span class="n">to</span> <span class="n">connect</span> <span class="n">to</span> <span class="n">DXL</span> <span class="n">fabric</span> <span class="o">...</span>
+<span class="n">Connected</span> <span class="n">to</span> <span class="n">DXL</span> <span class="n">fabric</span><span class="o">.</span>
+<span class="n">On</span> <span class="s1">&#39;DXL connect&#39;</span> <span class="n">callback</span><span class="o">.</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>The log output can be <cite>followed</cite> by adding a <code class="docutils literal"><span class="pre">-f</span></code> flag (similar to tail) to the logs command.</p>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Stop/Restart/Start</strong></p>
+<blockquote>
+<div><p>The container can be stopped, restarted, and started using the following commands:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">docker</span> <span class="pre">stop</span> <span class="pre">dxlconsole</span></code></li>
+<li><code class="docutils literal"><span class="pre">docker</span> <span class="pre">restart</span> <span class="pre">dxlconsole</span></code></li>
+<li><code class="docutils literal"><span class="pre">docker</span> <span class="pre">start</span> <span class="pre">dxlconsole</span></code></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Docker Support</a><ul>
+<li><a class="reference internal" href="#console-configuration">Console Configuration</a></li>
+<li><a class="reference internal" href="#pull-docker-image">Pull Docker Image</a></li>
+<li><a class="reference internal" href="#create-docker-container">Create Docker Container</a></li>
+<li><a class="reference internal" href="#additional-docker-commands">Additional Docker Commands</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="running.html"
+                        title="previous chapter">Running</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/docker.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="running.html" title="Running"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">OpenDXL Console 0.1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, McAfee LLC.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.
+    </div>
+  </body>
+</html>

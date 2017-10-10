@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>dxlconsole.module module &#8212; OpenDXL Console 0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">OpenDXL Console 0.1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-dxlconsole.module">
+<span id="dxlconsole-module-module"></span><h1>dxlconsole.module module<a class="headerlink" href="#module-dxlconsole.module" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="dxlconsole.module.Module">
+<em class="property">class </em><code class="descclassname">dxlconsole.module.</code><code class="descname">Module</code><span class="sig-paren">(</span><em>app</em>, <em>name</em>, <em>title</em>, <em>icon_path</em>, <em>root_content_name</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.module.Module" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>The base class for pluggable modules within the console. The &quot;fabric module&quot;
+is an example of a module.</p>
+<p>Constructor parameters:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>app</strong> -- The application that the module is a part of</li>
+<li><strong>name</strong> -- The name of the module</li>
+<li><strong>title</strong> -- The title for the module</li>
+<li><strong>icon_path</strong> -- The path to the icon for the module</li>
+<li><strong>root_content_name</strong> -- The name of the root content (in browser DOM) of the module</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="dxlconsole.module.Module.app">
+<code class="descname">app</code><a class="headerlink" href="#dxlconsole.module.Module.app" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the application that the module is a part of</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The application that the module is a part of</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.module.Module.content">
+<code class="descname">content</code><a class="headerlink" href="#dxlconsole.module.Module.content" title="Permalink to this definition">¶</a></dt>
+<dd><p>The content of the module (JS code)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The content of the module (JS code)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.module.Module.enabled">
+<code class="descname">enabled</code><a class="headerlink" href="#dxlconsole.module.Module.enabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether the module is enabled</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Whether the module is enabled</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.module.Module.get_icon_path">
+<code class="descname">get_icon_path</code><a class="headerlink" href="#dxlconsole.module.Module.get_icon_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the path to the icon for the module</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The path to the icon for the module</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.module.Module.handlers">
+<code class="descname">handlers</code><a class="headerlink" href="#dxlconsole.module.Module.handlers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Web (Tornado) handlers for the module</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The web (Tornado) handlers for the module</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.module.Module.name">
+<code class="descname">name</code><a class="headerlink" href="#dxlconsole.module.Module.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the name of the module</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The name of the module</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="dxlconsole.module.Module.on_load">
+<code class="descname">on_load</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.module.Module.on_load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invoked when the module is loaded for initial display</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>request</strong> -- The HTTP request for the display</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.module.Module.root_content_name">
+<code class="descname">root_content_name</code><a class="headerlink" href="#dxlconsole.module.Module.root_content_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the root content (in browser DOM) of the module
+:return: The name of the root content (in browser DOM) of the module</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.module.Module.title">
+<code class="descname">title</code><a class="headerlink" href="#dxlconsole.module.Module.title" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the title of the module</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The title of the module</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/dxlconsole.module.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">OpenDXL Console 0.1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, McAfee LLC.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.
+    </div>
+  </body>
+</html>

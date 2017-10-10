@@ -1,0 +1,7 @@
+dxlconsole.module module
+========================
+
+.. automodule:: dxlconsole.module
+    :members:
+    :undoc-members:
+    :show-inheritance:

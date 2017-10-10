@@ -1,0 +1,19 @@
+dxlconsole.modules package
+==========================
+
+Subpackages
+-----------
+
+.. toctree::
+
+    dxlconsole.modules.broker
+    dxlconsole.modules.certificates
+    dxlconsole.modules.monitor
+
+Module contents
+---------------
+
+.. automodule:: dxlconsole.modules
+    :members:
+    :undoc-members:
+    :show-inheritance:

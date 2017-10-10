@@ -1,0 +1,17 @@
+dxlconsole.modules.certificates package
+=======================================
+
+Submodules
+----------
+
+.. toctree::
+
+   dxlconsole.modules.certificates.module
+
+Module contents
+---------------
+
+.. automodule:: dxlconsole.modules.certificates
+    :members:
+    :undoc-members:
+    :show-inheritance:

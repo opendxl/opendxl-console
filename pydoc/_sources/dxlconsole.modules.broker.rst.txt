@@ -1,0 +1,17 @@
+dxlconsole.modules.broker package
+=================================
+
+Submodules
+----------
+
+.. toctree::
+
+   dxlconsole.modules.broker.module
+
+Module contents
+---------------
+
+.. automodule:: dxlconsole.modules.broker
+    :members:
+    :undoc-members:
+    :show-inheritance:

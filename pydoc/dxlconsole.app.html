@@ -1,0 +1,259 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>dxlconsole.app module &#8212; OpenDXL Console 0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">OpenDXL Console 0.1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-dxlconsole.app">
+<span id="dxlconsole-app-module"></span><h1>dxlconsole.app module<a class="headerlink" href="#module-dxlconsole.app" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="dxlconsole.app.OpenDxlConsole">
+<em class="property">class </em><code class="descclassname">dxlconsole.app.</code><code class="descname">OpenDxlConsole</code><span class="sig-paren">(</span><em>config_dir</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.app.OpenDxlConsole" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">dxlbootstrap.app.Application</span></code></p>
+<p>The &quot;OpenDXL Console&quot; application class.</p>
+<p>Constructor parameters:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>config_dir</strong> -- The location of the configuration files for the application</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="dxlconsole.app.OpenDxlConsole.GENERAL_CONFIG_SECTION">
+<code class="descname">GENERAL_CONFIG_SECTION</code><em class="property"> = 'General'</em><a class="headerlink" href="#dxlconsole.app.OpenDxlConsole.GENERAL_CONFIG_SECTION" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the &quot;General&quot; section within the application configuration file</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.app.OpenDxlConsole.GENERAL_LOCAL_BROKER_PROP">
+<code class="descname">GENERAL_LOCAL_BROKER_PROP</code><em class="property"> = 'localBroker'</em><a class="headerlink" href="#dxlconsole.app.OpenDxlConsole.GENERAL_LOCAL_BROKER_PROP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the console is embedded in the broker</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.app.OpenDxlConsole.GENERAL_PASSWORD_PROP">
+<code class="descname">GENERAL_PASSWORD_PROP</code><em class="property"> = 'password'</em><a class="headerlink" href="#dxlconsole.app.OpenDxlConsole.GENERAL_PASSWORD_PROP" title="Permalink to this definition">¶</a></dt>
+<dd><p>The console password</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.app.OpenDxlConsole.GENERAL_PORT_CONFIG_PROP">
+<code class="descname">GENERAL_PORT_CONFIG_PROP</code><em class="property"> = 'port'</em><a class="headerlink" href="#dxlconsole.app.OpenDxlConsole.GENERAL_PORT_CONFIG_PROP" title="Permalink to this definition">¶</a></dt>
+<dd><p>The web server port property</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.app.OpenDxlConsole.GENERAL_USERNAME_PROP">
+<code class="descname">GENERAL_USERNAME_PROP</code><em class="property"> = 'username'</em><a class="headerlink" href="#dxlconsole.app.OpenDxlConsole.GENERAL_USERNAME_PROP" title="Permalink to this definition">¶</a></dt>
+<dd><p>The console user name</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.app.OpenDxlConsole.client">
+<code class="descname">client</code><a class="headerlink" href="#dxlconsole.app.OpenDxlConsole.client" title="Permalink to this definition">¶</a></dt>
+<dd><p>The DXL client used by the application to communicate with the DXL fabric</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.app.OpenDxlConsole.client_config_path">
+<code class="descname">client_config_path</code><a class="headerlink" href="#dxlconsole.app.OpenDxlConsole.client_config_path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.app.OpenDxlConsole.config">
+<code class="descname">config</code><a class="headerlink" href="#dxlconsole.app.OpenDxlConsole.config" title="Permalink to this definition">¶</a></dt>
+<dd><p>The application configuration (as read from the &quot;dxlconsole.config&quot; file)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.app.OpenDxlConsole.console_name">
+<code class="descname">console_name</code><a class="headerlink" href="#dxlconsole.app.OpenDxlConsole.console_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the console name (title)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The console name (title)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.app.OpenDxlConsole.local_broker">
+<code class="descname">local_broker</code><a class="headerlink" href="#dxlconsole.app.OpenDxlConsole.local_broker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether the console is for managing an OpenDXL broker</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Whether the console is for managing an OpenDXL broker</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="dxlconsole.app.OpenDxlConsole.on_dxl_connect">
+<code class="descname">on_dxl_connect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.app.OpenDxlConsole.on_dxl_connect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invoked after the client associated with the application has connected
+to the DXL fabric.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dxlconsole.app.OpenDxlConsole.on_load_configuration">
+<code class="descname">on_load_configuration</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.app.OpenDxlConsole.on_load_configuration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invoked after the application-specific configuration has been loaded</p>
+<p>This callback provides the opportunity for the application to parse
+additional configuration properties.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>config</strong> -- The application configuration</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="dxlconsole.app.OpenDxlConsole.on_run">
+<code class="descname">on_run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.app.OpenDxlConsole.on_run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invoked when the application has started running.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.app.OpenDxlConsole.password">
+<code class="descname">password</code><a class="headerlink" href="#dxlconsole.app.OpenDxlConsole.password" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the console password</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The console password</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.app.OpenDxlConsole.port">
+<code class="descname">port</code><a class="headerlink" href="#dxlconsole.app.OpenDxlConsole.port" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the console port</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The console port</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.app.OpenDxlConsole.username">
+<code class="descname">username</code><a class="headerlink" href="#dxlconsole.app.OpenDxlConsole.username" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the console user name</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The console username</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/dxlconsole.app.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">OpenDXL Console 0.1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, McAfee LLC.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.
+    </div>
+  </body>
+</html>

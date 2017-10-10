@@ -1,0 +1,22 @@
+dxlconsole.modules.monitor package
+==================================
+
+Submodules
+----------
+
+.. toctree::
+
+   dxlconsole.modules.monitor.messages_handler
+   dxlconsole.modules.monitor.module
+   dxlconsole.modules.monitor.send_message_handler
+   dxlconsole.modules.monitor.services_handler
+   dxlconsole.modules.monitor.subscriptions_handler
+   dxlconsole.modules.monitor.websocket_handler
+
+Module contents
+---------------
+
+.. automodule:: dxlconsole.modules.monitor
+    :members:
+    :undoc-members:
+    :show-inheritance:

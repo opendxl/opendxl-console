@@ -1,0 +1,7 @@
+dxlconsole.modules.monitor.module module
+========================================
+
+.. automodule:: dxlconsole.modules.monitor.module
+    :members:
+    :undoc-members:
+    :show-inheritance:
