@@ -15,7 +15,7 @@ Prerequisites
 Installation
 ************
 
-This distribution contains a ``lib`` sub-directory that includes the application library files.
+This distribution contains a ``lib`` sub-directory that includes the console library files.
 
 Use ``pip`` to automatically install the library:
 
