@@ -10,7 +10,7 @@ The OpenDXL Console is a pluggable web-based console that provides a high-level 
 
 See the [Wiki](https://github.com/opendxl/opendxl-console/wiki) for an overview of the OpenDXL Console and usage instructions.
 
-See the [OpenDXL Console documentation](https://opendxl.github.io/opendxl-conle-python/pydoc) for
+See the [OpenDXL Console documentation](https://opendxl.github.io/opendxl-console-python/pydoc) for
 installation instructions.
 
 ## Installation
