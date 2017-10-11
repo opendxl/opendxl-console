@@ -106,7 +106,6 @@ class BrokerInfoHandler(BaseRequestHandler):
             dxl_response = dxlclient.sync_request(req, 5)
             if dxl_response.message_type != Message.MESSAGE_TYPE_ERROR:
                 dxl_response_dict = MessageUtils.json_payload_to_dict(dxl_response)
-                print MessageUtils.dict_to_json(dxl_response_dict, pretty_print=True)
             else:
                 err_msg = "Error invoking service with topic '{0}': {1} ({2})".format(
                     BrokerModule.BROKER_REGISTRY_QUERY_TOPIC, dxl_response.error_message, dxl_response.error_code)
