@@ -1,7 +1,10 @@
 # OpenDXL Console
 [![OpenDXL Bootstrap](https://img.shields.io/badge/Built%20With-OpenDXL%20Bootstrap-blue.svg)](https://github.com/opendxl/opendxl-bootstrap-python)
+[![Latest PyPI Version](https://img.shields.io/pypi/v/dxlconsole.svg)](https://pypi.python.org/pypi/dxlconsole)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Build Status](https://travis-ci.org/opendxl/opendxl-console.png?branch=master)](https://travis-ci.org/opendxl/opendxl-console)
+[![Docker Build Status](https://img.shields.io/docker/build/opendxl/opendxl-console.svg)](https://hub.docker.com/r/opendxl/opendxl-console/)
+
 
 ## Overview
 
