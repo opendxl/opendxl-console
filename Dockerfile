@@ -6,7 +6,7 @@ VOLUME ["/opt/dxlconsole-config"]
 EXPOSE 8443
 
 # Install required packages
-RUN pip install "tornado" "dxlbootstrap>=0.1.3" "dxlclient"
+RUN pip install "tornado<5" "dxlbootstrap>=0.1.3" "dxlclient"
 
 # Copy application files
 COPY . /tmp/build
