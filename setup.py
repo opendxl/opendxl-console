@@ -22,7 +22,7 @@ dist = setup(
 
     # Requirements
     install_requires=[
-        "tornado",
+        "tornado<5",
         "dxlbootstrap>=0.1.3",
         "dxlclient",
         "beautifulSoup4"
