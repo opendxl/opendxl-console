@@ -1,3 +1,5 @@
+from __future__ import absolute_import
+from __future__ import print_function
 import os
 import re
 import subprocess
@@ -43,10 +45,10 @@ SAMPLE_RELEASE_DIR = os.path.join(DIST_DIRECTORY, "sample")
 
 # Remove the dist directory if it exists
 if os.path.exists(DIST_DIRECTORY):
-    print("\nRemoving dist directory: " + DIST_DIRECTORY + "\n")
+    print(("\nRemoving dist directory: " + DIST_DIRECTORY + "\n"))
     remove_tree(DIST_DIRECTORY, verbose=1)
 
-print("\nMaking dist directory: " + DIST_DIRECTORY + "\n")
+print(("\nMaking dist directory: " + DIST_DIRECTORY + "\n"))
 os.makedirs(DIST_DIRECTORY)
 
 print("\nCalling sphinx-apidoc\n")
@@ -113,7 +115,7 @@ copy_tree(os.path.join(DIST_PY_FILE_LOCATION, "config"), DIST_CONFIG_DIRECTORY)
 print("\nCopying sample into dist directory\n")
 copy_tree(os.path.join(DIST_PY_FILE_LOCATION, "sample"), SAMPLE_RELEASE_DIR)
 
-print("\nCopying dist to " + DIST_RELEASE_DIR + "\n")
+print(("\nCopying dist to " + DIST_RELEASE_DIR + "\n"))
 copy_tree(DIST_DIRECTORY, DIST_RELEASE_DIR)
 
 print("\nRemoving build directory\n")
@@ -128,5 +130,5 @@ make_archive(DIST_RELEASE_DIR, "zip", DIST_DIRECTORY, RELEASE_NAME)
 print("\nMaking dist config zip\n")
 make_archive(CONFIG_RELEASE_DIR, "zip", os.path.join(DIST_RELEASE_DIR, "config"))
 
-print("\nRemoving " + DIST_RELEASE_DIR + "\n")
+print(("\nRemoving " + DIST_RELEASE_DIR + "\n"))
 remove_tree(DIST_RELEASE_DIR)

@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import pkg_resources
 
 import json
@@ -111,7 +112,7 @@ class BrokerInfoHandler(BaseRequestHandler):
                     BrokerModule.BROKER_REGISTRY_QUERY_TOPIC, dxl_response.error_message, dxl_response.error_code)
                 raise Exception(err_msg)
 
-            brokerinfo = dxl_response_dict['brokers'].values()[0]
+            brokerinfo = list(dxl_response_dict['brokers'].values())[0]
             # Send the broker health request
             req = Request(BrokerModule.BROKER_HEALTH_TOPIC)
             # targeting the connected broker

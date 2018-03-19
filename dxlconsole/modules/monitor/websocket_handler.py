@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import logging
 import tornado
 from dxlclient import EventCallback, ResponseCallback

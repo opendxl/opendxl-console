@@ -1,4 +1,5 @@
 
+from __future__ import absolute_import
 import pkg_resources
 import base64
 import tornado
@@ -14,7 +15,7 @@ import dxlconsole
 from .modules.certificates.module import CertificateModule
 from .modules.broker.module import BrokerModule
 from .modules.monitor.module import MonitorModule
-from handlers import BaseRequestHandler
+from .handlers import BaseRequestHandler
 
 
 class ConsoleStaticFileRequestHandler(StaticFileHandler):

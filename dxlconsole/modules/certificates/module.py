@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from codecs import encode
 import json
 import logging
@@ -5,7 +6,7 @@ import os
 import socket
 import subprocess
 import traceback
-import ConfigParser
+import six.moves.configparser
 
 import pkg_resources
 from StringIO import StringIO
@@ -248,7 +249,7 @@ class _BaseCertHandler(BaseRequestHandler):
 
         buf = StringIO(config_contents)
         # read as a ConfigParser Object
-        config_parser = ConfigParser.ConfigParser()
+        config_parser = six.moves.configparser.ConfigParser()
         config_parser.readfp(buf)
 
         return config_parser
