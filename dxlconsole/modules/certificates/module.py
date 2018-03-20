@@ -6,10 +6,14 @@ import os
 import socket
 import subprocess
 import traceback
-import six.moves.configparser
+
+try:
+    from configparser import ConfigParser
+except ImportError:
+    from ConfigParser import ConfigParser
 
 import pkg_resources
-from StringIO import StringIO
+from io import StringIO
 from tempfile import NamedTemporaryFile
 import tornado
 import tornado.httputil
@@ -152,7 +156,8 @@ class CertificateModule(Module):
 
         :return: The content of the module (JS code)
         """
-        return pkg_resources.resource_string(__name__, "content.html")
+        return pkg_resources.resource_string(
+            __name__, "content.html").decode("utf8")
 
     @property
     def enabled(self):
@@ -249,7 +254,7 @@ class _BaseCertHandler(BaseRequestHandler):
 
         buf = StringIO(config_contents)
         # read as a ConfigParser Object
-        config_parser = six.moves.configparser.ConfigParser()
+        config_parser = ConfigParser()
         config_parser.readfp(buf)
 
         return config_parser

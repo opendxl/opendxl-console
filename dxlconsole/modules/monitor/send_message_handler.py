@@ -25,7 +25,7 @@ class SendMessageHandler(BaseRequestHandler):
     @tornado.web.authenticated
     def post(self):
         try:
-            request_params = json.loads(self.request.body)
+            request_params = json.loads(self.request.body.decode("utf8"))
 
             if 'clientId' in request_params:
                 client_id = request_params['clientId']

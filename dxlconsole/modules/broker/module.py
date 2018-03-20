@@ -44,7 +44,8 @@ class BrokerModule(Module):
 
         :return: The content of the module (JS code)
         """
-        return pkg_resources.resource_string(__name__, "content.html")
+        return pkg_resources.resource_string(
+            __name__, "content.html").decode("utf8")
 
     @property
     def enabled(self):

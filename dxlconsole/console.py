@@ -99,7 +99,8 @@ class ConsoleRequestHandler(BaseRequestHandler):
         """
         HTTP GET
         """
-        console_html = pkg_resources.resource_string(__name__, "console.html")
+        console_html = pkg_resources.resource_string(
+            __name__, "console.html").decode("utf8")
         console_html = console_html.replace("@VERSION@", dxlconsole.get_version())
         console_html = console_html.replace("@CONSOLE_NAME@", self.application.bootstrap_app.console_name)
         module_names = ""
@@ -188,7 +189,8 @@ class LoginHandler(RequestHandler):
                 self.set_status(401)
                 self.write("Invalid credentials.Check username/password")
         else:
-            console_html = pkg_resources.resource_string(__name__, "login.html")
+            console_html = pkg_resources.resource_string(
+                __name__, "login.html").decode("utf8")
             console_html = console_html.replace("@CONSOLE_NAME@", self.application.bootstrap_app.console_name)
             self.write(console_html)
 

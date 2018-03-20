@@ -99,7 +99,8 @@ class MonitorModule(Module):
 
     @property
     def content(self):
-        content = pkg_resources.resource_string(__name__, "content.html")
+        content = pkg_resources.resource_string(
+            __name__, "content.html").decode("utf8")
         return content.replace("@PORT@", str(self.app.bootstrap_app.port))
 
     @property
