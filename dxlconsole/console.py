@@ -270,6 +270,7 @@ class WebConsole(Application):
             if module.enabled:
                 handlers.extend(module.handlers)
 
+        self._io_loop = IOLoop.instance()
         super(WebConsole, self).__init__(handlers, **settings)
 
     @property
@@ -290,6 +291,15 @@ class WebConsole(Application):
         """
         return self._modules
 
+    @property
+    def io_loop(self):
+        """
+        Returns the Tornado IOLoop that the web console uses
+
+        :return: The Tornado IOLoop instance
+        """
+        return self._io_loop
+
     def start(self):
         """
         Starts the web console
@@ -300,4 +310,4 @@ class WebConsole(Application):
             "keyfile": client_config.private_key,
         })
         http_server.listen(self._bootstrap_app.port)
-        IOLoop.instance().start()
+        self._io_loop.start()
