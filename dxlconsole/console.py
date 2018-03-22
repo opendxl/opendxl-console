@@ -1,10 +1,9 @@
-
 from __future__ import absolute_import
-import pkg_resources
 import base64
-import tornado
 import uuid
 
+import pkg_resources
+import tornado
 from tornado.web import RequestHandler, Application, StaticFileHandler
 from tornado.httpserver import HTTPServer
 from tornado.ioloop import IOLoop
@@ -16,7 +15,6 @@ from .modules.certificates.module import CertificateModule
 from .modules.broker.module import BrokerModule
 from .modules.monitor.module import MonitorModule
 from .handlers import BaseRequestHandler
-
 
 class ConsoleStaticFileRequestHandler(StaticFileHandler):
     """
@@ -31,15 +29,6 @@ class ConsoleStaticFileRequestHandler(StaticFileHandler):
         """
         pass
 
-    def initialize(self, path, default_filename=None):
-        """
-        Invoked when the handler is initialized
-
-        :param path: The request path
-        :param default_filename: The default filename for the static content
-        """
-        super(ConsoleStaticFileRequestHandler, self).initialize(path, default_filename)
-
     @classmethod
     def get_absolute_path(cls, root, path):
         """
@@ -50,11 +39,12 @@ class ConsoleStaticFileRequestHandler(StaticFileHandler):
         :return: The absolute location of ``path`` relative to ``root``.
         """
 
-        # This is a bit hackish, but we are controlling how our static pages are served.
-        # If a ``root`` is specified, it is used to load from the package resources.
-        # If a ``path`` is specified, it is used to load from the package resources.
-        # This allows us to specify specific paths via root (favicon, etc.), and also use the incoming
-        # path to resolve resources.
+        # This is a bit hackish, but we are controlling how our static pages are
+        # served. If a ``root`` is specified, it is used to load from the
+        # package resources. If a ``path`` is specified, it is used to load from
+        # the package resources. This allows us to specify specific paths via
+        # root (favicon, etc.), and also use the incoming path to resolve
+        # resources.
         if root:
             resource_path = '/'.join(("web", root))
         else:
@@ -85,24 +75,17 @@ class ConsoleRequestHandler(BaseRequestHandler):
         """
         pass
 
-    def __init__(self, application, request):
-        """
-        Constructor parameters:
-
-        :param application: The application associated with the request handler
-        :param request: The request
-        """
-        super(ConsoleRequestHandler, self).__init__(application, request)
-
     @tornado.web.authenticated
-    def get(self):
+    def get(self, *args, **kwargs):
         """
         HTTP GET
         """
         console_html = pkg_resources.resource_string(
             __name__, "console.html").decode("utf8")
-        console_html = console_html.replace("@VERSION@", dxlconsole.get_version())
-        console_html = console_html.replace("@CONSOLE_NAME@", self.application.bootstrap_app.console_name)
+        console_html = console_html.replace("@VERSION@",
+                                            dxlconsole.get_version())
+        console_html = console_html.replace("@CONSOLE_NAME@",
+                                            self.application.bootstrap_app.console_name)
         module_names = ""
         first_button = None
         first_pane = None
@@ -127,12 +110,13 @@ class ConsoleRequestHandler(BaseRequestHandler):
                         titleHoverHTML: function() { return '" + module.title + "'; }, \
                         titleClipped: function() { return true; }, \
                         radioGroup: 'console_module', \
-                        click: 'console_deck.setCurrentPane(\"" + module.root_content_name + "\")', \
+                        click: 'console_deck.setCurrentPane(\"" + \
+                        module.root_content_name + "\")', \
                     });"
                 console_html += "\n" + toolstrip_button
                 console_html += "\n" + "console_toolstrip.addMember('" + button_name + "');"
                 console_html += module.content
-                if len(module_names) != 0:
+                if module_names:
                     module_names += ","
                 module_names += "'" + module.root_content_name + "'"
         console_html += "console_toolstrip.addMember(isc.ToolStripSpacer.create());"
@@ -143,7 +127,8 @@ class ConsoleRequestHandler(BaseRequestHandler):
             console_html += first_button + ".select();"
             console_html += "console_deck.setCurrentPane('" + first_pane + "');"
         console_html += \
-            "isc.HLayout.create({ width: '100%', height: '100%', members: ['console_toolstrip', 'console_deck'] });"
+            "isc.HLayout.create({ width: '100%', height: '100%', " + \
+            "members: ['console_toolstrip', 'console_deck'] });"
         self.write(console_html + "\n</SCRIPT></BODY></HTML>")
 
 
@@ -151,15 +136,6 @@ class LoginHandler(RequestHandler):
     """
     Handler for logging into the console
     """
-
-    def __init__(self, application, request):
-        """
-        Constructor parameters:
-
-        :param application: The application associated with the request handler
-        :param request: The request
-        """
-        super(LoginHandler, self).__init__(application, request)
 
     def data_received(self, chunk):
         """
@@ -169,20 +145,21 @@ class LoginHandler(RequestHandler):
         """
         pass
 
-    def get(self):
+    def get(self, *args, **kwargs):
         """
-        If used from the browser the login page is displayed.
-        From an OpenDXL client ``provisionconfig`` CLI, this will be handled by the certificate module
+        If used from the browser the login page is displayed. From an OpenDXL
+        client ``provisionconfig`` CLI, this will be handled by the certificate
+        module
         """
         auth_header = self.request.headers.get('Authorization')
         if auth_header is not None:
-            auth_decoded = base64.decodestring(auth_header[6:])
+            auth_decoded = base64.b64decode(auth_header[6:]).decode('utf8')
             username, password = auth_decoded.split(':', 2)
             details = ""
             for f in self.request.arguments.values():
                 details += ",".join(f)
             if username == self.application.bootstrap_app.username and \
-                    password == self.application.bootstrap_app.password:
+                            password == self.application.bootstrap_app.password:
                 self.set_secure_cookie("user", username)
                 self.redirect(details)
             else:
@@ -191,17 +168,18 @@ class LoginHandler(RequestHandler):
         else:
             console_html = pkg_resources.resource_string(
                 __name__, "login.html").decode("utf8")
-            console_html = console_html.replace("@CONSOLE_NAME@", self.application.bootstrap_app.console_name)
+            console_html = console_html.replace("@CONSOLE_NAME@",
+                                                self.application.bootstrap_app.console_name)
             self.write(console_html)
 
-    def post(self):
+    def post(self, *args, **kwargs):
         """
         HTTP Post
         """
         name = self.get_argument("username")
         password = self.get_argument("password")
         if name == self.application.bootstrap_app.username and \
-                password == self.application.bootstrap_app.password:
+                        password == self.application.bootstrap_app.password:
             self.set_secure_cookie("user", self.get_argument("username"))
             self.redirect("/")
         else:
@@ -213,15 +191,6 @@ class LogoutHandler(RequestHandler):
     Handler for logging out of the console
     """
 
-    def __init__(self, application, request):
-        """
-        Constructor parameters:
-
-        :param application: The application associated with the request handler
-        :param request: The request
-        """
-        super(LogoutHandler, self).__init__(application, request)
-
     def data_received(self, chunk):
         """
         Invoked when streamed request data is received
@@ -230,7 +199,7 @@ class LogoutHandler(RequestHandler):
         """
         pass
 
-    def get(self):
+    def get(self, *args, **kwargs):
         """
         HTTP GET
         """
@@ -258,7 +227,8 @@ class WebConsole(Application):
 
         handlers = [
             (r'/public/(.*)', ConsoleStaticFileRequestHandler, {'path': ''}),
-            (r'/favicon.ico(.*)', ConsoleStaticFileRequestHandler, {'path': 'images/favicon.ico'}),
+            (r'/favicon.ico(.*)', ConsoleStaticFileRequestHandler,
+             {'path': 'images/favicon.ico'}),
             (r'/login', LoginHandler),
             (r'/logout', LogoutHandler),
             (r'/', ConsoleRequestHandler)
@@ -307,7 +277,8 @@ class WebConsole(Application):
         """
         Starts the web console
         """
-        client_config = DxlClientConfig.create_dxl_config_from_file(self.bootstrap_app.client_config_path)
+        client_config = DxlClientConfig.create_dxl_config_from_file(
+            self.bootstrap_app.client_config_path)
         http_server = HTTPServer(self, ssl_options={
             "certfile": client_config.cert_file,
             "keyfile": client_config.private_key,

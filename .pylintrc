@@ -130,10 +130,14 @@ disable=print-statement,
         unused-wildcard-import,
         wildcard-import,
         broad-except,
+        too-many-branches,
+        too-many-instance-attributes,
+        too-many-locals,
         too-few-public-methods,
         too-many-arguments,
         missing-docstring,
-        protected-access
+        protected-access,
+        similarities
 
 
 # Enable the message, report, category or checker with the given id(s). You can
@@ -267,7 +271,7 @@ method-naming-style=snake_case
 
 # Regular expression matching correct method names. Overrides method-naming-
 # style
-#method-rgx=
+method-rgx=[a-z_][a-z0-9_]{2,}$
 
 # Naming style matching correct module names
 module-naming-style=snake_case

@@ -31,8 +31,10 @@ class LintCommand(Command):
     def run(self):
         self.announce("Running pylint for library source files and tests",
                       level=distutils.log.INFO)
-        subprocess.check_call(["pylint", "dxlconsole"] +
-                              glob.glob("*.py"))
+        subprocess.check_call(["pylint",
+                               "dxlconsole/modules"] +
+                              glob.glob("*.py") +
+                              glob.glob("dxlconsole/*.py"))
 
 
 class CiCommand(Command):
@@ -159,8 +161,8 @@ setup(
     ],
 
     package_data={'': ['*.*'],
-        "dxlconsole._config.sample" : ['*'],
-        "dxlconsole._config.app" : ['*']},
+                  "dxlconsole._config.sample" : ['*'],
+                  "dxlconsole._config.app" : ['*']},
 
     # Details
     url="http://www.mcafee.com",

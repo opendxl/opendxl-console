@@ -25,7 +25,7 @@ def signal_handler(signum, frame):
     :param frame: The frame
     """
     del signum, frame
-    global running, run_condition
+    global running, run_condition # pylint: disable=global-statement
     with run_condition:
         if running:
             # Stop the application
@@ -78,6 +78,6 @@ with OpenDxlConsole(sys.argv[1]) as app:
 
     except KeyboardInterrupt:
         pass
-    except:
+    except: # pylint: disable=bare-except
         logger.exception("Error occurred, exiting")
         sys.exit(1)

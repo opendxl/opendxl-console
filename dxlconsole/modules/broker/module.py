@@ -1,11 +1,11 @@
 from __future__ import absolute_import
-import pkg_resources
-
 import json
 import logging
+import traceback
+
+import pkg_resources
 import tornado
 import tornado.httputil
-import traceback
 
 from dxlclient.message import Request, Message
 from dxlbootstrap.util import MessageUtils
@@ -35,7 +35,8 @@ class BrokerModule(Module):
         :param app: The application that the module is a part of
         """
         super(BrokerModule, self).__init__(
-            app, "broker", "Broker Details", "/public/images/broker.png", "broker_layout")
+            app, "broker", "Broker Details", "/public/images/broker.png",
+            "broker_layout")
 
     @property
     def content(self):
@@ -89,7 +90,7 @@ class BrokerInfoHandler(BaseRequestHandler):
         pass
 
     @tornado.web.authenticated
-    def get(self):
+    def get(self, *args, **kwargs):
         """
         Sends requests to get broker information (health and the broker registry topic)
         """
@@ -107,10 +108,12 @@ class BrokerInfoHandler(BaseRequestHandler):
             # Send the broker registry request
             dxl_response = dxlclient.sync_request(req, 5)
             if dxl_response.message_type != Message.MESSAGE_TYPE_ERROR:
-                dxl_response_dict = MessageUtils.json_payload_to_dict(dxl_response)
+                dxl_response_dict = MessageUtils.json_payload_to_dict(
+                    dxl_response)
             else:
                 err_msg = "Error invoking service with topic '{0}': {1} ({2})".format(
-                    BrokerModule.BROKER_REGISTRY_QUERY_TOPIC, dxl_response.error_message, dxl_response.error_code)
+                    BrokerModule.BROKER_REGISTRY_QUERY_TOPIC,
+                    dxl_response.error_message, dxl_response.error_code)
                 raise Exception(err_msg)
 
             brokerinfo = list(dxl_response_dict['brokers'].values())[0]
@@ -121,10 +124,12 @@ class BrokerInfoHandler(BaseRequestHandler):
             dxl_response = dxlclient.sync_request(req, 15)
 
             if dxl_response.message_type != Message.MESSAGE_TYPE_ERROR:
-                dxl_response_dict = MessageUtils.json_payload_to_dict(dxl_response)
+                dxl_response_dict = MessageUtils.json_payload_to_dict(
+                    dxl_response)
             else:
                 err_msg = "Error invoking service with topic '{0}': {1} ({2})".format(
-                    BrokerModule.BROKER_HEALTH_TOPIC, dxl_response.error_message, dxl_response.error_code)
+                    BrokerModule.BROKER_HEALTH_TOPIC,
+                    dxl_response.error_message, dxl_response.error_code)
                 raise Exception(err_msg)
 
             entry = {
@@ -141,8 +146,10 @@ class BrokerInfoHandler(BaseRequestHandler):
 
             self.write(json.dumps(response_wrapper))
 
-        except Exception as e:
-            logger.error("Exception while processing broker info request." + str(e))
+        except Exception as ex:
+            logger.error(
+                "Exception while processing broker info request. %s", ex)
             logger.error(traceback.format_exc())
             self.set_status(500)
-            self.write(u"""{response:{status:0,startRow:0,endRow:0,totalRows:0,data:[]}}""")
+            self.write(
+                u"""{response:{status:0,startRow:0,endRow:0,totalRows:0,data:[]}}""")

@@ -11,7 +11,7 @@ from dxlclient.client_config import DxlClientConfig
 from dxlclient.callbacks import EventCallback
 from dxlclient.message import Request, Message
 from dxlbootstrap.util import MessageUtils
-from tornado.ioloop import IOLoop
+from dxlconsole.module import Module
 
 from .services_handler import ServiceUpdateHandler
 from .subscriptions_handler import SubscriptionsHandler
@@ -19,7 +19,6 @@ from .messages_handler import MessagesHandler
 from .send_message_handler import SendMessageHandler
 from .websocket_handler import ConsoleWebSocketHandler
 
-from dxlconsole.module import Module
 
 # Configure local logger
 logger = logging.getLogger(__name__)
@@ -50,7 +49,8 @@ class MonitorModule(Module):
 
     def __init__(self, app):
         super(MonitorModule, self).__init__(
-            app, "monitor", "Fabric Monitor", "/public/images/monitor.png", "monitor_layout")
+            app, "monitor", "Fabric Monitor", "/public/images/monitor.png",
+            "monitor_layout")
 
         # dictionary to store DXL Client instances unique to each "session"
         self._client_dict = {}
@@ -66,24 +66,29 @@ class MonitorModule(Module):
 
         self._message_id_topics = {}
 
-        self._client_config = DxlClientConfig.create_dxl_config_from_file(self.app.bootstrap_app.client_config_path)
+        self._client_config = DxlClientConfig.create_dxl_config_from_file(
+            self.app.bootstrap_app.client_config_path)
 
         # DXL Client to perform operations that are the same for all users(svc registry queries)
         self._dxl_service_client = DxlClient(self._client_config)
         self._dxl_service_client.connect()
 
         self._dxl_service_client.add_event_callback(
-            MonitorModule.SERVICE_REGISTRY_REGISTER_EVENT_TOPIC, _ServiceEventCallback(self))
+            MonitorModule.SERVICE_REGISTRY_REGISTER_EVENT_TOPIC,
+            _ServiceEventCallback(self))
         self._dxl_service_client.add_event_callback(
-            MonitorModule.SERVICE_REGISTRY_UNREGISTER_EVENT_TOPIC, _ServiceEventCallback(self))
+            MonitorModule.SERVICE_REGISTRY_UNREGISTER_EVENT_TOPIC,
+            _ServiceEventCallback(self))
 
         self._refresh_all_services()
 
-        self._service_updater_thread = threading.Thread(target=self._service_updater)
+        self._service_updater_thread = threading.Thread(
+            target=self._service_updater)
         self._service_updater_thread.daemon = True
         self._service_updater_thread.start()
 
-        self._dxl_client_cleanup_thread = threading.Thread(target=self._cleanup_dxl_clients)
+        self._dxl_client_cleanup_thread = threading.Thread(
+            target=self._cleanup_dxl_clients)
         self._dxl_client_cleanup_thread.daemon = True
         self._dxl_client_cleanup_thread.start()
 
@@ -114,7 +119,8 @@ class MonitorModule(Module):
 
     @property
     def client_config(self):
-        return DxlClientConfig.create_dxl_config_from_file(self.app.bootstrap_app.client_config_path)
+        return DxlClientConfig.create_dxl_config_from_file(
+            self.app.bootstrap_app.client_config_path)
 
     def get_dxl_client(self, client_id):
         """
@@ -133,7 +139,7 @@ class MonitorModule(Module):
         if not client.connected:
             client.connect()
 
-        logger.debug("Returning DXL client for id: " + str(client_id))
+        logger.debug("Returning DXL client for id: %s", client_id)
         return client
 
     def _create_client_for_connection(self, client_id):
@@ -144,7 +150,8 @@ class MonitorModule(Module):
         """
         client = DxlClient(self.client_config)
         client.connect()
-        logger.info("Initializing new dxl client for client_id: " + str(client_id))
+        logger.info(
+            "Initializing new dxl client for client_id: %s", client_id)
         with self._client_dict_lock:
             self._client_dict[client_id] = (client, datetime.datetime.now())
 
@@ -202,7 +209,8 @@ class MonitorModule(Module):
 
     def get_messages(self, client_id):
         """
-        Retrieves the messages pending for the given client. This does not clear the queue after retrieving.
+        Retrieves the messages pending for the given client. This does not
+        clear the queue after retrieving.
 
         :param client_id: the client to retrieve messages for
         :return: a List of messages for the client
@@ -223,12 +231,13 @@ class MonitorModule(Module):
 
     def _service_updater(self):
         """
-        A thread target that will run forever and do a complete refresh of the service list on an interval
-        or if the DXL client reconnects
+        A thread target that will run forever and do a complete refresh of the
+        service list on an interval or if the DXL client reconnects
         """
         while True:
             with self._dxl_service_client._connected_lock:
-                self._dxl_service_client._connected_wait_condition.wait(self.SERVICE_UPDATE_INTERVAL)
+                self._dxl_service_client._connected_wait_condition.wait(
+                    self.SERVICE_UPDATE_INTERVAL)
 
             if self._dxl_service_client.connected:
                 logger.debug("Refreshing service list.")
@@ -236,15 +245,18 @@ class MonitorModule(Module):
 
     def _cleanup_dxl_clients(self):
         """
-        A thread target that will run forever and evict DXL clients if their clients have not sent a keep-alive
+        A thread target that will run forever and evict DXL clients if their
+        clients have not sent a keep-alive
         """
         logger.debug("DXL client cleanup thread initialized.")
         while True:
             with self._client_dict_lock:
                 for key in list(self._client_dict):
                     if self._client_dict[key][1] < \
-                            (datetime.datetime.now() - datetime.timedelta(minutes=self.CLIENT_RETENTION_MINUTES)):
-                        logger.debug("Evicting DXL client for client_id: " + key)
+                            (datetime.datetime.now() - datetime.timedelta(
+                                    minutes=self.CLIENT_RETENTION_MINUTES)):
+                        logger.debug(
+                            "Evicting DXL client for client_id: %s", key)
                         del self._client_dict[key]
 
             time.sleep(5)
@@ -260,12 +272,13 @@ class MonitorModule(Module):
         # Send the request
         dxl_response = self._dxl_service_client.sync_request(req, 5)
         dxl_response_dict = MessageUtils.json_payload_to_dict(dxl_response)
-        logger.info("Service registry response: " + str(dxl_response_dict))
+        logger.info("Service registry response: %s", dxl_response_dict)
 
         with self._service_dict_lock:
             self._services = {}
             for service_guid in dxl_response_dict["services"]:
-                self._services[service_guid] = dxl_response_dict["services"][service_guid]
+                self._services[service_guid] = dxl_response_dict["services"][
+                    service_guid]
 
         self.notify_web_sockets()
 
@@ -288,11 +301,12 @@ class MonitorModule(Module):
             if service_event['serviceGuid'] in self._services:
                 del self._services[service_event['serviceGuid']]
 
-    def client_keep_alive(self, message, client_id):
-        logger.debug("Client keep-alive received for client id: " + client_id)
+    def client_keep_alive(self, client_id):
+        logger.debug("Client keep-alive received for client id: %s", client_id)
         if self._client_exists_for_connection(client_id):
             with self._client_dict_lock:
-                self._client_dict[client_id] = (self._client_dict[client_id][0], datetime.datetime.now())
+                self._client_dict[client_id] = (self._client_dict[client_id][0],
+                                                datetime.datetime.now())
 
     @property
     def io_loop(self):
@@ -310,7 +324,7 @@ class MonitorModule(Module):
         :param client_id: the client id key the web socket to
         :param web_socket:  the web socket to store
         """
-        logger.debug("Adding web socket for client: " + client_id)
+        logger.debug("Adding web socket for client: %s", client_id)
         with self._web_socket_dict_lock:
             self._web_socket_dict[client_id] = web_socket
 
@@ -320,7 +334,7 @@ class MonitorModule(Module):
 
         :param client_id: The client ID
         """
-        logger.debug("Removing web socket for client: " + client_id)
+        logger.debug("Removing web socket for client: %s", client_id)
         with self._web_socket_dict_lock:
             self._web_socket_dict.pop(client_id, None)
 
@@ -334,7 +348,7 @@ class MonitorModule(Module):
                     self.io_loop.add_callback(
                         self._web_socket_dict[key].write_message,
                         u"serviceUpdates")
-                except:
+                except Exception:
                     pass
 
     def get_message_topic(self, message):
@@ -345,8 +359,8 @@ class MonitorModule(Module):
         :param message: The DXL message
         :return:  The topic to use
         """
-        if (message.message_type == Message.MESSAGE_TYPE_RESPONSE
-            or message.message_type == Message.MESSAGE_TYPE_ERROR) and \
+        if (message.message_type == Message.MESSAGE_TYPE_RESPONSE or
+                message.message_type == Message.MESSAGE_TYPE_ERROR) and \
                 message.request_message_id in self.message_id_topics:
             topic = self.message_id_topics[message.request_message_id]
             del self.message_id_topics[message.request_message_id]
@@ -371,7 +385,7 @@ class _ServiceEventCallback(EventCallback):
         :param event: the incoming event
         """
         service_event = MessageUtils.json_payload_to_dict(event)
-        logger.info("Received service registry event: " + str(service_event))
+        logger.info("Received service registry event: %s", service_event)
         if event.destination_topic == MonitorModule.SERVICE_REGISTRY_REGISTER_EVENT_TOPIC:
             self._module.update_service(service_event)
         elif event.destination_topic == MonitorModule.SERVICE_REGISTRY_UNREGISTER_EVENT_TOPIC:

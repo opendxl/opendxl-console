@@ -1,26 +1,22 @@
 from __future__ import absolute_import
 from codecs import encode
+from io import StringIO
 import json
 import logging
 import os
 import socket
 import subprocess
+from tempfile import NamedTemporaryFile
 import traceback
-
-try:
-    from configparser import ConfigParser
-except ImportError:
-    from ConfigParser import ConfigParser
+from zipfile import ZipFile
 
 import pkg_resources
-from io import StringIO
-from tempfile import NamedTemporaryFile
 import tornado
 import tornado.httputil
-from zipfile import ZipFile
 
 from dxlconsole.handlers import BaseRequestHandler
 from dxlconsole.module import Module
+from ..._compat import ConfigParser, read_file
 
 # Configure local logger
 logger = logging.getLogger(__name__)
@@ -63,7 +59,8 @@ class CertificateModule(Module):
         :param app: The application that the module is a part of
         """
         super(CertificateModule, self).__init__(
-            app, "certificates", "Certificate Management", "/public/images/cert.png", "certs_stack")
+            app, "certificates", "Certificate Management",
+            "/public/images/cert.png", "certs_stack")
         bootstrap_app = self.app.bootstrap_app
         config = bootstrap_app.config
 
@@ -75,32 +72,37 @@ class CertificateModule(Module):
 
         # Client CA certificate file
         try:
-            self._client_ca_cert_file = config.get(self.CERTS_CONFIG_SECTION, self.CERTS_CLIENT_CA_CERT_FILE_PROP)
+            self._client_ca_cert_file = config.get(self.CERTS_CONFIG_SECTION,
+                                                   self.CERTS_CLIENT_CA_CERT_FILE_PROP)
         except Exception:
             pass
 
         # Client CA key file
         try:
-            self._client_ca_key_file = config.get(self.CERTS_CONFIG_SECTION, self.CERTS_CLIENT_CA_KEY_FILE_PROP)
+            self._client_ca_key_file = config.get(self.CERTS_CONFIG_SECTION,
+                                                  self.CERTS_CLIENT_CA_KEY_FILE_PROP)
         except Exception:
             pass
 
         # Client CA password
         try:
-            self._client_ca_password = config.get(self.CERTS_CONFIG_SECTION, self.CERTS_CLIENT_CA_PASSWORD_PROP)
+            self._client_ca_password = config.get(self.CERTS_CONFIG_SECTION,
+                                                  self.CERTS_CLIENT_CA_PASSWORD_PROP)
         except Exception:
             pass
 
         # Broker CA bundle file
         try:
-            self._broker_ca_bundle_file = config.get(self.CERTS_CONFIG_SECTION, self.CERTS_BROKER_CA_BUNDLE_FILE_PROP)
+            self._broker_ca_bundle_file = config.get(self.CERTS_CONFIG_SECTION,
+                                                     self.CERTS_BROKER_CA_BUNDLE_FILE_PROP)
         except Exception:
             pass
 
         # Client configuration template file
         try:
             self._client_config_template_file = config.get(
-                self.CERTS_CONFIG_SECTION, self.CLIENT_CONFIG_TEMPLATE_FILE_PROP)
+                self.CERTS_CONFIG_SECTION,
+                self.CLIENT_CONFIG_TEMPLATE_FILE_PROP)
         except Exception:
             pass
 
@@ -189,7 +191,8 @@ class CertificateModule(Module):
         """
         return [
             (r'/generate_cert', GenerateCertHandler, dict(module=self)),
-            (r'/remote/DxlBrokerMgmt.generateOpenDXLClientProvisioningPackageCmd',
+            (
+                r'/remote/DxlBrokerMgmt.generateOpenDXLClientProvisioningPackageCmd',
                 ProvisionManagementServiceHandler, dict(module=self)),
             (r'/remote/DxlClientMgmt.createClientCaBundle',
              CreateClientBundleManagementServiceHandler, dict(module=self)),
@@ -202,6 +205,10 @@ class _BaseCertHandler(BaseRequestHandler):
     """
     Handles post request to generate certs with the provided parameters
     """
+
+    def __init__(self, application, request, module):
+        self._module = module
+        super(_BaseCertHandler, self).__init__(application, request)
 
     def data_received(self, chunk):
         """
@@ -220,12 +227,16 @@ class _BaseCertHandler(BaseRequestHandler):
         with open(self._module.client_config_template_file, 'r') as f:
             content = f.read()
 
-        content = content.replace("@BROKER_CA_BUNDLE_FILE@", CertificateModule.ZIP_BROKER_CA_BUNDLE_FILE_NAME)
-        content = content.replace("@CLIENT_CERT_FILE@", CertificateModule.ZIP_CLIENT_CERT_FILE_NAME)
-        content = content.replace("@CLIENT_KEY_FILE@", CertificateModule.ZIP_CLIENT_KEY_FILE_NAME)
+        content = content.replace("@BROKER_CA_BUNDLE_FILE@",
+                                  CertificateModule.ZIP_BROKER_CA_BUNDLE_FILE_NAME)
+        content = content.replace("@CLIENT_CERT_FILE@",
+                                  CertificateModule.ZIP_CLIENT_CERT_FILE_NAME)
+        content = content.replace("@CLIENT_KEY_FILE@",
+                                  CertificateModule.ZIP_CLIENT_KEY_FILE_NAME)
 
         # Host and IP address from incoming request
-        server_host = tornado.httputil.split_host_and_port(self.request.host)[0]
+        server_host = tornado.httputil.split_host_and_port(self.request.host)[
+            0]
         try:
             server_addr = socket.gethostbyname(server_host)
         except socket.gaierror:
@@ -235,7 +246,7 @@ class _BaseCertHandler(BaseRequestHandler):
 
         # Local docker network
         docker_ip = subprocess.check_output(
-            "route -n | awk '/^\s*0.0.0.0/ {print $2}'", shell=True).strip()
+            r"route -n | awk '/^\s*0.0.0.0/ {print $2}'", shell=True).strip()
         if not docker_ip:
             docker_ip = subprocess.check_output(
                 "ip route | sed -n 's/.*default via \\([^ ]*\\).*/\\1/p'",
@@ -255,7 +266,7 @@ class _BaseCertHandler(BaseRequestHandler):
         buf = StringIO(config_contents)
         # read as a ConfigParser Object
         config_parser = ConfigParser()
-        config_parser.readfp(buf)
+        read_file(config_parser, buf)
 
         return config_parser
 
@@ -264,7 +275,7 @@ class _BaseCertHandler(BaseRequestHandler):
         Create a client certificate signed by the Client CA of the standalone broker.
 
         :param temp_csr_file: CSR file for creating the certificate
-        :param temp_cert_file: Certificate file created 
+        :param temp_cert_file: Certificate file created
         :raise Exception: Error running the openssl command to create the certificate
         """
         # load the client ca cert for signing
@@ -273,26 +284,29 @@ class _BaseCertHandler(BaseRequestHandler):
 
         password = 'pass:' + self._module.client_ca_password
         # Sign the CSR with the client cert file
-        rc = subprocess.call(['openssl', 'x509', '-req', '-passin', password,
-                              '-CAcreateserial', '-days', '3650',
-                              '-CA', client_ca_file, '-CAkey', client_ca_key_file,
-                              '-outform', 'PEM',
-                              '-out', temp_cert_file.name, '-in',
-                              temp_csr_file.name],
-                             stderr=open(os.devnull, 'wb'))
+        return_code = subprocess.call(
+            ['openssl', 'x509', '-req', '-passin', password,
+             '-CAcreateserial', '-days', '3650',
+             '-CA', client_ca_file, '-CAkey',
+             client_ca_key_file,
+             '-outform', 'PEM',
+             '-out', temp_cert_file.name, '-in',
+             temp_csr_file.name],
+            stderr=open(os.devnull, 'wb'))
 
-        if rc != 0:
+        if return_code != 0:
             raise Exception("Error creating certificate")
 
-        logger.debug("Temp cert name:" + temp_cert_file.name)
+        logger.debug("Temp cert name: %s", temp_cert_file.name)
 
 
 class GenerateCertHandler(_BaseCertHandler):
     """
     Handles post request to generate certs with the provided subject parameters
     """
+
     def __init__(self, application, request, module):
-        super(GenerateCertHandler, self).__init__(application, request)
+        super(GenerateCertHandler, self).__init__(application, request, module)
         self._module = module
         self._bootstrap_app = application.bootstrap_app
 
@@ -304,7 +318,8 @@ class GenerateCertHandler(_BaseCertHandler):
         """
         pass
 
-    def _generate_client_cert(self, subject, temp_key_file, temp_csr_file, temp_cert_file):
+    def _generate_client_cert(self, subject, temp_key_file, temp_csr_file,
+                              temp_cert_file):
         """
         Uses openssl to create a csr with the info provided and sign the cert with the CA key
         The cert is written to the disk using the specified file names
@@ -317,19 +332,23 @@ class GenerateCertHandler(_BaseCertHandler):
 
         # Create the private key and csr using openssl command
         # stderr=open(os.devnull, 'wb') to suppress the err output from the openssl command
-        rc = subprocess.call(['openssl', 'req', '-nodes', '-new', '-newkey', 'rsa:2048',
-                              '-keyout', temp_key_file.name, '-out', temp_csr_file.name, '-subj', subject],
-                             stderr=open(os.devnull, 'wb'))
-        if rc != 0:
+        return_code = subprocess.call(
+            ['openssl', 'req', '-nodes', '-new', '-newkey', 'rsa:2048',
+             '-keyout', temp_key_file.name, '-out', temp_csr_file.name,
+             '-subj',
+             subject],
+            stderr=open(os.devnull, 'wb'))
+        if return_code != 0:
             raise Exception("Error creating key and csr")
 
-        logger.debug("Temp key file:" + temp_key_file.name)
-        logger.debug("Temp csr file:" + temp_csr_file.name)
+        logger.debug("Temp key file: %s", temp_key_file.name)
+        logger.debug("Temp csr file: %s", temp_csr_file.name)
 
         # call openssl command to create the cert
         self._create_client_cert(temp_csr_file, temp_cert_file)
 
-    def _generate_subject_str_from_request(self, request_params):
+    @staticmethod
+    def _generate_subject_str_from_request(request_params):
         """
         Reads the parameters from the requests and builds the subject string for the certificate
 
@@ -362,7 +381,8 @@ class GenerateCertHandler(_BaseCertHandler):
             country = request_params['country'].strip()
 
         # openssl expects Country to have maxsize of 2.
-        # asn1 encoding routines:ASN1_mbstring_ncopy:string too long:.\crypto\asn1\a_mbstr.c:158:maxsize=2
+        # asn1 encoding routines:ASN1_mbstring_ncopy:string too
+        # long:.\crypto\asn1\a_mbstr.c:158:maxsize=2
         if country is not None and len(str(country)) != 2:
             raise Exception("Country Name has to be 2 characters")
 
@@ -378,9 +398,9 @@ class GenerateCertHandler(_BaseCertHandler):
         if 'org' in request_params:
             org = request_params['org'].strip()
 
-        ou = None
+        org_unit = None
         if 'ou' in request_params:
-            ou = request_params['ou'].strip()
+            org_unit = request_params['ou'].strip()
 
         if country is not None:
             subject += "/C=" + country
@@ -390,13 +410,13 @@ class GenerateCertHandler(_BaseCertHandler):
             subject += "/L=" + locality
         if org is not None:
             subject += "/O=" + org
-        if ou is not None:
-            subject += "/OU=" + ou
+        if org_unit is not None:
+            subject += "/OU=" + org_unit
 
         return subject
 
     @tornado.web.authenticated
-    def post(self):
+    def post(self, *args, **kwargs):
         """
         Returns a client cert package using specified values
         """
@@ -419,7 +439,8 @@ class GenerateCertHandler(_BaseCertHandler):
             temp_cert_file = NamedTemporaryFile('w+b', delete=False)
 
             # generate the cert with the subject string using the temp files above
-            self._generate_client_cert(subject, temp_key_file, temp_csr_file, temp_cert_file)
+            self._generate_client_cert(subject, temp_key_file, temp_csr_file,
+                                       temp_cert_file)
 
             logger.debug("Updating dxlclient.config information")
 
@@ -428,21 +449,24 @@ class GenerateCertHandler(_BaseCertHandler):
 
             # build the zip file in memory that is sent back to the caller
             in_memory_output_file = StringIO()
-            zf = ZipFile(in_memory_output_file, mode='w')
+            zip_file = ZipFile(in_memory_output_file, mode='w')
 
             broker_ca_bundle_file = self._module.broker_ca_bundle_file
 
             try:
                 logger.debug("Adding client certificate file to zip")
-                zf.write(temp_cert_file.name, arcname=CertificateModule.ZIP_CLIENT_CERT_FILE_NAME)
+                zip_file.write(temp_cert_file.name,
+                               arcname=CertificateModule.ZIP_CLIENT_CERT_FILE_NAME)
                 logger.debug("Adding client certificate key file to zip")
-                zf.write(temp_key_file.name, arcname=CertificateModule.ZIP_CLIENT_KEY_FILE_NAME)
+                zip_file.write(temp_key_file.name,
+                               arcname=CertificateModule.ZIP_CLIENT_KEY_FILE_NAME)
                 logger.debug("Adding DXL Broker certificate authority to zip")
-                zf.write(broker_ca_bundle_file, arcname=CertificateModule.ZIP_BROKER_CA_BUNDLE_FILE_NAME)
+                zip_file.write(broker_ca_bundle_file,
+                               arcname=CertificateModule.ZIP_BROKER_CA_BUNDLE_FILE_NAME)
                 logger.debug("Adding DXL Config file to zip")
-                zf.writestr(CertificateModule.DXL_CONFIG_FILE_NAME, config_out)
+                zip_file.writestr(CertificateModule.DXL_CONFIG_FILE_NAME, config_out)
             finally:
-                zf.close()  # have to close before we read the contents
+                zip_file.close()  # have to close before we read the contents
 
             in_memory_output_file.seek(0)
             contents = in_memory_output_file.getvalue()
@@ -450,13 +474,14 @@ class GenerateCertHandler(_BaseCertHandler):
             # write the base64 encoded zip file to the response stream
             self.write(encode(contents, 'base64'))
 
-        except Exception as e:
+        except Exception as ex:
             if in_memory_output_file is not None:
                 in_memory_output_file.close()
-            logger.error("Exception while processing generate cert request." + str(e))
+            logger.error(
+                "Exception while processing generate cert request. %s", ex)
             logger.error(traceback.format_exc())
             self.set_status(500)
-            self.write("Failed to generate certs:" + str(e))
+            self.write("Failed to generate certs:" + str(ex))
         finally:
             if temp_key_file is not None:
                 temp_key_file.close()
@@ -471,12 +496,15 @@ class GenerateCertHandler(_BaseCertHandler):
 
 class ProvisionManagementServiceHandler(_BaseCertHandler):
     """
-    This mimics the ePO service which is called by the Python client CLI provisionconfig command
-    The response is similar to the ePO remote command "DxlBrokerMgmt.generateOpenDXLClientProvisioningPackageCmd"   
+    This mimics the ePO service which is called by the Python client CLI
+    provisionconfig command The response is similar to the ePO remote command
+    "DxlBrokerMgmt.generateOpenDXLClientProvisioningPackageCmd"
     """
 
     def __init__(self, application, request, module):
-        super(ProvisionManagementServiceHandler, self).__init__(application, request)
+        super(ProvisionManagementServiceHandler, self).__init__(application,
+                                                                request,
+                                                                module)
         self._module = module
         self._bootstrap_app = application.bootstrap_app
 
@@ -496,10 +524,10 @@ class ProvisionManagementServiceHandler(_BaseCertHandler):
         return ''.join(content)
 
     @tornado.web.authenticated
-    def get(self):
-        """ 
+    def get(self, *args, **kwargs):
+        """
         Returns a client cert package using submitted CSR
-        
+
         The HTTP response payload for this request should look
         like the following:
 
@@ -521,7 +549,7 @@ class ProvisionManagementServiceHandler(_BaseCertHandler):
           key contains a broker guid. The value contains other metadata for the
           broker, e.g., the broker guid, port, hostname, and ip address. For
           example:'[guid1]=[guid1];8883;broker;10.10.1.1<newline>[guid2]=[guid2]...'.
-          
+
         :return: provisioning information
         """
         logging.debug("Provisioning Management service invoked")
@@ -540,7 +568,8 @@ class ProvisionManagementServiceHandler(_BaseCertHandler):
             temp_cert_file = NamedTemporaryFile('wb', delete=False)
 
             with open(temp_csr_file.name, 'w') as csr_file:
-                csr_file.write(csr_string.encode('utf8'))  # do we need to encode??
+                csr_file.write(
+                    csr_string.encode('utf8'))  # do we need to encode??
             #
             # generate the cert with the subject string using the temp files above
             self._create_client_cert(temp_csr_file, temp_cert_file)
@@ -565,13 +594,16 @@ class ProvisionManagementServiceHandler(_BaseCertHandler):
 
             self.write(json_string)
 
-        except Exception as e:
-            logger.error("Exception while processing Provision config request." + str(e))
+        except Exception as ex:
+            logger.error(
+                "Exception while processing Provision config request. %s", ex)
             logger.error(traceback.format_exc())
-            error_string = "Failed to generate Provision config with the specified CSR:" + str(e)
+            error_string = "Failed to generate Provision config with the specified CSR:" + str(
+                ex)
             # json_string = "ERROR:\r\n{}\r\n".format(json.dumps(error_string))
             # Raising exception again so the python client will show the error
-            raise tornado.web.HTTPError(500, reason=error_string, log_message=error_string)
+            raise tornado.web.HTTPError(500, reason=error_string,
+                                        log_message=error_string)
         finally:
             if temp_cert_file is not None:
                 temp_cert_file.close()
@@ -588,12 +620,13 @@ class CreateClientBundleManagementServiceHandler(_BaseCertHandler):
     """
 
     def __init__(self, application, request, module):
-        super(CreateClientBundleManagementServiceHandler, self).__init__(application, request)
+        super(CreateClientBundleManagementServiceHandler, self).__init__(
+            application, request, module)
         self._module = module
         self._bootstrap_app = application.bootstrap_app
 
     @tornado.web.authenticated
-    def get(self):
+    def get(self, *args, **kwargs):
         """
         The HTTP response payload for this request should look
         like the following:
@@ -607,7 +640,7 @@ class CreateClientBundleManagementServiceHandler(_BaseCertHandler):
         * A JSON-encoded string with a double-quote character at the beginning
           and end. The string contains a concatenation of one or more PEM-encoded
           CA certificates.
-        
+
         :return: CA certificates
         """
         try:
@@ -621,13 +654,16 @@ class CreateClientBundleManagementServiceHandler(_BaseCertHandler):
             json_string = "OK:\r\n{}\r\n".format(json.dumps(ca_content))
             self.write(json_string)
 
-        except Exception as e:
-            logger.error("Exception while processing createClientCaBundle request." + str(e))
+        except Exception as ex:
+            logger.error(
+                "Exception while processing createClientCaBundle request. %s",
+                ex)
             logger.error(traceback.format_exc())
-            error_string = "Failed to return createClientCaBundle:" + str(e)
+            error_string = "Failed to return createClientCaBundle:" + str(ex)
             # json_string = "ERROR:\r\n{}\r\n".format(json.dumps(error_string))
             # Raising exception again so the python client will show the error
-            raise tornado.web.HTTPError(500, reason=error_string, log_message=error_string)
+            raise tornado.web.HTTPError(500, reason=error_string,
+                                        log_message=error_string)
 
 
 class GetBrokerListManagementServiceHandler(_BaseCertHandler):
@@ -637,28 +673,31 @@ class GetBrokerListManagementServiceHandler(_BaseCertHandler):
     """
 
     def __init__(self, application, request, module):
-        super(GetBrokerListManagementServiceHandler, self).__init__(application, request)
+        super(GetBrokerListManagementServiceHandler, self).__init__(
+            application,
+            request,
+            module)
         self._module = module
         self._bootstrap_app = application.bootstrap_app
 
     @tornado.web.authenticated
-    def get(self):
+    def get(self, *args, **kwargs):
         """
         Returns the broker list.The HTTP response payload for this request should look
         like the following:
-        
+
         OK:
         "[broker config]"
 
         Sections of the response include:
-    
+
         * A line with the text "OK:" if the request was successful, else error on failure.
         * A JSON-encoded string with a double-quote character at the beginning
           and end. The string should contain a JSON document which looks similar
           to the following
-          
+
           .. code-block:: json
-            
+
               {
                 "brokers": [
                     {
@@ -672,11 +711,11 @@ class GetBrokerListManagementServiceHandler(_BaseCertHandler):
                         "hostName": "broker2",
                         "ipAddress": "10.10.100.101",
                         "port": 8883
-                    }                                                                            
+                    }
                 ],
-                "certVersion": 0  
+                "certVersion": 0
               }
-            
+
         :return: Json broker list
         """
         try:
@@ -687,8 +726,9 @@ class GetBrokerListManagementServiceHandler(_BaseCertHandler):
             # extract the broker list from the config
             for name, value in config_parser.items("Brokers"):
                 # split the value on ";". format is guid;port;host;ip
-                guid, port, host, ip = value.split(';')
-                broker = {"hostName": host, "port": int(port), "guid": name, "ipAddress": ip}
+                _, port, host, ip_address = value.split(';')
+                broker = {"hostName": host, "port": int(port), "guid": name,
+                          "ipAddress": ip_address}
                 brokers.append(broker)
 
             # build the json
@@ -700,10 +740,12 @@ class GetBrokerListManagementServiceHandler(_BaseCertHandler):
 
             # write the response
             self.write(json_string)
-        except Exception as e:
-            logger.error("Exception while processing getBrokerList request." + str(e))
+        except Exception as ex:
+            logger.error(
+                "Exception while processing getBrokerList request. %s", ex)
             logger.error(traceback.format_exc())
-            error_string = "Failed to return getBrokerList:" + str(e)
+            error_string = "Failed to return getBrokerList:" + str(ex)
             # json_string = "ERROR:\r\n{}\r\n".format(json.dumps(error_string))
             # Raising exception again so the python client will show the error
-            raise tornado.web.HTTPError(500, reason=error_string, log_message=error_string)
+            raise tornado.web.HTTPError(500, reason=error_string,
+                                        log_message=error_string)
