@@ -156,8 +156,8 @@ class LoginHandler(RequestHandler):
             auth_decoded = base64.b64decode(auth_header[6:]).decode('utf8')
             username, password = auth_decoded.split(':', 2)
             details = ""
-            for f in self.request.arguments.values():
-                details += ",".join(f)
+            for values in self.request.arguments.values():
+                details += ",".join([value.decode("utf8") for value in values])
             if username == self.application.bootstrap_app.username and \
                             password == self.application.bootstrap_app.password:
                 self.set_secure_cookie("user", username)

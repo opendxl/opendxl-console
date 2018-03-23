@@ -1,6 +1,6 @@
 from __future__ import absolute_import
 from codecs import encode
-from io import StringIO
+from io import BytesIO, StringIO
 import json
 import logging
 import os
@@ -251,7 +251,8 @@ class _BaseCertHandler(BaseRequestHandler):
             docker_ip = subprocess.check_output(
                 "ip route | sed -n 's/.*default via \\([^ ]*\\).*/\\1/p'",
                 shell=True).strip()
-        content = content.replace("@DOCKER_BROKER_IP@", docker_ip)
+        content = content.replace("@DOCKER_BROKER_IP@",
+                                  docker_ip.decode("utf8"))
         return content
 
     def _get_configparser(self):
@@ -429,7 +430,7 @@ class GenerateCertHandler(_BaseCertHandler):
         temp_csr_file = None
 
         try:
-            request_params = json.loads(self.request.body)
+            request_params = json.loads(self.request.body.decode("utf8"))
 
             # generate the cert subject string
             subject = self._generate_subject_str_from_request(request_params)
@@ -448,7 +449,7 @@ class GenerateCertHandler(_BaseCertHandler):
             config_out = self._updateconfig_file()
 
             # build the zip file in memory that is sent back to the caller
-            in_memory_output_file = StringIO()
+            in_memory_output_file = BytesIO()
             zip_file = ZipFile(in_memory_output_file, mode='w')
 
             broker_ca_bundle_file = self._module.broker_ca_bundle_file
@@ -464,7 +465,7 @@ class GenerateCertHandler(_BaseCertHandler):
                 zip_file.write(broker_ca_bundle_file,
                                arcname=CertificateModule.ZIP_BROKER_CA_BUNDLE_FILE_NAME)
                 logger.debug("Adding DXL Config file to zip")
-                zip_file.writestr(CertificateModule.DXL_CONFIG_FILE_NAME, config_out)
+                zip_file.writestr(CertificateModule.DXL_CONFIG_FILE_NAME, config_out.encode("utf8"))
             finally:
                 zip_file.close()  # have to close before we read the contents
 
@@ -568,8 +569,7 @@ class ProvisionManagementServiceHandler(_BaseCertHandler):
             temp_cert_file = NamedTemporaryFile('wb', delete=False)
 
             with open(temp_csr_file.name, 'w') as csr_file:
-                csr_file.write(
-                    csr_string.encode('utf8'))  # do we need to encode??
+                csr_file.write(csr_string)
             #
             # generate the cert with the subject string using the temp files above
             self._create_client_cert(temp_csr_file, temp_cert_file)
