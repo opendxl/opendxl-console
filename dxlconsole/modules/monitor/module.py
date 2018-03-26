@@ -292,6 +292,15 @@ class MonitorModule(Module):
             with self._client_dict_lock:
                 self._client_dict[client_id] = (self._client_dict[client_id][0], datetime.datetime.now())
 
+    @property
+    def io_loop(self):
+        """
+        Returns the Tornado IOLoop that the web console uses
+
+        :return: The Tornado IOLoop instance
+        """
+        return self.app.io_loop
+
     def add_web_socket(self, client_id, web_socket):
         """
         Stores a web socket associated with the given client id
@@ -320,7 +329,9 @@ class MonitorModule(Module):
         with self._web_socket_dict_lock:
             for key in self._web_socket_dict:
                 try:
-                    IOLoop.current().add_callback(self._web_socket_dict[key].write_message, u"serviceUpdates")
+                    self.io_loop.add_callback(
+                        self._web_socket_dict[key].write_message,
+                        u"serviceUpdates")
                 except:
                     pass
 

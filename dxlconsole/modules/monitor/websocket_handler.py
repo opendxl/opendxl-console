@@ -1,7 +1,6 @@
 import logging
 import tornado
 from dxlclient import EventCallback, ResponseCallback
-from tornado.ioloop import IOLoop
 from tornado.websocket import WebSocketHandler
 
 logger = logging.getLogger(__name__)
@@ -26,7 +25,8 @@ class _WebSocketEventCallback(EventCallback):
         """
         logger.debug("Received event on topic: " + event.destination_topic)
         self._module.queue_message(event, self._socket._client_id)
-        IOLoop.current().add_callback(self._socket.write_message, u"messagesPending")
+        self._module.io_loop.add_callback(self._socket.write_message,
+                                          u"messagesPending")
 
 
 class _WebSocketResponseCallback(ResponseCallback):
@@ -46,9 +46,11 @@ class _WebSocketResponseCallback(ResponseCallback):
 
         :param response: the incoming response
         """
-        logger.debug("Received response to message: " + response.request_message_id)
+        logger.debug(
+            "Received response to message: " + response.request_message_id)
         self._module.queue_message(response, self._socket._client_id)
-        IOLoop.current().add_callback(self._socket.write_message, u"messagesPending")
+        self._module.io_loop.add_callback(self._socket.write_message,
+                                          u"messagesPending")
 
 
 class ConsoleWebSocketHandler(WebSocketHandler):
