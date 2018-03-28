@@ -1,5 +1,5 @@
-dxlconsole.modules.monitor.services_handler module
-==================================================
+dxlconsole.modules.monitor.services\_handler module
+===================================================
 
 .. automodule:: dxlconsole.modules.monitor.services_handler
     :members:

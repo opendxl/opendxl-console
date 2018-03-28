@@ -1,33 +1,21 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>dxlconsole.modules.certificates.module module &#8212; OpenDXL Console 0.1.2 documentation</title>
-    
+    <title>dxlconsole.modules.certificates.module module &#8212; OpenDXL Console 0.1.3 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.1.2',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" /> 
-  </head>
-  <body role="document">
+  </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -37,7 +25,7 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">OpenDXL Console 0.1.2 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">OpenDXL Console 0.1.3 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -51,7 +39,7 @@
 <dl class="class">
 <dt id="dxlconsole.modules.certificates.module.CertificateModule">
 <em class="property">class </em><code class="descclassname">dxlconsole.modules.certificates.module.</code><code class="descname">CertificateModule</code><span class="sig-paren">(</span><em>app</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.certificates.module.CertificateModule" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="dxlconsole.module.html#dxlconsole.module.Module" title="dxlconsole.module.Module"><code class="xref py py-class docutils literal"><span class="pre">dxlconsole.module.Module</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="dxlconsole.module.html#dxlconsole.module.Module" title="dxlconsole.module.Module"><code class="xref py py-class docutils literal notranslate"><span class="pre">dxlconsole.module.Module</span></code></a></p>
 <p>Module used to generate client certificates that are compatible with the OpenDXL broker</p>
 <p>Constructor parameters:</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -240,7 +228,7 @@
 <dl class="class">
 <dt id="dxlconsole.modules.certificates.module.CreateClientBundleManagementServiceHandler">
 <em class="property">class </em><code class="descclassname">dxlconsole.modules.certificates.module.</code><code class="descname">CreateClientBundleManagementServiceHandler</code><span class="sig-paren">(</span><em>application</em>, <em>request</em>, <em>module</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.certificates.module.CreateClientBundleManagementServiceHandler" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">dxlconsole.modules.certificates.module._BaseCertHandler</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dxlconsole.modules.certificates.module._BaseCertHandler</span></code></p>
 <p>This mimics the ePO service which is called by the Python client CLI updateconfig command
 The response is similar to the ePO remote command &quot;DxlClientMgmt.createClientCaBundle&quot;</p>
 <dl class="method">
@@ -272,7 +260,7 @@ CA certificates.</li>
 <dl class="class">
 <dt id="dxlconsole.modules.certificates.module.GenerateCertHandler">
 <em class="property">class </em><code class="descclassname">dxlconsole.modules.certificates.module.</code><code class="descname">GenerateCertHandler</code><span class="sig-paren">(</span><em>application</em>, <em>request</em>, <em>module</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.certificates.module.GenerateCertHandler" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">dxlconsole.modules.certificates.module._BaseCertHandler</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dxlconsole.modules.certificates.module._BaseCertHandler</span></code></p>
 <p>Handles post request to generate certs with the provided subject parameters</p>
 <dl class="method">
 <dt id="dxlconsole.modules.certificates.module.GenerateCertHandler.data_received">
@@ -299,7 +287,7 @@ CA certificates.</li>
 <dl class="class">
 <dt id="dxlconsole.modules.certificates.module.GetBrokerListManagementServiceHandler">
 <em class="property">class </em><code class="descclassname">dxlconsole.modules.certificates.module.</code><code class="descname">GetBrokerListManagementServiceHandler</code><span class="sig-paren">(</span><em>application</em>, <em>request</em>, <em>module</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.certificates.module.GetBrokerListManagementServiceHandler" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">dxlconsole.modules.certificates.module._BaseCertHandler</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dxlconsole.modules.certificates.module._BaseCertHandler</span></code></p>
 <p>This mimics the ePO service which is called by the Python client CLI updateconfig command
 The response is similar to the ePO remote command &quot;DxlClientMgmt.getBrokerList&quot;</p>
 <dl class="method">
@@ -316,7 +304,7 @@ like the following:</p>
 <li><p class="first">A JSON-encoded string with a double-quote character at the beginning
 and end. The string should contain a JSON document which looks similar
 to the following</p>
-<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;brokers&quot;</span><span class="p">:</span> <span class="p">[</span>
       <span class="p">{</span>
           <span class="nt">&quot;guid&quot;</span><span class="p">:</span> <span class="s2">&quot;{2c5b107c-7f51-11e7-0ebf-0800271cfa58}&quot;</span><span class="p">,</span>
@@ -352,7 +340,7 @@ to the following</p>
 <dl class="class">
 <dt id="dxlconsole.modules.certificates.module.ProvisionManagementServiceHandler">
 <em class="property">class </em><code class="descclassname">dxlconsole.modules.certificates.module.</code><code class="descname">ProvisionManagementServiceHandler</code><span class="sig-paren">(</span><em>application</em>, <em>request</em>, <em>module</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.certificates.module.ProvisionManagementServiceHandler" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">dxlconsole.modules.certificates.module._BaseCertHandler</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dxlconsole.modules.certificates.module._BaseCertHandler</span></code></p>
 <p>This mimics the ePO service which is called by the Python client CLI provisionconfig command
 The response is similar to the ePO remote command &quot;DxlBrokerMgmt.generateOpenDXLClientProvisioningPackageCmd&quot;</p>
 <dl class="method">
@@ -408,12 +396,14 @@ example:'[guid1]=[guid1];8883;broker;10.10.1.1&lt;newline&gt;[guid2]=[guid2]...'
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -429,12 +419,12 @@ example:'[guid1]=[guid1];8883;broker;10.10.1.1&lt;newline&gt;[guid2]=[guid2]...'
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">OpenDXL Console 0.1.2 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">OpenDXL Console 0.1.3 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, McAfee LLC.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.2.
     </div>
   </body>
 </html>

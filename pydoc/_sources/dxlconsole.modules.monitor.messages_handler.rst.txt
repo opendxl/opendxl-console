@@ -1,5 +1,5 @@
-dxlconsole.modules.monitor.messages_handler module
-==================================================
+dxlconsole.modules.monitor.messages\_handler module
+===================================================
 
 .. automodule:: dxlconsole.modules.monitor.messages_handler
     :members:

@@ -1,5 +1,5 @@
-dxlconsole.modules.monitor.websocket_handler module
-===================================================
+dxlconsole.modules.monitor.websocket\_handler module
+====================================================
 
 .. automodule:: dxlconsole.modules.monitor.websocket_handler
     :members:

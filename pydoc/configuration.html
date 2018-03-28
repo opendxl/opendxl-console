@@ -1,26 +1,15 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>Configuration &#8212; OpenDXL Console 0.1.2 documentation</title>
-    
+    <title>Configuration &#8212; OpenDXL Console 0.1.3 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.1.2',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
@@ -28,8 +17,7 @@
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Running" href="running.html" />
     <link rel="prev" title="Installation" href="installation.html" /> 
-  </head>
-  <body role="document">
+  </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -45,7 +33,7 @@
         <li class="right" >
           <a href="installation.html" title="Installation"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">OpenDXL Console 0.1.2 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">OpenDXL Console 0.1.3 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -57,12 +45,12 @@
   <div class="section" id="configuration">
 <h1>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h1>
 <p>The OpenDXL Console requires a set of configuration files to operate.</p>
-<p>This distribution contains a <code class="docutils literal"><span class="pre">config</span></code> sub-directory that includes the configuration files that must
+<p>This distribution contains a <code class="docutils literal notranslate"><span class="pre">config</span></code> sub-directory that includes the configuration files that must
 be populated prior to running the console.</p>
 <p>Each of these files are documented throughout the remained of this page.</p>
 <p>Console configuration directory:</p>
 <blockquote>
-<div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">config</span><span class="o">/</span>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">config</span><span class="o">/</span>
     <span class="n">dxlclient</span><span class="o">.</span><span class="n">config</span>
     <span class="n">dxlconsole</span><span class="o">.</span><span class="n">config</span>
     <span class="n">logging</span><span class="o">.</span><span class="n">config</span> <span class="p">(</span><span class="n">optional</span><span class="p">)</span>
@@ -72,14 +60,14 @@ be populated prior to running the console.</p>
 <div class="section" id="dxl-client-configuration-file-dxlclient-config">
 <span id="dxl-client-config-file-label"></span><h2>DXL Client Configuration File (dxlclient.config)<a class="headerlink" href="#dxl-client-configuration-file-dxlclient-config" title="Permalink to this headline">¶</a></h2>
 <blockquote>
-<div><p>The required <code class="docutils literal"><span class="pre">dxlclient.config</span></code> file is used to configure the DXL client that will connect to the DXL fabric.</p>
+<div><p>The required <code class="docutils literal notranslate"><span class="pre">dxlclient.config</span></code> file is used to configure the DXL client that will connect to the DXL fabric.</p>
 <p>The steps to populate this configuration file are the same as those documented in the <cite>OpenDXL Python
 SDK</cite>, see the
 <a class="reference external" href="https://opendxl.github.io/opendxl-client-python/pydoc/sampleconfig.html">OpenDXL Python SDK Samples Configuration</a>
 page for more information.</p>
 <p>The following is an example of a populated DXL client configuration file:</p>
 <blockquote>
-<div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Certs</span><span class="p">]</span>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Certs</span><span class="p">]</span>
 <span class="n">BrokerCertChain</span><span class="o">=</span><span class="n">c</span><span class="p">:</span>\\<span class="n">certificates</span>\\<span class="n">brokercerts</span><span class="o">.</span><span class="n">crt</span>
 <span class="n">CertFile</span><span class="o">=</span><span class="n">c</span><span class="p">:</span>\\<span class="n">certificates</span>\\<span class="n">client</span><span class="o">.</span><span class="n">crt</span>
 <span class="n">PrivateKey</span><span class="o">=</span><span class="n">c</span><span class="p">:</span>\\<span class="n">certificates</span>\\<span class="n">client</span><span class="o">.</span><span class="n">key</span>
@@ -95,10 +83,10 @@ page for more information.</p>
 <div class="section" id="opendxl-console-dxlconsole-config">
 <span id="dxl-console-config-file-label"></span><h2>OpenDXL Console (dxlconsole.config)<a class="headerlink" href="#opendxl-console-dxlconsole-config" title="Permalink to this headline">¶</a></h2>
 <blockquote>
-<div><p>The required <code class="docutils literal"><span class="pre">dxlconsole.config</span></code> file is used to configure the console.</p>
+<div><p>The required <code class="docutils literal notranslate"><span class="pre">dxlconsole.config</span></code> file is used to configure the console.</p>
 <p>The following is an example of a populated console configuration file:</p>
 <blockquote>
-<div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">General</span><span class="p">]</span>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">General</span><span class="p">]</span>
 
 <span class="c1"># The user name for the console</span>
 <span class="n">username</span><span class="o">=</span><span class="n">admin</span>
@@ -113,7 +101,7 @@ page for more information.</p>
 </div></blockquote>
 <p><strong>General</strong></p>
 <blockquote>
-<div><p>The <code class="docutils literal"><span class="pre">General</span></code> section contains the following properties:</p>
+<div><p>The <code class="docutils literal notranslate"><span class="pre">General</span></code> section contains the following properties:</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="24%" />
@@ -130,17 +118,17 @@ page for more information.</p>
 <tr class="row-even"><td>username</td>
 <td>yes</td>
 <td>The user name required to login to the console.
-Defaults to <code class="docutils literal"><span class="pre">admin</span></code>.</td>
+Defaults to <code class="docutils literal notranslate"><span class="pre">admin</span></code>.</td>
 </tr>
 <tr class="row-odd"><td>password</td>
 <td>yes</td>
 <td>The password required to login to the console.
-Defaults to <code class="docutils literal"><span class="pre">password</span></code>.</td>
+Defaults to <code class="docutils literal notranslate"><span class="pre">password</span></code>.</td>
 </tr>
 <tr class="row-even"><td>port</td>
 <td>yes</td>
 <td>The port for the console.
-Defaults to <code class="docutils literal"><span class="pre">8443</span></code>.</td>
+Defaults to <code class="docutils literal notranslate"><span class="pre">8443</span></code>.</td>
 </tr>
 </tbody>
 </table>
@@ -150,7 +138,7 @@ Defaults to <code class="docutils literal"><span class="pre">8443</span></code>.
 <div class="section" id="logging-file-logging-config">
 <h2>Logging File (logging.config)<a class="headerlink" href="#logging-file-logging-config" title="Permalink to this headline">¶</a></h2>
 <blockquote>
-<div>The optional <code class="docutils literal"><span class="pre">logging.config</span></code> file is used to configure how the console writes log messages.</div></blockquote>
+<div>The optional <code class="docutils literal notranslate"><span class="pre">logging.config</span></code> file is used to configure how the console writes log messages.</div></blockquote>
 </div>
 </div>
 
@@ -185,12 +173,14 @@ Defaults to <code class="docutils literal"><span class="pre">8443</span></code>.
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -212,12 +202,12 @@ Defaults to <code class="docutils literal"><span class="pre">8443</span></code>.
         <li class="right" >
           <a href="installation.html" title="Installation"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">OpenDXL Console 0.1.2 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">OpenDXL Console 0.1.3 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, McAfee LLC.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.2.
     </div>
   </body>
 </html>

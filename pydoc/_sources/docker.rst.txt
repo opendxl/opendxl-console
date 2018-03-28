@@ -81,10 +81,12 @@ The final step is to create a Docker container based on the pulled image.
 
 The container can be created using the following Docker command:
 
-    :literal:`docker run -d --name dxlconsole -v <host-config-dir>:/opt/dxlconsole-config opendxl/opendxl-console:<release-version>`
+    :literal:`docker run -d --name dxlconsole -p <host-console-port>:8443 -v <host-config-dir>:/opt/dxlconsole-config opendxl/opendxl-console:<release-version>`
 
     The following parameters must be specified:
 
+        * ``host-console-port``
+          The port used to access the OpenDXL Console via the host system
         * ``host-config-dir``
           The directory on the host that contains the console configuration files
         * ``release-version``
@@ -94,7 +96,7 @@ For example:
 
     .. container:: note, admonition
 
-        docker run -d --name dxlconsole -v /home/myuser/dxlconsole-config:/opt/dxlconsole-config opendxl/opendxl-console:\ |version|\
+        docker run -d --name dxlconsole -p 8443:8443 -v /home/myuser/dxlconsole-config:/opt/dxlconsole-config opendxl/opendxl-console:\ |version|\
 
 **Note:** A restart policy can be specified via the restart flag (``--restart <policy>``). This flag can be used to restart
 the container when the system reboots or if the service terminates abnormally. The ``unless-stopped`` policy will

@@ -1,5 +1,5 @@
-dxlconsole.modules.monitor.subscriptions_handler module
-=======================================================
+dxlconsole.modules.monitor.subscriptions\_handler module
+========================================================
 
 .. automodule:: dxlconsole.modules.monitor.subscriptions_handler
     :members:
