@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import logging
 
 from dxlbootstrap.app import Application
@@ -44,19 +45,7 @@ class OpenDxlConsole(Application):
 
         :return: The console name (title)
         """
-        if self.local_broker:
-            return "OpenDXL Broker Console"
-        else:
-            return "OpenDXL Console"
-
-    @property
-    def config(self):
-        """
-        Returns the console configuration
-
-        :return: The console configuration
-        """
-        return self._config
+        return "OpenDXL Broker Console" if self.local_broker else "OpenDXL Console"
 
     @property
     def port(self):
@@ -131,7 +120,8 @@ class OpenDxlConsole(Application):
 
         # Port
         try:
-            self._port = int(config.get(self.GENERAL_CONFIG_SECTION, self.GENERAL_PORT_CONFIG_PROP))
+            self._port = int(config.get(self.GENERAL_CONFIG_SECTION,
+                                        self.GENERAL_PORT_CONFIG_PROP))
         except Exception:
             pass
         if not self._port:
@@ -140,13 +130,15 @@ class OpenDxlConsole(Application):
 
         # Local broker
         try:
-            self._local_broker = config.getboolean(self.GENERAL_CONFIG_SECTION, self.GENERAL_LOCAL_BROKER_PROP)
+            self._local_broker = config.getboolean(self.GENERAL_CONFIG_SECTION,
+                                                   self.GENERAL_LOCAL_BROKER_PROP)
         except Exception:
             pass
 
         # Username
         try:
-            self._username = config.get(self.GENERAL_CONFIG_SECTION, self.GENERAL_USERNAME_PROP)
+            self._username = config.get(self.GENERAL_CONFIG_SECTION,
+                                        self.GENERAL_USERNAME_PROP)
         except Exception:
             pass
         if not self._username:
@@ -155,7 +147,8 @@ class OpenDxlConsole(Application):
 
         # Password
         try:
-            self._password = config.get(self.GENERAL_CONFIG_SECTION, self.GENERAL_PASSWORD_PROP)
+            self._password = config.get(self.GENERAL_CONFIG_SECTION,
+                                        self.GENERAL_PASSWORD_PROP)
         except Exception:
             pass
         if not self._password:

@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import json
 
 import logging
@@ -21,7 +22,7 @@ class ServiceUpdateHandler(BaseRequestHandler):
         pass
 
     @tornado.web.authenticated
-    def get(self):
+    def get(self, *args, **kwargs):
 
         # We're only ever one level deep so if a parent is specified return an empty response
         if self.get_query_argument("parentId", "null") != "null":
@@ -32,9 +33,9 @@ class ServiceUpdateHandler(BaseRequestHandler):
 
         response = response_wrapper["response"]
 
-        for serviceGuid in self._module.services:
-            service = self._module.services[serviceGuid]
-            logger.debug("Adding service, serviceGuid: " + serviceGuid)
+        for service_guid in self._module.services:
+            service = self._module.services[service_guid]
+            logger.debug("Adding service, serviceGuid: %s", service_guid)
             entry = {"itemId": service.get("serviceGuid"),
                      "itemName": service.get("serviceType"),
                      "serviceType": service.get("serviceType"),
@@ -47,7 +48,8 @@ class ServiceUpdateHandler(BaseRequestHandler):
                      "requestChannels": service.get("requestChannels"),
                      "brokerGuid": service.get("brokerGuid"),
                      "local": service.get("local"),
-                     "metaData": "<pre><code>" + json.dumps(service.get("metaData"), indent=4, sort_keys=True) +
+                     "metaData": "<pre><code>" + json.dumps(
+                         service.get("metaData"), indent=4, sort_keys=True) +
                                  "</code></pre>"}
             response["data"].append(entry)
 

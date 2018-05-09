@@ -10,7 +10,8 @@ Prerequisites
 * The OpenDXL Python Client prerequisites must be satisfied
    `<https://opendxl.github.io/opendxl-client-python/pydoc/installation.html>`_
 
-* Python 2.7.9 or higher installed within a Windows or Linux environment (Python 3 is not supported at this time)
+* Python 2.7.9 or higher in the Python 2.x series or Python 3.4.0 or higher
+  in the Python 3.x series installed within a Windows or Linux environment.
 
 Installation
 ************
@@ -21,7 +22,7 @@ Use ``pip`` to automatically install the library:
 
     .. parsed-literal::
 
-        pip install dxlconsole-\ |version|\-py2.7-none-any.whl
+        pip install dxlconsole-\ |version|\-py2.py3-none-any.whl
 
 Or with:
 

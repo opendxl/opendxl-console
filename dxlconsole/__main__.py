@@ -1,3 +1,5 @@
+from __future__ import absolute_import
+from __future__ import print_function
 import logging
 from logging.config import fileConfig
 
@@ -23,7 +25,7 @@ def signal_handler(signum, frame):
     :param frame: The frame
     """
     del signum, frame
-    global running, run_condition
+    global running, run_condition # pylint: disable=global-statement
     with run_condition:
         if running:
             # Stop the application
@@ -38,7 +40,7 @@ signal.signal(signal.SIGINT, signal_handler)
 
 # Validate command line
 if len(sys.argv) != 2:
-    print "Usage: dxlconsole <configuration files directory>"
+    print("Usage: dxlconsole <configuration files directory>")
     sys.exit(1)
 
 #
@@ -76,6 +78,6 @@ with OpenDxlConsole(sys.argv[1]) as app:
 
     except KeyboardInterrupt:
         pass
-    except:
+    except: # pylint: disable=bare-except
         logger.exception("Error occurred, exiting")
         sys.exit(1)

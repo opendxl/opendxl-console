@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import json
 
 import logging
@@ -21,11 +22,12 @@ class SubscriptionsHandler(BaseRequestHandler):
         pass
 
     @tornado.web.authenticated
-    def get(self):
+    def get(self, *args, **kwargs):
         client_id = self.get_query_argument("clientId")
 
         if client_id == "null":
-            self.write(self._module.create_smartclient_error_response("No client ID sent with request."))
+            self.write(self._module.create_smartclient_error_response(
+                "No client ID sent with request."))
             return
 
         client = self._module.get_dxl_client(str(client_id))
@@ -52,5 +54,6 @@ class SubscriptionsHandler(BaseRequestHandler):
             response["endRow"] = len(client.subscriptions) - 1
             response["totalRows"] = len(client.subscriptions) - 1
 
-        logger.debug("Subscription handler response: " + json.dumps(response_wrapper))
+        logger.debug(
+            "Subscription handler response: %s", json.dumps(response_wrapper))
         self.write(response_wrapper)

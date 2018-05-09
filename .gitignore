@@ -1,3 +1,5 @@
-dist
 MANIFEST
+dist/
 *.pyc
+build/
+dxlconsole.egg-info/

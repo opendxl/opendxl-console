@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 
+from __future__ import absolute_import
 import sys
 import os
 
@@ -63,4 +64,3 @@ autoclass_content = 'both'
 modindex_common_prefix = ['dxlconsole.']
 
 html_use_smartypants = False
-
