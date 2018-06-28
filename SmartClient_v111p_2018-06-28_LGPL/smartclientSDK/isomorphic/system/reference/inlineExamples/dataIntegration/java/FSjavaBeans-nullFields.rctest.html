@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>FSjavaBeans-nullFields.rctest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">FSjavaBeans-nullFields.rctest</td></tr>
+</thead><tbody>
+<tr>
+	<td>exampleOpen</td>
+	<td>smartclient</td>
+	<td>FSjavaBeans</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=22||itemName=Account%20Book%20168%20Page%20Hardcover%20A4%20Minute||description=Sewn%20Sections%2C%20168%20Page%2C%20A4%20Size%2C%20Cased%20in%20Hard%20Red%20Cover%2C%20Gold%20Blocked.||0]/col[fieldName=description||2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=22||itemName=Account%20Book%20168%20Page%20Hardcover%20A4%20Minute||description=Sewn%20Sections%2C%20168%20Page%2C%20A4%20Size%2C%20Cased%20in%20Hard%20Red%20Cover%2C%20Gold%20Blocked.||0]/col[fieldName=description||2]</td>
+	<td>Sewn*</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=26||itemName=Account%20Book%20168%20Page%20Hardcover%20A4%20Feint||4]/col[fieldName=description||2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var value = selenium.getAutWindow().isc.AutoTest.getValue(&quot;//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=26||itemName=Account%20Book%20168%20Page%20Hardcover%20A4%20Feint||4]/col[fieldName=description||2]&quot;); value === null;</td>
+	<td>true</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

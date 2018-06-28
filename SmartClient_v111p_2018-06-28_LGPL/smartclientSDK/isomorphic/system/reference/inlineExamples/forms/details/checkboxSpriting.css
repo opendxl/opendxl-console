@@ -1,0 +1,30 @@
+.customCheckboxTitleDisabled,
+.customCheckboxTitle {
+    font-size: 14px;
+}
+.customCheckboxTitleDisabled {
+    color: #aaa;
+}
+
+.customCheckboxFalseDisabled,
+.customCheckboxFalse,
+.customCheckboxFalseOver,
+.customCheckboxFalseDown,
+.customCheckboxTrueDisabled,
+.customCheckboxTrue,
+.customCheckboxTrueOver,
+.customCheckboxTrueDown {
+    background-size: auto;
+    background-image: url(checkboxImages/sprite.png);
+    background-repeat: no-repeat;
+}
+
+.customCheckboxFalseDisabled { background-position: 0px 0px; }
+.customCheckboxFalse { background-position: -20px 0px; }
+.customCheckboxFalseOver { background-position: -40px 0px; }
+.customCheckboxFalseDown { background-position: -60px 0px; }
+
+.customCheckboxTrueDisabled { background-position: 0px -20px; }
+.customCheckboxTrue { background-position: -20px -20px; }
+.customCheckboxTrueOver { background-position: -40px -20px; }
+.customCheckboxTrueDown { background-position: -60px -20px; }

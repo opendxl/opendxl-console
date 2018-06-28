@@ -1,0 +1,6 @@
+<DataSource ID="customTypes">
+    <fields>
+        <field name="zipCode" title="Zip Code" type="zipCodeUS"/>
+    </fields>
+</DataSource>
+    

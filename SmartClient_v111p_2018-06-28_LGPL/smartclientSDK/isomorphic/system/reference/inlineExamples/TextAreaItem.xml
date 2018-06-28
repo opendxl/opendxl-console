@@ -1,0 +1,5 @@
+<DynamicForm width="300">
+    <fields>
+        <field title="Description" type="textArea"/>
+    </fields>
+</DynamicForm>

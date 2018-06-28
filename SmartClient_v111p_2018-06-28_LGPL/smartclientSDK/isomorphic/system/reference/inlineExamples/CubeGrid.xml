@@ -1,0 +1,147 @@
+<CubeGrid width="640" height="400" canSortData="false" canSortFacets="false" canCloseColumns="false">
+    <facets>
+        <facet id="quarter" title="Quarter">
+            <values>
+                <value id="Q1" title="Quarter 1, 2002" align="left"/>
+            </values>
+        </facet>
+        <facet id="month" title="Month" align="left">
+            <values>
+                <value id="jan" title="January"/>
+                <value id="feb" title="February"/>
+                <value id="mar" title="March"/>
+            </values>
+        </facet>
+        <facet id="region" title="Region">
+            <values>
+                <value id="west" title="Western U.S."/>
+                <value id="midwest" title="Midwest U.S."/>
+                <value id="east" title="Eastern U.S."/>
+            </values>
+        </facet>
+        <facet id="product" title="Product">
+            <values>
+                <value id="chairs" title="Office Chairs"/>
+                <value id="pens" title="Pens"/>
+                <value id="monitors" title="LCD Monitors"/>
+            </values>
+        </facet>
+        <facet id="metric" title="Metric">
+            <values>
+                <value id="rev" title="Revenue" width="80" align="center"/>
+                <value id="profit" title="Profit" width="65" align="center"/>
+            </values>
+        </facet>
+    </facets>
+
+
+    <facetValueGroups>
+        <facetValueGroup id="months">
+            <fields>
+                <field id="jan" facetValueGroup="metrics"/>
+                <field id="feb" facetValueGroup="metrics"/>
+                <field id="mar" facetValueGroup="metrics"/>
+            </fields>
+        </facetValueGroup>
+        <facetValueGroup id="metrics">
+            <fields>
+                <field>rev</field>
+                <field>profit></field>
+            </fields>
+        </facetValueGroup>
+        <facetValueGroup id="products">
+            <fields>
+                <field>pens</field>
+                <field>chairs</field>
+                <field>monitors</field>
+            </fields>
+        </facetValueGroup>
+    </facetValueGroups>
+
+    <columnFacets>
+        <columnFacet>quarter</columnFacet>
+        <columnFacet>month</columnFacet>
+        <columnFacet>metric</columnFacet>
+    </columnFacets>
+    
+    <rowFacets>
+        <rowFacet>region</rowFacet>
+        <rowFacet>product</rowFacet>
+    </rowFacets>
+
+    <data>
+        <record quarter="Q1" month="jan" region="west" product="pens" metric="rev" _value="$10k"/>
+        <record quarter="Q1" month="jan" region="west" product="chairs" metric="rev" _value="$50k"/>
+        <record quarter="Q1" month="jan" region="west" product="monitors" metric="rev" _value="$120k"/>
+
+        <record quarter="Q1" month="jan" region="west" product="pens" metric="profit" _value="$2k"/>
+        <record quarter="Q1" month="jan" region="west" product="chairs" metric="profit" _value="$5k"/>
+        <record quarter="Q1" month="jan" region="west" product="monitors" metric="profit" _value="$44k"/>
+
+        <record quarter="Q1" month="jan" region="midwest" product="pens" metric="rev" _value="$8k"/>
+        <record quarter="Q1" month="jan" region="midwest" product="chairs" metric="rev" _value="$22k"/>
+        <record quarter="Q1" month="jan" region="midwest" product="monitors" metric="rev" _value="$20k"/>
+
+        <record quarter="Q1" month="jan" region="midwest" product="pens" metric="profit" _value="$2k"/>
+        <record quarter="Q1" month="jan" region="midwest" product="chairs" metric="profit" _value="$2k"/>
+        <record quarter="Q1" month="jan" region="midwest" product="monitors" metric="profit" _value="$5k"/>
+
+        <record quarter="Q1" month="jan" region="east" product="pens" metric="rev" _value="$22k"/>
+        <record quarter="Q1" month="jan" region="east" product="chairs" metric="rev" _value="$40k"/>
+        <record quarter="Q1" month="jan" region="east" product="monitors" metric="rev" _value="$105k"/>
+
+        <record quarter="Q1" month="jan" region="east" product="pens" metric="profit" _value="$4k"/>
+        <record quarter="Q1" month="jan" region="east" product="chairs" metric="profit" _value="$4k"/>
+        <record quarter="Q1" month="jan" region="east" product="monitors" metric="profit" _value="$25k"/>
+
+
+        <record quarter="Q1" month="feb" region="west" product="pens" metric="rev" _value="$12k"/>
+        <record quarter="Q1" month="feb" region="west" product="chairs" metric="rev" _value="$42k"/>
+        <record quarter="Q1" month="feb" region="west" product="monitors" metric="rev" _value="$160k"/>
+
+        <record quarter="Q1" month="feb" region="west" product="pens" metric="profit" _value="$4k"/>
+        <record quarter="Q1" month="feb" region="west" product="chairs" metric="profit" _value="$4k"/>
+        <record quarter="Q1" month="feb" region="west" product="monitors" metric="profit" _value="$68k"/>
+
+        <record quarter="Q1" month="feb" region="midwest" product="pens" metric="rev" _value="$10k"/>
+        <record quarter="Q1" month="feb" region="midwest" product="chairs" metric="rev" _value="$12k"/>
+        <record quarter="Q1" month="feb" region="midwest" product="monitors" metric="rev" _value="$75k"/>
+
+        <record quarter="Q1" month="feb" region="midwest" product="pens" metric="profit" _value="$3k"/>
+        <record quarter="Q1" month="feb" region="midwest" product="chairs" metric="profit" _value="$1k"/>
+        <record quarter="Q1" month="feb" region="midwest" product="monitors" metric="profit" _value="$32k"/>
+
+        <record quarter="Q1" month="feb" region="east" product="pens" metric="rev" _value="$31k"/>
+        <record quarter="Q1" month="feb" region="east" product="chairs" metric="rev" _value="$35k"/>
+        <record quarter="Q1" month="feb" region="east" product="monitors" metric="rev" _value="$164k"/>
+
+        <record quarter="Q1" month="feb" region="east" product="pens" metric="profit" _value="$8k"/>
+        <record quarter="Q1" month="feb" region="east" product="chairs" metric="profit" _value="$4k"/>
+        <record quarter="Q1" month="feb" region="east" product="monitors" metric="profit" _value="$88k"/>
+
+
+        <record quarter="Q1" month="mar" region="west" product="pens" metric="rev" _value="$18k"/>
+        <record quarter="Q1" month="mar" region="west" product="chairs" metric="rev" _value="$25k"/>
+        <record quarter="Q1" month="mar" region="west" product="monitors" metric="rev" _value="$220k"/>
+
+        <record quarter="Q1" month="mar" region="west" product="pens" metric="profit" _value="$9k"/>
+        <record quarter="Q1" month="mar" region="west" product="chairs" metric="profit" _value="$2k"/>
+        <record quarter="Q1" month="mar" region="west" product="monitors" metric="profit" _value="$112k"/>
+
+        <record quarter="Q1" month="mar" region="midwest" product="pens" metric="rev" _value="$7k"/>
+        <record quarter="Q1" month="mar" region="midwest" product="chairs" metric="rev" _value="$6k"/>
+        <record quarter="Q1" month="mar" region="midwest" product="monitors" metric="rev" _value="$135k"/>
+
+        <record quarter="Q1" month="mar" region="midwest" product="pens" metric="profit" _value="$2k"/>
+        <record quarter="Q1" month="mar" region="midwest" product="chairs" metric="profit" _value="$1k"/>
+        <record quarter="Q1" month="mar" region="midwest" product="monitors" metric="profit" _value="$66k"/>
+
+        <record quarter="Q1" month="mar" region="east" product="pens" metric="rev" _value="$44k"/>
+        <record quarter="Q1" month="mar" region="east" product="chairs" metric="rev" _value="$25k"/>
+        <record quarter="Q1" month="mar" region="east" product="monitors" metric="rev" _value="$190k"/>
+
+        <record quarter="Q1" month="mar" region="east" product="pens" metric="profit" _value="$20k"/>
+        <record quarter="Q1" month="mar" region="east" product="chairs" metric="profit" _value="$2k"/>
+        <record quarter="Q1" month="mar" region="east" product="monitors" metric="profit" _value="$115k"/>
+    </data>
+</CubeGrid>

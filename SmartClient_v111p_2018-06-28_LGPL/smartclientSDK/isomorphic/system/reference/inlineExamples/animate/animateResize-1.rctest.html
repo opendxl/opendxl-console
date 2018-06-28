@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/showcase/" />
+<title>animateResize-1.rctest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">animateResize-1.rctest</td></tr>
+</thead><tbody>
+<tr>
+	<td>exampleOpen</td>
+	<td>smartgwt</td>
+	<td>effects_animation_resize</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=HTMLFlow||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=article]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=HTMLFlow||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=article]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=HLayout||index=0||length=2||classIndex=0||classLength=1]/member[Class=IButton||index=0||length=2||classIndex=0||classLength=2||roleIndex=0||roleLength=2||title=Expand||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=HLayout||index=0||length=2||classIndex=0||classLength=1]/member[Class=IButton||index=0||length=2||classIndex=0||classLength=2||roleIndex=0||roleLength=2||title=Expand||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCanvasDone</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=HTMLFlow||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=article]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var myHtmlFlow = selenium.getAutWindow().isc.AutoTest.getObject(&quot;//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=HTMLFlow||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=article]/&quot;); myHtmlFlow.getWidth() &gt;= 310 &amp;&amp; myHtmlFlow.getWidth() &lt;= 315</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=HLayout||index=0||length=2||classIndex=0||classLength=1]/member[Class=IButton||index=1||length=2||classIndex=1||classLength=2||roleIndex=1||roleLength=2||title=Collapse||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=HLayout||index=0||length=2||classIndex=0||classLength=1]/member[Class=IButton||index=1||length=2||classIndex=1||classLength=2||roleIndex=1||roleLength=2||title=Collapse||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCanvasDone</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=HTMLFlow||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=article]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var myHtmlFlow = selenium.getAutWindow().isc.AutoTest.getObject(&quot;//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=HTMLFlow||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=article]/&quot;); myHtmlFlow.getWidth() &gt;= 75 &amp;&amp; myHtmlFlow.getWidth() &lt;= 80</td>
+	<td>true</td>
+</tr>
+</tbody></table>
+</body>
+</html>

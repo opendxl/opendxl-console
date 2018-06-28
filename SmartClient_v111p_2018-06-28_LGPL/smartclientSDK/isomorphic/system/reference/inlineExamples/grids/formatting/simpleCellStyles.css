@@ -1,0 +1,12 @@
+.simpleCell,
+.simpleCellSelected,
+.simpleCellOver,
+.simpleCellSelectedOver {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:#4f5b66;
+}
+
+.simpleCellDisabled {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:#808080;
+}

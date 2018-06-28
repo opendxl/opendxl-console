@@ -1,0 +1,9 @@
+<DataSource ID="sharedProjects" serverType="sql" dbName="vbTeam" ownerIdField="ownerId">
+    <fields>
+        <field name="id" primaryKey="true" type="sequence"/>
+        <field name="ownerId"/>
+        <field name="shareId"/>
+        <field name="parameters"/>
+        <field name="lastAccessed" type="modifierTimestamp"/>
+    </fields>
+</DataSource>

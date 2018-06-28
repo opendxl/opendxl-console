@@ -1,0 +1,536 @@
+<HTML xmlns:vml="urn:schemas-microsoft-com:vml">
+<HEAD><TITLE>SmartClient Drawing - www.isomorphic.com</TITLE>
+<SCRIPT>window.isomorphicDir='../../../../';</SCRIPT>
+<SCRIPT SRC=../../../modules/ISC_Core.js></SCRIPT>
+<SCRIPT SRC=../../../modules/ISC_Foundation.js></SCRIPT>
+<SCRIPT SRC=../../../modules/ISC_Containers.js></SCRIPT>
+<SCRIPT SRC=../../../modules/ISC_Grids.js></SCRIPT>
+<SCRIPT SRC=../../../modules/ISC_Forms.js></SCRIPT>
+<SCRIPT SRC=../../../modules/ISC_DataBinding.js></SCRIPT>
+<SCRIPT SRC=../../../modules/ISC_Drawing.js></SCRIPT>
+<SCRIPT SRC=../../../../skins/SmartClient/load_skin.js></SCRIPT>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+
+<style>
+.paneTitle {font-family:Arial; font-weight:bold; font-size:18px; color:#800000}
+.drawLabelText {font-family:Tahoma; font-weight:bold; font-size:18px; color:purple;}
+</style>
+<SCRIPT>
+
+isc.setAutoDraw(false);
+
+Page.setAppImgDir("drawcontrols/");
+
+isc.DrawPane.create({
+    ID:"dp1",
+    showEdges:true, 
+    edgeImage:"[SKIN]/rounded/frame/A3B2CC/4.png", edgeSize:4,
+    backgroundColor:"#E5F2FF",
+    width:600, height:300,
+    overflow:"hidden"
+});
+
+
+dp1.addProperties({
+    
+    //------------------------------------------------------------
+    //  helper functions to create shapes based on the slider/
+    //  picker control settings
+    //------------------------------------------------------------
+    makeLine : function (x1, y1, x2, y2, suppressArrows, drawGroup) {
+        var drawProps = drawProperties.getDrawItemProperties();
+        if (suppressArrows) drawProps.startArrow = drawProps.endArrow = null;
+        return isc.DrawLine.create({
+            drawPane: this,
+            drawGroup: drawGroup,
+            suppressLineArrows:suppressArrows,
+            startPoint: [x1,y1],
+            endPoint: [x2,y2],
+            autoDraw: true
+        }, drawProps)
+    },
+    
+    makeCurve : function (x1, y1, x2, y2, cx1, cy1, cx2, cy2, suppressFill, suppressArrows,
+                           drawGroup) {
+        var drawProps = drawProperties.getDrawItemProperties();
+        // suppress the line arrows on curves
+        if (suppressArrows) drawProps.startArrow = drawProps.endArrow = null;
+        if (suppressFill) drawProps.fillColor = null;
+        
+        return isc.DrawCurve.create({
+            drawPane: this,
+            drawGroup: drawGroup,
+            suppressLineArrows:suppressArrows,
+            suppressFillColor:suppressFill,
+            startPoint: [x1,y1],
+            endPoint: [x2,y2],
+            controlPoint1: [cx1,cy1],
+            controlPoint2: [cx2,cy2],
+            autoDraw: true
+        }, drawProps)
+    },
+    
+    
+    // Methods to draw shapes into this testPane
+    
+    //------------------------------------------------------------
+    //  drawCurve - draw a bezier with control points/lines
+    //------------------------------------------------------------
+    drawCurve : function () {
+        var x1 = Math.round(Math.random()*300) + 100,
+            y1 = Math.round(Math.random()*200) + 100,
+            x2 = Math.round(Math.random()*300) + 100,
+            y2 = Math.round(Math.random()*200) + 100,
+            cx1 = Math.round(Math.random()*300) + 100,
+            cy1 = Math.round(Math.random()*200) + 100,
+            cx2 = Math.round(Math.random()*300) + 100,
+            cy2 = Math.round(Math.random()*200) + 100;
+        
+        var newCurve = this.makeCurve(x1, y1, x2, y2, cx1, cy1, cx2, cy2, false, true);
+        newCurve.showKnobs(["move","startPoint", "endPoint", "controlPoint1", "controlPoint2"]);
+    },
+
+    //------------------------------------------------------------
+    //  drawText - draw a scaleable block of text
+    //------------------------------------------------------------
+    drawText : function () {
+        isc.DrawLabel.create({autoDraw:true, drawPane:this,
+            left:Math.round(Math.random()*200) + 100,
+            top:Math.round(Math.random()*200) + 100,
+            contents:"This is a scalable text label."
+        });
+    },
+    
+    //------------------------------------------------------------
+    //  drawImage - draw a scalable image
+    //------------------------------------------------------------
+    drawImage : function () {
+        isc.DrawImage.create({autoDraw:true, drawPane:this,
+            left:Math.round(Math.random()*200) + 100,
+            top:Math.round(Math.random()*200) + 100,
+            width:Math.round(Math.random()*80) + 20,
+            height:Math.round(Math.random()*80) + 20,
+            src:"cube.png"
+        });
+    },
+    
+    //------------------------------------------------------------
+    //  drawOval - draw an oval
+    //------------------------------------------------------------
+    drawOval : function () {
+        var drawProps = drawProperties.getDrawItemProperties();
+        var left = Math.round(Math.random()*200) + 100,
+            top = Math.round(Math.random()*200) + 100,
+            rx = Math.round(Math.random()*80) + 20,
+            ry = Math.round(Math.random()*80) + 20;
+        var oval = isc.DrawOval.create({autoDraw:true, drawPane:this,
+            centerPoint:[left,top],
+            moveKnobPoint:"C",
+            moveKnobOffset:[-20,-20],
+            knobs:["move", "resize"],
+            rx:rx,
+            ry:ry
+        }, drawProps);
+    },
+    
+    //------------------------------------------------------------
+    //  drawRect - draw a rectangle
+    //------------------------------------------------------------
+    drawRect : function () {
+        var drawProps = drawProperties.getDrawItemProperties();
+        var left = Math.round(Math.random()*200) + 100,
+            top = Math.round(Math.random()*200) + 100;
+        isc.DrawRect.create({autoDraw:true, drawPane:this,
+            left:left, 
+            top:top,
+            moveKnobPoint:"C",
+            moveKnobOffset:[-20,-20],
+            knobs:["move","resize"]
+        }, drawProps);
+    },
+    
+    //------------------------------------------------------------
+    //  drawConnector - draw a connector with control points
+    //------------------------------------------------------------
+    drawConnector : function () {
+        var x1 = Math.round(Math.random()*200) + 100,
+            y1 = Math.round(Math.random()*200) + 100,
+            x2 = Math.round(Math.random()*200) + 100,
+            y2 = Math.round(Math.random()*200) + 100;
+        // always start with the arrow pointing to the right
+        if (x1 > x2) {
+            var temp = x1;
+            x1 = x2;
+            x2 = temp;
+        }
+        
+        var drawProps = drawProperties.getDrawItemProperties();
+        
+        var lineArrows = drawProperties.getValue("lineArrows"),
+            startArrow = lineArrows == "start" || lineArrows == "both",
+            endArrow = lineArrows == "end" || lineArrows == "both";
+        
+        isc.addProperties(drawProps, {
+            startArrow:startArrow ? "open" : null,
+            endArrow:endArrow ? "open" : null,
+            fillColor:null,
+            suppressFillColor:true
+        });
+        
+        var newConnector = isc.DrawLinePath.create({
+            startPoint: [x1,y1],
+            endPoint: [x2,y2],
+            moveKnobPoint:"C",
+            moveKnobOffset:[-20,-20],
+            knobs:["move","startPoint", "endPoint"],
+            drawPane: this,
+            autoDraw: true
+        }, drawProps);
+    },
+      
+    //------------------------------------------------------------
+    //  drawCurveConnector - draw a curve-based connector with control points
+    //------------------------------------------------------------
+    drawCurveConnector : function () {
+        var x1 = Math.round(Math.random()*200) + 100,
+            y1 = Math.round(Math.random()*200) + 100,
+            x2 = Math.round(Math.random()*200) + 100,
+            y2 = Math.round(Math.random()*200) + 100,
+            cx1 = x2+30,
+            cy1 = y1,
+            cx2 = x1-30,
+            cy2 = y2;
+
+        
+        var newCurve = this.makeCurve(x1, y1, x2, y2, cx1, cy1, cx2, cy2, true, false);
+        newCurve.showKnobs(["move","startPoint", "endPoint"]);
+    },
+    
+    //------------------------------------------------------------
+    //  drawWeb - draw a web of DrawLines with control points
+    //  Note: In this example we explicitly create and configure DrawKnobs to provide
+    //  custom behavior rather than relying on the normal drawItem.knobs built in behaviors
+    //------------------------------------------------------------
+    drawWeb : function (numPoints) {
+        var centerX = 300;
+        var centerY = 250;
+        var radius = 150;
+        var fullCircle = 2*Math.PI;
+        
+        var centerLines = [], outerLines = [];
+        
+        for (var i=1, angle, x, y, newPoint; i<numPoints+1; i++) {
+            angle = i/numPoints * fullCircle;
+            x = Math.round((radius * Math.cos(angle))) + centerX;
+            y = Math.round((radius * Math.sin(angle))) + centerY;
+            
+            // draw the line from the center point out to the rim
+            var newLine = this.makeLine(centerX, centerY, x, y);
+            centerLines.add(newLine);
+        }
+        
+        // create a drawKnob controlling the startPoint of all the center lines at once
+        isc.DrawKnob.create({
+            x:centerX, y:centerY, drawPane:this, autoDraw:true,
+            startPointTargets:centerLines,
+            updatePoints:function (x,y,dX,dY) {
+                this.startPointTargets.callMethod("setStartPoint", x, y);
+                this.setCenterPoint(x,y, true);
+            }
+        });
+        
+        // add a ring of lines connecting the end points of the center lines
+        var firstOuterLine, prevLine, newLine;
+        for (var i = 0; i < centerLines.length; i++) {
+            var atEnd = i == centerLines.length-1,
+                startLine = centerLines[i],
+                endLine = atEnd ? centerLines[0] : centerLines[i+1];
+                
+            newLine = this.makeLine(startLine.endPoint[0], startLine.endPoint[1],
+                                         endLine.endPoint[0], endLine.endPoint[1]);
+            if (prevLine != null) {
+                 isc.DrawKnob.create({
+                    x:startLine.endPoint[0], y:startLine.endPoint[1], drawPane:this, autoDraw:true,
+                    startPointTarget:newLine,
+                    endPointTargets:[prevLine,startLine],
+                    updatePoints:function (x,y,dX,dY) {
+                        this.startPointTarget.setStartPoint(x,y);
+                        this.endPointTargets.callMethod("setEndPoint", x, y);
+                        this.setCenterPoint(x,y, true);                        
+                    }
+                });
+            } else {
+                firstOuterLine = newLine;
+            }
+            
+            // At the end, add a control point to manipulate the first and last line
+            if (atEnd) {
+                var firstCenterLine = centerLines[0];
+                isc.DrawKnob.create({
+                    x:firstCenterLine.endPoint[0], y:firstCenterLine.endPoint[1], drawPane:this, autoDraw:true,
+                    startPointTarget:firstOuterLine,
+                    endPointTargets:[newLine,firstCenterLine],
+                    updatePoints:function (x,y,dX,dY) {
+                        this.startPointTarget.setStartPoint(x,y);
+                        this.endPointTargets.callMethod("setEndPoint", x, y);
+                        this.setCenterPoint(x,y, true);
+                    }
+                });            
+            }
+            
+            prevLine = newLine;
+        }
+    }
+    
+});
+
+// UI Components
+
+//------------------------------------------------------------
+//  sliders & color pickers to control drawing properties
+//------------------------------------------------------------
+isc.ValuesManager.create({
+    ID:"drawProperties",
+    values:{
+        lineColor:"#000080",
+        lineOpacity:50,
+        lineWidth:2,
+        linePattern:"solid",
+        lineArrows:"end",
+        fillColor:"#FF0000",
+        fillOpacity:50
+    },
+    
+    // getDrawItemProperties() - convert the currently selected values to a config object we can
+    // apply to a new drawItem
+    getDrawItemProperties : function () {
+        var values = this.getValues();
+        return {
+            fillColor: values.fillColor,
+            fillOpacity: values.fillOpacity/100,
+            
+            lineColor: values.lineColor,
+            lineOpacity: values.lineOpacity/100,
+            lineWidth: values.lineWidth,
+            linePattern: values.linePattern,
+            
+            startArrow: ((values.lineArrows == "start" || values.lineArrows=="both") ?
+                        "block" : null),
+            endArrow: ((values.lineArrows == "end" || values.lineArrows=="both") ? 
+                        "block" : null)
+        }
+    },
+    
+    changeDrawingProperty : function (name, value, fillProperty) {
+        for (var i=0; i<dp1.drawItems.length; i++) {
+            var item = dp1.drawItems[i];
+            if (fillProperty && item.suppressFillColor) continue;
+            item.setProperty(name, value); 
+        }
+    },
+    
+    // setLineArrows - special function to call setStartArrow / setEndArrow
+    setLineArrows : function (value) {
+        var start = value == "start" || value == "both",
+            end = value == "end" || value == "both",
+            items = dp1.drawItems;
+            
+        for (var i = 0; i < items.length; i++) {
+            var item = items[i];
+            // not all drawItems support start / endArrow APIs - skip those that don't
+            if (!item.setStartArrow || !item.setEndArrow || item.suppressLineArrows) continue;
+            
+            item.setStartArrow(start ? (isc.isA.DrawLinePath(item) ? "open" : "block") : null);
+            item.setEndArrow(end ? (isc.isA.DrawLinePath(item) ? "open" : "block") : null);
+        }
+    }
+});
+
+isc.DynamicForm.create({
+    ID:"linePropsForm", valuesManager:"drawProperties",
+    numCols:7,
+    titleWidth:80,
+    // cellPadding:4, cellSpacing:0, 
+    titlePrefix:"", titleSuffix:"&nbsp;",
+    isGroup:true,
+    groupTitle:"Line Properties",
+    
+    fields:[
+            
+        {name:"lineColor", showTitle:true, title:"Color", width:90,
+            type:"color",
+            change:"form.changeDrawingProperty('lineColor', value)"
+            },
+
+        {name:"lineOpacity", title:"Opacity", prompt:"Slide to set line opacity",
+            editorType:"SliderItem", width:80, height:50, 
+            minValue:0, maxValue:100, numValues:11, startRow:false,
+            change:"form.changeDrawingProperty('lineOpacity', value/100)"
+            },
+        
+        {name:"lineWidth", showTitle:false, title:"Width", width:122,
+            valueMap:{
+                1:"1 "+isc.Canvas.imgHTML("lw1.png",106,13),
+                2:"2 "+isc.Canvas.imgHTML("lw2.png",106,13),
+                3:"3 "+isc.Canvas.imgHTML("lw3.png",106,13),
+                4:"4 "+isc.Canvas.imgHTML("lw4.png",106,13),
+                5:"5 "+isc.Canvas.imgHTML("lw5.png",106,13),
+                6:"6 "+isc.Canvas.imgHTML("lw6.png",106,13),
+                7:"7 "+isc.Canvas.imgHTML("lw7.png",106,13),
+                8:"8 "+isc.Canvas.imgHTML("lw8.png",106,13),
+                9:"9 "+isc.Canvas.imgHTML("lw9.png",106,13),
+                10:"10 "+isc.Canvas.imgHTML("lw10.png",106,13)
+            },
+            change:"form.changeDrawingProperty('lineWidth', value)"
+            },
+
+        {name:"linePattern", showTitle:false, title:"Pattern", width:122,
+            valueMap:{
+                solid:isc.Canvas.imgHTML("lpSolid.png",106,13),
+                shortdot:isc.Canvas.imgHTML("lpShortDot.png",106,13),
+                shortdash:isc.Canvas.imgHTML("lpShortDash.png",106,13),
+                dot:isc.Canvas.imgHTML("lpDot.png",106,13),
+                dash:isc.Canvas.imgHTML("lpDash.png",106,13),
+                longdash:isc.Canvas.imgHTML("lpLongDash.png",106,13)
+            },
+            change:"form.changeDrawingProperty('linePattern', value)"
+            },
+        {name:"lineArrows", showTitle:false, title:"Arrows", width:122,
+            valueMap:{
+                none:isc.Canvas.imgHTML("laNone.png",88,13),
+                end:isc.Canvas.imgHTML("laEnd.png",88,13),
+                start:isc.Canvas.imgHTML("laStart.png",88,13),
+                both:isc.Canvas.imgHTML("laBoth.png",88,13)
+            },
+            change:"form.valuesManager.setLineArrows(value);"
+            }    
+    ],
+    
+    changeDrawingProperty : function (name, value) {
+        this.valuesManager.changeDrawingProperty(name,value);
+    }
+});
+
+isc.DynamicForm.create({
+    ID:"fillPropsForm", valuesManager:"drawProperties",
+    numCols:4,
+    titleWidth:80,
+    titlePrefix:"", titleSuffix:"&nbsp;",
+    isGroup:true,
+    groupTitle:"Fill Properties",
+    fields:[
+
+
+        {name:"fillColor", title:"Color", width:90,
+            type:"color",
+            change:"form.changeDrawingProperty('fillColor', value)"
+            },
+
+        {name:"fillOpacity", title:"Opacity", prompt:"Slide to set fill opacity",
+            editorType:"SliderItem", height:50, width:100,
+            minValue:0, maxValue:100, numValues:11,
+            change:"form.changeDrawingProperty('fillOpacity', value/100)"
+            }
+    ],
+    changeDrawingProperty : function (name, value) {
+        this.valuesManager.changeDrawingProperty(name,value,true);
+    }
+
+});
+
+isc.DynamicForm.create({
+    ID:"zoomForm", numCols:1, cellSpacing:0, cellPadding:0, 
+    width:50, height:250,
+    layoutAlign:"center",
+    fields:[
+        {type:"Header", defaultValue:"Zoom", textAlign:"center", height:40},
+        {name:"zoom", showTitle:false, editorType:"SliderItem", 
+         height:200, width:50,
+         vertical:true, minValue:-10, maxValue:10, numValues:21,
+         sliderProperties:{labelWidth:25},
+         defaultValue:0,
+         prompt:"Slide to adjust zoom level",
+         change : function (form,item,value) {
+            if (value >= 0) {
+                dp1.zoom(value + 1)
+            } else {            
+                dp1.zoom(-1/(value-1))
+            }
+         }
+        }
+    ]
+});
+
+isc.DynamicForm.create({
+    ID:"rotateForm", numCols:1, cellSpacing:0, cellPadding:0, 
+    width:50, height:250,
+    layoutAlign:"center",
+    fields:[
+        {type:"Header", defaultValue:"Rotate", textAlign:"center", height:40},
+        {name:"rotate", showTitle:false, editorType:"SliderItem", 
+         height:200, width:50,
+         vertical:true, minValue:0, maxValue:360, numValues:360,
+         sliderProperties:{labelWidth:25},
+         defaultValue:0,
+         prompt:"Slide to rotate group",
+         change : function (form,item,value) {
+           dp1.rotate(value);
+         }
+        }
+    ]
+});
+
+
+//------------------------------------------------------------
+//  Controls to create shapes
+//------------------------------------------------------------
+
+isc.DynamicForm.create({
+    ID:"controlForm",
+    padding:8,
+    numCols:4,
+    isGroup:true, groupTitle:"Create Shapes",
+    fields:[
+        { type:"toolbar", buttons:[
+            {title:"Curve", click:"dp1.drawCurve()"},
+            {title:"Oval", click:"dp1.drawOval()"},
+            {title:"Rectangle", click:"dp1.drawRect()"},
+            {title:"Connector", click:"dp1.drawConnector()"},
+            {title:"Curve Connector", click:"dp1.drawCurveConnector()"},
+            {title:"Text", click:"dp1.drawText()"},
+            {title:"Image", click:"dp1.drawImage()"}
+          ]
+        },
+        { type:"button", title:"Web", click:"dp1.drawWeb(form.getValue('webSize'))",
+          width:80,
+          endRow:false, colSpan:1},
+        { type:"slider", name:"webSize", showTitle:false, prompt:"Slide to adjust web size", 
+          defaultValue:10, minValue:5, maxValue:20,
+          width:100, height:30, startRow:false},
+        { type:"button", title:"Clear All", startRow:false, width:100, click:"dp1.erase()"}
+    ]
+});
+
+isc.VLayout.create({
+    ID:"pageLayout",
+    width:800, height:675, 
+    membersMargin:5, padding:5,
+    members:[
+isc.HLayout.create({
+            members:[
+                dp1,
+                zoomForm,
+                rotateForm
+            ]
+        }),   
+        linePropsForm,
+        fillPropsForm,
+        controlForm
+        
+    ],
+    autoDraw:true
+})
+
+</SCRIPT>
+</BODY></HTML>

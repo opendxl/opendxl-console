@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/" />
+<title>maskedTextItem-timeItemUseMask.rctest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">maskedTextItem-timeItemUseMask.rctest</td></tr>
+</thead><tbody>
+<tr>
+	<td>exampleOpen</td>
+	<td>smartgwt</td>
+	<td>form_masking</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=DynamicForm||index=0||length=1||classIndex=0||classLength=1]/item[name=timeItem||title=Time||index=6||Class=TimeItem]/item[name=timeTextField||title=Time||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=DynamicForm||index=0||length=1||classIndex=0||classLength=1]/item[name=timeItem||title=Time||index=6||Class=TimeItem]/item[name=timeTextField||title=Time||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementReadyForKeyPresses</td>
+	<td>scLocator=//testRoot[]/child[Class=DynamicForm||index=0||length=1||classIndex=0||classLength=1]/item[name=timeItem||title=Time||index=6||Class=TimeItem]/item[name=timeTextField||title=Time||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=DynamicForm||index=0||length=1||classIndex=0||classLength=1]/item[name=timeItem||title=Time||index=6||Class=TimeItem]/item[name=timeTextField||title=Time||index=0||Class=TextItem]/element</td>
+	<td>0721</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=DynamicForm||index=0||length=1||classIndex=0||classLength=1]/item[name=dateTimeItem||title=Date%20Time||index=5||Class=DateTimeItem]/item[name=dateTextField||title=Date%20Time||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=DynamicForm||index=0||length=1||classIndex=0||classLength=1]/item[name=dateTimeItem||title=Date%20Time||index=5||Class=DateTimeItem]/item[name=dateTextField||title=Date%20Time||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>!!(window.isc.AutoTest.getObject('scLocator=//testRoot[]/child[Class=DynamicForm||index=0||length=1||classIndex=0||classLength=1]/item[name=timeItem||title=Time||value=Wed Dec 31 1969 07:21:00 GMT-0500 (EST)||index=6||Class=TimeItem]/item[name=timeTextField||title=Time||value=Wed Dec 31 1969 07:21:00 GMT-0500 (EST)||index=0||Class=TextItem]/').hasFocus)</td>
+	<td>false</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>window.isc.AutoTest.getElement('scLocator=//testRoot[]/child[Class=DynamicForm||index=0||length=1||classIndex=0||classLength=1]/item[name=timeItem||title=Time||value=Wed Dec 31 1969 07:21:00 GMT-0500 (EST)||index=6||Class=TimeItem]/item[name=timeTextField||title=Time||value=Wed Dec 31 1969 07:21:00 GMT-0500 (EST)||index=0||Class=TextItem]/element').value</td>
+	<td>07:21</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

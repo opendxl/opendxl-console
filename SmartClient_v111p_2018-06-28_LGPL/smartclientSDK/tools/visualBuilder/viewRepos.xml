@@ -1,0 +1,12 @@
+<!-- list of Repos that Visual Builder can save forms to -->
+<Repos xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+<Repo name="fileSystem" title="File System" className="ViewRepo" isDefault="true" >
+</Repo>
+
+<!--
+<Repo name="dataSourceView" title="DataSource" className="DSViewRepo" >
+</Repo>
+-->
+
+</Repos>

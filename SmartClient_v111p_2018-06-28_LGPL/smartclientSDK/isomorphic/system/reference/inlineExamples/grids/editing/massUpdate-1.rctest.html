@@ -1,0 +1,936 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/" />
+<title>massUpdate-1.rctest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">massUpdate-1.rctest</td></tr>
+</thead><tbody>
+<tr>
+	<td>exampleOpen</td>
+	<td>smartgwt</td>
+	<td>grid_editing_mass_update</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/header/headerButton[fieldName=countryName]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var dataSource = selenium.browserbot.getCurrentWindow().isc.AutoTest.getLocatorCanvas(&quot;//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]&quot;).dataSource; dataSource.autoCacheAllData = true; dataSource.setClientOnly(true); true</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>var dataSource = selenium.browserbot.getCurrentWindow().isc.AutoTest.getLocatorCanvas(&quot;//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]&quot;).dataSource; dataSource.hasAllData()</td>
+	<td>5000</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/header/headerButton[fieldName=countryName]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=2||countryName=China||2]/col[fieldName=countryName||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=2||countryName=China||2]/col[fieldName=countryName||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=one||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=one||index=0||Class=TextItem]/element</td>
+	<td>one</td>
+</tr>
+<tr>
+	<td>waitForElementReadyForKeyPresses</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=one||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=one||index=0||Class=TextItem]/element</td>
+	<td>${KEY_DOWN}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=two||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=two||index=0||Class=TextItem]/element</td>
+	<td>two</td>
+</tr>
+<tr>
+	<td>waitForElementReadyForKeyPresses</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=two||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=two||index=0||Class=TextItem]/element</td>
+	<td>${KEY_DOWN}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=three||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=three||index=0||Class=TextItem]/element</td>
+	<td>three</td>
+</tr>
+<tr>
+	<td>waitForElementReadyForKeyPresses</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=three||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=three||index=0||Class=TextItem]/element</td>
+	<td>${KEY_DOWN}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=four||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=four||index=0||Class=TextItem]/element</td>
+	<td>four</td>
+</tr>
+<tr>
+	<td>waitForElementReadyForKeyPresses</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=four||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=four||index=0||Class=TextItem]/element</td>
+	<td>${KEY_TAB}</td>
+</tr>
+<tr>
+	<td>blur</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=four||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=continent||title=Continent||value=Asia||index=1||Class=SelectItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=continent||title=Continent||value=Asia||index=1||Class=SelectItem]/textbox</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=continent||title=Continent||value=Asia||index=1||Class=SelectItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=continent||title=Continent||value=Asia||index=1||Class=SelectItem]/textbox</td>
+	<td>${KEY_TAB}</td>
+</tr>
+<tr>
+	<td>blur</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=continent||title=Continent||value=Asia||index=1||Class=SelectItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=member_g8||title=Member%20G8||value=false||index=2||Class=CheckboxItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=member_g8||title=Member%20G8||value=false||index=2||Class=CheckboxItem]/textbox</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=member_g8||title=Member%20G8||value=false||index=2||Class=CheckboxItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=member_g8||title=Member%20G8||value=false||index=2||Class=CheckboxItem]/textbox</td>
+	<td>${KEY_TAB}</td>
+</tr>
+<tr>
+	<td>blur</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=member_g8||title=Member%20G8||value=false||index=2||Class=CheckboxItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=1095351995||index=3||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=1095351995||index=3||Class=TextItem]/element</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=1111111||index=3||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=1111111||index=3||Class=TextItem]/element</td>
+	<td>1111111</td>
+</tr>
+<tr>
+	<td>waitForElementReadyForKeyPresses</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=1111111||index=3||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=1111111||index=3||Class=TextItem]/element</td>
+	<td>${KEY_UP}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=2222222||index=3||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=2222222||index=3||Class=TextItem]/element</td>
+	<td>2222222</td>
+</tr>
+<tr>
+	<td>waitForElementReadyForKeyPresses</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=2222222||index=3||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=2222222||index=3||Class=TextItem]/element</td>
+	<td>${KEY_UP}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=3333333||index=3||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=3333333||index=3||Class=TextItem]/element</td>
+	<td>3333333</td>
+</tr>
+<tr>
+	<td>waitForElementReadyForKeyPresses</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=3333333||index=3||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=3333333||index=3||Class=TextItem]/element</td>
+	<td>${KEY_UP}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=4444444||index=3||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=4444444||index=3||Class=TextItem]/element</td>
+	<td>4444444</td>
+</tr>
+<tr>
+	<td>waitForElementReadyForKeyPresses</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=4444444||index=3||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=4444444||index=3||Class=TextItem]/element</td>
+	<td>${KEY_ENTER}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=2||2]/col[fieldName=countryName||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=2||2]/col[fieldName=countryName||0]</td>
+	<td>one</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=2||2]/col[fieldName=population||0]</td>
+	<td>4444444</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=7||2]/col[fieldName=countryName||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=7||2]/col[fieldName=countryName||0]</td>
+	<td>two</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=7||2]/col[fieldName=population||0]</td>
+	<td>3333333</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=5||2]/col[fieldName=countryName||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=5||2]/col[fieldName=countryName||0]</td>
+	<td>three</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=5||2]/col[fieldName=population||0]</td>
+	<td>2222222</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=4||2]/col[fieldName=countryName||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=4||2]/col[fieldName=countryName||0]</td>
+	<td>four</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=4||2]/col[fieldName=population||0]</td>
+	<td>1111111</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var grid = selenium.browserbot.getCurrentWindow().isc.AutoTest.getLocatorCanvas(&quot;//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]&quot;); grid.hasChanges()</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=IButton||index=3||length=4||classIndex=2||classLength=3||roleIndex=2||roleLength=3||title=Discard||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=IButton||index=3||length=4||classIndex=2||classLength=3||roleIndex=2||roleLength=3||title=Discard||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var grid = selenium.browserbot.getCurrentWindow().isc.AutoTest.getLocatorCanvas(&quot;//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]&quot;); !grid.hasChanges()</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=2||2]/col[fieldName=countryName||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyNotText</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=2||2]/col[fieldName=countryName||0]</td>
+	<td>one</td>
+</tr>
+<tr>
+	<td>verifyNotValue</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=2||2]/col[fieldName=population||0]</td>
+	<td>4444444</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=7||2]/col[fieldName=countryName||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyNotText</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=7||2]/col[fieldName=countryName||0]</td>
+	<td>two</td>
+</tr>
+<tr>
+	<td>verifyNotValue</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=7||2]/col[fieldName=population||0]</td>
+	<td>3333333</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=5||2]/col[fieldName=countryName||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyNotText</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=5||2]/col[fieldName=countryName||0]</td>
+	<td>three</td>
+</tr>
+<tr>
+	<td>verifyNotValue</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=5||2]/col[fieldName=population||0]</td>
+	<td>2222222</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=4||2]/col[fieldName=countryName||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyNotText</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=4||2]/col[fieldName=countryName||0]</td>
+	<td>four</td>
+</tr>
+<tr>
+	<td>verifyNotValue</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=4||2]/col[fieldName=population||0]</td>
+	<td>1111111</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=2||countryName=China||2]/col[fieldName=countryName||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=2||countryName=China||2]/col[fieldName=countryName||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=one||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=one||index=0||Class=TextItem]/element</td>
+	<td>one</td>
+</tr>
+<tr>
+	<td>waitForElementReadyForKeyPresses</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=one||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=one||index=0||Class=TextItem]/element</td>
+	<td>${KEY_DOWN}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=two||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=two||index=0||Class=TextItem]/element</td>
+	<td>two</td>
+</tr>
+<tr>
+	<td>waitForElementReadyForKeyPresses</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=two||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=two||index=0||Class=TextItem]/element</td>
+	<td>${KEY_DOWN}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=three||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=three||index=0||Class=TextItem]/element</td>
+	<td>three</td>
+</tr>
+<tr>
+	<td>waitForElementReadyForKeyPresses</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=three||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=three||index=0||Class=TextItem]/element</td>
+	<td>${KEY_DOWN}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=four||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=four||index=0||Class=TextItem]/element</td>
+	<td>four</td>
+</tr>
+<tr>
+	<td>waitForElementReadyForKeyPresses</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=four||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=four||index=0||Class=TextItem]/element</td>
+	<td>${KEY_TAB}</td>
+</tr>
+<tr>
+	<td>blur</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=four||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=continent||title=Continent||value=Asia||index=1||Class=SelectItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=continent||title=Continent||value=Asia||index=1||Class=SelectItem]/textbox</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=continent||title=Continent||value=Asia||index=1||Class=SelectItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=continent||title=Continent||value=Asia||index=1||Class=SelectItem]/textbox</td>
+	<td>${KEY_TAB}</td>
+</tr>
+<tr>
+	<td>blur</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=continent||title=Continent||value=Asia||index=1||Class=SelectItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=member_g8||title=Member%20G8||value=false||index=2||Class=CheckboxItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=member_g8||title=Member%20G8||value=false||index=2||Class=CheckboxItem]/textbox</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=member_g8||title=Member%20G8||value=false||index=2||Class=CheckboxItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=member_g8||title=Member%20G8||value=false||index=2||Class=CheckboxItem]/textbox</td>
+	<td>${KEY_TAB}</td>
+</tr>
+<tr>
+	<td>blur</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=member_g8||title=Member%20G8||value=false||index=2||Class=CheckboxItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=1095351995||index=3||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=1095351995||index=3||Class=TextItem]/element</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=1111111||index=3||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=1111111||index=3||Class=TextItem]/element</td>
+	<td>1111111</td>
+</tr>
+<tr>
+	<td>waitForElementReadyForKeyPresses</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=1111111||index=3||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=1111111||index=3||Class=TextItem]/element</td>
+	<td>${KEY_UP}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=2222222||index=3||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=2222222||index=3||Class=TextItem]/element</td>
+	<td>2222222</td>
+</tr>
+<tr>
+	<td>waitForElementReadyForKeyPresses</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=2222222||index=3||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=2222222||index=3||Class=TextItem]/element</td>
+	<td>${KEY_UP}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=3333333||index=3||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=3333333||index=3||Class=TextItem]/element</td>
+	<td>3333333</td>
+</tr>
+<tr>
+	<td>waitForElementReadyForKeyPresses</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=3333333||index=3||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=3333333||index=3||Class=TextItem]/element</td>
+	<td>${KEY_UP}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=4444444||index=3||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=4444444||index=3||Class=TextItem]/element</td>
+	<td>4444444</td>
+</tr>
+<tr>
+	<td>waitForElementReadyForKeyPresses</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=4444444||index=3||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=4444444||index=3||Class=TextItem]/element</td>
+	<td>${KEY_ENTER}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=IButton||index=2||length=4||classIndex=1||classLength=3||roleIndex=1||roleLength=3||title=Save||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=IButton||index=2||length=4||classIndex=1||classLength=3||roleIndex=1||roleLength=3||title=Save||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var grid = selenium.browserbot.getCurrentWindow().isc.AutoTest.getLocatorCanvas(&quot;//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]&quot;); !grid.hasChanges()</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=2||2]/col[fieldName=countryName||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=2||2]/col[fieldName=countryName||0]</td>
+	<td>one</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=2||2]/col[fieldName=population||0]</td>
+	<td>4444444</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=7||2]/col[fieldName=countryName||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=7||2]/col[fieldName=countryName||0]</td>
+	<td>two</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=7||2]/col[fieldName=population||0]</td>
+	<td>3333333</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=5||2]/col[fieldName=countryName||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=5||2]/col[fieldName=countryName||0]</td>
+	<td>three</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=5||2]/col[fieldName=population||0]</td>
+	<td>2222222</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=4||2]/col[fieldName=countryName||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=4||2]/col[fieldName=countryName||0]</td>
+	<td>four</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=4||2]/col[fieldName=population||0]</td>
+	<td>1111111</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=IButton||index=1||length=4||classIndex=0||classLength=3||roleIndex=0||roleLength=3||title=Edit%20New||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=IButton||index=1||length=4||classIndex=0||classLength=3||roleIndex=0||roleLength=3||title=Edit%20New||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=Fredland||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=Fredland||index=0||Class=TextItem]/element</td>
+	<td>Fredland</td>
+</tr>
+<tr>
+	<td>waitForElementReadyForKeyPresses</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=Fredland||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=Fredland||index=0||Class=TextItem]/element</td>
+	<td>${KEY_TAB}</td>
+</tr>
+<tr>
+	<td>blur</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=Fredland||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=continent||title=Continent||index=1||Class=SelectItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=continent||title=Continent||index=1||Class=SelectItem]/textbox</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=continent||title=Continent||index=1||Class=SelectItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=continent||title=Continent||index=1||Class=SelectItem]/textbox</td>
+	<td>${KEY_DOWN}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=continent||title=Continent||value=Europe||index=1||Class=SelectItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=continent||title=Continent||value=Europe||index=1||Class=SelectItem]/textbox</td>
+	<td>${KEY_TAB}</td>
+</tr>
+<tr>
+	<td>blur</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=continent||title=Continent||value=Europe||index=1||Class=SelectItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=member_g8||title=Member%20G8||index=2||Class=CheckboxItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=member_g8||title=Member%20G8||index=2||Class=CheckboxItem]/textbox</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=member_g8||title=Member%20G8||index=2||Class=CheckboxItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=member_g8||title=Member%20G8||index=2||Class=CheckboxItem]/textbox</td>
+	<td>${KEY_TAB}</td>
+</tr>
+<tr>
+	<td>blur</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=member_g8||title=Member%20G8||index=2||Class=CheckboxItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||index=3||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||index=3||Class=TextItem]/element</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=1234||index=3||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=1234||index=3||Class=TextItem]/element</td>
+	<td>1234</td>
+</tr>
+<tr>
+	<td>waitForElementReadyForKeyPresses</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=1234||index=3||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=1234||index=3||Class=TextItem]/element</td>
+	<td>${KEY_TAB}</td>
+</tr>
+<tr>
+	<td>blur</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=1234||index=3||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=independence||title=Independence||index=4||Class=DateItem]/item[name=dateTextField||title=Independence||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=independence||title=Independence||index=4||Class=DateItem]/item[name=dateTextField||title=Independence||index=0||Class=TextItem]/element</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>waitForElementReadyForKeyPresses</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=independence||title=Independence||index=4||Class=DateItem]/item[name=dateTextField||title=Independence||value=01%24fs%2401%24fs%242001||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=independence||title=Independence||index=4||Class=DateItem]/item[name=dateTextField||title=Independence||value=01%24fs%2401%24fs%242001||index=0||Class=TextItem]/element</td>
+	<td>01/01/2001</td>
+</tr>
+<tr>
+	<td>waitForElementReadyForKeyPresses</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=independence||title=Independence||index=4||Class=DateItem]/item[name=dateTextField||title=Independence||value=01%24fs%2401%24fs%242001||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=independence||title=Independence||index=4||Class=DateItem]/item[name=dateTextField||title=Independence||value=01%24fs%2401%24fs%242001||index=0||Class=TextItem]/element</td>
+	<td>${KEY_ENTER}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[15]/col[fieldName=continent||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[15]/col[fieldName=continent||1]</td>
+	<td>Europe</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[15]/col[fieldName=population||3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[15]/col[fieldName=population||3]</td>
+	<td>1234</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[15]/col[fieldName=independence||4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[15]/col[fieldName=independence||4]</td>
+	<td>01/01/2001</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=IButton||index=2||length=4||classIndex=1||classLength=3||roleIndex=1||roleLength=3||title=Save||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=IButton||index=2||length=4||classIndex=1||classLength=3||roleIndex=1||roleLength=3||title=Save||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[countryName=Fredland||15]/col[fieldName=independence||4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[countryName=Fredland||15]/col[fieldName=independence||4]</td>
+	<td>01/01/2001</td>
+</tr>
+</tbody></table>
+</body>
+</html>

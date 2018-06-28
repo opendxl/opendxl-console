@@ -1,0 +1,24 @@
+<ListGrid ID="listGrid" autoDraw="false">
+    <fields>
+        <field name="itemName" title="Item" type="text"/>
+        <field name="unitCost" title="Unit Cost" type="number"/>
+    </fields>
+</ListGrid>
+
+<TabSet ID="tabSet" autoDraw="false">
+    <tabs>
+        <tab title="View"/>
+        <tab title="Edit"/>
+    </tabs>
+</TabSet>
+
+<SectionStack height="400" visibilityMode="multiple" width="300" animateSections="true" overflow="hidden">
+    <sections>
+        <section title="Section 1">
+            <items>listGrid</items>
+        </section>
+        <section title="Section 2">
+            <items>tabSet</items>
+        </section>
+    </sections>
+</SectionStack>

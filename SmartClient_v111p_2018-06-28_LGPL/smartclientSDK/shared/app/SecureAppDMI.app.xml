@@ -1,0 +1,11 @@
+<Application>
+    <rpcBindings>
+        <ServerObject ID="SecureAppDMI" className="com.isomorphic.examples.SecureAppDMI">
+            <visibleMethods>
+                <method name="login"/>
+                <method name="getUserInfo"/>
+                <method name="logout"/>
+            </visibleMethods>
+        </ServerObject>
+    </rpcBindings>
+</Application>

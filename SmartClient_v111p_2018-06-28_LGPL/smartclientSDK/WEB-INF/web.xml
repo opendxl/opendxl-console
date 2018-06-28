@@ -1,0 +1,101 @@
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+	      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	      xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+	      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	      version="3.0">
+
+    <!-- 
+    Note: 
+    
+    This minimal server is included to enable the Feature Explorer example shell
+    to work correctly, and enable simple web server startup for the SDK.
+
+    The SmartClient Server, licensed separately as part of the Pro and Enterprise
+    editions of SmartClient, includes deep Java integration, enabling easy 
+    databinding to POJOs, Spring, Struts, SQL, Hibernate, and more.  See:
+    http://www.smartclient.com/product/index.jsp
+    for more info.
+    -->
+               
+
+    <!-- The IDACall servlet handles all Built-in DataSource operations -->
+    <servlet>
+        <servlet-name>IDACall</servlet-name>
+        <servlet-class>com.isomorphic.servlet.IDACall</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>FeatureExplorerRPC</servlet-name>
+        <servlet-class>com.isomorphic.servlet.FeatureExplorerRPC</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>HttpProxy</servlet-name>
+        <servlet-class>com.isomorphic.servlet.HttpProxyServlet</servlet-class>
+    </servlet>
+
+    <!-- Apache AXIS RPC servlet -->
+    <servlet>
+        <servlet-name>AxisServlet</servlet-name>
+        <servlet-class>org.apache.axis.transport.http.AxisServlet</servlet-class>
+    </servlet>
+
+    <!-- streams a file to the browser with the "text/plain" mime type for in-browser viewing -->
+    <!-- IMPORTANT SECURITY NOTE: This servlet allows the end user to inspect the source version
+         of arbitrary content under your webRoot.  Do not deploy this servlet with your application.
+    -->
+    <servlet>
+        <servlet-name>SourceViewer</servlet-name>
+        <servlet-class>com.isomorphic.servlet.SourceViewer</servlet-class>
+        <init-param>
+            <param-name>allowedExtensions</param-name>
+            <param-value>*</param-value>
+        </init-param>
+    </servlet>
+
+
+
+	<!-- Init: initializes SmartClient framework.  Note that we invoke the Init logic from 
+	     both a Listener and a load-on-startup Servlet in this file - see the client-side 
+	     documentation topic "serverInit" for a discussion of this.  -->
+	<listener>
+		<listener-class>com.isomorphic.base.InitListener</listener-class>
+	</listener>
+    <servlet>
+        <servlet-name>Init</servlet-name>
+        <servlet-class>com.isomorphic.base.Init</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+	  
+    <!-- RPCManager uses this URL by default for Built-in DataSource operations -->
+    <servlet-mapping>
+        <servlet-name>IDACall</servlet-name>
+        <url-pattern>/isomorphic/IDACall/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>FeatureExplorerRPC</servlet-name>
+        <url-pattern>/isomorphic/FeatureExplorerRPC/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>HttpProxy</servlet-name>
+        <url-pattern>/isomorphic/HttpProxy/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- SOAP RPC requests -->
+    <servlet-mapping>
+        <servlet-name>AxisServlet</servlet-name>
+        <url-pattern>/isomorphic/services/1.0/*</url-pattern>
+    </servlet-mapping>
+
+
+    <!-- streams a file to the browser with the "text/plain" mime type for in-browser viewing -->
+    <!-- IMPORTANT SECURITY NOTE: This servlet allows the end user to inspect the source version
+         of arbitrary content under your webRoot.  Do not deploy this servlet with your application.
+    -->
+    <servlet-mapping>
+        <servlet-name>SourceViewer</servlet-name>
+        <url-pattern>/isomorphic/Source.Viewer/*</url-pattern>
+    </servlet-mapping>
+</web-app>

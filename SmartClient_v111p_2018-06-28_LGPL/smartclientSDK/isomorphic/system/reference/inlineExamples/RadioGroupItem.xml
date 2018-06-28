@@ -1,0 +1,12 @@
+<DynamicForm width="300">
+    <fields>
+        <field title="Units" type="radioGroup">
+            <valueMap>
+                <value>Ea</value>
+                <value>Pkt</value>
+                <value>Bag</value>
+                <value>Ctn</value>
+            </valueMap>
+        </field>
+    </fields>
+</DynamicForm>

@@ -1,0 +1,6 @@
+<VLayout ID="xmlLayout" autoDraw="false">
+     <members>
+        <DynamicForm ID="form" dataSource="supplyItem" autoDraw="false" width="300" titleWidth="100" />
+        <Label ID="placeholder" border="3px solid blue" width="300" align="center" contents="Placeholder" autoDraw="false" />
+    </members>
+</VLayout>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/" />
+<title>basicCube-shiftSelectCopy.rctest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">basicCube-shiftSelectCopy.rctest</td></tr>
+</thead><tbody>
+<tr>
+	<td>exampleOpen</td>
+	<td>smartgwt</td>
+	<td>cube_basic</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=VStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=CubeGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=grid]/body/row[0]/col[0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=VStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=CubeGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=grid]/body/row[0]/col[0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var cube = selenium.browserbot.getCurrentWindow().isc.AutoTest.getLocatorCanvas(&quot;//testRoot[]/child[Class=VStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=CubeGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=grid]&quot;); cube.canEdit = true; </td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=VStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=CubeGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=grid]/body</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=VStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=CubeGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=grid]/body</td>
+	<td>${KEY_DOWN}${KEY_DOWN}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=VStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=CubeGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=grid]/body</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=VStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=CubeGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=grid]/body</td>
+	<td>${KEY_SHIFT}${KEY_DOWN}${KEY_RIGHT}${KEY_SHIFT}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=VStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=CubeGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=grid]/body</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=VStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=CubeGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=grid]/body</td>
+	<td>${KEY_CTRL}C${KEY_CTRL}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=VStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=CubeGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=grid]/body</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=VStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=CubeGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=grid]/body</td>
+	<td>${KEY_RIGHT}${KEY_RIGHT}${KEY_RIGHT}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=VStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=CubeGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=grid]/body</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=VStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=CubeGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=grid]/body</td>
+	<td>${KEY_CTRL}V${KEY_CTRL}</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>scLocator=//testRoot[]/child[Class=VStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=CubeGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=grid]/body/row[3]/col[4]</td>
+	<td>120000</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>scLocator=//testRoot[]/child[Class=VStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=CubeGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=grid]/body/row[3]/col[5]</td>
+	<td>44000</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>scLocator=//testRoot[]/child[Class=VStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=CubeGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=grid]/body/row[4]/col[4]</td>
+	<td>8000</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>scLocator=//testRoot[]/child[Class=VStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=CubeGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=grid]/body/row[4]/col[5]</td>
+	<td>2000</td>
+</tr>
+</tbody></table>
+</body>
+</html>

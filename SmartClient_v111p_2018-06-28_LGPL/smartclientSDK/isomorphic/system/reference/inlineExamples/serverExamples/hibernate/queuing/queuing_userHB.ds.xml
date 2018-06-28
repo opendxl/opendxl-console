@@ -1,0 +1,20 @@
+<DataSource
+    ID="queuing_userHB"
+    serverType="hibernate"
+    beanClassName="com.isomorphic.examples.server.queuing.User"
+    testFileName="/examples/shared/ds/serverExamples/test_data/queuing_user.data.xml"
+>
+    <fields>
+        <field name="userID" type="sequence" primaryKey="true" canEdit="false" />
+        <field name="firstName" type="text" required="true"/>
+        <field name="surname" type="text" required="true"/>
+        <field name="department" type="text" />
+        <field name="email" type="text" required="true">
+          <validators>
+            <validator type="isUnique"/>
+          </validators>
+        </field>
+    </fields>
+    
+</DataSource>
+ 

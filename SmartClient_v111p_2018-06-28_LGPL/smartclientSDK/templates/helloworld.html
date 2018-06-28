@@ -1,0 +1,22 @@
+<HTML><HEAD>
+	<SCRIPT>var isomorphicDir="../isomorphic/";</SCRIPT>
+    <SCRIPT SRC=../isomorphic/system/modules/ISC_Core.js></SCRIPT>
+    <SCRIPT SRC=../isomorphic/system/modules/ISC_Foundation.js></SCRIPT>
+    <SCRIPT SRC=../isomorphic/system/modules/ISC_Containers.js></SCRIPT>
+    <SCRIPT SRC=../isomorphic/system/modules/ISC_Grids.js></SCRIPT>
+    <SCRIPT SRC=../isomorphic/system/modules/ISC_Forms.js></SCRIPT>
+    <SCRIPT SRC=../isomorphic/system/modules/ISC_DataBinding.js></SCRIPT>
+    <SCRIPT SRC=../isomorphic/skins/Tahoe/load_skin.js></SCRIPT>
+</HEAD><BODY>
+<SCRIPT>
+
+isc.Canvas.resizeFonts(3);
+isc.Canvas.resizeControls(10);
+
+isc.IButton.create({
+	title:"Hello",
+	click:"isc.say('Hello World')"
+})
+
+</SCRIPT>
+</BODY></HTML>

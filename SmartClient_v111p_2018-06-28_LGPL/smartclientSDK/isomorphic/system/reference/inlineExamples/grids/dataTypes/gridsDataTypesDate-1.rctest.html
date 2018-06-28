@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/showcase/" />
+<title>gridsDataTypesDate-1.rctest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">gridsDataTypesDate-1.rctest</td></tr>
+</thead><tbody>
+<tr>
+	<td>exampleOpen</td>
+	<td>smartgwt</td>
+	<td>grid_datatypes_date</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/header/headerButton[fieldName=countryName]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/header/headerButton[fieldName=countryName]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForGridDone</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[countryCode=BR||independence=Sat Sep 07 1822 00:00:00 GMT-0400 (LMT)||0]/col[fieldName=independence||2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[countryCode=BR||independence=Sat Sep 07 1822 00:00:00 GMT-0400 (LMT)||0]/col[fieldName=independence||2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=independence||title=Nationhood||value=Sat Sep 07 1822 00:00:00 GMT-0400 (LMT)||index=2||Class=DateItem]/item[name=dateTextField||title=Nationhood||value=test||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=independence||title=Nationhood||value=Sat Sep 07 1822 00:00:00 GMT-0400 (LMT)||index=2||Class=DateItem]/item[name=dateTextField||title=Nationhood||value=test||index=0||Class=TextItem]/element</td>
+	<td>test</td>
+</tr>
+<tr>
+	<td>waitForElementReadyForKeyPresses</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=independence||title=Nationhood||value=test||index=2||Class=DateItem]/item[name=dateTextField||title=Nationhood||value=test||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=independence||title=Nationhood||value=test||index=2||Class=DateItem]/item[name=dateTextField||title=Nationhood||value=test||index=0||Class=TextItem]/element</td>
+	<td>${KEY_ENTER}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[countryCode=BR||independence=test||0]/col[fieldName=independence||2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[countryCode=BR||independence=test||0]/col[fieldName=independence||2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=independence||title=Nationhood||value=test||index=2||Class=DateItem]/[icon=&quot;isc_errorIcon&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=independence||title=Nationhood||value=test||index=2||Class=DateItem]/[icon=&quot;isc_errorIcon&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=independence||title=Nationhood||value=test||index=2||Class=DateItem]/item[name=dateTextField||title=Nationhood||value=test||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=independence||title=Nationhood||value=test||index=2||Class=DateItem]/item[name=dateTextField||title=Nationhood||value=test||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=independence||title=Nationhood||value=Sat Sep 07 1822 00:00:00 GMT-0400 (LMT)||index=2||Class=DateItem]/item[name=dateTextField||title=Nationhood||value=09%24fs%2407%24fs%241822||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=independence||title=Nationhood||value=Sat Sep 07 1822 00:00:00 GMT-0400 (LMT)||index=2||Class=DateItem]/item[name=dateTextField||title=Nationhood||value=09%24fs%2407%24fs%241822||index=0||Class=TextItem]/element</td>
+	<td>09/07/1822</td>
+</tr>
+<tr>
+	<td>waitForElementReadyForKeyPresses</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=independence||title=Nationhood||value=test||index=2||Class=DateItem]/item[name=dateTextField||title=Nationhood||value=09%24fs%2407%24fs%241822||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=independence||title=Nationhood||value=test||index=2||Class=DateItem]/item[name=dateTextField||title=Nationhood||value=09%24fs%2407%24fs%241822||index=0||Class=TextItem]/element</td>
+	<td>${KEY_ENTER}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[countryCode=BR||independence=Sat Sep 07 1822 00:00:00 GMT-0400 (LMT)||0]/col[fieldName=independence||2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[countryCode=BR||independence=Sat Sep 07 1822 00:00:00 GMT-0400 (LMT)||0]/col[fieldName=independence||2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=independence||title=Nationhood||value=test||index=2||Class=DateItem]/[icon=&quot;isc_errorIcon&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=independence||title=Nationhood||value=test||index=2||Class=DateItem]/[icon=&quot;isc_errorIcon&quot;]</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

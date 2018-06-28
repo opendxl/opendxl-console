@@ -1,0 +1,25 @@
+<DataSource
+    ID="largeValueMap_orderItem"
+    serverType="sql"
+    tableName="valMapOrderItem"
+    testFileName="/examples/shared/ds/serverExamples/test_data/orderItem.data.xml"
+>
+    <fields>
+        <field name="pk" type="sequence" primaryKey="true" hidden="true" />
+        <field name="orderID" type="integer" />
+        <field name="orderDate" type="date" />
+        <field name="itemID" type="integer" />
+        <field name="unitPrice" type="float" />
+        <field name="quantity" type="integer" />
+        <field name="itemName" type="text" tableName="supplyItem" />
+    </fields>
+    
+    <operationBindings>
+        <operationBinding operationType="fetch">
+            <tableClause>valMapOrderItem, supplyItem</tableClause>
+            <whereClause>valMapOrderItem.itemID = supplyItem.itemID AND ($defaultWhereClause)</whereClause>
+        </operationBinding>
+    </operationBindings>
+    
+</DataSource>
+ 

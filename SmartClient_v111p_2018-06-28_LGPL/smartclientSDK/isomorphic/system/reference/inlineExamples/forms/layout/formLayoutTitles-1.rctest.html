@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://www-vpn.smartclient.com:10011/" />
+<title>formLayoutTitles-1.rctest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">formLayoutTitles-1.rctest</td></tr>
+</thead><tbody>
+<tr>
+	<td>exampleOpen</td>
+	<td>smartgwt</td>
+	<td>layout_form_titles</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=HLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]/item[title=Username||value=bob||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=HLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]
+/item[title=Username||value=bob||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>scLocator=//testRoot[]/child[Class=HLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]
+/item[title=Username||value=bob||index=0||Class=TextItem]/element</td>
+	<td>FIELD_POSITION</td>
+</tr>
+<tr>
+	<td>assertElementPositionLeft</td>
+	<td>scLocator=//testRoot[]/child[Class=HLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]
+/item[title=Email||value=bob@isomorphic.com||index=1||Class=TextItem]/element</td>
+	<td>${FIELD_POSITION}</td>
+</tr>
+<tr>
+	<td>assertElementPositionLeft</td>
+	<td>scLocator=//testRoot[]/child[Class=HLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]
+/item[title=Password||index=2||Class=PasswordItem]/element</td>
+	<td>${FIELD_POSITION}</td>
+</tr>
+<tr>
+	<td>assertElementPositionLeft</td>
+	<td>scLocator=//testRoot[]/child[Class=HLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]
+/item[title=Password%20again||index=3||Class=PasswordItem]/element</td>
+	<td>${FIELD_POSITION}</td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>scLocator=//testRoot[]/child[Class=HLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]
+/item[title=Username||value=bob||index=0||Class=TextItem]/element</td>
+	<td>FIELD_POSITION</td>
+</tr>
+<tr>
+	<td>assertNotElementPositionTop</td>
+	<td>scLocator=//testRoot[]/child[Class=HLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]
+/item[title=Email||value=bob@isomorphic.com||index=1||Class=TextItem]/element</td>
+	<td>${FIELD_POSITION}</td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>scLocator=//testRoot[]/child[Class=HLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]
+/item[title=Password||index=2||Class=PasswordItem]/element</td>
+	<td>FIELD_POSITION</td>
+</tr>
+<tr>
+	<td>assertNotElementPositionTop</td>
+	<td>scLocator=//testRoot[]/child[Class=HLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]
+/item[title=Password%20again||index=3||Class=PasswordItem]/element</td>
+	<td>${FIELD_POSITION}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=HLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=Button||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Swap%20titles||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=HLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=Button||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Swap%20titles||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=HLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]
+/item[title=Username||value=bob||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>scLocator=//testRoot[]/child[Class=HLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]
+/item[title=Username||value=bob||index=0||Class=TextItem]/element</td>
+	<td>FIELD_POSITION</td>
+</tr>
+<tr>
+	<td>assertNotElementPositionLeft</td>
+	<td>scLocator=//testRoot[]/child[Class=HLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]
+/item[title=Email||value=bob@isomorphic.com||index=1||Class=TextItem]/element</td>
+	<td>${FIELD_POSITION}</td>
+</tr>
+<tr>
+	<td>assertElementPositionLeft</td>
+	<td>scLocator=//testRoot[]/child[Class=HLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]
+/item[title=Password||index=2||Class=PasswordItem]/element</td>
+	<td>${FIELD_POSITION}</td>
+</tr>
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>scLocator=//testRoot[]/child[Class=HLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]
+/item[title=Email||value=bob@isomorphic.com||index=1||Class=TextItem]/element</td>
+	<td>FIELD_POSITION</td>
+</tr>
+<tr>
+	<td>assertElementPositionLeft</td>
+	<td>scLocator=//testRoot[]/child[Class=HLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]
+/item[title=Password%20again||index=3||Class=PasswordItem]/element</td>
+	<td>${FIELD_POSITION}</td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>scLocator=//testRoot[]/child[Class=HLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]
+/item[title=Username||value=bob||index=0||Class=TextItem]/element</td>
+	<td>FIELD_POSITION</td>
+</tr>
+<tr>
+	<td>assertElementPositionTop</td>
+	<td>scLocator=//testRoot[]/child[Class=HLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]
+/item[title=Email||value=bob@isomorphic.com||index=1||Class=TextItem]/element</td>
+	<td>${FIELD_POSITION}</td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>scLocator=//testRoot[]/child[Class=HLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]
+/item[title=Password||index=2||Class=PasswordItem]/element</td>
+	<td>FIELD_POSITION</td>
+</tr>
+<tr>
+	<td>assertElementPositionTop</td>
+	<td>scLocator=//testRoot[]/child[Class=HLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=1]
+/item[title=Password%20again||index=3||Class=PasswordItem]/element</td>
+	<td>${FIELD_POSITION}</td>
+</tr>
+</tbody></table>
+</body>
+</html>

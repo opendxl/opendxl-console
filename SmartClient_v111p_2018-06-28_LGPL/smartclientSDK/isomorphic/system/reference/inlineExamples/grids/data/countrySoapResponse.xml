@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
+                  xmlns:xsd="http://www.w3.org/1999/XMLSchema" 
+                  xmlns:xsi="http://www.w3.org/1999/XMLSchema-instance">
+    <soapenv:Body>
+        <fetchResponse xmlns="urn:operations.smartclient.com">
+            <status xmlns="">STATUS_SUCCESS</status>
+            <invalidateCache xmlns="">false</invalidateCache>
+            <startRow xmlns="">0</startRow>
+            <endRow xmlns="">2</endRow>
+            <totalRows xmlns="">3</totalRows>
+            <_any2 xsi:null="true"/>
+            <data xmlns:xsi="http://www.w3.org/1999/XMLSchema-instance" xsi:type="xsd:List" xmlns="">
+                <elem xsi:type="xsd:Object">
+                    <gdp xsi:type="xsd:double">1.236E7</gdp>
+                    <continent xsi:type="xsd:string">North America</continent>
+                    <article xsi:type="xsd:string">http://en.wikipedia.org/wiki/United_states</article>
+                    <countryName xsi:type="xsd:string">United States</countryName>
+                    <independence xsi:type="xsd:dateTime">1776-07-04T00:00:00</independence>
+                    <member_g8 xsi:type="xsd:boolean">true</member_g8>
+                    <population xsi:type="xsd:int">298444215</population>
+                    <countryCode xsi:type="xsd:string">US</countryCode>
+                    <capital xsi:type="xsd:string">Washington, DC</capital>
+                    <government xsi:type="xsd:string">federal republic</government>
+                    <area xsi:type="xsd:double">9631420.0</area>
+                    <pk xsi:type="xsd:int">1</pk>
+                </elem>
+                <elem xsi:type="xsd:Object">
+                    <gdp xsi:type="xsd:double">8859000.0</gdp>
+                    <continent xsi:type="xsd:string">Asia</continent>
+                    <article xsi:type="xsd:string">http://en.wikipedia.org/wiki/China</article>
+                    <countryName xsi:type="xsd:string">China</countryName>
+                    <member_g8 xsi:type="xsd:boolean">false</member_g8>
+                    <population xsi:type="xsd:int">1313973713</population>
+                    <countryCode xsi:type="xsd:string">CH</countryCode>
+                    <capital xsi:type="xsd:string">Beijing</capital>
+                    <government xsi:type="xsd:string">Communist state</government>
+                    <area xsi:type="xsd:double">9596960.0</area>
+                    <pk xsi:type="xsd:int">2</pk>
+                </elem>
+                <elem xsi:type="xsd:Object">
+                    <gdp xsi:type="xsd:double">4018000.0</gdp>
+                    <continent xsi:type="xsd:string">Asia</continent>
+                    <article xsi:type="xsd:string">http://en.wikipedia.org/wiki/Japan</article>
+                    <countryName xsi:type="xsd:string">Japan</countryName>
+                    <member_g8 xsi:type="xsd:boolean">true</member_g8>
+                    <population xsi:type="xsd:int">127463611</population>
+                    <countryCode xsi:type="xsd:string">JA</countryCode>
+                    <capital xsi:type="xsd:string">Tokyo</capital>
+                    <government xsi:type="xsd:string">constitutional monarchy with parliamentary government</government>
+                    <area xsi:type="xsd:double">377835.0</area>
+                    <pk xsi:type="xsd:int">3</pk>
+                </elem>
+            </data>
+        </fetchResponse>
+    </soapenv:Body>
+</soapenv:Envelope>

@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/showcase/" />
+<title>filterBuilder-1.rctest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">filterBuilder-1.rctest</td></tr>
+</thead><tbody>
+<tr>
+	<td>exampleOpen</td>
+	<td>smartgwt</td>
+	<td>grid_custom_filter_builder</td>
+</tr>
+<tr>
+	<td>waitForGridDone</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=ListGrid||index=2||length=3||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=ListGrid||index=2||length=3||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=2||countryName=United%20States||continent=North%20America||1]/col[fieldName=continent||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=FilterBuilder||index=0||length=3||classIndex=0||classLength=1]/clause[Class=FilterClause||index=0||length=1||classIndex=0||classLength=1]/clause/item[name=value||title=Value||index=2||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=FilterBuilder||index=0||length=3||classIndex=0||classLength=1]/clause[Class=FilterClause||index=0||length=1||classIndex=0||classLength=1]/clause/item[name=value||title=Value||index=2||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=FilterBuilder||index=0||length=3||classIndex=0||classLength=1]/clause[Class=FilterClause||index=0||length=1||classIndex=0||classLength=1]/clause/item[name=value||title=Value||value=UK||index=2||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=FilterBuilder||index=0||length=3||classIndex=0||classLength=1]/clause[Class=FilterClause||index=0||length=1||classIndex=0||classLength=1]/clause/item[name=value||title=Value||value=UK||index=2||Class=TextItem]/element</td>
+	<td>UK</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=IButton||index=1||length=3||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Filter||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=IButton||index=1||length=3||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Filter||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForGridDone</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=ListGrid||index=2||length=3||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=ListGrid||index=2||length=3||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[0]/col[fieldName=countryName||0]</td>
+	<td>United Kingdom</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=ListGrid||index=2||length=3||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[1]/col[fieldName=countryName||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=FilterBuilder||index=0||length=3||classIndex=0||classLength=1]/clause[Class=FilterClause||index=0||length=1||classIndex=0||classLength=1]/clause/item[name=fieldName||title=Field%20Name||value=countryCode||index=0||Class=SelectItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=FilterBuilder||index=0||length=3||classIndex=0||classLength=1]/clause[Class=FilterClause||index=0||length=1||classIndex=0||classLength=1]/clause/item[name=fieldName||title=Field%20Name||value=countryCode||index=0||Class=SelectItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=FilterBuilder||index=0||length=3||classIndex=0||classLength=1]/clause[Class=FilterClause||index=0||length=1||classIndex=0||classLength=1]/clause/item[name=fieldName||title=Field%20Name||value=countryCode||index=0||Class=SelectItem]/pickList/body/row[fieldName=continent||3]/col[fieldName=fieldName||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=FilterBuilder||index=0||length=3||classIndex=0||classLength=1]/clause[Class=FilterClause||index=0||length=1||classIndex=0||classLength=1]/clause/item[name=fieldName||title=Field%20Name||value=countryCode||index=0||Class=SelectItem]/pickList/body/row[fieldName=continent||3]/col[fieldName=fieldName||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=FilterBuilder||index=0||length=3||classIndex=0||classLength=1]/clause[Class=FilterClause||index=0||length=1||classIndex=0||classLength=1]/clause/item[name=value||title=Value||index=2||Class=SelectItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=FilterBuilder||index=0||length=3||classIndex=0||classLength=1]/clause[Class=FilterClause||index=0||length=1||classIndex=0||classLength=1]/clause/item[name=value||title=Value||index=2||Class=SelectItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=FilterBuilder||index=0||length=3||classIndex=0||classLength=1]/clause[Class=FilterClause||index=0||length=1||classIndex=0||classLength=1]/clause/item[name=value||title=Value||index=2||Class=SelectItem]/pickList/body/row[value=Europe||0]/col[fieldName=value||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=FilterBuilder||index=0||length=3||classIndex=0||classLength=1]/clause[Class=FilterClause||index=0||length=1||classIndex=0||classLength=1]/clause/item[name=value||title=Value||index=2||Class=SelectItem]/pickList/body/row[value=Europe||0]/col[fieldName=value||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=FilterBuilder||index=0||length=3||classIndex=0||classLength=1]/addButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=FilterBuilder||index=0||length=3||classIndex=0||classLength=1]/addButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=FilterBuilder||index=0||length=3||classIndex=0||classLength=1]/clause[Class=FilterClause||index=1||length=2||classIndex=1||classLength=2]/clause/item[name=fieldName||title=Field%20Name||value=countryCode||index=0||Class=SelectItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=FilterBuilder||index=0||length=3||classIndex=0||classLength=1]/clause[Class=FilterClause||index=1||length=2||classIndex=1||classLength=2]/clause/item[name=fieldName||title=Field%20Name||value=countryCode||index=0||Class=SelectItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=FilterBuilder||index=0||length=3||classIndex=0||classLength=1]/clause[Class=FilterClause||index=1||length=2||classIndex=1||classLength=2]/clause/item[name=fieldName||title=Field%20Name||value=countryCode||index=0||Class=SelectItem]/pickList/body/row[fieldName=countryName||4]/col[fieldName=fieldName||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=FilterBuilder||index=0||length=3||classIndex=0||classLength=1]/clause[Class=FilterClause||index=1||length=2||classIndex=1||classLength=2]/clause/item[name=fieldName||title=Field%20Name||value=countryCode||index=0||Class=SelectItem]/pickList/body/row[fieldName=countryName||4]/col[fieldName=fieldName||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=FilterBuilder||index=0||length=3||classIndex=0||classLength=1]/clause[Class=FilterClause||index=1||length=2||classIndex=1||classLength=2]/clause/item[name=operator||title=Operator||value=iEquals||index=1||Class=SelectItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=FilterBuilder||index=0||length=3||classIndex=0||classLength=1]/clause[Class=FilterClause||index=1||length=2||classIndex=1||classLength=2]/clause/item[name=operator||title=Operator||value=iEquals||index=1||Class=SelectItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=FilterBuilder||index=0||length=3||classIndex=0||classLength=1]/clause[Class=FilterClause||index=1||length=2||classIndex=1||classLength=2]/clause/item[name=operator||title=Operator||value=iEquals||index=1||Class=SelectItem]/pickList/body/row[operator=iStartsWith||4]/col[fieldName=operator||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=FilterBuilder||index=0||length=3||classIndex=0||classLength=1]/clause[Class=FilterClause||index=1||length=2||classIndex=1||classLength=2]/clause/item[name=operator||title=Operator||value=iEquals||index=1||Class=SelectItem]/pickList/body/row[operator=iStartsWith||4]/col[fieldName=operator||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=FilterBuilder||index=0||length=3||classIndex=0||classLength=1]/clause[Class=FilterClause||index=1||length=2||classIndex=1||classLength=2]/clause/item[name=value||title=Value||index=2||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=FilterBuilder||index=0||length=3||classIndex=0||classLength=1]/clause[Class=FilterClause||index=1||length=2||classIndex=1||classLength=2]/clause/item[name=value||title=Value||index=2||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=FilterBuilder||index=0||length=3||classIndex=0||classLength=1]/clause[Class=FilterClause||index=1||length=2||classIndex=1||classLength=2]/clause/item[name=value||title=Value||value=a||index=2||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=FilterBuilder||index=0||length=3||classIndex=0||classLength=1]/clause[Class=FilterClause||index=1||length=2||classIndex=1||classLength=2]/clause/item[name=value||title=Value||value=a||index=2||Class=TextItem]/element</td>
+	<td>a</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=IButton||index=1||length=3||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Filter||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=IButton||index=1||length=3||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Filter||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForGridDone</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=ListGrid||index=2||length=3||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=ListGrid||index=2||length=3||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[0]/col[fieldName=countryName||0]</td>
+	<td>Austria</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=ListGrid||index=2||length=3||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[1]/col[fieldName=countryName||0]</td>
+	<td>Andorra</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=ListGrid||index=2||length=3||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[2]/col[fieldName=countryName||0]</td>
+	<td>Albania</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>scLocator=//testRoot[]/member[Class=VStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=ListGrid||index=2||length=3||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[3]/col[fieldName=continent||1]</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

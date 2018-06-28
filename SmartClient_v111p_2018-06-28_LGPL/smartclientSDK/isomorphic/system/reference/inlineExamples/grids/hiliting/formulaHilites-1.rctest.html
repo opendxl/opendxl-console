@@ -1,0 +1,732 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/showcase/" />
+<title>formulaHilites-1.rctest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">formulaHilites-1.rctest</td></tr>
+</thead><tbody>
+<tr>
+	<td>exampleOpen</td>
+	<td>smartgwt</td>
+	<td>grid_hiliting_formula</td>
+</tr>
+<tr>
+	<td>waitForGridDone</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=HLayout||index=0||length=2||classIndex=0||classLength=1]/member[Class=IButton||index=0||length=3||classIndex=0||classLength=3||roleIndex=0||roleLength=3||title=Show%20Formula%20Builder||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=HLayout||index=0||length=2||classIndex=0||classLength=1]/member[Class=IButton||index=0||length=3||classIndex=0||classLength=3||roleIndex=0||roleLength=3||title=Show%20Formula%20Builder||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldEditorWindow/item[0][Class=&quot;FormulaBuilder&quot;]/titleForm/item[name=titleField||title=Title||value=Population%20Density||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldEditorWindow/item[0][Class=&quot;FormulaBuilder&quot;]/titleForm/item[name=titleField||title=Title||value=Population%20Density||index=0||Class=TextItem]/element</td>
+	<td>Population Density</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldEditorWindow/item[0][Class=&quot;FormulaBuilder&quot;]/formulaForm/item[name=formulaField||title=Formula||value=||index=0||Class=AutoFitTextAreaItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldEditorWindow/item[0][Class=&quot;FormulaBuilder&quot;]/formulaForm/item[name=formulaField||title=Formula||value=||index=0||Class=AutoFitTextAreaItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldEditorWindow/item[0][Class=&quot;FormulaBuilder&quot;]/formulaForm/item[name=formulaField||title=Formula||value=round%28A%24fs%24B%2C2%29||index=0||Class=AutoFitTextAreaItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldEditorWindow/item[0][Class=&quot;FormulaBuilder&quot;]/formulaForm/item[name=formulaField||title=Formula||value=round%28A%24fs%24B%2C2%29||index=0||Class=AutoFitTextAreaItem]/element</td>
+	<td>round(A/B,2)</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldEditorWindow/item[0][Class=&quot;FormulaBuilder&quot;]/saveButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldEditorWindow/item[0][Class=&quot;FormulaBuilder&quot;]/saveButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/header/headerButton[fieldName=Population_Density1]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseMove</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/header/headerButton[fieldName=Population_Density1]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForGridDone</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/header/headerButton[fieldName=Population_Density1]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/header/headerButton[fieldName=capital]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>dragAndDropToObject</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/header/headerButton[fieldName=Population_Density1]/</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/header/headerButton[fieldName=capital]/</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/header/headerButton[fieldName=capital]/L</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/header/headerButton[fieldName=Population_Density1]/R</td>
+	<td></td>
+</tr>
+<tr>
+	<td>dragAndDropToObject</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/header/headerButton[fieldName=capital]/L</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/header/headerButton[fieldName=Population_Density1]/R</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=HLayout||index=0||length=2||classIndex=0||classLength=1]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseMove</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=HLayout||index=0||length=2||classIndex=0||classLength=1]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[0]/col[fieldName=Population_Density1||2]</td>
+	<td>30.99</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[1]/col[fieldName=Population_Density1||2]</td>
+	<td>136.92</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/headerMenuButton/icon</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/headerContextMenu[Class=Menu||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=menu]/body/row[title=Edit%20formula...||12]/col[fieldName=title||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/headerContextMenu[Class=Menu||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=menu]/body/row[title=Edit%20formula...||12]/col[fieldName=title||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldEditorWindow/item[0][Class=&quot;FormulaBuilder&quot;]/formulaForm/item[name=formulaField||title=Formula||value=round%28A%24fs%24B%2C2%29||index=0||Class=AutoFitTextAreaItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldEditorWindow/item[0][Class=&quot;FormulaBuilder&quot;]/formulaForm/item[name=formulaField||title=Formula||value=round%28A%24fs%24B%2C2%29||index=0||Class=AutoFitTextAreaItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldEditorWindow/item[0][Class=&quot;FormulaBuilder&quot;]/formulaForm/item[name=formulaField||title=Formula||value=round%28A%24fs%24B%2C3%29||index=0||Class=AutoFitTextAreaItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldEditorWindow/item[0][Class=&quot;FormulaBuilder&quot;]/formulaForm/item[name=formulaField||title=Formula||value=round%28A%24fs%24B%2C3%29||index=0||Class=AutoFitTextAreaItem]/element</td>
+	<td>round(A/B,3)</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldEditorWindow/item[0][Class=&quot;FormulaBuilder&quot;]/saveButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldEditorWindow/item[0][Class=&quot;FormulaBuilder&quot;]/saveButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForGridDone</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[0]/col[fieldName=Population_Density1||2]</td>
+	<td>30.987</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[1]/col[fieldName=Population_Density1||2]</td>
+	<td>136.916</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/header/headerButton[fieldName=capital]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>contextMenu</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/header/headerButton[fieldName=capital]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/headerContextMenu[Class=Menu||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=menu]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseMove</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/headerContextMenu[Class=Menu||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=menu]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/headerContextMenu[Class=Menu||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=menu]/body/row[title=Add%20formula%20column...||13]/col[fieldName=title||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/headerContextMenu[Class=Menu||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=menu]/body/row[title=Add%20formula%20column...||13]/col[fieldName=title||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementReadyForKeyPresses</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldEditorWindow/item[0][Class=&quot;FormulaBuilder&quot;]/titleForm/item[name=titleField||title=Title||value=New%20Field||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldEditorWindow/item[0][Class=&quot;FormulaBuilder&quot;]/titleForm/item[name=titleField||title=Title||value=New%20Field||index=0||Class=TextItem]/element</td>
+	<td>New Field</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldEditorWindow/item[0][Class=&quot;FormulaBuilder&quot;]/titleForm/item[name=titleField||title=Title||value=Population%20Density%202||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldEditorWindow/item[0][Class=&quot;FormulaBuilder&quot;]/titleForm/item[name=titleField||title=Title||value=Population%20Density%202||index=0||Class=TextItem]/element</td>
+	<td>Population Density 2</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldEditorWindow/item[0][Class=&quot;FormulaBuilder&quot;]/formulaForm/item[name=formulaField||title=Formula||value=||index=0||Class=AutoFitTextAreaItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldEditorWindow/item[0][Class=&quot;FormulaBuilder&quot;]/formulaForm/item[name=formulaField||title=Formula||value=||index=0||Class=AutoFitTextAreaItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldEditorWindow/item[0][Class=&quot;FormulaBuilder&quot;]/formulaForm/item[name=formulaField||title=Formula||value=round%28C%29||index=0||Class=AutoFitTextAreaItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldEditorWindow/item[0][Class=&quot;FormulaBuilder&quot;]/formulaForm/item[name=formulaField||title=Formula||value=round%28C%29||index=0||Class=AutoFitTextAreaItem]/element</td>
+	<td>round(C)</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldEditorWindow/item[0][Class=&quot;FormulaBuilder&quot;]/saveButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldEditorWindow/item[0][Class=&quot;FormulaBuilder&quot;]/saveButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForGridDone</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/header/headerButton[fieldName=Population_Density_21]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/header/headerButton[fieldName=capital]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>dragAndDropToObject</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/header/headerButton[fieldName=Population_Density_21]/</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/header/headerButton[fieldName=capital]/</td>
+</tr>
+<tr>
+	<td>waitForGridDone</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[0]/col[fieldName=Population_Density_21||3]</td>
+	<td>31</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[1]/col[fieldName=Population_Density_21||3]</td>
+	<td>137</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/header/headerButton[fieldName=capital]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>contextMenu</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/header/headerButton[fieldName=capital]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/headerContextMenu[Class=Menu||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=menu]/body/row[title=Add%20summary%20column...||15]/col[fieldName=title||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/headerContextMenu[Class=Menu||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=menu]/body/row[title=Add%20summary%20column...||15]/col[fieldName=title||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldEditorWindow/item[0][Class=&quot;SummaryBuilder&quot;]/titleForm/item[name=titleField||title=Title||value=Country%20Capital||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldEditorWindow/item[0][Class=&quot;SummaryBuilder&quot;]/titleForm/item[name=titleField||title=Title||value=Country%20Capital||index=0||Class=TextItem]/element</td>
+	<td>Country Capital</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldEditorWindow/item[0][Class=&quot;SummaryBuilder&quot;]/formulaForm/item[name=formulaField||title=Summary||value=||index=0||Class=AutoFitTextAreaItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldEditorWindow/item[0][Class=&quot;SummaryBuilder&quot;]/formulaForm/item[name=formulaField||title=Summary||value=||index=0||Class=AutoFitTextAreaItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldEditorWindow/item[0][Class=&quot;SummaryBuilder&quot;]/formulaForm/item[name=formulaField||title=Summary||value=||index=0||Class=AutoFitTextAreaItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldEditorWindow/item[0][Class=&quot;SummaryBuilder&quot;]/formulaForm/item[name=formulaField||title=Summary||value=||index=0||Class=AutoFitTextAreaItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldEditorWindow/item[0][Class=&quot;SummaryBuilder&quot;]/formulaForm/item[name=formulaField||title=Summary||value=%23B%20-%3E%20%23E||index=0||Class=AutoFitTextAreaItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldEditorWindow/item[0][Class=&quot;SummaryBuilder&quot;]/formulaForm/item[name=formulaField||title=Summary||value=%23B%20-%3E%20%23E||index=0||Class=AutoFitTextAreaItem]/element</td>
+	<td>#B -&gt; #E</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldEditorWindow/item[0][Class=&quot;SummaryBuilder&quot;]/saveButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldEditorWindow/item[0][Class=&quot;SummaryBuilder&quot;]/saveButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForGridDone</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[0]/col[8]</td>
+	<td>United States -&gt; Washington, DC</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[1]/col[8]</td>
+	<td>China -&gt; Beijing</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=HLayout||index=0||length=2||classIndex=0||classLength=1]/member[Class=IButton||index=1||length=3||classIndex=1||classLength=3||roleIndex=1||roleLength=3||title=Edit%20Hilites||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=HLayout||index=0||length=2||classIndex=0||classLength=1]/member[Class=IButton||index=1||length=3||classIndex=1||classLength=3||roleIndex=1||roleLength=3||title=Edit%20Hilites||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/fieldList/body/row[title=Area%20%28km%26sup2%3B%29||3]/col[fieldName=title||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/fieldList/body/row[title=Area%20%28km%26sup2%3B%29||3]/col[fieldName=title||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/hiliteRule[Class=HiliteRule||index=0||length=1||classIndex=0||classLength=1]/clause/clause/item[name=operator||title=Operator||value=iContains||index=1||Class=SelectItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/hiliteRule[Class=HiliteRule||index=0||length=1||classIndex=0||classLength=1]/clause/clause/item[name=operator||title=Operator||value=iContains||index=1||Class=SelectItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/hiliteRule[Class=HiliteRule||index=0||length=1||classIndex=0||classLength=1]/clause/clause/item[name=operator||title=Operator||value=iContains||index=1||Class=SelectItem]/pickList/body/row[operator=greaterThan||13]/col[fieldName=operator||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/hiliteRule[Class=HiliteRule||index=0||length=1||classIndex=0||classLength=1]/clause/clause/item[name=operator||title=Operator||value=iContains||index=1||Class=SelectItem]/pickList/body/row[operator=greaterThan||13]/col[fieldName=operator||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/hiliteRule[Class=HiliteRule||index=0||length=1||classIndex=0||classLength=1]/clause/clause/item[name=value||title=Value||index=2||Class=FloatItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/hiliteRule[Class=HiliteRule||index=0||length=1||classIndex=0||classLength=1]/clause/clause/item[name=value||title=Value||index=2||Class=FloatItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/hiliteRule[Class=HiliteRule||index=0||length=1||classIndex=0||classLength=1]/clause/clause/item[name=value||title=Value||value=50000||index=2||Class=FloatItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/hiliteRule[Class=HiliteRule||index=0||length=1||classIndex=0||classLength=1]/clause/clause/item[name=value||title=Value||value=50000||index=2||Class=FloatItem]/element</td>
+	<td>50000</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/hiliteRule[Class=HiliteRule||index=0||length=1||classIndex=0||classLength=1]/hiliteForm/item[name=textColor||title=Text||index=0||Class=ColorItem]/[icon=&quot;picker&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/hiliteRule[Class=HiliteRule||index=0||length=1||classIndex=0||classLength=1]/hiliteForm/item[name=textColor||title=Text||index=0||Class=ColorItem]/[icon=&quot;picker&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//autoID[Class=ColorPicker||index=167||length=168||classIndex=0||classLength=1||roleIndex=1||roleLength=2||title=Select%20a%20Color||scRole=dialog]/basicColorSwatch[Class=StatefulCanvas||index=13||length=40||classIndex=13||classLength=40]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//autoID[Class=ColorPicker||index=167||length=168||classIndex=0||classLength=1||roleIndex=1||roleLength=2||title=Select%20a%20Color||scRole=dialog]/basicColorSwatch[Class=StatefulCanvas||index=13||length=40||classIndex=13||classLength=40]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/fieldList/body/row[title=Population%20Density%202||7]/col[fieldName=title||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/fieldList/body/row[title=Population%20Density%202||7]/col[fieldName=title||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/hiliteRule[Class=HiliteRule||index=1||length=2||classIndex=1||classLength=2]/clause/clause/item[name=operator||title=Operator||value=iContains||index=1||Class=SelectItem]/[icon=&quot;picker&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/hiliteRule[Class=HiliteRule||index=1||length=2||classIndex=1||classLength=2]/clause/clause/item[name=operator||title=Operator||value=iContains||index=1||Class=SelectItem]/[icon=&quot;picker&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/hiliteRule[Class=HiliteRule||index=1||length=2||classIndex=1||classLength=2]/clause/clause/item[name=operator||title=Operator||value=iContains||index=1||Class=SelectItem]/pickList/body/row[operator=lessThan||12]/col[fieldName=operator||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/hiliteRule[Class=HiliteRule||index=1||length=2||classIndex=1||classLength=2]/clause/clause/item[name=operator||title=Operator||value=iContains||index=1||Class=SelectItem]/pickList/body/row[operator=lessThan||12]/col[fieldName=operator||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/hiliteRule[Class=HiliteRule||index=1||length=2||classIndex=1||classLength=2]/clause/clause/item[name=value||title=Value||index=2||Class=FloatItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/hiliteRule[Class=HiliteRule||index=1||length=2||classIndex=1||classLength=2]/clause/clause/item[name=value||title=Value||index=2||Class=FloatItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/hiliteRule[Class=HiliteRule||index=1||length=2||classIndex=1||classLength=2]/clause/clause/item[name=value||title=Value||value=100||index=2||Class=FloatItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/hiliteRule[Class=HiliteRule||index=1||length=2||classIndex=1||classLength=2]/clause/clause/item[name=value||title=Value||value=100||index=2||Class=FloatItem]/element</td>
+	<td>100</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/hiliteRule[Class=HiliteRule||index=1||length=2||classIndex=1||classLength=2]/hiliteForm/item[name=backgroundColor||title=Background||index=1||Class=ColorItem]/[icon=&quot;picker&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/hiliteRule[Class=HiliteRule||index=1||length=2||classIndex=1||classLength=2]/hiliteForm/item[name=backgroundColor||title=Background||index=1||Class=ColorItem]/[icon=&quot;picker&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//autoID[Class=ColorPicker||index=167||length=168||classIndex=0||classLength=1||roleIndex=1||roleLength=2||title=Select%20a%20Color||scRole=dialog]/basicColorSwatch[Class=StatefulCanvas||index=19||length=40||classIndex=19||classLength=40]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//autoID[Class=ColorPicker||index=167||length=168||classIndex=0||classLength=1||roleIndex=1||roleLength=2||title=Select%20a%20Color||scRole=dialog]/basicColorSwatch[Class=StatefulCanvas||index=19||length=40||classIndex=19||classLength=40]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/hiliteRule[Class=HiliteRule||index=1||length=2||classIndex=1||classLength=2]/hiliteForm/item[name=textColor||title=Text||index=0||Class=ColorItem]/[icon=&quot;picker&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/hiliteRule[Class=HiliteRule||index=1||length=2||classIndex=1||classLength=2]/hiliteForm/item[name=textColor||title=Text||index=0||Class=ColorItem]/[icon=&quot;picker&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//autoID[Class=ColorPicker||index=167||length=168||classIndex=0||classLength=1||roleIndex=1||roleLength=2||title=Select%20a%20Color||scRole=dialog]/basicColorSwatch[Class=StatefulCanvas||index=31||length=40||classIndex=31||classLength=40]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//autoID[Class=ColorPicker||index=167||length=168||classIndex=0||classLength=1||roleIndex=1||roleLength=2||title=Select%20a%20Color||scRole=dialog]/basicColorSwatch[Class=StatefulCanvas||index=31||length=40||classIndex=31||classLength=40]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/saveButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/saveButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=HLayout||index=0||length=2||classIndex=0||classLength=1]/member[Class=IButton||index=1||length=3||classIndex=1||classLength=3||roleIndex=1||roleLength=3||title=Edit%20Hilites||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=HLayout||index=0||length=2||classIndex=0||classLength=1]/member[Class=IButton||index=1||length=3||classIndex=1||classLength=3||roleIndex=1||roleLength=3||title=Edit%20Hilites||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/fieldList/body/row[title=Country%20Capital||8]/col[fieldName=title||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/fieldList/body/row[title=Country%20Capital||8]/col[fieldName=title||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/hiliteRule[Class=HiliteRule||index=4||length=5||classIndex=3||classLength=4]/clause/clause/item[name=operator||title=Operator||value=iEquals||index=1||Class=SelectItem]/[icon=&quot;picker&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/hiliteRule[Class=HiliteRule||index=4||length=5||classIndex=3||classLength=4]/clause/clause/item[name=operator||title=Operator||value=iEquals||index=1||Class=SelectItem]/[icon=&quot;picker&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/hiliteRule[Class=HiliteRule||index=4||length=5||classIndex=3||classLength=4]/clause/clause/item[name=operator||title=Operator||value=iEquals||index=1||Class=SelectItem]/pickList/body/row[operator=iContains||3]/col[fieldName=operator||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/hiliteRule[Class=HiliteRule||index=4||length=5||classIndex=3||classLength=4]/clause/clause/item[name=operator||title=Operator||value=iEquals||index=1||Class=SelectItem]/pickList/body/row[operator=iContains||3]/col[fieldName=operator||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/hiliteRule[Class=HiliteRule||index=4||length=5||classIndex=3||classLength=4]/clause/clause/item[name=value||title=Value||index=2||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/hiliteRule[Class=HiliteRule||index=4||length=5||classIndex=3||classLength=4]/clause/clause/item[name=value||title=Value||index=2||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/hiliteRule[Class=HiliteRule||index=4||length=5||classIndex=3||classLength=4]/clause/clause/item[name=value||title=Value||value=u||index=2||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/hiliteRule[Class=HiliteRule||index=4||length=5||classIndex=3||classLength=4]/clause/clause/item[name=value||title=Value||value=u||index=2||Class=TextItem]/element</td>
+	<td>u</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/hiliteRule[Class=HiliteRule||index=4||length=5||classIndex=3||classLength=4]/hiliteForm/item[name=backgroundColor||title=Background||index=1||Class=ColorItem]/[icon=&quot;picker&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/hiliteRule[Class=HiliteRule||index=4||length=5||classIndex=3||classLength=4]/hiliteForm/item[name=backgroundColor||title=Background||index=1||Class=ColorItem]/[icon=&quot;picker&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//autoID[Class=ColorPicker||index=167||length=168||classIndex=0||classLength=1||roleIndex=1||roleLength=2||title=Select%20a%20Color||scRole=dialog]/basicColorSwatch[Class=StatefulCanvas||index=29||length=40||classIndex=29||classLength=40]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//autoID[Class=ColorPicker||index=167||length=168||classIndex=0||classLength=1||roleIndex=1||roleLength=2||title=Select%20a%20Color||scRole=dialog]/basicColorSwatch[Class=StatefulCanvas||index=29||length=40||classIndex=29||classLength=40]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/saveButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/hiliteWindow/item[0][Class=&quot;HiliteEditor&quot;]/saveButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForGridDone</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var myListGrid = selenium.getAutWindow().isc.AutoTest.getObject(&quot;//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]&quot;); myListGrid.getCellCSSText(myListGrid.getRecord(0), 0, 3) </td>
+	<td>color:#C0C0C0;background-color:#339966;</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var myListGrid = selenium.getAutWindow().isc.AutoTest.getObject(&quot;//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]&quot;); myListGrid.getCellCSSText(myListGrid.getRecord(0), 0, 6) </td>
+	<td>color:#0000FF;</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var myListGrid = selenium.getAutWindow().isc.AutoTest.getObject(&quot;//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]&quot;); myListGrid.getCellCSSText(myListGrid.getRecord(0), 0, 8) </td>
+	<td>background-color:#00CCFF;</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=HLayout||index=0||length=2||classIndex=0||classLength=1]/member[Class=IButton||index=2||length=3||classIndex=2||classLength=3||roleIndex=2||roleLength=3||title=Recreate%20from%20State||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=HLayout||index=0||length=2||classIndex=0||classLength=1]/member[Class=IButton||index=2||length=3||classIndex=2||classLength=3||roleIndex=2||roleLength=3||title=Recreate%20from%20State||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=HLayout||index=0||length=2||classIndex=0||classLength=1]/member[Class=IButton||index=2||length=3||classIndex=2||classLength=3||roleIndex=2||roleLength=3||title=Recreate%20from%20State||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseMove</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=HLayout||index=0||length=2||classIndex=0||classLength=1]/member[Class=IButton||index=2||length=3||classIndex=2||classLength=3||roleIndex=2||roleLength=3||title=Recreate%20from%20State||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForGridDone</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var myListGrid = selenium.getAutWindow().isc.AutoTest.getObject(&quot;//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]&quot;); myListGrid.getCellCSSText(myListGrid.getRecord(0), 0, 3) </td>
+	<td>color:#C0C0C0;background-color:#339966;</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var myListGrid = selenium.getAutWindow().isc.AutoTest.getObject(&quot;//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]&quot;); myListGrid.getCellCSSText(myListGrid.getRecord(0), 0, 6) </td>
+	<td>color:#0000FF;</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var myListGrid = selenium.getAutWindow().isc.AutoTest.getObject(&quot;//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]&quot;); myListGrid.getCellCSSText(myListGrid.getRecord(0), 0, 8) </td>
+	<td>background-color:#00CCFF;</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

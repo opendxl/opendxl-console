@@ -1,0 +1,233 @@
+<DynamicForm
+    ID="form1"
+    width="620"
+    autoDraw="false">
+    <colWidths>
+        <width>190</width>
+        <width>*</width>
+    </colWidths>
+    <fields>
+        <field name="tf" title="Text" type="text" hint="A plain text field" wrapHintText="false" />
+        <field name="cp" title="Color Picker" type="color"/>
+        <field name="ta" title="TextArea" type="textarea"/>
+        <field name="ss" title="Stacked Spinner" type="spinner" writeStackedIcons="true"
+               min="0" max="10" step="0.5" wrapTitle="false">
+            <defaultValue><JS>5.0</JS></defaultValue>
+        </field>
+
+        <field name="us" title="Unstacked Spinner" type="spinner"
+               min="0" max="10" step="0.5">
+            <defaultValue><JS>5.0</JS></defaultValue>
+            <writeStackedIcons><JS>false</JS></writeStackedIcons>
+        </field>
+        
+        <field name="slider" title="Slider" type="slider" width="180"
+               minValue="1" maxValue="5" numValues="5">
+            <height><JS>isc.Browser.isTouch?52:36</JS></height>
+         </field>
+        <field name="link" title="LinkItem" type="link" height="18" linkTitle="Link text"/>
+        <field name="cb" title="Checkbox" type="checkbox" height="25" />
+        <field name="rg" title="Radio Group" type="radioGroup">
+            <valueMap>
+                <value>Option 1</value>
+                <value>Option 2</value>
+            </valueMap>
+        </field>
+    </fields>
+
+    <values>
+        <slider><JS>4.0</JS></slider>
+    </values>
+</DynamicForm>
+
+<JS>
+var valueMap = {
+    "US" : "<b>United States</b>",
+    "CH" : "China",
+    "JA" : "<b>Japan</b>",
+    "IN" : "India",
+    "GM" : "Germany",
+    "FR" : "France",
+    "IT" : "Italy",
+    "RS" : "Russia",
+    "BR" : "<b>Brazil</b>",
+    "CA" : "Canada",
+    "MX" : "Mexico",
+    "SP" : "Spain"
+}
+
+var valueIcons = {
+    "US" : "US",
+    "CH" : "CH",
+    "JA" : "JA",
+    "IN" : "IN",
+    "GM" : "GM",
+    "FR" : "FR",
+    "IT" : "IT",
+    "RS" : "RS",
+    "BR" : "BR",
+    "CA" : "CA",
+    "MX" : "MX",
+    "SP" : "SP"
+}
+</JS>
+
+<DynamicForm
+    ID="form2"
+    width="620"
+    isGroup="true"
+    groupTitle="Select / Combo Controls"
+    autoDraw="false">
+    <colWidths>
+        <width>190</width>
+        <width>*</width>
+    </colWidths>
+    <fields>
+        <field name="bugStatus" title="Select" type="comboBox"
+               hint="&lt;nobr&gt;A simple combobox&lt;/nobr&gt;">
+            <valueMap>
+                <cat>Cat</cat>
+                <dog>Dog</dog>
+                <giraffe>Giraffe</giraffe>
+                <goat>Goat</goat>
+                <marmoset>Marmoset</marmoset>
+                <mouse>Mouse</mouse>
+            </valueMap>
+        </field>
+        
+        <field name="itemName" title="Item Name" type="comboBox"
+               optionDataSource="supplyItem" pickListWidth="250"/>
+
+        <field name="selectItem" title="Select" type="select"
+               hint="&lt;nobr&gt;A combobox with icons&lt;/nobr&gt;"
+               imageURLPrefix="flags/16/"
+               imageURLSuffix=".png">
+               <valueMap><JS>valueMap</JS></valueMap>
+               <valueIcons><JS>valueIcons</JS></valueIcons>
+        </field>
+
+
+        <field name="selectItem2" title="Select" type="select"
+               hint="&lt;nobr&gt;A combobox with styled entries&lt;/nobr&gt;">
+            <valueMap>
+                <red>&lt;span style='color:#FF0000;'&gt;Red&lt;/span&gt;</red>
+                <green>&lt;span style='color:#00FF00;'&gt;Red&lt;/span&gt;</green>
+                <blue>&lt;span style='color:#0000FF;'&gt;Red&lt;/span&gt;</blue>
+            </valueMap>
+        </field>
+
+        <field name="selectItemMultipleGrid" title="Select Multiple (Grid)"
+               type="select" multiple="true" multipleAppearance="grid">
+            <valueMap>
+                <cat>Cat</cat>
+                <dog>Dog</dog>
+                <giraffe>Giraffe</giraffe>
+                <goat>Goat</goat>
+                <marmoset>Marmoset</marmoset>
+                <mouse>Mouse</mouse>
+            </valueMap>
+        </field>
+
+        <field name="selectItemMultiplePickList" title="Select Multiple (PickList)"
+               type="select" multiple="true" multipleAppearance="picklist">
+            <valueMap>
+                <cat>Cat</cat>
+                <dog>Dog</dog>
+                <giraffe>Giraffe</giraffe>
+                <goat>Goat</goat>
+                <marmoset>Marmoset</marmoset>
+                <mouse>Mouse</mouse>
+            </valueMap>
+        </field>
+
+    </fields>
+</DynamicForm>
+
+<DynamicForm
+    ID="dateForm"
+    width="620"
+    isGroup="true"
+    groupTitle="Date Controls"
+    autoDraw="false">
+    <colWidths>
+        <width>190</width>
+        <width>*</width>
+    </colWidths>
+    <fields>
+        <field name="dateItem" title="Date" hint="&lt;nobr&gt;Picklist based date input&lt;/nobr&gt;"
+               type="date" useTextField="false"/>
+        <field name="dateItem2" title="Date" hint="&lt;nobr&gt;Direct date input&lt;/nobr&gt;" 
+               type="date" useTextField="true"/>
+        <field name="timeItem" title="Time" type="time"/>
+        <field name="timeItem" title="Time" type="time"
+               hint="Picklist based time input" useTextField="false"/>
+        <field name="dri" title="Date Range" type="dateRange" dateFormatter="toUSShortDate"
+               allowRelativeDates="true" fromDate="$today" toDate="-1m"/>
+        <field name="mdri" title="Mini Date Range" type="miniDateRange"/>
+        <field name="rdi" title="Relative Date" type="relativeDate"/>
+    </fields>
+</DynamicForm>
+
+<Tree ID="departmentTree"
+      modelType="children">
+    <root>
+        <children>
+            <node name="Marketing">
+                <children>
+                    <node name="Advertising"/>
+                    <node name="Community Relations"/>
+                </children>
+            </node>
+            <node name="Sales">
+                <children>
+                    <node name="Channel Sales"/>
+                    <node name="Direct Sales"/>
+                </children>
+            </node>
+            <node name="Manufacturing">
+                <children>
+                    <node name="Design"/>
+                    <node name="Development"/>
+                    <node name="QA"/>
+                </children>
+            </node>
+            <node name="Services">
+                <children>
+                    <node name="Support"/>
+                    <node name="Consulting"/>
+                </children>
+            </node>
+        </children>
+    </root>
+</Tree>
+
+<DynamicForm
+    ID="pickTreeForm"
+    width="620"
+    isGroup="true"
+    groupTitle="PickTree"
+    autoDraw="false">
+    <colWidths>
+        <width>190</width>
+        <width>*</width>
+    </colWidths>
+    <fields>
+        <field name="department" title="Department"
+            type="pickTree" valueField="name">
+            <valueTree ref="departmentTree"/>
+        </field>
+        <field name="category" title="Category"
+          type="pickTree" dataSource="supplyCategory"
+          emptyMenuMessage="No Sub Categories"
+          canSelectParentItems="true"/>
+    </fields>
+</DynamicForm>
+
+<VStack membersMargin="10">
+    <members>
+        <Canvas ref="form1"/>
+        <Canvas ref="form2"/>
+        <Canvas ref="dateForm"/>
+        <Canvas ref="pickTreeForm"/>
+    </members>
+</VStack>

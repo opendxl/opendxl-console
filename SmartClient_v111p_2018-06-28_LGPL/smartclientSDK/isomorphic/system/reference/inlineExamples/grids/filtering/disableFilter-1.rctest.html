@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/showcase/" />
+<title>disableFilter-1.rctest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">disableFilter-1.rctest</td></tr>
+</thead><tbody>
+<tr>
+	<td>exampleOpen</td>
+	<td>smartgwt</td>
+	<td>grid_sortfilter_disable_filter</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=1||countryCode=BD||countryName=Bermuda||0]/col[fieldName=countryName||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=1||countryCode=BD||countryName=Bermuda||0]/col[fieldName=countryName||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[0]/col[fieldName=countryName||1]</td>
+	<td>Bermuda</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/filterEditor/editRowForm/item[name=countryName||title=Country||index=1||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/filterEditor/editRowForm/item[name=countryName||title=Country||index=1||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/filterEditor/editRowForm/item[name=countryName||title=Country||value=island||index=1||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/filterEditor/editRowForm/item[name=countryName||title=Country||value=island||index=1||Class=TextItem]/element</td>
+	<td>island</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/filterEditor/actionButton/icon</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/filterEditor/actionButton/icon</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForGridDone</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[0]/col[fieldName=countryName||1]</td>
+	<td>Cayman Islands</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[1]/col[fieldName=countryName||1]</td>
+	<td>Faroe Islands</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[2]/col[fieldName=countryName||1]</td>
+	<td>Virgin Islands</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[3]/col[fieldName=countryName||1]</td>
+	<td>* Islands</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[4]/col[fieldName=countryName||1]</td>
+	<td>* Islands</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[6]/col[fieldName=countryName||1]</td>
+	<td>Cook Islands</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[7]/col[fieldName=countryName||1]</td>
+	<td>Solomon Islands</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/filterEditor/editRowForm/item[name=continent||title=Continent||index=3||Class=SelectItem]/[icon=&quot;picker&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/filterEditor/editRowForm/item[name=continent||title=Continent||index=3||Class=SelectItem]/[icon=&quot;picker&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/filterEditor/editRowForm/item[name=continent||title=Continent||index=3||Class=SelectItem]/pickList/body/row[continent=North%20America||3]/col[fieldName=continent||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/filterEditor/editRowForm/item[name=continent||title=Continent||index=3||Class=SelectItem]/pickList/body/row[continent=North%20America||3]/col[fieldName=continent||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/filterEditor/actionButton/icon</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/filterEditor/actionButton/icon</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForGridDone</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[0]/col[fieldName=countryName||1]</td>
+	<td>Cayman Islands</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[1]/col[fieldName=countryName||1]</td>
+	<td>Virgin Islands</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[2]/col[fieldName=countryName||1]</td>
+	<td>British Virgin Islands</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[3]/col[fieldName=countryName||1]</td>
+	<td>Turks and Caicos Islands</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/filterEditor/body/row[0]/col[fieldName=capital||2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/filterEditor/body/row[0]/col[fieldName=capital||2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyVisible</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/filterEditor/body/row[0]/col[fieldName=capital||2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/filterEditor/editRowForm/item[name=countryName||title=Country||index=1||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/filterEditor/editRowForm/item[name=capital||title=Capital||index=2||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

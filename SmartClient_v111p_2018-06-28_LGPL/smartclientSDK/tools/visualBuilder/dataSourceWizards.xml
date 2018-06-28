@@ -1,0 +1,68 @@
+<!-- list of DataSource Wizards for the visual builder -->
+<PaletteNodes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+<PaletteNode name="sqlDataBases" title="SQL Databases" icon="database.png" canSelect="false">
+    <children>
+
+<PaletteNode name="sqlDataSource" title="SQLDataSource &lt;b&gt;(preferred)&lt;/b&gt;" icon="database.png" canSelect="false">
+    <children>
+        <PaletteNode name="newSQL" icon="isomorphic.ico" title="New SQL Table"></PaletteNode>
+        <PaletteNode name="existingSQL" icon="isomorphic.ico" title="Existing SQL Table or View" 
+                type="DatabaseBrowser">
+            <wizardConstructor>DatabaseBrowser</wizardConstructor>
+            <wizardDefaults serverType="sql" existingTable="true" />
+        </PaletteNode>
+    </children>
+</PaletteNode>
+<PaletteNode name="hibernateBeanless" title="Hibernate 'beanless' mode" icon="hibernate.ico" canSelect="false">
+    <children>
+        <PaletteNode name="newHibernate" icon="hibernate.ico" title="New SQL Table"></PaletteNode>
+        <PaletteNode name="existingHibernate" type="DatabaseBrowser" icon="hibernate.ico" 
+                title="Existing SQL Table or View">
+            <wizardConstructor>DatabaseBrowser</wizardConstructor>
+            <wizardDefaults serverType="hibernate" existingTable="true" />
+        </PaletteNode>
+    </children>
+</PaletteNode>
+
+    </children>
+</PaletteNode>
+
+<PaletteNode name="hibernateBean" type="HibernateBrowser" icon="hibernate.ico" 
+	    title="Existing Hibernate Bean">
+	<wizardConstructor>HibernateBrowser</wizardConstructor>
+</PaletteNode>
+
+<PaletteNode name="javaBean" type="JavaBean" icon="bean.png" 
+        title="Existing Java Bean">
+</PaletteNode>
+
+<!--
+<PaletteNode name="javaBeanWithServerConstructor" type="JavaBean" icon="bean.png" 
+        title="Java Bean with Server Constructor">
+	<wizardDefaults serverConstructor="com.java.MyJavaComponent" />
+</PaletteNode>
+-->
+
+<PaletteNode name="webService" title="WSDL Web Service" icon="wsdl.png"></PaletteNode>
+
+<PaletteNode name="rss" title="RSS Feed" icon="rss.jpg"></PaletteNode>
+
+<PaletteNode name="rest" title="REST Service" canSelect="false">
+    <children>
+        <PaletteNode name="simpleXML" icon="xml.gif" title="XML service or flat file (non-WSDL)"></PaletteNode>
+        <PaletteNode name="json" icon="json.jpg" title="JSON service or flat file"></PaletteNode>
+    </children>
+</PaletteNode>
+
+<PaletteNode name="file" title="Import file" canSelect="false">
+    <children>
+        <PaletteNode name="xmlFile" icon="xml.gif" title="XML file"></PaletteNode>
+        <PaletteNode name="csvFile" icon="json.jpg" title="CSV file"></PaletteNode>
+        <PaletteNode name="jsonFile" icon="json.jpg" title="JSON file"></PaletteNode>
+    </children>
+</PaletteNode>
+
+<PaletteNode name="sforce" title="SalesForce" icon="sforce.ico"></PaletteNode>
+
+</PaletteNodes>

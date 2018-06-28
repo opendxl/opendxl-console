@@ -1,0 +1,12 @@
+<DynamicForm width="400" numCols="4">
+    <fields>
+        <field title="field 1" type="textArea" width="100" height="50" rowSpan="2"/>
+        <field title="field 2" width="80"/>
+        <field title="field 3" width="80" align="right"/>
+        <field title="field 4" width="308" colSpan="4"/>
+        <field title="field 5" width="100" endRow="true"/>
+        <field title="field 6" width="100"/>
+        <field title="field 7" width="100" startRow="true"/>
+        <field title="field 8" width="100"/>
+    </fields>
+</DynamicForm>

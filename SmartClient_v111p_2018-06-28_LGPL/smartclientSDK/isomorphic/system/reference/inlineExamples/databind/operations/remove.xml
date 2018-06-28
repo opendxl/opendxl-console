@@ -1,0 +1,13 @@
+<Label height="10" width="100%" contents="Showing items in Category 'Rollfix Glue'"/>
+<ListGrid
+    top="20"
+    ID="dsListGrid" 
+    width="100%" 
+    height="200"
+    dataSource="supplyItem"
+/>
+<JS>dsListGrid.filterData({category: "Rollfix Glue"});</JS>
+
+<Button top="230" title="Remove" click="dsListGrid.removeSelectedData()"/>
+  
+

@@ -1,0 +1,14 @@
+<soap:Envelope xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/' 
+               xmlns:xsi='http://www.w3.org/1999/XMLSchema-instance' 
+               xmlns:xsd='http://www.w3.org/1999/XMLSchema'>
+    <soap:Header></soap:Header>
+    <soap:Body>
+        <schNS:fetchRequest xmlns:schNS="urn:operations.smartclient.com">
+            <dataSource>countryDS</dataSource>
+            <operationType>fetch</operationType>
+            <startRow>0</startRow>
+            <endRow>20</endRow>
+            <data></data>
+        </schNS:fetchRequest>
+    </soap:Body>
+</soap:Envelope>

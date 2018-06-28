@@ -1,0 +1,35 @@
+<HTML><HEAD><TITLE>WSDL Schema Tester</TITLE>
+
+<SCRIPT>window.isomorphicDir='../isomorphic/';</SCRIPT>
+<SCRIPT SRC=../isomorphic/system/modules/ISC_Core.js></SCRIPT>
+<SCRIPT SRC=../isomorphic/system/modules/ISC_Foundation.js></SCRIPT>
+<SCRIPT SRC=../isomorphic/system/modules/ISC_Containers.js></SCRIPT>
+<SCRIPT SRC=../isomorphic/system/modules/ISC_Grids.js></SCRIPT>
+<SCRIPT SRC=../isomorphic/system/modules/ISC_Forms.js></SCRIPT>
+<SCRIPT SRC=../isomorphic/system/modules/ISC_DataBinding.js></SCRIPT>
+<SCRIPT SRC=../isomorphic/system/modules/ISC_Tools.js></SCRIPT>
+
+<!-- load ebay / sales force services up front -->
+<SCRIPT SRC=../isomorphic/system/modules/ISC_EBay.js></SCRIPT>
+<SCRIPT SRC=../isomorphic/system/modules/ISC_SalesForce.js></SCRIPT>
+
+<SCRIPT SRC=../isomorphic/skins/SmartClient/load_skin.js></SCRIPT>
+</HEAD>
+
+<BODY>
+<SCRIPT>
+
+isc.SchemaViewer.create({
+    ID:"schemaViewer",
+    autoDraw:true, height:"100%", width:"100%",
+    showTestUI:true,
+    
+    // Pre populate with some common wsdl URLs for testing
+    wsdlURLs:[
+        "http://www.webservicex.net/uszip.asmx?WSDL",       // zip code webservice
+        "http://api.google.com/GoogleSearch.wsdl"]          // google search (requires key)
+});
+
+</SCRIPT>
+</BODY>
+</HTML>

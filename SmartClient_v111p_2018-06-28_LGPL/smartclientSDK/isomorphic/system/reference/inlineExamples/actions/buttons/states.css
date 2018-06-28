@@ -1,0 +1,55 @@
+.cssButton {
+    padding:2px;
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; background-color:#CCCCCC;
+    color:#000000;
+    border-left:1px solid white; border-top:1px solid white;
+    border-right:1px solid #808080; border-bottom:1px solid #808080;
+    background-image:none;
+}
+.cssButtonOver,
+.cssButtonFocusedOver,
+.cssButtonFocused {
+    padding:2px;
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; background-color:#CCCCCC;
+    color:#000000;
+    border-left:1px solid #808080; border-top:1px solid #808080;
+    border-right:1px solid white; border-bottom:1px solid white;
+}
+.cssButtonDown,
+.cssButtonFocusedDown {
+    padding:2px;
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; background-color:#AAAAAA;
+    color:#000000;
+    border-left:1px solid #666666; border-top:1px solid #666666;
+    border-right:1px solid white; border-bottom:1px solid white;
+}
+.cssButtonDisabled {
+    padding:2px;
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; color:#666666;
+    background-color:#CCCCCC;
+    color:#A0A0A0A0;
+    border-left:1px solid #CCCCCC; border-top:1px solid #CCCCCC;	
+    border-right:1px solid #CCCCCC; border-bottom:1px solid #CCCCCC;
+}
+
+.stretchTitle,
+.stretchTitleOver,
+.stretchTitleFocused,
+.stretchTitleFocusedOver {
+    font-family:Tahoma,Verdana, Bitstream Vera Sans, sans-serif; 
+    font-size:10px; 
+    font-weight:bold;
+}
+
+
+
+.stretchTitleDown,
+.stretchTitleFocusedDown {
+    font-family:Tahoma,Verdana, Bitstream Vera Sans, sans-serif; font-size:10px; font-weight:bold;
+    padding-left:1px; padding-top:2px;
+}
+
+.stretchTitleDisabled {
+    font-family:Tahoma,Verdana, Bitstream Vera Sans, sans-serif; font-size:10px; color:#666666;
+    font-weight:bold;
+}

@@ -1,0 +1,48 @@
+<DataSource
+    ID="dynamicReporting_orderItem"
+    serverType="sql"
+    tableName="dynRepOrderItem"
+    testFileName="/examples/shared/ds/serverExamples/test_data/orderItem.data.xml"
+    qualifyColumnNames="false"
+>
+    <fields>
+        <field name="orderID" type="integer" />
+        <field name="orderDate" type="date" />
+        <field name="itemID" type="integer" />
+        <field name="quantity" type="integer" />
+        <field name="itemName" type="text" customSQL="true" /> 
+        <field name="SKU" type="text" customSQL="true"  />
+        <field name="unitCost" type="float" customSQL="true"  />
+        <field name="startDate" type="date" customSQL="true" />
+        <field name="endDate" type="date" customSQL="true" />
+        <field name="totalSales" type="float" customSQL="true" />
+    </fields>
+    
+<operationBindings>
+    <!-- Special fetch operation - summarize order items in a given date range -->
+    <operationBinding 
+        operationId="summary"
+        operationType="fetch" 
+        customFields="itemName, totalSales, SKU, unitCost" 
+    >
+        <selectClause>
+            dynRepOrderItem.itemID, itemName, SKU, unitCost,
+            SUM(quantity) AS quantity,
+            SUM(quantity * unitCost) AS totalSales
+        </selectClause>
+        <tableClause>dynRepOrderItem, supplyItem</tableClause>
+        <whereClause><![CDATA[
+                dynRepOrderItem.itemID = supplyItem.itemID
+            AND orderDate >= $criteria.startDate
+            AND orderDate <= $criteria.endDate
+			AND $defaultWhereClause
+            ]]>
+        </whereClause>
+        <groupClause>
+            dynRepOrderItem.itemID, itemName,SKU, unitCost
+        </groupClause>
+    </operationBinding>
+</operationBindings>
+    
+</DataSource>
+ 

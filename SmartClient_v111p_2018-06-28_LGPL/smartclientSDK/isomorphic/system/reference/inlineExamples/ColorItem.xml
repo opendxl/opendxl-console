@@ -1,0 +1,9 @@
+<DynamicForm 
+    ID="colorForm"
+    numCols="2"
+    width="300"
+>
+    <fields>
+        <field name="colorField" title="Enter a Color" type="color" />
+    </fields>
+</DynamicForm>

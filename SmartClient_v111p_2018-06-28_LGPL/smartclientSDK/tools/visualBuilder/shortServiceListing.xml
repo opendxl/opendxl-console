@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<inspection xmlns='http://schemas.xmlsoap.org/ws/2001/10/inspection/' 
+            xmlns:wsiluddi='http://schemas.xmlsoap.org/ws/2001/10/inspection/uddi/' 
+            xmlns:wsilxmethods='http://schemas.xmethods.net/ws/2001/10/inspection/'>
+  <service>
+    <abstract>Instantly determines the distance between two U.S. Zip codes.</abstract>
+    <description referencedNamespace='http://schemas.xmlsoap.org/wsdl/' location='http://ws.strikeiron.com/zipdistance?WSDL'/>
+    <description referencedNamespace='http://www.xmethods.net/'>
+      <wsilxmethods:serviceDetailPage location='http://www.xmethods.net/ve2/ViewListing.po?key=uuid:EFB0000D-89A6-C037-A089-8A67C14BDEE6'>
+        <wsilxmethods:serviceID>344347</wsilxmethods:serviceID>
+      </wsilxmethods:serviceDetailPage>
+    </description>
+  </service>
+
+  <service>
+    <abstract>Instantly retrieves city, state, county, latitude and longitude based on any U.S. Zip code.</abstract>
+    <description referencedNamespace='http://schemas.xmlsoap.org/wsdl/' location='http://ws.strikeiron.com/zipinfo?WSDL'/>
+    <description referencedNamespace='http://www.xmethods.net/'>
+      <wsilxmethods:serviceDetailPage location='http://www.xmethods.net/ve2/ViewListing.po?key=uuid:37BC0425-6149-A32A-80CC-53440A05834D'>
+        <wsilxmethods:serviceID>344345</wsilxmethods:serviceID>
+      </wsilxmethods:serviceDetailPage>
+    </description>
+  </service>
+
+  <service>
+    <abstract>Extracts hyperlinks from a given web site.</abstract>
+    <description referencedNamespace='http://schemas.xmlsoap.org/wsdl/' location='http://www.atomic-x.com/xmlservices/HyperlinkExtractor.asmx?wsdl'/>
+    <description referencedNamespace='http://www.xmethods.net/'>
+      <wsilxmethods:serviceDetailPage location='http://www.xmethods.net/ve2/ViewListing.po?key=uuid:EA9D1434-DB46-FB5D-3B11-A75CBC51ABE2'>
+        <wsilxmethods:serviceID>344339</wsilxmethods:serviceID>
+      </wsilxmethods:serviceDetailPage>
+    </description>
+  </service>
+
+  <service>
+    <abstract>Lookup tool for locating ip host name, aliases, and ip addresses.</abstract>
+    <description referencedNamespace='http://schemas.xmlsoap.org/wsdl/' location='http://www.atomic-x.com/xmlservices/dnslookupservice.asmx?wsdl'/>
+    <description referencedNamespace='http://www.xmethods.net/'>
+      <wsilxmethods:serviceDetailPage location='http://www.xmethods.net/ve2/ViewListing.po?key=uuid:C7CBC102-A023-187D-E0D0-C477BFB66AA3'>
+        <wsilxmethods:serviceID>344337</wsilxmethods:serviceID>
+      </wsilxmethods:serviceDetailPage>
+    </description>
+  </service>
+
+  <service>
+    <abstract>Hashes a string using MD5, SHA1, SHA256, SHA384 or SHA512</abstract>
+    <description referencedNamespace='http://schemas.xmlsoap.org/wsdl/' location='http://www.bs-byg.dk/hashclass.wsdl'/>
+    <description referencedNamespace='http://www.xmethods.net/'>
+      <wsilxmethods:serviceDetailPage location='http://www.xmethods.net/ve2/ViewListing.po?key=uuid:FD460436-81BF-86BD-F252-2AB6C00B624C'>
+        <wsilxmethods:serviceID>344298</wsilxmethods:serviceID>
+      </wsilxmethods:serviceDetailPage>
+    </description>
+  </service>
+
+  <service>
+    <abstract>Allows developers to retrieve dates for specific US holidays.</abstract>
+    <description referencedNamespace='http://schemas.xmlsoap.org/wsdl/' location='http://www.27seconds.com/Holidays/US/Dates/USHolidayDates.asmx?WSDL'/>
+    <description referencedNamespace='http://www.xmethods.net/'>
+      <wsilxmethods:serviceDetailPage location='http://www.xmethods.net/ve2/ViewListing.po?key=uuid:2E07168E-AEF7-6312-2FE7-230741646AAC'>
+        <wsilxmethods:serviceID>344293</wsilxmethods:serviceID>
+      </wsilxmethods:serviceDetailPage>
+    </description>
+  </service>
+
+  <service>
+    <abstract>A service to calculate US holidays for date ranges.</abstract>
+    <description referencedNamespace='http://schemas.xmlsoap.org/wsdl/' location='http://www.27seconds.com/Holidays/US/USHolidayService.asmx?WSDL'/>
+    <description referencedNamespace='http://www.xmethods.net/'>
+      <wsilxmethods:serviceDetailPage location='http://www.xmethods.net/ve2/ViewListing.po?key=uuid:9063B3BC-7958-5671-AFFE-D0B76EF1C73C'>
+        <wsilxmethods:serviceID>344291</wsilxmethods:serviceID>
+      </wsilxmethods:serviceDetailPage>
+    </description>
+  </service>
+
+  <service>
+    <abstract>Amazon.com</abstract>
+    <description referencedNamespace='http://schemas.xmlsoap.org/wsdl/' 
+                 location='http://webservices.amazon.com/AWSECommerceService/AWSECommerceService.wsdl'/>
+    <description referencedNamespace='http://www.xmethods.net/'>
+      <wsilxmethods:serviceDetailPage location='http://www.xmethods.net/ve2/ViewListing.po?key=uuid:8B6D8143-1535-FBE8-CF97-2E408E730B93'>
+        <wsilxmethods:serviceID>344289</wsilxmethods:serviceID>
+      </wsilxmethods:serviceDetailPage>
+    </description>
+  </service>
+
+  <service>
+    <abstract>Add Latitude &amp; Longitude Coordinates to your Addresses - Free Trial</abstract>
+    <description referencedNamespace='http://schemas.xmlsoap.org/wsdl/' location='http://ws2.serviceobjects.net/gcr/GeoCoder.asmx?WSDL'/>
+    <description referencedNamespace='http://www.xmethods.net/'>
+      <wsilxmethods:serviceDetailPage location='http://www.xmethods.net/ve2/ViewListing.po?key=uuid:8B6D8143-1535-FBE8-CF97-2E408E730B93'>
+        <wsilxmethods:serviceID>344289</wsilxmethods:serviceID>
+      </wsilxmethods:serviceDetailPage>
+    </description>
+  </service>
+
+  <service>
+    <abstract>Develop Your Own Applications Using Google</abstract>
+    <description referencedNamespace='http://schemas.xmlsoap.org/wsdl/' location='http://api.google.com/GoogleSearch.wsdl'/>
+    <description referencedNamespace='http://www.xmethods.net/'>
+      <wsilxmethods:serviceDetailPage location='http://www.xmethods.net/ve2/ViewListing.po?key=uuid:925F0CC0-C803-82E0-02A4-C3555C2E88A4'>
+        <wsilxmethods:serviceID>73855</wsilxmethods:serviceID>
+      </wsilxmethods:serviceDetailPage>
+    </description>
+  </service>
+
+  <service>
+    <abstract>Indus</abstract>
+    <description referencedNamespace='http://schemas.xmlsoap.org/wsdl/'
+                 location='/indus/searchService/WSDL/Search_Example.wsdl'/>
+  </service>
+
+</inspection>

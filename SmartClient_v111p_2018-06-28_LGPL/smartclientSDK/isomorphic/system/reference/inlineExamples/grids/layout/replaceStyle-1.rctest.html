@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/" />
+<title>replaceStyle-1.rctest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">replaceStyle-1.rctest</td></tr>
+</thead><tbody>
+<tr>
+	<td>exampleOpen</td>
+	<td>smartgwt</td>
+	<td>grid_appearance_hilite_replace</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[countryCode=CA||population=33098932||1]/col[fieldName=population||3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var element = selenium.browserbot.getCurrentWindow().isc.AutoTest.getElement(&quot;scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[countryCode=CA||population=33098932||1]/col[fieldName=population||3]&quot;); element.className</td>
+	<td>myLowGridCellDark*</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var element = selenium.browserbot.getCurrentWindow().isc.AutoTest.getElement(&quot;scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[countryCode=CH||population=1313973713||2]/col[fieldName=population||3]&quot;); element.className</td>
+	<td>myHighGridCell*</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var element = selenium.browserbot.getCurrentWindow().isc.AutoTest.getElement(&quot;scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[countryCode=IN||population=1095351995||5]/col[fieldName=population||3]&quot;); element.className</td>
+	<td>myHighGridCellDark*</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[countryCode=CA||population=33098932||1]/col[fieldName=population||3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[countryCode=CA||population=33098932||1]/col[fieldName=population||3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[countryCode=CH||population=1313973713||2]/col[fieldName=population||3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>controlKeyDown</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyDown</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[countryCode=CH||population=1313973713||2]/col[fieldName=population||3]</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>keyPress</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[countryCode=CH||population=1313973713||2]/col[fieldName=population||3]</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[countryCode=CH||population=1313973713||2]/col[fieldName=population||3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>controlKeyUp</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[countryCode=CH||population=1313973713||2]/col[fieldName=population||3]</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[countryCode=IN||population=1095351995||5]/col[fieldName=population||3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>controlKeyDown</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyDown</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[countryCode=IN||population=1095351995||5]/col[fieldName=population||3]</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>keyPress</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[countryCode=IN||population=1095351995||5]/col[fieldName=population||3]</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[countryCode=IN||population=1095351995||5]/col[fieldName=population||3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>controlKeyUp</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[countryCode=IN||population=1095351995||5]/col[fieldName=population||3]</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>waitForGridDone</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var element = selenium.browserbot.getCurrentWindow().isc.AutoTest.getElement(&quot;scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[countryCode=CA||population=33098932||1]/col[fieldName=population||3]&quot;); element.className</td>
+	<td>myLowGridCellSelectedDark*</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var element = selenium.browserbot.getCurrentWindow().isc.AutoTest.getElement(&quot;scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[countryCode=CH||population=1313973713||2]/col[fieldName=population||3]&quot;); element.className</td>
+	<td>myHighGridCellSelected*</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var element = selenium.browserbot.getCurrentWindow().isc.AutoTest.getElement(&quot;scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[countryCode=IN||population=1095351995||5]/col[fieldName=population||3]&quot;); element.className</td>
+	<td>myHighGridCellSelectedDark*</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

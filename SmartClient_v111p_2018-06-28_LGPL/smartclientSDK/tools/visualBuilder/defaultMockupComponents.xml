@@ -1,0 +1,605 @@
+<!-- list of default components for the visual builder component library -->
+<PaletteNodes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+<PaletteNode>
+    <title>Grids</title>
+    <children>
+		<PaletteNode>
+			<title>Grid</title>
+            <description>Component displays a list of records in a grid of rows and columns</description>
+			<type>ListGrid</type>
+			<icon>ListGrid.png</icon>
+			<defaults>
+	            <autoFetchData xsi:type="boolean">true</autoFetchData>
+	            <headerHeight>25</headerHeight>
+	            <autoFitFieldWidths xsi:type="boolean">true</autoFitFieldWidths>
+	            <autoFitWidthApproach>title</autoFitWidthApproach>
+	            <leaveScrollbarGap xsi:type="boolean">false</leaveScrollbarGap>
+	            <dataSource ID="gridMockDS">
+	                <_constructor>MockDataSource</_constructor>
+                    <mockData>Country,Continent,Area,Population,G8?
+United States,North America,9\,631\,420,298\,444\,215,[x]
+China,Asia,9\,596\,960,1\,313\,973\,713,[]
+Japan,Asia,377\,835,127\,463\,611,[x]
+Brazil,South America,8\,511\,965,188\,078\,227,[]
+[50L,50L,30R,0R,0C]</mockData>
+	            </dataSource>
+			</defaults>
+		</PaletteNode>
+		<PaletteNode>
+		    <title>Tree</title>
+            <description>Component displays hierarchical data (tree)</description>
+		    <type>TreeGrid</type>
+		    <icon>TreeGrid.png</icon>
+		    <defaults>
+                <autoFetchData xsi:type="boolean">true</autoFetchData>
+	            <dataProperties>
+	                <openProperty>isOpen</openProperty>
+	            </dataProperties>
+		        <dataSource ID="treeMockDS">
+                    <_constructor>MockDataSource</_constructor>
+		            <mockDataType>tree</mockDataType>
+			            <mockData>F Charles Madigen
+ _ Rogine Leger
+ F Gene Porter
+  _ Olivier Doucet
+  _ Cheryl Pearson
+f George Sampson</mockData>
+ 		        </dataSource>
+		    </defaults>
+		</PaletteNode>
+        <PaletteNode>
+            <title>Detail Viewer</title>
+            <description>Component displays single record</description>
+            <type>DetailViewer</type>
+            <icon>DetailViewer.png</icon>
+        </PaletteNode>
+    </children>
+    <type>ListGrid</type>
+    <icon>ListGrid.png</icon>
+</PaletteNode>
+
+<PaletteNode>
+    <title>Button</title>
+    <description>Component representing a button</description>
+    <type>IButton</type>
+    <icon>button.gif</icon>
+    <defaults>
+        <title>Button</title>
+    </defaults>
+</PaletteNode>
+
+<PaletteNode>
+    <title>Label</title>
+    <description>A component to display a small amount of text</description>
+    <type>Label</type>
+    <icon>ui-label.png</icon>
+    <defaults>
+        <contents>Some text</contents>
+        <height>22</height>
+    </defaults>
+</PaletteNode>
+
+<PaletteNode>
+    <title>Menu</title>
+    <description>A single button to show a menu</description>
+    <type>MenuButton</type>
+    <icon>text_padding_top.png</icon>
+    <defaults>
+        <title>File Menu</title>
+        <data>
+            <title>Open</title>
+            <keyTitle>Ctrl+O</keyTitle>
+            <icon>icons/16/folder_out.png</icon>
+        </data>
+        <data>
+            <title>Open Recent</title>
+            <icon>icons/16/folder_document.png</icon>
+            <submenu>
+                <title>data.xml</title>
+                <checked>true</checked>
+            </submenu>
+            <submenu>
+                <title>Component Guide.doc</title>
+            </submenu>
+            <submenu>
+                <title>SmartClient.doc</title>
+                <checked>true</checked>
+            </submenu>
+            <submenu>
+                <title>AJAX.doc</title>
+            </submenu>
+        </data>
+        <data>
+            <isSeparator xsi:type="boolean">true</isSeparator>
+        </data>
+        <data>
+            <title>Option 1</title>
+            <checked>true</checked>
+        </data>
+        <data>
+            <title>Option 2</title>
+        </data>
+        <data>
+            <isSeparator xsi:type="boolean">true</isSeparator>
+        </data>
+        <data>
+            <title>Toggle Item</title>
+            <checked>true</checked>
+        </data>
+        <data>
+            <title>Disabled Item</title>
+            <enabled xsi:type="boolean">false</enabled>
+        </data>
+        <data>
+            <isSeparator xsi:type="boolean">true</isSeparator>
+        </data>
+        <data>
+            <title>Exit</title>
+            <enabled xsi:type="boolean">false</enabled>
+            <keyTitle>Ctrl+Q</keyTitle>
+        </data>
+    </defaults>
+</PaletteNode>
+
+<PaletteNode>
+    <title>Menu Bar</title>
+    <description>A bar of buttons to show a set of menus</description>
+    <type>MenuBar</type>
+    <icon>shape_align_top.png</icon>
+    <defaults>
+        <width>200</width>
+        <menus>
+            <title>File</title>
+	        <data>
+	            <title>Open</title>
+	            <keyTitle>Ctrl+O</keyTitle>
+	            <icon>icons/16/folder_out.png</icon>
+	        </data>
+	        <data>
+	            <title>Open Recent</title>
+	            <icon>icons/16/folder_document.png</icon>
+	            <submenu>
+	                <title>data.xml</title>
+	                <checked>true</checked>
+	            </submenu>
+	            <submenu>
+	                <title>Component Guide.doc</title>
+	            </submenu>
+	            <submenu>
+	                <title>SmartClient.doc</title>
+	                <checked>true</checked>
+	            </submenu>
+	            <submenu>
+	                <title>AJAX.doc</title>
+	            </submenu>
+	        </data>
+	        <data>
+	            <isSeparator xsi:type="boolean">true</isSeparator>
+	        </data>
+	        <data>
+	            <title>Option 1</title>
+	            <checked>true</checked>
+	        </data>
+	        <data>
+	            <title>Option 2</title>
+	        </data>
+	        <data>
+	            <isSeparator xsi:type="boolean">true</isSeparator>
+	        </data>
+	        <data>
+	            <title>Toggle Item</title>
+	            <checked>true</checked>
+	        </data>
+	        <data>
+	            <title>Disabled Item</title>
+	            <enabled xsi:type="boolean">false</enabled>
+	        </data>
+	        <data>
+	            <isSeparator xsi:type="boolean">true</isSeparator>
+	        </data>
+	        <data>
+	            <title>Exit</title>
+	            <enabled xsi:type="boolean">false</enabled>
+	            <keyTitle>Ctrl+Q</keyTitle>
+	        </data>
+        </menus>
+        <menus>
+            <title>Edit</title>
+        </menus>
+        <menus>
+            <title>View</title>
+        </menus>
+        <menus>
+            <title>Help</title>
+        </menus>
+    </defaults>
+</PaletteNode>
+
+<PaletteNode>
+    <title>Progress Bar</title>
+    <description>A component to display progress</description>
+    <type>Progressbar</type>
+    <icon>ui-progress-bar.png</icon>
+    <defaults>
+        <percentDone>70</percentDone>
+    </defaults>
+</PaletteNode>
+
+<PaletteNode>
+    <title>Containers</title>
+    <canDrag xsi:type="boolean">false</canDrag>
+    <children>
+		<PaletteNode>
+		    <title>Tabs</title>
+            <description>Component showing one or more tabs</description>
+		    <type>TabSet</type>
+            <icon>TabSet.png</icon>
+            <defaults>
+                <width>200</width>
+            </defaults>
+        </PaletteNode>
+        <PaletteNode>
+            <title>Box</title>
+            <description>Component showing a border creating a box</description>
+            <type>Canvas</type>
+            <icon>shape_handles.png</icon>
+            <defaults>
+                <border>1px solid black</border>
+            </defaults>
+            <editProxyProperties>
+                <supportsInlineEdit xsi:type="boolean">false</supportsInlineEdit>
+            </editProxyProperties>
+        </PaletteNode>
+        <PaletteNode>
+            <title>Group</title>
+            <description>Grouping frame with title</description>
+            <type>Canvas</type>
+            <icon>ui-group-box.png</icon>
+            <defaults>
+                <isGroup xsi:type="boolean">true</isGroup>
+                <groupTitle>Group</groupTitle>
+            </defaults>
+        </PaletteNode>
+        <PaletteNode>
+            <title>Window</title>
+            <description>Window component with header</description>
+            <type>Window</type>
+            <icon>Window.png</icon>
+            <defaults>
+                <title>Window</title>
+            </defaults>
+        </PaletteNode>
+        <PaletteNode>
+            <title>H. Resizer</title>
+            <description>Horizontal resizer to manager size of components on top or bottom</description>
+            <type>Snapbar</type>
+            <icon>ui-splitter-horizontal.png</icon>
+            <defaults>
+                <height>5</height>
+                <vertical xsi:type="boolean">false</vertical>
+                <title>&amp;nbsp;</title>
+            </defaults>
+            <editProxyProperties>
+                <supportsInlineEdit xsi:type="boolean">false</supportsInlineEdit>
+            </editProxyProperties>
+        </PaletteNode>
+        <PaletteNode>
+            <title>V. Resizer</title>
+            <description>Vertical resizer to manager size of components on left or right</description>
+            <type>Snapbar</type>
+            <icon>ui-splitter.png</icon>
+            <defaults>
+                <width>5</width>
+                <title>&amp;nbsp;</title>
+            </defaults>
+            <editProxyProperties>
+                <supportsInlineEdit xsi:type="boolean">false</supportsInlineEdit>
+            </editProxyProperties>
+        </PaletteNode>
+    </children>
+</PaletteNode>
+
+<PaletteNode>
+    <title>Inputs</title>
+    <canDrag xsi:type="boolean">false</canDrag>
+    <children>
+        <PaletteNode>
+            <title>Text Box</title>
+            <description>Text control for single-line entry</description>
+            <type>TextItem</type>
+            <icon>text.gif</icon>
+            <defaults>
+                <showTitle xsi:type="boolean">false</showTitle>
+                <width>*</width>
+            </defaults>
+        </PaletteNode>
+        <PaletteNode>
+            <title>Text Area</title>
+            <description>Text control for multi-line entry</description>
+            <type>TextAreaItem</type>
+            <icon>textArea.gif</icon>
+            <defaults>
+                <showTitle xsi:type="boolean">false</showTitle>
+                <width>*</width>
+            </defaults>
+        </PaletteNode>
+        <PaletteNode>
+            <title>Combo Box</title>
+            <description>Text control which can show a list of options via a drop-down PickList</description>
+            <type>ComboBoxItem</type>
+            <icon>comboBox.png</icon>
+            <defaults>
+                <showTitle xsi:type="boolean">false</showTitle>
+                <width>*</width>
+                <valueMap>Selected Option</valueMap>
+                <valueMap>Option 1</valueMap>
+                <valueMap>Option 2</valueMap>
+                <value>Selected Option</value>
+            </defaults>
+        </PaletteNode>
+        <PaletteNode>
+            <title>Select List</title>
+            <description>Selection control that allows picking between several mutually exclusive options via a select list</description>
+            <type>SelectItem</type>
+            <icon>select.png</icon>
+            <defaults>
+                <showTitle xsi:type="boolean">false</showTitle>
+                <width>*</width>
+                <valueMap>Selected Option</valueMap>
+                <valueMap>Option 1</valueMap>
+                <valueMap>Option 2</valueMap>
+                <value>Selected Option</value>
+            </defaults>
+        </PaletteNode>
+        <PaletteNode>
+            <title>Check Box</title>
+            <description>Checkbox control for boolean value selection</description>
+            <type>CheckboxItem</type>
+            <icon>checkbox.gif</icon>
+            <defaults>
+                <title>Checkbox</title>
+                <width>*</width>
+                <value xsi:type="boolean">true</value>
+            </defaults>
+        </PaletteNode>
+        <PaletteNode>
+            <title>Date Input</title>
+            <description>Date entry control with separate selections for month, day and year</description>
+            <type>DateItem</type>
+            <icon>date.gif</icon>
+            <defaults>
+                <showTitle xsi:type="boolean">false</showTitle>
+                <width>*</width>
+            </defaults>
+        </PaletteNode>
+        <PaletteNode>
+            <title>Spinner</title>
+            <description>Up/Down control for number values (integer or decimal)</description>
+            <type>SpinnerItem</type>
+            <icon>textfield_rename.png</icon>
+            <defaults>
+                <showTitle xsi:type="boolean">false</showTitle>
+                <width>*</width>
+            </defaults>
+        </PaletteNode>
+        <PaletteNode>
+            <title>Password</title>
+            <description>Password control with masked input</description>
+            <type>PasswordItem</type>
+            <icon>password.gif</icon>
+            <defaults>
+                <showTitle xsi:type="boolean">false</showTitle>
+                <width>*</width>
+                <value>password</value>
+            </defaults>
+            <editProxyProperties>
+                <supportsInlineEdit xsi:type="boolean">false</supportsInlineEdit>
+            </editProxyProperties>
+        </PaletteNode>
+        <PaletteNode>
+            <title>Color</title>
+            <description>Color selector control</description>
+            <type>ColorItem</type>
+            <icon>color_swatch.png</icon>
+            <defaults>
+                <showTitle xsi:type="boolean">false</showTitle>
+                <width>*</width>
+                <value>navy</value>
+            </defaults>
+            <editProxyProperties>
+                <supportsInlineEdit xsi:type="boolean">false</supportsInlineEdit>
+            </editProxyProperties>
+        </PaletteNode>
+        <PaletteNode>
+            <title>Upload Item</title>
+            <description>File chooser control to select a file for upload to the server</description>
+            <type>UploadItem</type>
+            <icon>upload.gif</icon>
+            <defaults>
+                <showTitle xsi:type="boolean">false</showTitle>
+                <width>*</width>
+            </defaults>
+            <editProxyProperties>
+                <supportsInlineEdit xsi:type="boolean">false</supportsInlineEdit>
+            </editProxyProperties>
+        </PaletteNode>
+    </children>
+</PaletteNode>
+
+<PaletteNode>
+    <title>Charts</title>
+    <canDrag xsi:type="boolean">false</canDrag>
+    <children>
+        <PaletteNode>
+            <title>Column Chart</title>
+            <description>Chart showing vertical bars (columns) representing data values</description>
+            <type>FacetChart</type>
+            <icon>shape_align_bottom.png</icon>
+            <defaults>
+                <backgroundColor>white</backgroundColor>
+                <chartType>Column</chartType>
+                <title>Sales by Product and Region</title>
+                <facets>
+                        <inlinedValues xsi:type="boolean">true</inlinedValues>
+                        <values><id>West</id></values>
+                        <values><id>North</id></values>
+                        <values><id>East</id></values>
+                        <values><id>South</id></values>
+                 </facets>
+                <facets>
+                        <id>series</id>
+                </facets>
+                <data>
+                    <series>Cars</series>
+                    <West>37</West>
+                    <North>29</North>
+                    <East>80</East>
+                    <South>87</South>
+                </data>
+                <data>
+                    <series>Trucks</series>
+                    <West>23</West>
+                    <North>45</North>
+                    <East>32</East>
+                    <South>67</South>
+                </data>
+                <data>
+                    <series>Motorcycles</series>
+                    <West>12</West>
+                    <North>4</North>
+                    <East>23</East>
+                    <South>45</South>
+                </data>
+            </defaults>
+        </PaletteNode>
+        <PaletteNode>
+            <title>Bar Chart</title>
+            <description>Chart showing horizontal bars representing data values</description>
+            <type>FacetChart</type>
+            <icon>shape_align_left.png</icon>
+            <defaults>
+                <backgroundColor>white</backgroundColor>
+                <chartType>Bar</chartType>
+                <title>Sales by Product and Region</title>
+                <facets>
+                        <inlinedValues xsi:type="boolean">true</inlinedValues>
+                        <values><id>West</id></values>
+                        <values><id>North</id></values>
+                        <values><id>East</id></values>
+                        <values><id>South</id></values>
+                 </facets>
+                <facets>
+                        <id>series</id>
+                </facets>
+                <data>
+                    <series>Cars</series>
+                    <West>37</West>
+                    <North>29</North>
+                    <East>80</East>
+                    <South>87</South>
+                </data>
+                <data>
+                    <series>Trucks</series>
+                    <West>23</West>
+                    <North>45</North>
+                    <East>32</East>
+                    <South>67</South>
+                </data>
+                <data>
+                    <series>Motorcycles</series>
+                    <West>12</West>
+                    <North>4</North>
+                    <East>23</East>
+                    <South>45</South>
+                </data>
+            </defaults>
+        </PaletteNode>
+        <PaletteNode>
+            <title>Line Chart</title>
+            <description>Chart showing lines between data points</description>
+            <type>FacetChart</type>
+            <icon>chart_line.png</icon>
+            <defaults>
+                <backgroundColor>white</backgroundColor>
+                <chartType>Line</chartType>
+                <title>Sales by Product and Region</title>
+                <facets>
+                        <inlinedValues xsi:type="boolean">true</inlinedValues>
+                        <values><id>West</id></values>
+                        <values><id>North</id></values>
+                        <values><id>East</id></values>
+                        <values><id>South</id></values>
+                 </facets>
+                <facets>
+                        <id>series</id>
+                </facets>
+                <data>
+                    <series>Cars</series>
+                    <West>37</West>
+                    <North>29</North>
+                    <East>80</East>
+                    <South>87</South>
+                </data>
+                <data>
+                    <series>Trucks</series>
+                    <West>23</West>
+                    <North>45</North>
+                    <East>32</East>
+                    <South>67</South>
+                </data>
+                <data>
+                    <series>Motorcycles</series>
+                    <West>12</West>
+                    <North>4</North>
+                    <East>23</East>
+                    <South>45</South>
+                </data>
+            </defaults>
+        </PaletteNode>
+        <PaletteNode>
+            <title>Pie Chart</title>
+            <description>Chart showing pie wedges representing data values</description>
+            <type>FacetChart</type>
+            <icon>chart_pie.png</icon>
+            <defaults>
+                <backgroundColor>white</backgroundColor>
+                <chartType>Pie</chartType>
+                <title>Sales by Product and Region</title>
+                <facets>
+                        <inlinedValues xsi:type="boolean">true</inlinedValues>
+                        <values><id>West</id></values>
+                        <values><id>North</id></values>
+                        <values><id>East</id></values>
+                        <values><id>South</id></values>
+                 </facets>
+                <facets>
+                        <id>series</id>
+                </facets>
+                <data>
+                    <series>Cars</series>
+                    <West>37</West>
+                    <North>29</North>
+                    <East>80</East>
+                    <South>87</South>
+                </data>
+                <data>
+                    <series>Trucks</series>
+                    <West>23</West>
+                    <North>45</North>
+                    <East>32</East>
+                    <South>67</South>
+                </data>
+                <data>
+                    <series>Motorcycles</series>
+                    <West>12</West>
+                    <North>4</North>
+                    <East>23</East>
+                    <South>45</South>
+                </data>
+            </defaults>
+        </PaletteNode>
+    </children>
+</PaletteNode>
+
+</PaletteNodes>

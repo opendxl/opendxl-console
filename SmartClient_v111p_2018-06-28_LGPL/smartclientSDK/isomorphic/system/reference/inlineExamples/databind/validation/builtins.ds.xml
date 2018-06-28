@@ -1,0 +1,10 @@
+<DataSource ID="builtins">
+    <fields>
+        <field name="intField" type="integer" title="Integer">
+            <validators>
+                <validator type="integerRange" min="1" max="20"/>
+            </validators>
+        </field>
+    </fields>
+</DataSource>
+    

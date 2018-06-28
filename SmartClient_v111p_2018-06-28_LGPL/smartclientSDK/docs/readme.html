@@ -1,0 +1,147 @@
+<HTML><HEAD><STYLE>
+.bodyBlock		{margin:1em 2em 2em 3em;}
+.indent			{margin-left:3em; margin-right:3em;}
+.headerTitle	{font-family:Tahoma,Verdana,Arial,Helvetica,sans-serif; font-size:1.3em; font-weight:bold;}
+.headerVersion	{font-family:Tahoma,Verdana,Arial,Helvetica,sans-serif; font-size:0.8em;}
+.filename		{font-family:'Courier New',Courier; font-weight:bold;}
+li				{padding-top:1em;}
+li.tight		{padding-top:0.5em;}
+ol,ul			{margin-top:0;}
+ol				{font-weight:bold;}
+ol span			{font-weight:normal;}
+h1 {
+	background:#023264;
+	color:#FFFFFF;
+	font-family:Tahoma,Verdana,Arial,Helvetica,sans-serif;
+	font-size:1.1em;
+	font-weight:bold;
+	padding:4px 10px 4px 10px;
+	margin:10px 20px 0px 20px;
+}
+h2 {
+	font-family:Tahoma,Verdana,Arial,Helvetica,sans-serif;
+	font-size:1.1em;
+	font-weight:bold;
+	margin-top:1.0em;
+	padding-top:4px;
+	border-top:2px solid #023264;
+	padding-bottom:4px;
+	border-bottom:2px solid #023264;
+}
+</STYLE><TITLE>
+	SmartClient&trade; SDK Release Notes
+</TITLE></HEAD><BODY BGCOLOR='white'>
+<TABLE WIDTH=100% CELLSPACING=0 CELLPADDING=10 BORDER=0><TR>
+<TD HEIGHT=100><a target="_blank" href="http://www.isomorphic.com"><IMG SRC="images/logos/Isomorphic_Software_Logo.gif" WIDTH="256" HEIGHT="100" ALT="Isomorphic Software Logo" border="0"></a></TD><TD WIDTH=10></TD><TD VALIGN=MIDDLE ALIGN=RIGHT><SPAN CLASS=headerTitle>
+	SmartClient&trade;&nbsp;SDK Release&nbsp;Notes
+</SPAN><BR><SPAN WIDTH=100% CLASS=headerVersion ALIGN=RIGHT>
+	Version&nbsp;v11.1p_2018-06-28/LGPL Deployment&nbsp;(2018-06-28)
+</SPAN></TD></TR></TABLE>
+
+
+<h1>Welcome</h1>
+<div class=bodyBlock>
+SmartClient provides an open DHTML/Ajax client engine, rich user interface components, and
+metadata-driven client-server databinding systems, for rich GUI, zero-install web applications.
+
+Whether you are upgrading from an earlier release, or exploring SmartClient for the first time,
+these notes will help you to install and use this release more quickly and effectively. Please
+take a few minutes to review this file. 
+</div>
+
+
+<div class=bodyBlock>
+Please see the <a href="http://blog.isomorphic.com" target="_blank">Isomorphic Blog</a> for an overview
+of the latest set of features introduced by this release.
+<P>
+See the <A
+href="http://www.smartclient.com/changes/?product=SmartClient&version=11.1" target="_blank">change log</A> for a more extensive list of changes.
+</div>
+
+<a name="quickstart"></a><h1>Quick Start</h1>
+<div class=bodyBlock>
+The SmartClient SDK distribution includes an embedded application server and database engine for rapid, stand-alone development and evaluation. To get started quickly:
+
+<ol><li><span>Download and install the <a target="_blank" href="http://java.sun.com"
+onClick="var new_win =
+window.open('http://www.oracle.com/technetwork/java/javase/downloads/index.html','isomorphic_outlink');
+new_win.focus(); return false;">Java 2 Runtime (JRE or SDK) 1.5+</a> if necessary.</span></li>
+
+<li><span>Start the embedded server by running <span class=filename>start_embedded_server.bat</span> (Windows), <span class=filename>.command</span> (MacOSX), or <span class=filename>.sh</span> (*nix).</span></li>
+
+<li><span>Open the <span class=filename>open_ISC_SDK_from_server</span> shortcut (Windows/MacOS) or open a web browser and browse to <b><a target="_blank" href='http://localhost:8080/'>http://localhost:8080/</a></b> (all systems).</span></li>
+
+<li><span>Create a bookmark or favorite in your web browser to the URL <span class=filename>javascript:isc.showLog()</span>, for easy access to the SmartClient Developer Console and integrated <i>SmartClient Reference</i>.</span></li>
+</ol>
+
+<p>The <a target="_blank" href="SmartClient_Quick_Start_Guide.pdf"><i>SmartClient Quick Start Guide</i></a> (PDF format) is your best starting point for an overview of the SmartClient SDK, system, and capabilities. This guide also covers common installation and configuration issues.</p>
+
+<p>The <a target="_blank" href="SmartClient_Reference.html"><i>SmartClient Reference</i></a> is the central reference and usage documentation for SmartClient developers.</p>
+</div>
+
+
+<h1>Supported Clients</h1>
+<div class=bodyBlock>
+SmartClient 11.1 applications run in the following standard web browsers:<br>
+<ul>
+	<li><b>Internet Explorer 6.0-11.x</b> (Windows)<br></li>
+	<li><b>Edge 20.10240.16384.0+</b> (Windows)<br></li>
+	<li><b>Firefox 3.6.x-54.x</b> (Windows/MacOS/Linux)</li>
+	<li><b>Safari 5.0-10.x</b> (MacOS/Windows)</li>
+	<li><b>Chrome 10.x-58.x</b> (Windows/MacOS/Linux/ChromeOS)</li>
+	<li><b>Opera 11.x-36.x</b> (Windows/MacOS)</li>
+</ul>
+As well as the following mobile device web browsers:<br>
+<ul>
+    <li><b>Safari on iOS 6+</b></li>
+    <li><b>Android Browser on Android 3.2+</b></li>
+</ul>
+
+As new browser versions are released, Isomorphic evaluates the stability of the new browser and may
+announce official support, sometimes with patches or special settings required to work around browser flaws.
+<br><br>
+Support is available for earlier browser versions for customers with support contracts.  
+Please contact Isomorphic for details.
+
+</div>
+
+
+
+<h1>Supported Servers</h1>
+<div class=bodyBlock>
+SmartClient 11.1 server-side components require a <b>Java Servlets 2.3</b> compatible server (<a href="http://java.sun.com/products/servlet/industry.html" onClick="var new_win = window.open('http://java.sun.com/products/servlet/industry.html','isomorphic_outlink'); new_win.focus(); return false;">complete list here</a>).<br><br>
+
+SmartClient <span class=filename>.zip</span> and <span class=filename>.tar.gz</span> packages include an embedded <b>Tomcat</b> server for rapid stand-alone development, but SmartClient is
+also tested and supported on <b>BEA WebLogic</b>, <b>IBM WebSphere</b>, <b>Oracle iAS</b>, <b>Sun AS</b>, <b>Caucho Resin</b>, <b>Mortbay Jetty</b>, and <b>JBoss</b> servers. SmartClient <span class=filename>.war</span> and <span class=filename>.ear</span> packages without Tomcat are provided for deployment in existing server environments. See the <a target="_blank" href="installation.html"><i>Server Installation Notes</i></a> for server-specific configuration and tested versions.<br><br>
+
+The SmartClient SDK includes an embedded <b>HSQL</b> database for rapid prototyping and evaluation using the SmartClient object-relational connector. This connector is also tested against <b>DB2</b>, <b>Oracle</b>, <b>SQL Server</b>, <b>MySQL</b>, <b>PostgreSQL</b>, 
+and <b>Firebird</b> databases. See the <a target="_blank" href="installation.html"><i>Server Installation Notes</i></a> for database-specific configuration and tested versions.
+</div>
+
+<h1>Contact Us</h1>
+<div class=bodyBlock>
+If you have any questions, comments, or requests, please feel free to contact the SmartClient product team:
+<ul>
+<li><a target="_blank" href="http://www.smartclient.com">www.smartclient.com</a></li>
+<li><a target="_blank" href="http://forums.smartclient.com">forums.smartclient.com</a></li>
+<li><a href="mailto:info@smartclient.com">info@smartclient.com</a> &mdash; general questions</li>
+<li><a href="mailto:feedback@smartclient.com">feedback@smartclient.com</a> &mdash; general comments</li>
+<li><a href="mailto:support@smartclient.com">support@smartclient.com</a> &mdash; technical support</li>
+<li><a href="mailto:support@smartclient.com">wishlist@smartclient.com</a> &mdash; enhancement requests</li>
+<li><a href="mailto:sales@smartclient.com">sales@smartclient.com</a> &mdash; licensing &amp; services</li>
+</ul>
+We welcome your feedback, and thank you for choosing SmartClient.
+</div>
+
+<h1></h1>
+<div class=bodyBlock>
+&copy;2013 and beyond Isomorphic Software, Inc.&nbsp;&nbsp;All rights reserved.&nbsp;&nbsp;Your use of this software
+is subject to the <a target="_blank" href="license.html">License Agreement.</a>
+Isomorphic Software, SmartClient, and all Isomorphic-based names and logos that appear herein are
+trademarks or registered trademarks of Isomorphic Software, Inc. All other product or company names
+that appear herein may be claimed as trademarks or registered trademarks of their respective owners.
+This product includes software developed by the Apache Software Foundation (http://www.apache.org/).
+This product includes Hypersonic SQL.
+</div>
+
+</body></html>

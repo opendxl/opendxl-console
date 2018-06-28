@@ -1,0 +1,21 @@
+<DataSource
+    ID="flattenedBeans_flatUserHB"
+    serverType="hibernate"
+    beanClassName="com.isomorphic.examples.server.flattenedBeans.FlatUser"
+    testFileName="/examples/shared/ds/serverExamples/test_data/flattenedBeans_flatUserHB.data.xml"
+    dropExtraFields="true"
+>
+    <fields>
+        <field name="userId" type="sequence" primaryKey="true" canEdit="false" />
+        <field name="firstName" type="text" />
+        <field name="surname" type="text" />
+        <field name="email" type="text" />
+        <field name="addressLine1" type="text" valueXPath="address/line1" />
+        <field name="city" type="text" valueXPath="address/city" />
+        <field name="state" type="text" valueXPath="address/state" />
+        <field name="zip" type="text" valueXPath="address/zip" hidden="true" />
+        <field name="country" type="text" valueXPath="address/country" hidden="true" />
+    </fields>
+    
+</DataSource>
+ 

@@ -1,0 +1,11 @@
+.portletBackground {
+    background-color: white;
+}
+.portletHeader {
+    background-color: #6e7590;
+}
+.portletTitle {
+    font-family:Tahoma,Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; color:#FFFFFF;
+    font-weight:bold;
+    padding-left:2px; padding-right:2px;
+}

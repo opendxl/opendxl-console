@@ -1,0 +1,29 @@
+<DataSource
+    ID="worldHB"
+    serverType="hibernate"
+    tableName="worldHB"
+    testFileName="/examples/shared/ds/test_data/world.data.xml"
+>
+    <fields>
+        <field name="pk"            type="sequence"   hidden="true"            primaryKey="true" />
+        <field name="countryCode"   type="text"       title="Code"             required="true"   />
+        <field name="countryName"   type="text"       title="Country"          required="true"   />
+        <field name="capital"       type="text" />
+        <field name="government"    type="text"       length="500"      />
+        <field name="continent"     type="text">
+            <valueMap>
+                <value>Europe</value>
+                <value>Asia</value>
+                <value>North America</value>
+                <value>Australia/Oceania</value>
+                <value>South America</value>
+                <value>Africa</value>
+            </valueMap>
+        </field>
+        <field name="independence"  type="date"       title="Nationhood"          />
+        <field name="area"          type="float"      title="Area (km&amp;sup2;)" />
+        <field name="population"    type="integer" />
+        <field name="gdp"           type="float"      title="GDP ($M)"            />
+        <field name="member_g8"     type="boolean"    title="G8"                  />
+    </fields>
+</DataSource>

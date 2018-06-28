@@ -1,0 +1,12 @@
+<DataSource
+    ID="supplyItemHBAutoDerive"
+    serverType="hibernate"
+    autoDeriveSchema="true"
+    schemaBean="com.isomorphic.examples.SupplyItemHB"
+    dbImportFileName="/examples/shared/ds/test_data/supplyItemLarge.data.xml"
+>
+    <fields>
+        <field name="itemID" hidden="true"/>
+    </fields>
+</DataSource>
+

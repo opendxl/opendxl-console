@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://www-vpn.smartclient.com:10011/" />
+<title>sectionsAddAndRemove-1.rctest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">sectionsAddAndRemove-1.rctest</td></tr>
+</thead><tbody>
+<tr>
+	<td>exampleOpen</td>
+	<td>smartgwt</td>
+	<td>layout_sections_add_remove</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=SectionStack||index=1||length=4||classIndex=0||classLength=1]/section[Class=SectionHeader||index=0||length=3||classIndex=0||classLength=3||roleIndex=0||roleLength=3||title=Blue%20Pawn||scRole=heading||name=section0]/item[Class=Img||index=0||length=1||classIndex=0||classLength=1||name=main]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=SectionStack||index=1||length=4||classIndex=0||classLength=1]/section[Class=SectionHeader||index=0||length=3||classIndex=0||classLength=3||roleIndex=0||roleLength=3||title=Blue%20Pawn||scRole=heading||name=section0]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=SectionStack||index=1||length=4||classIndex=0||classLength=1]/section[Class=SectionHeader||index=0||length=3||classIndex=0||classLength=3||roleIndex=0||roleLength=3||title=Blue%20Pawn||scRole=heading||name=section0]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForNotElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=SectionStack||index=1||length=4||classIndex=0||classLength=1]/section[Class=SectionHeader||index=0||length=3||classIndex=0||classLength=3||roleIndex=0||roleLength=3||title=Blue%20Pawn||scRole=heading||name=section0]/item[Class=Img||index=0||length=1||classIndex=0||classLength=1||name=main]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=SectionStack||index=1||length=4||classIndex=0||classLength=1]/section[Class=SectionHeader||index=2||length=3||classIndex=2||classLength=3||roleIndex=2||roleLength=3||title=Blue%20Cube||scRole=heading||name=section2]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=SectionStack||index=1||length=4||classIndex=0||classLength=1]/section[Class=SectionHeader||index=2||length=3||classIndex=2||classLength=3||roleIndex=2||roleLength=3||title=Blue%20Cube||scRole=heading||name=section2]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=SectionStack||index=0||length=3||classIndex=0||classLength=1]/section[Class=SectionHeader||index=2||length=3||classIndex=2||classLength=3||roleIndex=2||roleLength=3||title=Blue%20Cube||scRole=heading||name=section2]/item[Class=Img||index=0||length=1||classIndex=0||classLength=1||name=main]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=1||length=2||classIndex=0||classLength=1]/member[Class=IButton||index=0||length=2||classIndex=0||classLength=2||roleIndex=0||roleLength=2||title=Add%20Section||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=1||length=2||classIndex=0||classLength=1]/member[Class=IButton||index=0||length=2||classIndex=0||classLength=2||roleIndex=0||roleLength=2||title=Add%20Section||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=SectionStack||index=0||length=3||classIndex=0||classLength=1]/section[Class=SectionHeader||index=3||length=4||classIndex=3||classLength=4||roleIndex=3||roleLength=4||title=Yellow%20Piece||scRole=heading||name=section3]/item[Class=Img||index=0||length=1||classIndex=0||classLength=1||name=main]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/member[Class=SectionStack||index=0||length=3||classIndex=0||classLength=1]/section[Class=SectionHeader||index=3||length=4||classIndex=3||classLength=4||roleIndex=3||roleLength=4||title=Yellow%20Piece||scRole=heading||name=section3]/</td>
+	<td>Yellow Piece</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=1||length=2||classIndex=0||classLength=1]/member[Class=IButton||index=1||length=2||classIndex=1||classLength=2||roleIndex=1||roleLength=2||title=Remove%20Section||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=1||length=2||classIndex=0||classLength=1]/member[Class=IButton||index=1||length=2||classIndex=1||classLength=2||roleIndex=1||roleLength=2||title=Remove%20Section||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=1||length=2||classIndex=0||classLength=1]/member[Class=IButton||index=1||length=2||classIndex=1||classLength=2||roleIndex=1||roleLength=2||title=Remove%20Section||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=1||length=2||classIndex=0||classLength=1]/member[Class=IButton||index=1||length=2||classIndex=1||classLength=2||roleIndex=1||roleLength=2||title=Remove%20Section||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=SectionStack||index=1||length=4||classIndex=0||classLength=1]/section[Class=SectionHeader||index=1||length=3||classIndex=1||classLength=3||roleIndex=1||roleLength=3||title=Green%20Cube||scRole=heading||name=section1]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/member[Class=SectionStack||index=1||length=4||classIndex=0||classLength=1]/section[Class=SectionHeader||index=1||length=3||classIndex=1||classLength=3||roleIndex=1||roleLength=3||title=Green%20Cube||scRole=heading||name=section1]/</td>
+	<td>Green Cube</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=1||length=2||classIndex=0||classLength=1]/member[Class=IButton||index=1||length=2||classIndex=1||classLength=2||roleIndex=1||roleLength=2||title=Remove%20Section||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>scLocator=//testRoot[]/member[Class=SectionStack||index=1||length=4||classIndex=0||classLength=1]/section[Class=SectionHeader||index=1||length=3||classIndex=1||classLength=3||roleIndex=1||roleLength=3||title=Green%20Cube||scRole=heading||name=section1]/item[Class=Img||index=0||length=1||classIndex=0||classLength=1||name=main]/</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

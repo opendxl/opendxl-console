@@ -1,0 +1,6 @@
+<DataSource ID="type">
+    <fields>
+        <field name="intField" title="Integer" type="integer"/>
+    </fields>
+</DataSource>
+    

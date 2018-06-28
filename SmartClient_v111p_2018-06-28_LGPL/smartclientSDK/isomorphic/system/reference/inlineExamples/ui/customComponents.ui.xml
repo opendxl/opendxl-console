@@ -1,0 +1,5 @@
+<ListGrid xmlns:xsi="http://www.w3.org/1999/XMLSchema-instance"
+    constructor="MyListGrid" ID="supplyGrid" autoDraw="false" sortField="category"
+    dataSource="supplyItem" autoFetchData="true" width="700" height="400" >
+    <hilitePricesOverTen xsi:type="boolean">true</hilitePricesOverTen>
+</ListGrid>

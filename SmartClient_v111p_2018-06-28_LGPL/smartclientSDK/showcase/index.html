@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="apple-touch-icon" href="exampleImages/cubes.png">
+<title>SmartClient&trade; v11.1p_2018-06-28 Feature Explorer</title>
+</head>
+<body STYLE="overflow:hidden" role="application">
+
+<script>
+window.isomorphicDir='../isomorphic/';
+
+</script>
+
+<LINK REL="stylesheet" TYPE="text/css" HREF="../isomorphic/system/reference/skin/shell_styles.css?isc_version=v11.1p_2018-06-28.css">
+<LINK REL="stylesheet" TYPE="text/css" HREF="../isomorphic/system/reference/sourceColorizer.css?isc_version=v11.1p_2018-06-28.css">
+
+<SCRIPT>var isc_maxCSSLoaders=200</SCRIPT>
+
+<!-- load ISC -->
+<SCRIPT SRC="../isomorphic/system/modules/ISC_History.js?isc_version=v11.1p_2018-06-28.js"></SCRIPT>
+<SCRIPT>
+isc.History.pushStateMode = "queryParam";
+isc.History.pushStateQueryParamName = "id";
+if (isc.History.usePushState) {
+    // backcompat redirects
+    var anchorIndex = location.href.indexOf("#");
+    if (anchorIndex != -1) {
+        var historyId = location.href.substring(anchorIndex+1);
+        var newLocation = "./?id="+historyId;
+        var queryStartIndex = location.href.indexOf("?");
+        if (queryStartIndex != -1) {
+            var queryString = location.href.substring(queryStartIndex+1);
+            newLocation += "&"+queryString.substring(0, queryString.indexOf("#"));
+        }
+        location.replace(newLocation);
+    }    
+}
+</SCRIPT>
+<SCRIPT SRC="../isomorphic/system/development/ISC_FileLoader.js?isc_version=v11.1p_2018-06-28.js"></SCRIPT>
+<SCRIPT SRC="../isomorphic/system/modules/ISC_Core.js?isc_version=v11.1p_2018-06-28.js"></SCRIPT>
+<SCRIPT SRC="../isomorphic/system/modules/ISC_Foundation.js?isc_version=v11.1p_2018-06-28.js"></SCRIPT>
+<SCRIPT SRC="../isomorphic/system/modules/ISC_Containers.js?isc_version=v11.1p_2018-06-28.js"></SCRIPT>
+<SCRIPT SRC="../isomorphic/system/modules/ISC_Grids.js?isc_version=v11.1p_2018-06-28.js"></SCRIPT>
+<SCRIPT SRC="../isomorphic/system/modules/ISC_Forms.js?isc_version=v11.1p_2018-06-28.js"></SCRIPT>
+<SCRIPT SRC="../isomorphic/system/modules/ISC_RichTextEditor.js?isc_version=v11.1p_2018-06-28.js"></SCRIPT>
+<SCRIPT SRC="../isomorphic/system/modules/ISC_DataBinding.js?isc_version=v11.1p_2018-06-28.js"></SCRIPT>
+<!--  -->
+<SCRIPT SRC="../isomorphic/system/modules/ISC_Calendar.js?isc_version=v11.1p_2018-06-28.js"></SCRIPT>
+<!-- //>PluginBridges -->
+<SCRIPT SRC="../isomorphic/system/modules/ISC_PluginBridges.js?isc_version=v11.1p_2018-06-28.js"></SCRIPT>
+<!-- //<PluginBridges -->
+<SCRIPT SRC="../isomorphic/system/modules/ISC_Drawing.js?isc_version=v11.1p_2018-06-28.js"></SCRIPT>
+<!--  -->
+<!--  -->
+<SCRIPT SRC="../isomorphic/system/development/ISC_SyntaxHiliter.js?isc_version=v11.1p_2018-06-28.js"></SCRIPT>
+<SCRIPT SRC="../isomorphic/system/development/ISC_ExampleViewer.js?isc_version=v11.1p_2018-06-28.js"></SCRIPT>
+<!--  -->
+
+<script>
+// use the file loader to load the appropriate skin file.
+// then, incorporate locale into the feature explorer.
+isc.FileLoader.loadSkin(isc.params.skin || isc.Browser.defaultSkin);
+isc.FileLoader.loadLocale(isc.params.locale, "showExplorer()");
+</script>
+
+<script src="../isomorphic/system/reference/exampleTree.js?isc_version=v11.1p_2018-06-28.js"></script>
+<script>
+
+//isc.setScreenReaderMode(true);
+isc.Page.leaveScrollbarGap = false;
+
+function showExplorer () {
+
+    
+    var fontIncrease = isc.getParams().fontIncrease;
+    if (fontIncrease == null) fontIncrease = isc.Browser.defaultFontIncrease;
+    fontIncrease = parseInt(fontIncrease);
+    isc.Canvas.resizeFonts(fontIncrease);
+    // this would change just the skin styles, and not ones specific to the Feature
+    // Explorer, such as description text
+    //isc.Canvas.resizeFonts(fontIncrease, "skin_styles.css");
+
+    var sizeIncrease = isc.getParams().sizeIncrease;
+    if (sizeIncrease == null) sizeIncrease = isc.Browser.defaultSizeIncrease;
+    sizeIncrease = parseInt(sizeIncrease); 
+    isc.Canvas.resizeControls(sizeIncrease);
+    
+    
+
+    if (window.location.protocol == "file:") {
+        isc.warn("The Feature Explorer requires the SmartClient server to be running. See the"
+                +"Quickstart section of the Release Notes for instructions on starting the server."
+                +"<br><br>You may also access these examples online at"
+                +" <a href='http://www.smartclient.com'>http://www.SmartClient.com</a>");
+    } else {
+        var skin = isc.currentSkin || isc.params.skin;
+        isc.ExampleViewer.addProperties({
+            
+            currentSkin:skin,
+            currentFontIncrease:fontIncrease,
+            currentSizeIncrease:sizeIncrease
+        });
+        isc.FeatureExplorer.addProperties({
+            currentFontIncrease:fontIncrease,
+            currentSizeIncrease:sizeIncrease
+        });
+        var leaveMinimalUISpace = (isc.Browser._supportsMinimalUI && window.isc_useDefaultViewport != false && window.isc_useMinimalUI != false);
+        if (leaveMinimalUISpace) {
+            var minimalUISpacer = isc.Label.create({
+                ID: "minimalUISpacer",
+                width: "100%",
+                height: 20,
+                leavePageSpace: 0,
+                backgroundColor: "Black",
+                icon: "cubes.png",
+                iconWidth: 16,
+                iconHeight: 16,
+                contents: "<strong style='color: White; font-size: 15px;'>Isomorphic Software</strong>",
+                align: "center",
+                autoDraw: true,
+                ariaRole: "presentation",
+                ariaState: {
+                    hidden: "true"
+                }
+            });
+        }
+        var featureExplorer = isc.FeatureExplorer.create({
+            ID: "featureExplorer",
+            width: "100%",
+            height: "100%",
+            // Overall background color white except for the dark skins
+            backgroundColor: (skin == "BlackOps" ? "black" : "white"),
+            treeData: exampleTree,
+            autoDraw: true
+        });
+    }
+}
+</script>
+
+<!-- Load the system schema for examples that require them -->
+<script src="../isomorphic/DataSourceLoader?dataSource=$systemSchema"></script>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+.padding5 {
+    padding: 5px;
+}
+
+.padding10border5 {
+    padding: 10px;
+    border: 5px solid blue;
+}
+
+.padding5border5 {
+    padding: 5px;
+    border: 5px solid blue;
+}

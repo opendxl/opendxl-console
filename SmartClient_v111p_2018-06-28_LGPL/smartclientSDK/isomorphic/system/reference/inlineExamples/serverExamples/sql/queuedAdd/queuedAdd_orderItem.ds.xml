@@ -1,0 +1,23 @@
+<DataSource
+    ID="queuedAdd_orderItem"
+    serverType="sql"
+    tableName="queuedOrderItem"
+    testFileName="/examples/shared/ds/serverExamples/test_data/queuedOrderItem.data.xml"
+>
+    <fields>
+        <field name="pk" type="sequence" primaryKey="true" hidden="true" />
+        <field name="orderID" type="integer" />
+        <field name="itemID" type="text" foreignKey="supplyItem.itemID" />
+        <field name="quantity" type="integer" />
+    </fields>
+    
+<operationBindings>
+    
+    <operationBinding operationType="add">
+        <values fieldName="orderID" value="$responseData.last('queuedAdd_order','add').orderID" />
+    </operationBinding>
+
+</operationBindings>
+    
+</DataSource>
+ 

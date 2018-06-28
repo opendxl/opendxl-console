@@ -1,0 +1,16 @@
+<DataSource
+    ID="masterDetail_orderItemHB"
+    serverType="hibernate"
+    tableName="masterDetail_orderItem"
+    beanClassName="com.isomorphic.examples.server.masterDetail.OrderItem"
+>
+    <fields>
+        <field name="pk" type="sequence" primaryKey="true" hidden="true" />
+        <field name="orderID" type="integer" canEdit="false" />
+        <field name="itemDescription" type="text" />
+        <field name="quantity" type="integer" />
+        <field name="unitPrice" type="float" />
+    </fields>
+    
+</DataSource>
+ 

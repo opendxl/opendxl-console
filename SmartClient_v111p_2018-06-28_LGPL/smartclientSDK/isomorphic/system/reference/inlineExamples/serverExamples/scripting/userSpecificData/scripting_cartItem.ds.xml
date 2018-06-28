@@ -1,0 +1,49 @@
+<DataSource
+    ID="scripting_cartItem"
+    serverType="sql"
+    tableName="cartItem"
+    testFileName="/examples/shared/ds/serverExamples/test_data/salesOrderItem.data.xml"
+>
+    <script language="groovy" >
+        String sessionId = session.getId();
+        
+        if (DataSource.isAdd(dsRequest.getOperationType())) {
+            dsRequest.setFieldValue("sessionId", sessionId);
+        } else {
+            dsRequest.setCriteriaValue("sessionId", sessionId);
+        }
+
+        return dsRequest.execute();
+    </script>
+
+	<!-- ~~~~~~~~~~~~~~~~ Example of alternative implementation in Javascript ~~~~~~~~~ -->
+    <!-- script language="javascript" >
+        var sessionId = session.getId();
+
+        if (DataSource.isAdd(dsRequest.getOperationType())) {
+            dsRequest.setFieldValue("sessionId", sessionId);
+        } else {
+            dsRequest.setCriteriaValue("sessionId", sessionId);
+        }
+
+        dsRequest.execute();
+    </script -->
+
+    <fields>
+        <field name="pk" type="sequence" primaryKey="true" hidden="true" />
+        <field name="sessionId" type="text" />
+        <field name="itemID" type="integer" foreignKey="supplyItem.itemID" />
+        <field name="unitPrice" type="float" />
+        <field name="quantity" type="integer" />
+        <field name="itemName" type="text" tableName="supplyItem" />
+    </fields>
+    
+    <operationBindings>
+        <operationBinding operationType="fetch">
+            <tableClause>cartItem, supplyItem</tableClause>
+            <whereClause>cartItem.itemID = supplyItem.itemID AND ($defaultWhereClause)</whereClause>
+        </operationBinding>
+    </operationBindings>
+    
+</DataSource>
+ 

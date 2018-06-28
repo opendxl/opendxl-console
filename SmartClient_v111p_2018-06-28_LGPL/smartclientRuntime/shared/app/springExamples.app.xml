@@ -1,0 +1,10 @@
+<Application>
+    <rpcBindings>
+        <!-- Spring Hello World Example -->
+        <ServerObject ID="helloWorld" lookupStyle="spring" bean="helloWorld">
+            <visibleMethods>
+                <method name="sayHello"/>
+            </visibleMethods>
+        </ServerObject>
+    </rpcBindings>
+</Application>

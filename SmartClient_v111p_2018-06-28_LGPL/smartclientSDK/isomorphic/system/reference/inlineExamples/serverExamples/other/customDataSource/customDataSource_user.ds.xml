@@ -1,0 +1,15 @@
+<DataSource
+    ID="customDataSource_user"
+    serverConstructor="com.isomorphic.examples.server.customDataSource.UserDataSource"
+>
+    <fields>
+        <field name="userName"        type="text"           length="128"      required="true"/>
+        <field name="employeeId"      type="sequence"       primaryKey="true" hidden="true"/>
+        <field name="job"             title="Job Title"     type="text"       length="128"/> 
+        <field name="email"           title="Email"         type="text"       length="128"/>
+        <field name="employeeType"    title="Employee Type" type="text"       length="40"/>
+        <field name="salary"          title="Salary"        type="float"/>
+    </fields>
+    
+</DataSource>
+ 

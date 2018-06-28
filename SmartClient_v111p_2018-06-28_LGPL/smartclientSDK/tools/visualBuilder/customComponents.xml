@@ -1,0 +1,48 @@
+<!-- 
+  See "Adding Custom Components to Visual Builder" in the "Concepts - Visual Builder" section of the
+  SmartClient Reference for the custom component format.
+-->
+
+<PaletteNodes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+<!-- example: ListGrid pre-configured to allow editing -->
+<!--
+<PaletteNode>
+    <title>&lt;b&gt;Editable Grid&lt;/b&gt;</title>
+    <type>ListGrid</type>
+    <defaults>
+        <canEdit xsi:type="boolean">true</canEdit>
+    </defaults>
+    <icon>ListGrid.png</icon>
+    <showDropIcon>true</showDropIcon>
+</PaletteNode>
+-->
+
+<!-- example: Label pre-configured and pre-skinned for use as a simple screen header -->
+<!--
+<PaletteNode>
+    <title>&lt;b&gt;Simple Label&lt;/b&gt;</title>
+    <type>Label</type>
+    <defaults>
+        <wrap xsi:type="boolean">false</wrap>
+        <height>20</height>
+        <contents>Label Text</contents>
+        <styleName>headerItem</styleName>
+    </defaults>
+</PaletteNode>
+-->
+
+
+<!-- example: add one of the custom component examples including in the SDK -->
+<!-- See also the additions to globalDependencies.xml for this class -->
+<!--
+<PaletteNode>
+    <title>&lt;b&gt;SimpleHeader&lt;/b&gt;</title>
+    <type>SimpleHeader</type>
+    <icon>toolbar.gif</icon>
+    <iconSize>16</iconSize>
+    <showDropIcon>true</showDropIcon>
+</PaletteNode>
+-->
+
+</PaletteNodes>

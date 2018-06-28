@@ -1,0 +1,10 @@
+<Application>
+    <rpcBindings>
+        <!-- getTimeStamp example -->
+        <ServerObject ID="GetTimeStampDMI" className="com.isomorphic.examples.GetTimeStampDMI">
+            <visibleMethods>
+                <method name="getTimeStamp"/>
+            </visibleMethods>
+        </ServerObject>
+    </rpcBindings>
+</Application>

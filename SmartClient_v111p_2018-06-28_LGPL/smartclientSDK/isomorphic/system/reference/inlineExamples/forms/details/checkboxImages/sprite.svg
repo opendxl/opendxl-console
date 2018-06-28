@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="400" height="200">
+    <defs>
+        <rect id="box" width="100" height="100" rx="10" ry="10"/>
+        <rect id="inner" width="80" height="80"/>
+        <path id="checkmark" d="M15 70l35 15 35-55-20-15-20 50-20-15z"/>
+
+        <linearGradient id="overGradient" x1="35" y1="10" x2="65" y2="90" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#fff"/>
+            <stop offset="1" stop-color="#fff" stop-opacity=".824"/>
+        </linearGradient>
+
+        <linearGradient id="downGradient" x1="35" y1="10" x2="65" y2="90" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#fff"/>
+            <stop offset="1" stop-color="#fff" stop-opacity=".627"/>
+        </linearGradient>
+    </defs>
+    <g>
+        <!-- unchecked_Disabled -->
+        <use xlink:href="#box" x="0" y="0" fill="#aaa"/>
+        <use xlink:href="#inner" x="10" y="10" fill="#fff"/>
+
+        <!-- unchecked -->
+        <use xlink:href="#box" x="100" y="0"/>
+        <use xlink:href="#inner" x="110" y="10" fill="#fff"/>
+
+        <!-- unchecked_Over -->
+        <use xlink:href="#box" x="200" y="0"/>
+        <use xlink:href="#inner" x="210" y="10" fill="url(#overGradient)"/>
+
+        <!-- unchecked_Down -->
+        <use xlink:href="#box" x="300" y="0"/>
+        <use xlink:href="#inner" x="310" y="10" fill="url(#downGradient)"/>
+
+
+        <!-- checked_Disabled -->
+        <use xlink:href="#box" x="0" y="100" fill="#aaa"/>
+        <use xlink:href="#inner" x="10" y="110" fill="#fff"/>
+        <use xlink:href="#checkmark" x="0" y="100" fill="#ddd"/>
+
+        <!-- checked -->
+        <use xlink:href="#box" x="100" y="100"/>
+        <use xlink:href="#inner" x="110" y="110" fill="#fff"/>
+        <use xlink:href="#checkmark" x="100" y="100" fill="#306cd0"/>
+
+        <!-- checked_Over -->
+        <use xlink:href="#box" x="200" y="100"/>
+        <use xlink:href="#inner" x="210" y="110" fill="url(#overGradient)"/>
+        <use xlink:href="#checkmark" x="200" y="100" fill="#306cd0"/>
+
+        <!-- checked_Down -->
+        <use xlink:href="#box" x="300" y="100"/>
+        <use xlink:href="#inner" x="310" y="110" fill="url(#downGradient)"/>
+        <use xlink:href="#checkmark" x="300" y="100" fill="#306cd0"/>
+    </g>
+</svg>

@@ -1,0 +1,72 @@
+.myHighGridCell,
+.myHighGridCellDark {
+	font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; text-overflow:ellipsis;
+	color:black;
+	border-bottom:1px solid #ffc0c0; border-top:1px solid #ffc0c0;
+	background-color:#ffc0c0;
+}
+.myHighGridCellOver,
+.myHighGridCellOverDark {
+	font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; text-overflow:ellipsis;
+	color:black;
+	border-bottom:1px solid #c0c0c0; border-top:1px solid #c0c0c0;
+	background-color:#ffe0e0;
+}
+.myHighGridCellSelected,
+.myHighGridCellSelectedDark {
+	font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; text-overflow:ellipsis;
+	color:black;
+	border-bottom:1px solid #ffc0ff; border-top:1px solid #ffc0ff;
+	background-color:#ffc0ff;
+}
+.myHighGridCellSelectedOver,
+.myHighGridCellSelectedOverDark {
+	font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; text-overflow:ellipsis;
+	color:black;
+	border-bottom:1px solid #a0a0a0; border-top:1px solid #a0a0a0;
+	background-color:#ffe0ff;
+}
+.myHighGridCellDisabled,
+.myHighGridCellDisabledDark {
+	font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; text-overflow:ellipsis;
+	color:#808080;
+	border-bottom:1px solid #ffc0c0; border-top:1px solid #ffc0c0;
+	background-color:#ffc0c0;
+}
+
+
+.myLowGridCell,
+.myLowGridCellDark {
+	font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; text-overflow:ellipsis;
+	color:black;
+	border-bottom:1px solid #c0ffc0; border-top:1px solid #c0ffc0;
+	background-color:#c0ffc0;
+}
+.myLowGridCellOver,
+.myLowGridCellOverDark {
+	font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; text-overflow:ellipsis;
+	color:black;
+	border-bottom:1px solid #c0c0c0; border-top:1px solid #c0c0c0;
+	background-color:#e0ffe0;
+}
+.myLowGridCellSelected,
+.myLowGridCellSelectedDark {
+	font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; text-overflow:ellipsis;
+	color:black;
+	border-bottom:1px solid #c0ffff; border-top:1px solid #c0ffff;
+	background-color:#c0ffff;
+}
+.myLowGridCellSelectedOver,
+.myLowGridCellSelectedOverDark {
+	font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; text-overflow:ellipsis;
+	color:black;
+	border-bottom:1px solid #a0a0a0; border-top:1px solid #a0a0a0;
+	background-color:#e0ffff;
+}
+.myLowGridCellDisabled,
+.myLowGridCellDisabledDark {
+	font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; text-overflow:ellipsis;
+	color:#808080;
+	border-bottom:1px solid #c0ffc0; border-top:1px solid #c0ffc0;
+	background-color:#c0ffc0;
+}

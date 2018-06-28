@@ -1,0 +1,9 @@
+<DataSource
+    ID="countryDS"
+    dataFormat="json"
+    dataURL="[ISOMORPHIC]/system/reference/inlineExamples/grids/data/countryData.json"
+><fields>
+    <field name="countryCode" title="Code"/>
+    <field name="countryName" title="Country"/>
+    <field name="capital" title="Capital"/>
+</fields></DataSource>

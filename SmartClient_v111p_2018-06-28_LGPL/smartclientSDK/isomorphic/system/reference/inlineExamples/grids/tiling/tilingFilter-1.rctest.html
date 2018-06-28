@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- The idea of this test is to sort the tiles by the lifespan of the animals,
+     shortest first, and then verify that the shortest (Octopus) is the first tile. -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/" />
+<title>tilingFilter-1.rctest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">tilingFilter-1.rctest</td></tr>
+</thead><tbody>
+<tr>
+	<td>exampleOpen</td>
+	<td>smartgwt</td>
+	<td>tiling_filter_sort</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=VStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=TileGrid||index=0||length=4||classIndex=0||classLength=1]/tile[Class=SimpleTile||index=0||length=29||classIndex=0||classLength=29]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=VStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=2||length=4||classIndex=1||classLength=2]/item[name=sortBy||title=Sort%20by||index=0||Class=SelectItem]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>scrollAndHoldExample</td>
+	<td>bottom</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForSystemDone</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=VStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=2||length=4||classIndex=1||classLength=2]/item[name=sortBy||title=Sort%20by||index=0||Class=SelectItem]/[icon=&quot;picker&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=VStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=2||length=4||classIndex=1||classLength=2]/item[name=sortBy||title=Sort%20by||index=0||Class=SelectItem]/pickList/body/row[sortBy=lifeSpan||1]/col[fieldName=sortBy||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=VStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=2||length=4||classIndex=1||classLength=2]/item[name=sortBy||title=Sort%20by||index=0||Class=SelectItem]/pickList/body/row[sortBy=lifeSpan||1]/col[fieldName=sortBy||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=VStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=2||length=4||classIndex=1||classLength=2]/item[name=chkSortDir||title=Ascending||index=1||Class=CheckboxItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=VStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=2||length=4||classIndex=1||classLength=2]/item[name=chkSortDir||title=Ascending||index=1||Class=CheckboxItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTileGridDone</td>
+	<td>scLocator=//testRoot[]/child[Class=VStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=TileGrid||index=0||length=4||classIndex=0||classLength=1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/child[Class=VStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=TileGrid||index=0||length=4||classIndex=0||classLength=1]/tile[Class=SimpleTile||index=0||length=29||classIndex=0||classLength=29]/</td>
+	<td>Giant Octopus Lifespan: 3 Not endangered</td>
+</tr>
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<DataSource
+    ID="teamMembers"
+    serverType="sql"
+    tableName="teamMembers"
+    testFileName="/examples/shared/ds/test_data/teamMembers.data.xml"
+    dbImportFileName="/examples/shared/ds/test_data/teamMembers.data.xml"
+
+    titleField="employeeName"
+>
+    <fields>
+        <field name="employeeName"    title="Name"            type="text"     length="128"/>
+        <field name="employeeId"      title="Employee ID"     type="integer"  primaryKey="true"
+               foreignKey="employees.EmployeeId"  />
+        <field name="projectCode"     title="Project Code"    type="text"     primaryKey="true" length="30"/> 
+    </fields>
+</DataSource>

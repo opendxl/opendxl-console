@@ -1,0 +1,37 @@
+.noBorderCell {
+	font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; text-overflow:ellipsis;
+	background-color:transparent;
+}
+.noBorderCellDark {
+	font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; text-overflow:ellipsis;
+	color:black;
+	background-color:#f0f0f0;
+}
+.noBorderCellOver,
+.noBorderCellOverDark {
+	font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; text-overflow:ellipsis;
+	color:black;
+	background-color:#ffffc0;
+}
+.noBorderCellSelected,
+.noBorderCellSelectedDark {
+	font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; text-overflow:ellipsis;
+	color:black;
+	background-color:#b8d0ff;
+}
+.noBorderCellSelectedOver,
+.noBorderCellSelectedOverDark {
+	font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; text-overflow:ellipsis;
+	color:black;
+	background-color:#e0ebff;
+}
+.noBorderCellDisabled {
+	font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; text-overflow:ellipsis;
+	color:#808080;
+	background-color:#ffffff;
+}
+.noBorderCellDisabledDark {
+	font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; text-overflow:ellipsis;
+	color:#808080;
+	background-color:#f0f0e8;
+}

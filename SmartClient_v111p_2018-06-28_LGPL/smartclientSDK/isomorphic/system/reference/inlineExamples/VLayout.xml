@@ -1,0 +1,6 @@
+<VLayout height="200">
+    <members>
+        <Label contents="red" align="center" backgroundColor="red" showResizeBar="true"/>
+        <Label contents="blue" align="center" backgroundColor="blue" overflow="hidden"/>
+    </members>
+</VLayout>

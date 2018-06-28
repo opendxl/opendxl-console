@@ -1,0 +1,6 @@
+<DynamicForm width="300">
+    <fields>
+        <field defaultValue="Office Supplies" type="header"/>
+        <field title="Item" type="text"/>
+    </fields>
+</DynamicForm>

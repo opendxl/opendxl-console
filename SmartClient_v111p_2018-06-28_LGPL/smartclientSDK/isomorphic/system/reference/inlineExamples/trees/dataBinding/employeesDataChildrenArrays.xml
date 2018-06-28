@@ -1,0 +1,29 @@
+<Employees>
+    <employee>
+		<Name>Charles Madigen</Name>
+		<Job>Chief Operating Officer</Job>
+        <directReports>
+            <employee>
+                <Name>Rogine Leger</Name>
+                <Job>Mgr Syst P P</Job>
+                <directReports></directReports>
+            </employee>
+            <employee>
+                <Name>Gene Porter</Name>
+                <Job>Mgr Tech Plng IntIS T</Job>
+                <directReports>
+                    <employee>
+                        <Name>Olivier Doucet</Name>
+        	            <Job>Asset Spec Lines Stns</Job>
+                        <directReports></directReports>
+                    </employee>                            
+                    <employee>
+                        <Name>Cheryl Pearson</Name>
+                        <Job>Dsl Sys Rep</Job>
+                        <directReports></directReports>
+                    </employee>
+                </directReports>
+            </employee>
+        </directReports>
+	</employee>
+</Employees>

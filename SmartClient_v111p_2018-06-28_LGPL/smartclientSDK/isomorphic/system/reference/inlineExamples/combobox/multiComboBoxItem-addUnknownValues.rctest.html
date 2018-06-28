@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/" />
+<title>multiComboBoxItem-addUnknownValues.rctest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">multiComboBoxItem-addUnknownValues.rctest</td></tr>
+</thead><tbody>
+<tr>
+	<td>exampleOpen</td>
+	<td>smartgwt</td>
+	<td>multicombobox_category</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>	
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=1||length=2||classIndex=1||classLength=2]/item[name=supplies||title=Items||value=6024900,1089400,90600,58074604||index=0||Class=MultiComboBoxItem]/button[Class=IButton||index=1||length=4||classIndex=1||classLength=4||roleIndex=1||roleLength=4||title=Adding%20Machine%20Roll%2057x64mm%20Standard||scRole=button]/</td>
+	<td></td>
+</tr>
+<!--Make sure that alwaysExitOnTab is true.-->
+<tr>
+	<td>assertEval</td>
+	<td>var $wnd = selenium.browserbot.getCurrentWindow(); var suppliesItem = $wnd.isc.AutoTest.getObject('scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=1||length=2||classIndex=1||classLength=2]/item[name=supplies||title=Items||value=6024900,1089400,90600,58074604||index=0||Class=MultiComboBoxItem]'); !!suppliesItem.alwaysExitOnTab</td>
+	<td>true</td>
+</tr>
+<!--Remove 'Adding Machine Roll 57x64mm Standard' and 'Carbonless Duplicate Book Memo 551 Spirax' and verify that the new MCB value is correct.-->
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=1||length=2||classIndex=1||classLength=2]/item[name=supplies||title=Items||value=6024900,1089400,90600,58074604||index=0||Class=MultiComboBoxItem]/button[Class=IButton||index=1||length=4||classIndex=1||classLength=4||roleIndex=1||roleLength=4||title=Adding%20Machine%20Roll%2057x64mm%20Standard||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=1||length=2||classIndex=1||classLength=2]/item[name=supplies||title=Items||value=6024900,1089400,90600,58074604||index=0||Class=MultiComboBoxItem]/button[Class=IButton||index=1||length=4||classIndex=1||classLength=4||roleIndex=1||roleLength=4||title=Adding%20Machine%20Roll%2057x64mm%20Standard||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=1||length=2||classIndex=1||classLength=2]/item[name=supplies||title=Items||value=6024900,1089400,58074604||index=0||Class=MultiComboBoxItem]/button[Class=IButton||index=3||length=4||classIndex=2||classLength=3||roleIndex=2||roleLength=3||title=Carbonless%20Duplicate%20Book%20Memo%20551%20Spirax||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=1||length=2||classIndex=1||classLength=2]/item[name=supplies||title=Items||value=6024900,1089400,58074604||index=0||Class=MultiComboBoxItem]/button[Class=IButton||index=3||length=4||classIndex=2||classLength=3||roleIndex=2||roleLength=3||title=Carbonless%20Duplicate%20Book%20Memo%20551%20Spirax||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=1||length=2||classIndex=1||classLength=2]/item[name=supplies||title=Items||value=58074604,1089400||index=0||Class=MultiComboBoxItem]</td>
+	<td>58074604,1089400</td>
+</tr>
+<!--Add a dummy field to have something to tab to.-->
+<tr>
+	<td>assertEval</td>
+	<td>var $wnd = selenium.browserbot.getCurrentWindow(); var dummyField = new $wnd.Object; dummyField.name = &quot;dummy&quot;; var form = $wnd.isc.AutoTest.getObject(&quot;scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=1||length=2||classIndex=1||classLength=2]&quot;); form.addItem(dummyField); true</td>
+	<td>true</td>
+</tr>
+<!--Type an unknown value, 'CUSTOM_VALUE', and press Tab. The MCB value should be unchanged.-->
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=1||length=2||classIndex=1||classLength=2]/item[name=supplies||title=Items||value=58074604,1089400||index=0||Class=MultiComboBoxItem]/comboForm/item[title=cb||index=0||Class=ComboBoxItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=1||length=2||classIndex=1||classLength=2]/item[name=supplies||title=Items||value=58074604,1089400||index=0||Class=MultiComboBoxItem]/comboForm/item[title=cb||index=0||Class=ComboBoxItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=1||length=2||classIndex=1||classLength=2]/item[name=supplies||title=Items||value=58074604,1089400||index=0||Class=MultiComboBoxItem]/comboForm/item[title=cb||index=0||Class=ComboBoxItem]/element</td>
+	<td>CUSTOM_VALUE</td>
+</tr>
+<tr>
+	<td>keyDown</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=1||length=2||classIndex=1||classLength=2]/item[name=supplies||title=Items||value=58074604,1089400||index=0||Class=MultiComboBoxItem]/comboForm/item[title=cb||index=0||Class=ComboBoxItem]/element</td>
+	<td>09</td>
+</tr>
+<tr>
+	<td>blur</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=1||length=2||classIndex=1||classLength=2]/item[name=supplies||title=Items||value=58074604,1089400||index=0||Class=MultiComboBoxItem]/comboForm/item[title=cb||index=0||Class=ComboBoxItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=1||length=2||classIndex=1||classLength=2]/item[name=supplies||title=Items||index=0||Class=MultiComboBoxItem]</td>
+	<td>58074604,1089400</td>
+</tr>
+<!--Type a known value, 'Battery Duracell Dl2032 Watch and Calculator', and press Tab.-->
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=1||length=2||classIndex=1||classLength=2]/item[name=supplies||title=Items||value=58074604,1089400||index=0||Class=MultiComboBoxItem]/comboForm/item[title=cb||index=0||Class=ComboBoxItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=1||length=2||classIndex=1||classLength=2]/item[name=supplies||title=Items||value=58074604,1089400||index=0||Class=MultiComboBoxItem]/comboForm/item[title=cb||index=0||Class=ComboBoxItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=1||length=2||classIndex=1||classLength=2]/item[name=supplies||title=Items||value=58074604,1089400||index=0||Class=MultiComboBoxItem]/comboForm/item[title=cb||index=0||Class=ComboBoxItem]/element</td>
+	<td>Battery Duracell Dl2032 Watch and Calculator</td>
+</tr>
+<tr>
+	<td>keyDown</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=1||length=2||classIndex=1||classLength=2]/item[name=supplies||title=Items||value=58074604,1089400||index=0||Class=MultiComboBoxItem]/comboForm/item[title=cb||index=0||Class=ComboBoxItem]/element</td>
+	<td>09</td>
+</tr>
+<tr>
+	<td>blur</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=1||length=2||classIndex=1||classLength=2]/item[name=supplies||title=Items||value=58074604,1089400||index=0||Class=MultiComboBoxItem]/comboForm/item[title=cb||index=0||Class=ComboBoxItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=1||length=2||classIndex=1||classLength=2]/item[name=supplies||title=Items||value=58074604,1089400,8080500||index=0||Class=MultiComboBoxItem]/button[Class=IButton||index=4||length=5||classIndex=2||classLength=3||roleIndex=2||roleLength=3||title=Battery%20Duracell%20Dl2032%20Watch%20and%20Calculator||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=1||length=2||classIndex=1||classLength=2]/item[name=supplies||title=Items||index=0||Class=MultiComboBoxItem]</td>
+	<td>58074604,1089400,8080500</td>
+</tr>
+<!--Check 'Allow New Values'-->
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=2]/item[title=Allow%20New%20Values||value=false||index=1||Class=CheckboxItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=0||length=2||classIndex=0||classLength=2]/item[title=Allow%20New%20Values||value=false||index=1||Class=CheckboxItem]/textbox</td>
+	<td></td>
+</tr>
+<!--Type a known value, 'Calculator Sharp El243s 8 Digit Solar', and press Tab.-->
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=1||length=2||classIndex=1||classLength=2]/item[name=supplies||title=Items||index=0||Class=MultiComboBoxItem]/comboForm/item[title=cb||index=0||Class=ComboBoxItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=1||length=2||classIndex=1||classLength=2]/item[name=supplies||title=Items||index=0||Class=MultiComboBoxItem]/comboForm/item[title=cb||index=0||Class=ComboBoxItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=1||length=2||classIndex=1||classLength=2]/item[name=supplies||title=Items||index=0||Class=MultiComboBoxItem]/comboForm/item[title=cb||index=0||Class=ComboBoxItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=1||length=2||classIndex=1||classLength=2]/item[name=supplies||title=Items||index=0||Class=MultiComboBoxItem]/comboForm/item[title=cb||index=0||Class=ComboBoxItem]/element</td>
+	<td>Calculator Sharp El243s 8 Digit Solar</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=1||length=2||classIndex=1||classLength=2]/item[name=supplies||title=Items||index=0||Class=MultiComboBoxItem]/comboForm/item[title=cb||index=0||Class=ComboBoxItem]/pickList/body/row[SKU=11007900||itemName=Calculator%20Sharp%20El243s%208%20Digit%20Solar||0]/col[fieldName=itemName||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyDown</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=1||length=2||classIndex=1||classLength=2]/item[name=supplies||title=Items||index=0||Class=MultiComboBoxItem]/comboForm/item[title=cb||index=0||Class=ComboBoxItem]/element</td>
+	<td>09</td>
+</tr>
+<tr>
+	<td>blur</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=1||length=2||classIndex=1||classLength=2]/item[name=supplies||title=Items||index=0||Class=MultiComboBoxItem]/comboForm/item[title=cb||index=0||Class=ComboBoxItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=1||length=2||classIndex=1||classLength=2]/item[name=supplies||title=Items||value=11007900||index=0||Class=MultiComboBoxItem]/button[Class=IButton||index=0||length=5||classIndex=0||classLength=2||roleIndex=0||roleLength=2||title=Calculator%20Sharp%20El243s%208%20Digit%20Solar||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=1||length=2||classIndex=1||classLength=2]/item[name=supplies||title=Items||index=0||Class=MultiComboBoxItem]</td>
+	<td>11007900</td>
+</tr>
+<!--Type an unknown value, 'CUSTOM_VALUE', and press Tab.-->
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=1||length=2||classIndex=1||classLength=2]/item[name=supplies||title=Items||value=11007900||index=0||Class=MultiComboBoxItem]/comboForm/item[title=cb||index=0||Class=ComboBoxItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=1||length=2||classIndex=1||classLength=2]/item[name=supplies||title=Items||value=11007900||index=0||Class=MultiComboBoxItem]/comboForm/item[title=cb||index=0||Class=ComboBoxItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=1||length=2||classIndex=1||classLength=2]/item[name=supplies||title=Items||value=11007900||index=0||Class=MultiComboBoxItem]/comboForm/item[title=cb||index=0||Class=ComboBoxItem]/element</td>
+	<td>CUSTOM_VALUE</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=1||length=2||classIndex=1||classLength=2]/item[name=supplies||title=Items||value=11007900||index=0||Class=MultiComboBoxItem]/comboForm/item[title=cb||index=0||Class=ComboBoxItem]/pickList/body</td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyDown</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=1||length=2||classIndex=1||classLength=2]/item[name=supplies||title=Items||value=11007900||index=0||Class=MultiComboBoxItem]/comboForm/item[title=cb||index=0||Class=ComboBoxItem]/element</td>
+	<td>09</td>
+</tr>
+<tr>
+	<td>blur</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=1||length=2||classIndex=1||classLength=2]/item[name=supplies||title=Items||value=11007900||index=0||Class=MultiComboBoxItem]/comboForm/item[title=cb||index=0||Class=ComboBoxItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>scLocator=//testRoot[]/child[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=DynamicForm||index=1||length=2||classIndex=1||classLength=2]/item[name=supplies||title=Items||index=0||Class=MultiComboBoxItem]</td>
+	<td>11007900,CUSTOM_VALUE</td>
+</tr>
+</tbody></table>
+</body>
+</html>

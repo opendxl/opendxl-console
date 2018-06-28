@@ -1,0 +1,1 @@
+<Button title="Click me" click="isc.warn('This is a warning Dialog')"/>

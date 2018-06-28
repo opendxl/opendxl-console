@@ -1,0 +1,310 @@
+
+<!-- 
+User Interface 
+=======================================================================================
+-->
+
+<TreeGrid
+	ID="categoryTree"
+	dataSource="supplyCategory"
+	nodeClick="findForm.findItems(node.categoryName)"
+    showHeader="false"
+    leaveScrollbarGap="false"
+	canAcceptDroppedRecords="true"
+    canReparentNodes="false"
+    selectionType="single"
+    animateFolders="true"
+    animateRowsMaxTime="750"
+>
+    
+</TreeGrid>
+
+<HTMLPane
+	ID="helpCanvas"
+	overflow="auto"
+    styleName="defaultBorder"
+	padding="10">
+    <contentsURL>
+        <JS>isc.Page.getIsomorphicDocsDir() + "/inlineExamples/demoApp/demoApp_helpText.html"</JS>
+    </contentsURL>
+</HTMLPane>
+
+<IButton
+	ID="findButton"
+	title="Find"
+	left="25"
+	top="16"
+	width="80"
+	click="findForm.findItems()"
+	icon="demoApp/icon_find.png"
+	iconWidth="24"
+/>
+
+
+<SearchForm
+	ID="findForm"
+	dataSource="supplyItem"
+	left="130"
+    top="10"
+	cellPadding="4"
+	numCols="6"
+>
+	<fields>
+		<field name="SKU"/>
+		<field name="itemName" editorType="ComboBoxItem" optionDataSource="supplyItem" pickListWidth="250"/>
+		<field name="findInCategory" editorType="CheckboxItem"
+			title="Use category" defaultValue="true"/>
+	</fields>
+    <findItems><JS>
+        function (categoryName) {
+            var findValues;
+            
+            if (this.getValue('findInCategory') &amp;&amp; categoryTree.selection.anySelected()) {
+        		// use tree category and form values
+        		if (categoryName == null) categoryName = categoryTree.getSelectedRecord().categoryName;
+        		findValues = {category:categoryName};
+        		isc.addProperties(findValues, this.getValues());
+        		
+        	} else if (categoryName == null) {
+        		// use form values only
+        		findValues = this.getValues();
+        		
+        	} else {
+        		// use tree category only
+        		findValues = {category:categoryName};
+        	}
+        	
+        	itemList.filterData(findValues);
+        	
+        	itemDetailTabs.clearDetails();
+        }
+    </JS></findItems>
+</SearchForm>
+
+
+<ListGrid
+	ID="itemList"
+	dataSource="supplyItem"
+	useAllDataSourceFields="true"
+	recordClick="this.updateDetails()"
+	canEdit="true"
+    modalEditing="true"
+	cellChanged="this.updateDetails()"
+	alternateRecordStyles="true"
+	canDragRecordsOut="true"
+	hoverWidth="200"
+	hoverHeight="20"
+	cellContextClick="return itemListMenu.showContextMenu()"
+	selectionType="single"
+>
+	<fields>
+        <field name="itemName" title="Name" showHover="true"/>
+		<field name="unitCost" formatCellValue="return isc.NumberUtil.toCurrencyString(parseFloat(value))"
+               editorType="SpinnerItem">
+			<editorProperties step="0.01"/>
+		</field>
+		<field name="SKU" canEdit="false"/>
+		<field name="description" showHover="true"/>
+		<field name="category" canEdit="false"/>
+		<field name="inStock" width="55" align="center">
+			<formatCellValue><JS>
+                function (value, record, field, rowNum, colNum) {
+					if (value) return isc.Canvas.imgHTML("demoApp/checked.png",13,13);
+					else return isc.Canvas.imgHTML("demoApp/unchecked.png",13,13)
+                }
+            </JS></formatCellValue>
+		</field>
+		<field name="nextShipment" showIf="false"/>
+	</fields>
+    
+    <!-- Function to update details based on selection -->
+    <updateDetails><JS>
+        function () {
+        
+            var record = itemList.getSelectedRecord();
+            if (record == null) return itemDetailTabs.clearDetails();
+            
+            if (itemDetailTabs.getSelectedTabNumber() == 0) {
+                // View tab: show selected record
+                itemViewer.setData(record) 
+            } else {
+                // Edit tab: edit selected record
+                itemDetailTabs.updateTab("editTab", editForm);
+                editForm.editRecord(record);
+            }
+        }
+    </JS></updateDetails>
+
+</ListGrid>
+
+
+<Menu 
+	ID="itemListMenu"
+>
+	<data>
+        <item title="Add New Item" icon="demoApp/icon_add.png">
+            <click>
+                itemList.selection.deselectAll();
+                itemDetailTabs.selectTab(1);
+                itemList.updateDetails();
+            </click>
+        </item>
+        <item isSeparator="true"/>
+		<item title="Show Details" icon="demoApp/icon_view.png"
+		      click="itemDetailTabs.selectTab(0); itemList.updateDetails()"/>
+		<item title="Edit Item" icon="demoApp/icon_edit.png"
+		      click="itemDetailTabs.selectTab(1); itemList.updateDetails()"/>
+		<item title="Delete Item" icon="demoApp/icon_delete.png"
+		      click="itemList.removeSelectedData(); itemDetailTabs.clearDetails()"/>
+	</data>
+</Menu>
+
+
+<DetailViewer
+	ID="itemViewer"
+	dataSource="supplyItem"
+	width="100%"
+	margin="5"
+    emptyMessage="Select an item to view its details"
+/>
+
+<DynamicForm
+	ID="editForm"
+	dataSource="supplyItem"
+	useAllDataSourceFields="true"
+	width="650"
+	numCols="4"
+    margin="5"
+    cellPadding="5"
+	autoFocus="false"
+>
+	<colWidths>
+		<colWidth>80</colWidth>
+		<colWidth>200</colWidth>
+		<colWidth>100</colWidth>
+		<colWidth>200</colWidth>
+	</colWidths>
+	<fields>
+		<field name="SKU"/>
+		<field name="description" rowSpan="3" width="200"/>
+		<field name="category" editorType="PickTreeItem" dataSource="supplyCategory"
+		 emptyMenuMessage="No Sub Categories" canSelectParentItems="true"/>
+		<field name="unitCost" editorType="SpinnerItem" step="0.01"/>
+		<field name="inStock"/>
+		<field name="nextShipment" useTextField="true" wrapTitle="false"/>
+		<field name="savebtn" editorType="ButtonItem" align="center" 
+			width="100" colSpan="4" title="Save Item" click="editForm.saveData()"/>
+	</fields>
+</DynamicForm>
+
+
+<Label
+    ID="editorMessage"
+    autoDraw="false"
+    width="100%"
+    height="100%"
+    align="center"
+    contents="Select a record to edit, or a category to insert a new record into"
+/>
+
+<TabSet
+	ID="itemDetailTabs"
+    tabSelected="itemList.updateDetails()"
+>    
+	<tabs>
+		<tab title="View" pane="itemViewer" ID="viewTab" width="70" icon="demoApp/icon_view.png"/>
+		<tab title="Edit" pane="editForm" ID="editTab" width="70" icon="demoApp/icon_edit.png"/>
+	</tabs>
+    <clearDetails><JS>
+        function () {
+            var selectedTab = itemDetailTabs.getSelectedTabNumber();
+            if (selectedTab == 0) {
+                // View tab: show empty message
+            	itemViewer.setData();
+            } else if (selectedTab == 1) {
+                // Edit tab: show new record editor, or empty message
+                if (categoryTree.getSelectedRecord() != null) {
+                    itemDetailTabs.updateTab("editTab", editForm);
+                    editForm.editNewRecord({category:categoryTree.getSelectedRecord().categoryName});
+                } else {
+                    itemDetailTabs.updateTab("editTab", editorMessage);
+                }
+            }
+        }
+    </JS></clearDetails>
+
+</TabSet>
+
+<!--
+Define application layout
+====================================================================
+-->
+
+<HLayout
+	ID="pageLayout"
+	width="100%"
+	height="100%"
+>
+
+	<members>
+		<SectionStack ID="leftSideLayout" width="280" 
+                      showResizeBar="true" visibilityMode="multiple"
+                      animateSections="true"
+        >
+			<sections>
+                <SectionStackSection title="Office Supply Categories" autoShow="true">
+                    <items><Canvas ref="categoryTree"/></items>
+                </SectionStackSection>
+                <SectionStackSection title="Instructions" autoShow="true">
+                    <items><Canvas ref="helpCanvas"/></items>
+                </SectionStackSection>
+			</sections>
+		</SectionStack>
+		<SectionStack ID="rightSideLayout" visibilityMode="multiple"
+                      animateSections="true"
+        >
+			<sections>
+                <SectionStackSection title="Find Items" autoShow="true">
+                    <items>
+                        <Canvas ID="findPane" height="60" overflow="auto"
+                                styleName="defaultBorder">
+                            <children>
+                                <Canvas ref="findForm"/>
+                                <Canvas ref="findButton"/>
+                            </children>
+                        </Canvas>
+                    </items>
+                </SectionStackSection>
+                <SectionStackSection title="Office Supply Items" autoShow="true">
+                    <items><Canvas ref="itemList"/></items>
+                </SectionStackSection>
+                <SectionStackSection title="Item Details" autoShow="true">
+                    <items><Canvas ref="itemDetailTabs"/></items>
+                </SectionStackSection>
+			</sections>
+		</SectionStack>
+	</members>
+</HLayout>
+
+<!-- 
+Custom logic: 
+When showing options in the combo-box, only show the options from the selected category
+if appropriate
+-->
+<JS>
+findForm.getItem("itemName").addProperties({
+    getPickListFilterCriteria : function () {
+        var criteria = this.Super("getPickListFilterCriteria", arguments);
+        if (this.form.getValue('findInCategory') &amp;&amp; categoryTree.selection.anySelected()) {
+            criteria.category = categoryTree.getSelectedRecord().categoryName;
+        }
+        return criteria
+     }
+});
+
+<!--
+Call fetchData() on the tree to load the initially visible categories
+=====================================================================
+-->
+categoryTree.fetchData();
+</JS>

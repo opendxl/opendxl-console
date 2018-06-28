@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/" />
+<title>formatValues-1.rctest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">formatValues-1.rctest</td></tr>
+</thead><tbody>
+<tr>
+	<td>exampleOpen</td>
+	<td>smartgwt</td>
+	<td>grid_appearance_format_values</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/header/headerButton[fieldName=independence]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseMove</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/header/headerButton[fieldName=independence]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/headerMenuButton/icon</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/headerMenuButton/icon</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/headerContextMenu[Class=Menu||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=menu]/body/row[title=Sort%20Descending||1]/col[fieldName=title||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/headerContextMenu[Class=Menu||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=menu]/body/row[title=Sort%20Descending||1]/col[fieldName=title||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[0]/col[fieldName=independence||2]</td>
+	<td></td>
+</tr>
+<!--We have to use assertEval here because the text will change over time.-->
+<tr>
+	<td>storeText</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[0]/col[fieldName=independence||2]</td>
+	<td>TIME_OFFSET</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var locator = &quot;scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[0]/col[fieldName=independence||2]&quot;; var value = selenium.browserbot.getCurrentWindow().isc.AutoTest.getValue(locator); (new Date).getYear() - value.getYear() + &quot; years ago&quot; == storedVars[&quot;TIME_OFFSET&quot;]</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[0]/col[fieldName=independence||2]</td>
+	<td>*Sat Aug 24 1991*</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[1]/col[fieldName=independence||2]</td>
+	<td></td>
+</tr>
+<!--We have to use assertEval here because the text will change over time.-->
+<tr>
+	<td>storeText</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[1]/col[fieldName=independence||2]</td>
+	<td>TIME_OFFSET</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var locator = &quot;scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[1]/col[fieldName=independence||2]&quot;; var value = selenium.browserbot.getCurrentWindow().isc.AutoTest.getValue(locator); (new Date).getYear() - value.getYear() + &quot; years ago&quot; == storedVars[&quot;TIME_OFFSET&quot;]</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[1]/col[fieldName=independence||2]</td>
+	<td>*Fri Aug 15 1947*</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/header/headerButton[fieldName=area]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseMove</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/header/headerButton[fieldName=area]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/headerMenuButton/icon</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/headerMenuButton/icon</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/headerContextMenu[Class=Menu||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=menu]/body/row[title=Sort%20Ascending||0]/col[fieldName=title||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/headerContextMenu[Class=Menu||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=menu]/body/row[title=Sort%20Ascending||0]/col[fieldName=title||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[0]/col[fieldName=area||3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[0]/col[fieldName=area||3]</td>
+	<td>98,480 km²</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[0]/col[fieldName=area||3]</td>
+	<td>98480</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[1]/col[fieldName=area||3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[1]/col[fieldName=area||3]</td>
+	<td>244,820 km²</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[1]/col[fieldName=area||3]</td>
+	<td>244820</td>
+</tr>
+</tbody></table>
+</body>
+</html>

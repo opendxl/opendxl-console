@@ -1,0 +1,38 @@
+<Context>
+  <!-- disable TLD and pluggability scanning: slows down app server startup and none of these features are used by the SDK -->
+  <JarScanner>
+    <JarScanFilter pluggabilitySkip="*" tldSkip="*"/>
+  </JarScanner>
+
+
+  <Resource name="BeanManager"
+            auth="Container"
+            type="javax.enterprise.inject.spi.BeanManager"
+            factory="org.jboss.weld.resources.ManagerObjectFactory"/>
+
+
+  <!-- RealtimeMessaging -->
+  
+  <!-- Sample RabbitMQ config -->
+  <!--
+  <Resource name="jms/ConnectionFactory"
+            type="javax.jms.ConnectionFactory"
+            factory="com.rabbitmq.jms.admin.RMQObjectFactory"
+            username="guest"
+            password="guest"
+            virtualHost="/"
+            host="localhost"
+            cleanUpServerNamedQueuesForNonDurableTopicsOnSessionClose="true"            
+  />
+  -->
+  
+  <!-- Sample ActiveMQ config -->
+  <!--
+  <Resource name="jms/ConnectionFactory"
+            type="org.apache.activemq.ActiveMQConnectionFactory"
+            factory="org.apache.activemq.jndi.JNDIReferenceFactory"
+            brokerURL="tcp://wrath:61616"
+            brokerName="localhost"
+  />
+  -->  
+</Context>

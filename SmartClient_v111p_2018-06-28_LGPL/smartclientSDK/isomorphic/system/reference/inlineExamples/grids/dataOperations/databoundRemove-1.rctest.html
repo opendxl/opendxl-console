@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/" />
+<title>databoundRemove-1.rctest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">databoundRemove-1.rctest</td></tr>
+</thead><tbody>
+<tr>
+	<td>exampleOpen</td>
+	<td>smartgwt</td>
+	<td>grid_dataoperations_remove</td>
+</tr>
+<tr>
+	<td>waitForGridDone</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>setForClientOnlyOperation</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForClientOnlyReady</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[countryCode=AL||countryName=Albania]/col[fieldName=countryName||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[countryCode=AL||countryName=Albania]/col[fieldName=countryName||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=HStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=IButton||index=2||length=4||classIndex=1||classLength=3||roleIndex=1||roleLength=3||title=Remove%20First%20Selected||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[countryCode=AL||countryName=Albania]/col[fieldName=countryName||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[countryCode=AL||countryName=Albania]/col[fieldName=countryName||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[countryCode=AR||countryName=Argentina]/col[fieldName=countryName||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[countryCode=AR||countryName=Armenia]/col[fieldName=countryName||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=0||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=66||countryCode=AR||countryName=Argentina||7]/col[fieldName=countryName||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=0||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=66||countryCode=AR||countryName=Argentina||7]/col[fieldName=countryName||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=0||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=130||countryCode=AM||countryName=Armenia||8]/col[fieldName=countryName||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>controlKeyDown</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyDown</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=0||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=130||countryCode=AM||countryName=Armenia||8]/col[fieldName=countryName||1]</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>keyPress</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=0||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=130||countryCode=AM||countryName=Armenia||8]/col[fieldName=countryName||1]</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=0||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=130||countryCode=AM||countryName=Armenia||8]/col[fieldName=countryName||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>controlKeyUp</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=0||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=130||countryCode=AM||countryName=Armenia||8]/col[fieldName=countryName||1]</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=HStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=IButton||index=2||length=3||classIndex=2||classLength=3||roleIndex=2||roleLength=3||title=Remove%20All%20Selected||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=HStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=IButton||index=2||length=3||classIndex=2||classLength=3||roleIndex=2||roleLength=3||title=Remove%20All%20Selected||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=HStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=IButton||index=2||length=3||classIndex=2||classLength=3||roleIndex=2||roleLength=3||title=Remove%20All%20Selected||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseMove</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=HStack||index=1||length=2||classIndex=0||classLength=1]/member[Class=IButton||index=2||length=3||classIndex=2||classLength=3||roleIndex=2||roleLength=3||title=Remove%20All%20Selected||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[countryCode=AR||countryName=Argentina]/col[fieldName=countryName||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>scLocator=//testRoot[]/member[Class=VLayout||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=0||length=4||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[countryCode=AR||countryName=Armenia]/col[fieldName=countryName||1]</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

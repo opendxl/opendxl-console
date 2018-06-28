@@ -1,0 +1,10 @@
+<ListGrid width="300">
+    <fields>
+        <field name="itemName" title="Item" type="text"/>
+        <field name="unitCost" title="Unit Cost" type="number"/>
+    </fields>
+    <data>
+        <supplyItem itemName="17'' LCD Monitor" unitCost="330"/>
+        <supplyItem itemName="Dr. Grip Pens - Black" unitCost="4.99"/>
+    </data>
+</ListGrid>

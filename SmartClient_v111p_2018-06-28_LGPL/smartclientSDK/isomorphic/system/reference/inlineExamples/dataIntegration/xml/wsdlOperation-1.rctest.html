@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/" />b
+<title>enterNewRows-1.rctest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">enterNewRows-1.rctest</td></tr>
+</thead><tbody>
+<tr>
+	<td>exampleOpen</td>
+	<td>smartgwt</td>
+	<td>data_integration_server_wsdl_generic</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=DynamicForm||index=0||length=1||classIndex=0||classLength=1]/item[name=ZipCode||title=ZipCode||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=DynamicForm||index=0||length=1||classIndex=0||classLength=1]/item[name=ZipCode||title=ZipCode||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementReadyForKeyPresses</td>
+	<td>scLocator=//testRoot[]/child[Class=DynamicForm||index=0||length=1||classIndex=0||classLength=1]/item[name=ZipCode||title=ZipCode||value=02139||index=0||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/child[Class=DynamicForm||index=0||length=1||classIndex=0||classLength=1]/item[name=ZipCode||title=ZipCode||value=02139||index=0||Class=TextItem]/element</td>
+	<td>20815</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=DynamicForm||index=0||length=1||classIndex=0||classLength=1]/item[title=Find%20City||index=1||Class=ButtonItem]/button/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=DynamicForm||index=0||length=1||classIndex=0||classLength=1]/item[title=Find%20City||index=1||Class=ButtonItem]/button/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=DynamicForm||index=0||length=1||classIndex=0||classLength=1]/item[name=City||title=City||value=Cambridge||index=2||Class=StaticTextItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForNotText</td>
+	<td>scLocator=//testRoot[]/child[Class=DynamicForm||index=0||length=1||classIndex=0||classLength=1]/item[name=City||title=City||index=2||Class=StaticTextItem]/textbox</td>
+	<td>Loading...</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/child[Class=DynamicForm||index=0||length=1||classIndex=0||classLength=1]/item[name=City||title=City||value=Cambridge||index=2||Class=StaticTextItem]/textbox</td>
+	<td>Chevy Chase</td>
+</tr>
+</tbody></table>
+</body>
+</html>

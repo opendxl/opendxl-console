@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!-- Note: the runtime version of this file is bundled into isomorphic_examples.jar -->
+<hibernate-mapping>
+    <class name="com.isomorphic.examples.SupplyItem" table="supplyItemHB">
+        <id name="itemID">
+            <generator class="native"/>
+        </id>
+        <property name="itemName" />
+        <property name="SKU" />
+        <property name="description" />
+        <property name="category" />
+        <property name="units" />
+        <property name="unitCost" type="double" />
+        <property name="inStock" type="boolean" />
+        <property name="nextShipment" type="date" />
+    </class>
+</hibernate-mapping>

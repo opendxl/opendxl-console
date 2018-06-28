@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/" />
+<title>dataValidation-1.rctest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">dataValidation-1.rctest</td></tr>
+</thead><tbody>
+<tr>
+	<td>exampleOpen</td>
+	<td>smartgwt</td>
+	<td>grid_editing_data_validation</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=2||countryCode=CH||countryName=China||1]/col[fieldName=countryName||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var dataSource = selenium.browserbot.getCurrentWindow().isc.AutoTest.getLocatorCanvas(&quot;//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]&quot;).dataSource; dataSource.autoCacheAllData = true; dataSource.setClientOnly(true); true</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>var dataSource = selenium.browserbot.getCurrentWindow().isc.AutoTest.getLocatorCanvas(&quot;//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]&quot;).dataSource; dataSource.hasAllData()</td>
+	<td>5000</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/header/headerButton[fieldName=countryName]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/header/headerButton[fieldName=countryName]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=2||countryCode=CH||countryName=China||1]/col[fieldName=countryName||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=2||countryCode=CH||countryName=China||1]/col[fieldName=countryName||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||index=1||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||index=1||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementReadyForKeyPresses</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||index=1||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||index=1||Class=TextItem]/element</td>
+	<td>${KEY_ENTER}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=3||countryCode=JA||population=127463611||2]/col[fieldName=population||4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=3||countryCode=JA||population=127463611||2]/col[fieldName=population||4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=Sony||index=4||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=Sony||index=4||Class=TextItem]/element</td>
+	<td>Sony</td>
+</tr>
+<tr>
+	<td>waitForElementReadyForKeyPresses</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=Sony||index=4||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=Sony||index=4||Class=TextItem]/element</td>
+	<td>${KEY_ENTER}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=4||countryCode=IN||countryName=India||3]/col[fieldName=countryName||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=4||countryCode=IN||countryName=India||3]/col[fieldName=countryName||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=Fred||index=1||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=Fred||index=1||Class=TextItem]/element</td>
+	<td>Fred</td>
+</tr>
+<tr>
+	<td>waitForElementReadyForKeyPresses</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=Fred||index=1||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=Fred||index=1||Class=TextItem]/element</td>
+	<td>${KEY_TAB}</td>
+</tr>
+<tr>
+	<td>blur</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=countryName||title=Country||value=Fred||index=1||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=continent||title=Continent||value=Asia||index=2||Class=SelectItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=continent||title=Continent||value=Asia||index=2||Class=SelectItem]/textbox</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=continent||title=Continent||value=Asia||index=2||Class=SelectItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=continent||title=Continent||value=Asia||index=2||Class=SelectItem]/textbox</td>
+	<td>${KEY_TAB}</td>
+</tr>
+<tr>
+	<td>blur</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=continent||title=Continent||value=Asia||index=2||Class=SelectItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=member_g8||title=Member%20G8||value=false||index=3||Class=CheckboxItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=member_g8||title=Member%20G8||value=false||index=3||Class=CheckboxItem]/textbox</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=member_g8||title=Member%20G8||value=false||index=3||Class=CheckboxItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=member_g8||title=Member%20G8||value=false||index=3||Class=CheckboxItem]/textbox</td>
+	<td>${KEY_TAB}</td>
+</tr>
+<tr>
+	<td>blur</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=member_g8||title=Member%20G8||value=false||index=3||Class=CheckboxItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=1095351995||index=4||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=1095351995||index=4||Class=TextItem]/element</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=5555555||index=4||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=5555555||index=4||Class=TextItem]/element</td>
+	<td>5555555</td>
+</tr>
+<tr>
+	<td>waitForElementReadyForKeyPresses</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=5555555||index=4||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/editRowForm/item[name=population||title=Population||value=5555555||index=4||Class=TextItem]/element</td>
+	<td>${KEY_ENTER}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=4||countryCode=IN||3]/col[fieldName=countryName||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=4||countryCode=IN||3]/col[fieldName=countryName||1]</td>
+	<td>Fred</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=4||countryCode=IN||3]/col[fieldName=population||4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>scLocator=//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[pk=4||countryCode=IN||3]/col[fieldName=population||4]</td>
+	<td>5555555</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var grid = selenium.browserbot.getCurrentWindow().isc.AutoTest.getLocatorCanvas(&quot;//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]&quot;); var chinaRow = grid.data.find(&quot;countryCode&quot;, &quot;CH&quot;); var japanRow = grid.data.find(&quot;countryCode&quot;, &quot;JA&quot;); grid.cellHasErrors(chinaRow, &quot;countryName&quot;) &amp;&amp; grid.cellHasErrors(japanRow, &quot;population&quot;)</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var grid = selenium.browserbot.getCurrentWindow().isc.AutoTest.getLocatorCanvas(&quot;//testRoot[]/member[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]&quot;); var indiaRow = grid.data.find(&quot;countryCode&quot;, &quot;IN&quot;); !grid.cellHasErrors(indiaRow, &quot;countryName&quot;) &amp;&amp; !grid.cellHasErrors(indiaRow, &quot;population&quot;)</td>
+	<td>true</td>
+</tr>
+</tbody></table>
+</body>
+</html>

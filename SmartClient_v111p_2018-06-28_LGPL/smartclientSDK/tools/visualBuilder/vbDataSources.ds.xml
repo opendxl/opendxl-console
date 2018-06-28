@@ -1,0 +1,4 @@
+<DataSource ID="vbDataSources" serverType="projectFile" inheritsFrom="ProjectFile">
+    <!-- Pick up whatever project.datasources is set to in the .properties configuration -->
+    <projectFileKey>datasources</projectFileKey>
+</DataSource>

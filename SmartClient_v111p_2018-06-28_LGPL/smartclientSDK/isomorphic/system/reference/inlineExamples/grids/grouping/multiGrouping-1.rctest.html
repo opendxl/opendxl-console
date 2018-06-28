@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/showcase/" />
+<title>multiGrouping-1.rctest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">multiGrouping-1.rctest</td></tr>
+</thead><tbody>
+<tr>
+	<td>exampleOpen</td>
+	<td>smartgwt</td>
+	<td>grid_grouping_multi</td>
+</tr>
+<tr>
+	<td>waitForGridDone</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[groupValue=Services||0]/col[fieldName=orderID||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[groupValue=Services||0]/col[fieldName=orderID||0]</td>
+	<td>Services</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=IButton||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Configure%20Grouping||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=IButton||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Configure%20Grouping||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=244||length=245||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/body/row[property=shipDate||1]/col[fieldName=property||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=244||length=245||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/body/row[property=shipDate||1]/col[fieldName=property||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=244||length=245||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/body/row[property=shipDate||1]/col[fieldName=property||1]</td>
+	<td>Ship Date</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=244||length=245||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/deleteLevelButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=244||length=245||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/deleteLevelButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=244||length=245||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/body/row[property=shipDate||1]/col[fieldName=property||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=244||length=245||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/addLevelButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=244||length=245||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/addLevelButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=3||length=5||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/editRowForm/item[name=property||title=Column||value=orderID||index=1||Class=SelectItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=3||length=5||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/editRowForm/item[name=property||title=Column||value=orderID||index=1||Class=SelectItem]/pickList/body/row[property=itemDescription||1]/col[fieldName=property||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=3||length=5||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/editRowForm/item[name=property||title=Column||value=orderID||index=1||Class=SelectItem]/pickList/body/row[property=itemDescription||1]/col[fieldName=property||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=3||length=5||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/applyButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=3||length=5||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/applyButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForGridDone</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[groupValue=Services||0]/col[fieldName=orderID||0]</td>
+	<td>Services</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[groupValue=Consulting Services||1]/col[fieldName=orderID||0]</td>
+	<td>Consulting Services</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=IButton||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Configure%20Grouping||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=IButton||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Configure%20Grouping||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForGridDone</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=35||length=36||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=244||length=245||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/body/row[0]/col[fieldName=property||1]</td>
+	<td>Category</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=244||length=245||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/body/row[1]/col[fieldName=property||1]</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=35||length=36||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/body/row[property=itemDescription||1]/col[fieldName=property||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=35||length=36||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/body/row[property=itemDescription||1]/col[fieldName=property||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=35||length=36||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/levelUpButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=35||length=36||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/levelUpButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=35||length=36||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/applyButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=35||length=36||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/applyButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForGridDone</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[groupValue=Services||1]/col[fieldName=orderID||0]</td>
+	<td>Services</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[groupValue=Consulting Services||0]/col[fieldName=orderID||0]</td>
+	<td>Consulting Services</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=IButton||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Configure%20Grouping||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=IButton||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Configure%20Grouping||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForGridDone</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=35||length=36||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=244||length=245||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/body/row[0]/col[fieldName=property||1]</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=244||length=245||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/body/row[1]/col[fieldName=property||1]</td>
+	<td>Category</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=148||length=149||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/body/row[property=itemDescription||0]/col[fieldName=property||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=148||length=149||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/body/row[property=itemDescription||0]/col[fieldName=property||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=148||length=149||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/levelDownButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=148||length=149||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/levelDownButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForGridDone</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=35||length=36||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=244||length=245||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/body/row[0]/col[fieldName=property||1]</td>
+	<td>Category</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=244||length=245||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/body/row[1]/col[fieldName=property||1]</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=148||length=149||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/applyButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=148||length=149||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/applyButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForGridDone</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[groupValue=Services||0]/col[fieldName=orderID||0]</td>
+	<td>Services</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[groupValue=Consulting Services||0]/col[fieldName=orderID||0]</td>
+	<td>Consulting Services</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=IButton||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Configure%20Grouping||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=IButton||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Configure%20Grouping||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForGridDone</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=120||length=121||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/body/row[property=itemDescription||1]/col[fieldName=property||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=120||length=121||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/body/row[property=itemDescription||1]/col[fieldName=property||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=120||length=121||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/copyLevelButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=120||length=121||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/copyLevelButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForGridDone</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=91||length=92||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/editRowForm/item[name=property||title=Column||value=itemDescription||index=1||Class=SelectItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=91||length=92||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/editRowForm/item[name=property||title=Column||value=itemDescription||index=1||Class=SelectItem]/pickList/body/row[property=orderID||0]/col[fieldName=property||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=91||length=92||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/editRowForm/item[name=property||title=Column||value=itemDescription||index=1||Class=SelectItem]/pickList/body/row[property=orderID||0]/col[fieldName=property||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=91||length=92||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/applyButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=91||length=92||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/applyButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForGridDone</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[0]/col[fieldName=orderID||0]</td>
+	<td>Software</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[1]/col[fieldName=orderID||0]</td>
+	<td>Office Application Suite</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[2]/col[fieldName=orderID||0]</td>
+	<td>8653</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=IButton||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Configure%20Grouping||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=IButton||index=1||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Configure%20Grouping||scRole=button]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForGridDone</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=35||length=36||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=244||length=245||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/body/row[0]/col[fieldName=property||1]</td>
+	<td>Category</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=244||length=245||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/body/row[1]/col[fieldName=property||1]</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=244||length=245||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/body/row[2]/col[fieldName=property||1]</td>
+	<td>Order ID</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=119||length=120||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/body/row[property=category||0]/col[fieldName=property||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=119||length=120||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/body/row[property=category||0]/col[fieldName=property||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=119||length=120||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/body/row[property=category||0]/col[fieldName=property||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>secondClick</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=119||length=120||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/body/row[property=category||0]/col[fieldName=property||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForItemDone</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=119||length=120||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/editRowForm/item[name=property||title=Column||value=category||index=1||Class=SelectItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=119||length=120||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/editRowForm/item[name=property||title=Column||value=category||index=1||Class=SelectItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=119||length=120||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/editRowForm/item[name=property||title=Column||value=category||index=1||Class=SelectItem]/pickList/body/row[property=shipDate||3]/col[fieldName=property||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=119||length=120||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/editRowForm/item[name=property||title=Column||value=category||index=1||Class=SelectItem]/pickList/body/row[property=shipDate||3]/col[fieldName=property||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForItemDone</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=119||length=120||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/editRowForm/item[name=grouping||title=Grouping||value=date||index=2||Class=SelectItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=119||length=120||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/editRowForm/item[name=grouping||title=Grouping||value=date||index=2||Class=SelectItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=119||length=120||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/editRowForm/item[name=grouping||title=Grouping||value=date||index=2||Class=SelectItem]/pickList/body/row[groupingTitle=by%20Week||1]/col[fieldName=groupingTitle||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=119||length=120||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/multiGroupPanel/optionsGrid/editRowForm/item[name=grouping||title=Grouping||value=date||index=2||Class=SelectItem]/pickList/body/row[groupingTitle=by%20Week||1]/col[fieldName=groupingTitle||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=119||length=120||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/applyButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//autoID[Class=MultiGroupDialog||index=119||length=120||classIndex=0||classLength=1||roleIndex=0||roleLength=1||title=Group||scRole=dialog]/applyButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForGridDone</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[0]/col[fieldName=orderID||0]</td>
+	<td>Week #32</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[1]/col[fieldName=orderID||0]</td>
+	<td>Office Application Suite</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[2]/col[fieldName=orderID||0]</td>
+	<td>8653</td>
+</tr>
+</tbody></table>
+</body>
+</html>

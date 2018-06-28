@@ -1,0 +1,435 @@
+<DrawPane ID="DrawPane0" canFocus="true" autoDraw="false"
+          width="100%" height="100%" left="0" top="0">
+    <drawItems>
+
+        <DrawOval left="15" top="13" width="126" height="50">
+            <lineWidth>1</lineWidth>
+            <fillGradient ref="diamond"/>
+            <shadow>
+                <color>#333333</color>
+                <blur>2</blur>
+                <offset x="1" y="1"/>
+            </shadow>
+            <keepInParentRect>true</keepInParentRect>
+            <title>Patient arrives</title>
+            <titleLabelProperties lineColor="#222222"/>
+        </DrawOval>
+
+        <DrawDiamond left="15" top="103" width="124" height="50">
+            <lineWidth>1</lineWidth>
+            <fillGradient ref="diamond"/>
+            <shadow>
+                <color>#333333</color>
+                <blur>2</blur>
+                <offset x="1" y="1"/>
+            </shadow>
+            <keepInParentRect>true</keepInParentRect>
+            <title>Patient in system?</title>
+            <titleLabelProperties lineColor="#222222"/>
+        </DrawDiamond>
+
+        <DrawRect left="14" top="202" width="132" height="50">
+            <lineWidth>1</lineWidth>
+            <fillGradient ref="rect"/>
+            <shadow>
+                <color>#333333</color>
+                <blur>2</blur>
+                <offset x="1" y="1"/>
+            </shadow>
+            <keepInParentRect>true</keepInParentRect>
+            <title>Needs to complete
+paperwork?</title>
+            <titleLabelProperties lineColor="#222222"/>
+        </DrawRect>
+
+        <DrawRect left="211" top="200" width="132" height="50">
+            <lineWidth>1</lineWidth>
+            <fillGradient ref="rect"/>
+            <shadow>
+                <color>#333333</color>
+                <blur>2</blur>
+                <offset x="1" y="1"/>
+            </shadow>
+            <keepInParentRect>true</keepInParentRect>
+            <title>Waiting room</title>
+            <titleLabelProperties lineColor="#222222"/>
+        </DrawRect>
+
+        <DrawDiamond left="208" top="105" width="132" height="50">
+            <lineWidth>1</lineWidth>
+            <fillGradient ref="diamond"/>
+            <shadow>
+                <color>#333333</color>
+                <blur>2</blur>
+                <offset x="1" y="1"/>
+            </shadow>
+            <keepInParentRect>true</keepInParentRect>
+            <title>Nurse available?</title>
+            <titleLabelProperties lineColor="#222222"/>
+        </DrawDiamond>
+
+        <DrawRect left="417" top="106" width="136" height="50">
+            <lineWidth>1</lineWidth>
+            <fillGradient ref="rect"/>
+            <shadow>
+                <color>#333333</color>
+                <blur>2</blur>
+                <offset x="1" y="1"/>
+            </shadow>
+            <keepInParentRect>true</keepInParentRect>
+            <title>Take pulse, BP,
+weight, urine</title>
+            <titleLabelProperties lineColor="#222222"/>
+        </DrawRect>
+
+        <DrawDiamond left="412" top="199" width="136" height="50">
+            <lineWidth>1</lineWidth>
+            <fillGradient ref="diamond"/>
+            <shadow>
+                <color>#333333</color>
+                <blur>2</blur>
+                <offset x="1" y="1"/>
+            </shadow>
+            <keepInParentRect>true</keepInParentRect>
+            <title>Doctor available?</title>
+            <titleLabelProperties lineColor="#222222"/>
+        </DrawDiamond>
+
+        <DrawRect left="620" top="200" width="136" height="50">
+            <lineWidth>1</lineWidth>
+            <fillGradient ref="rect"/>
+            <shadow>
+                <color>#333333</color>
+                <blur>2</blur>
+                <offset x="1" y="1"/>
+            </shadow>
+            <keepInParentRect>true</keepInParentRect>
+            <title>Patient with doctor</title>
+            <titleLabelProperties lineColor="#222222"/>
+        </DrawRect>
+
+        <DrawRect left="417" top="295" width="136" height="50">
+            <lineWidth>1</lineWidth>
+            <fillGradient ref="rect"/>
+            <shadow>
+                <color>#333333</color>
+                <blur>2</blur>
+                <offset x="1" y="1"/>
+            </shadow>
+            <keepInParentRect>true</keepInParentRect>
+            <title>Waiting room</title>
+            <titleLabelProperties lineColor="#222222"/>
+        </DrawRect>
+
+        <DrawDiamond left="623" top="290" width="134" height="50">
+            <lineWidth>1</lineWidth>
+            <fillGradient ref="diamond"/>
+            <shadow>
+                <color>#333333</color>
+                <blur>2</blur>
+                <offset x="1" y="1"/>
+            </shadow>
+            <keepInParentRect>true</keepInParentRect>
+            <title>Needs follow-up?</title>
+            <titleLabelProperties lineColor="#222222"/>
+        </DrawDiamond>
+
+        <DrawRect left="831" top="293" width="137" height="50">
+            <lineWidth>1</lineWidth>
+            <fillGradient ref="rect"/>
+            <shadow>
+                <color>#333333</color>
+                <blur>2</blur>
+                <offset x="1" y="1"/>
+            </shadow>
+            <keepInParentRect>true</keepInParentRect>
+            <title>Make an appointment</title>
+            <titleLabelProperties lineColor="#222222"/>
+        </DrawRect>
+
+        <DrawDiamond left="621" top="383" width="140" height="50">
+            <lineWidth>1</lineWidth>
+            <fillGradient ref="diamond"/>
+            <shadow>
+                <color>#333333</color>
+                <blur>2</blur>
+                <offset x="1" y="1"/>
+            </shadow>
+            <keepInParentRect>true</keepInParentRect>
+            <title>Needs medication?</title>
+            <titleLabelProperties lineColor="#222222"/>
+        </DrawDiamond>
+
+        <DrawRect left="834" top="386" width="132" height="50">
+            <lineWidth>1</lineWidth>
+            <fillGradient ref="rect"/>
+            <shadow>
+                <color>#333333</color>
+                <blur>2</blur>
+                <offset x="1" y="1"/>
+            </shadow>
+            <keepInParentRect>true</keepInParentRect>
+            <title>Send to pharmacy</title>
+            <titleLabelProperties lineColor="#222222"/>
+        </DrawRect>
+
+        <DrawRect left="836" top="479" width="126" height="50">
+            <lineWidth>1</lineWidth>
+            <fillGradient ref="rect"/>
+            <shadow>
+                <color>#333333</color>
+                <blur>2</blur>
+                <offset x="1" y="1"/>
+            </shadow>
+            <keepInParentRect>true</keepInParentRect>
+            <title>Dispense medication</title>
+            <titleLabelProperties lineColor="#222222"/>
+        </DrawRect>
+
+        <DrawLine>
+            <startPoint x="78" y="66"/>
+            <endPoint x="77" y="100"/>
+            <lineWidth>1</lineWidth>
+            <endArrow>block</endArrow>
+            <keepInParentRect>true</keepInParentRect>
+        </DrawLine>
+
+        <DrawLine>
+            <startPoint x="77" y="154"/>
+            <endPoint x="77" y="200"/>
+            <lineWidth>1</lineWidth>
+            <endArrow>block</endArrow>
+            <keepInParentRect>true</keepInParentRect>
+            <title>No</title>
+            <titleLabelProperties lineColor="#222222"/>
+        </DrawLine>
+
+        <DrawLine>
+            <startPoint x="139" y="131"/>
+            <endPoint x="206" y="131"/>
+            <lineWidth>1</lineWidth>
+            <endArrow>block</endArrow>
+            <keepInParentRect>true</keepInParentRect>
+            <title>Yes</title>
+            <titleLabelProperties lineColor="#222222"/>
+        </DrawLine>
+
+        <DrawLine>
+            <startPoint x="335" y="131"/>
+            <endPoint x="416" y="132"/>
+            <lineWidth>1</lineWidth>
+            <endArrow>block</endArrow>
+            <keepInParentRect>true</keepInParentRect>
+            <title>Yes</title>
+            <titleLabelProperties lineColor="#222222"/>
+        </DrawLine>
+
+        <DrawLine>
+            <startPoint x="275" y="158"/>
+            <endPoint x="276" y="198"/>
+            <lineWidth>1</lineWidth>
+            <endArrow>block</endArrow>
+            <keepInParentRect>true</keepInParentRect>
+            <title>No</title>
+            <titleLabelProperties lineColor="#222222"/>
+        </DrawLine>
+
+        <DrawLine>
+            <startPoint x="156" y="227"/>
+            <endPoint x="154" y="131"/>
+            <lineWidth>1</lineWidth>
+            <endArrow>block</endArrow>
+            <keepInParentRect>true</keepInParentRect>
+        </DrawLine>
+
+        <DrawLine>
+            <startPoint x="158" y="229"/>
+            <endPoint x="212" y="230"/>
+            <lineWidth>1</lineWidth>
+            <keepInParentRect>true</keepInParentRect>
+        </DrawLine>
+
+        <DrawLine>
+            <startPoint x="480" y="159"/>
+            <endPoint x="481" y="196"/>
+            <lineWidth>1</lineWidth>
+            <endArrow>block</endArrow>
+            <keepInParentRect>true</keepInParentRect>
+        </DrawLine>
+
+        <DrawLine>
+            <startPoint x="482" y="251"/>
+            <endPoint x="483" y="292"/>
+            <lineWidth>1</lineWidth>
+            <endArrow>block</endArrow>
+            <keepInParentRect>true</keepInParentRect>
+            <title>No</title>
+            <titleLabelProperties lineColor="#222222"/>
+        </DrawLine>
+
+        <DrawLine>
+            <startPoint x="549" y="225"/>
+            <endPoint x="619" y="225"/>
+            <lineWidth>1</lineWidth>
+            <endArrow>block</endArrow>
+            <keepInParentRect>true</keepInParentRect>
+            <title>Yes</title>
+            <titleLabelProperties lineColor="#222222"/>
+        </DrawLine>
+
+        <DrawLine>
+            <startPoint x="366" y="330"/>
+            <endPoint x="365" y="224"/>
+            <lineWidth>1</lineWidth>
+            <keepInParentRect>true</keepInParentRect>
+        </DrawLine>
+
+        <DrawLine>
+            <startPoint x="365" y="224"/>
+            <endPoint x="410" y="224"/>
+            <lineWidth>1</lineWidth>
+            <endArrow>block</endArrow>
+            <keepInParentRect>true</keepInParentRect>
+        </DrawLine>
+
+        <DrawLine>
+            <startPoint x="368" y="329"/>
+            <endPoint x="417" y="329"/>
+            <lineWidth>1</lineWidth>
+            <keepInParentRect>true</keepInParentRect>
+        </DrawLine>
+
+        <DrawLine>
+            <startPoint x="691" y="255"/>
+            <endPoint x="691" y="288"/>
+            <lineWidth>1</lineWidth>
+            <endArrow>block</endArrow>
+            <keepInParentRect>true</keepInParentRect>
+        </DrawLine>
+
+        <DrawLine>
+            <startPoint x="691" y="344"/>
+            <endPoint x="691" y="382"/>
+            <lineWidth>1</lineWidth>
+            <endArrow>block</endArrow>
+            <keepInParentRect>true</keepInParentRect>
+            <title>No</title>
+            <titleLabelProperties lineColor="#222222"/>
+        </DrawLine>
+
+        <DrawLine>
+            <startPoint x="756" y="316"/>
+            <endPoint x="831" y="316"/>
+            <lineWidth>1</lineWidth>
+            <endArrow>block</endArrow>
+            <keepInParentRect>true</keepInParentRect>
+            <title>Yes</title>
+            <titleLabelProperties lineColor="#222222"/>
+        </DrawLine>
+
+        <DrawOval left="842" top="570" width="124" height="50">
+            <lineWidth>1</lineWidth>
+            <fillGradient ref="oval"/>
+            <shadow>
+                <color>#333333</color>
+                <blur>2</blur>
+                <offset x="1" y="1"/>
+            </shadow>
+            <keepInParentRect>true</keepInParentRect>
+            <title>Patient leaves</title>
+            <titleLabelProperties lineColor="#222222"/>
+        </DrawOval>
+
+        <DrawLine>
+            <startPoint x="761" y="409"/>
+            <endPoint x="832" y="409"/>
+            <lineWidth>1</lineWidth>
+            <endArrow>block</endArrow>
+            <keepInParentRect>true</keepInParentRect>
+            <title>Yes</title>
+            <titleLabelProperties lineColor="#222222"/>
+        </DrawLine>
+
+        <DrawLine>
+            <startPoint x="696" y="596"/>
+            <endPoint x="842" y="597"/>
+            <lineWidth>1</lineWidth>
+            <endArrow>block</endArrow>
+            <keepInParentRect>true</keepInParentRect>
+        </DrawLine>
+
+        <DrawLine>
+            <startPoint x="693" y="435"/>
+            <endPoint x="695" y="596"/>
+            <lineWidth>1</lineWidth>
+            <keepInParentRect>true</keepInParentRect>
+            <title>No</title>
+            <titleLabelProperties lineColor="#222222"/>
+        </DrawLine>
+
+        <DrawLine>
+            <startPoint x="899" y="439"/>
+            <endPoint x="899" y="476"/>
+            <lineWidth>1</lineWidth>
+            <endArrow>block</endArrow>
+            <keepInParentRect>true</keepInParentRect>
+        </DrawLine>
+
+        <DrawLine>
+            <startPoint x="901" y="532"/>
+            <endPoint x="901" y="568"/>
+            <lineWidth>1</lineWidth>
+            <endArrow>block</endArrow>
+            <keepInParentRect>true</keepInParentRect>
+        </DrawLine>
+
+        <DrawLine>
+            <startPoint x="1016" y="594"/>
+            <endPoint x="967" y="594"/>
+            <lineWidth>1</lineWidth>
+            <endArrow>block</endArrow>
+            <keepInParentRect>true</keepInParentRect>
+        </DrawLine>
+
+        <DrawLine>
+            <startPoint x="1014" y="318"/>
+            <endPoint x="1018" y="596"/>
+            <lineWidth>1</lineWidth>
+            <keepInParentRect>true</keepInParentRect>
+        </DrawLine>
+
+        <DrawLine>
+            <startPoint x="969" y="319"/>
+            <endPoint x="1015" y="319"/>
+            <lineWidth>1</lineWidth>
+            <keepInParentRect>true</keepInParentRect>
+        </DrawLine>
+
+    </drawItems>
+    <gradients>
+        <SimpleGradient>
+            <direction>90</direction>
+            <startColor>#ffffff</startColor>
+            <endColor>#99ccff</endColor>
+            <id>oval</id>
+        </SimpleGradient>
+        <SimpleGradient>
+            <direction>90</direction>
+            <startColor>#d3d3d3</startColor>
+            <endColor>#666699</endColor>
+            <id>diamond</id>
+        </SimpleGradient>
+        <SimpleGradient>
+            <direction>90</direction>
+            <startColor>#f5f5f5</startColor>
+            <endColor>#a9b3b8</endColor>
+            <id>rect</id>
+        </SimpleGradient>
+        <SimpleGradient>
+            <direction>90</direction>
+            <startColor>#f5f5f5</startColor>
+            <endColor>#667766</endColor>
+            <id>triangle</id>
+        </SimpleGradient>
+    </gradients>
+</DrawPane>

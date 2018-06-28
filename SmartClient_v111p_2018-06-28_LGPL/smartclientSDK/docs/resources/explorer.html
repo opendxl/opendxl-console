@@ -1,0 +1,345 @@
+<!doctype html>
+<!--=================================================================
+	SmartClient SDK Explorer
+	Copyright 2007 Isomorphic Software, Inc. (www.isomorphic.com)
+
+	Since this page is likely to be the first file opened by a new
+	developer/evaluator, it is designed to run directly from the file
+	system if necessary. In this "client-only mode", a notice is
+	displayed at the top of the page, and server-dependent resources
+	are disabled.
+==================================================================-->
+
+<HTML><HEAD><TITLE>
+    SmartClient&trade; v11.1p_2018-06-28 SDK Explorer
+</TITLE>
+    <SCRIPT>var isomorphicDir = "../../isomorphic/"; var isc_useDefaultViewport = false;</SCRIPT>
+    <SCRIPT SRC="../../isomorphic/system/modules/ISC_Core.js?isc_version=v11.1p_2018-06-28.js"></SCRIPT>
+    <SCRIPT SRC="../../isomorphic/system/modules/ISC_Foundation.js?isc_version=v11.1p_2018-06-28.js"></SCRIPT>
+    <SCRIPT SRC="../../isomorphic/system/modules/ISC_Containers.js?isc_version=v11.1p_2018-06-28.js"></SCRIPT>
+    <SCRIPT SRC="../../isomorphic/system/modules/ISC_Grids.js?isc_version=v11.1p_2018-06-28.js"></SCRIPT>
+    <SCRIPT SRC="../../isomorphic/system/modules/ISC_DataBinding.js?isc_version=v11.1p_2018-06-28.js"></SCRIPT>
+    <SCRIPT SRC="../../isomorphic/skins/Tahoe/load_skin.js?isc_version=v11.1p_2018-06-28.js"></SCRIPT>
+</HEAD><BODY bgcolor=#ffffff style="font-family:Tahoma,Verdana,Arial,Helvetica,san-serif;">
+
+
+<STYLE>
+.iconTitle {font-size:10px; text-overflow:ellipsis;}
+.iconTitleDisabled {font-size:10px; color:#AAAAAA; text-overflow:ellipsis;}
+.helpText {font-size:12px;}
+.bodyText {font-size:1.1em;}
+.bigText {font-size:1.5em; font-weight:bold;}
+code {font-size:12px; font-weight:bold;}
+</STYLE>
+
+
+<NOSCRIPT>
+<div class="bodyText">
+<img src="../images/information.gif" width="32" height="32" border="0" alt="" align="absmiddle">
+<span class="bigText">JavaScript is currently disabled.</span>
+<br><br>The SmartClient web presentation layer requires JavaScript to be enabled in your web browser.
+<br><br>The most likely reason for this message is that you have opened this page directly from your 
+file system in Internet Explorer on Windows XP SP2. If this is the case, you may either:
+<ol><li>Start the embedded application server (see the <a href="../readme.html#quickstart">
+SDK release notes</a> for details), then open this page from
+<a href="http://localhost:8080">http://localhost:8080</a>; or<br>&nbsp;</li>
+<li>Enable JavaScript in local files. Select the <b>Tools > Internet Options...</b> menu, click the 
+<b>Advanced</b> tab (see image below), scroll down, and check <b>Allow active content to run in 
+files on My Computer</b>. If you have opened this page directly from a CD, also check "Allow active 
+content from CDs...". Then simply refresh this page.<br><br>
+<img src="../images/IEXPSP2_enable_JavaScript.gif" width="406" height="452" border="0" alt="">
+</li></ol>
+If you are seeing this message in a different browser or configuration, please check your browser
+preferences and security settings to ensure that JavaScript is enabled. If you need assistance,
+email <a href="mailto:support@smartclient.com">support@smartclient.com</a>.
+</div>
+</NOSCRIPT>
+
+
+<!-- load SDK resource tree -->
+<SCRIPT SRC=sdk_resource_tree.js></SCRIPT>
+
+<!-- load SDK explorer logic -->
+<SCRIPT SRC=sdk_explorer_logic.js></SCRIPT>
+
+<SCRIPT>
+
+//===================================================================
+//  Various small-medium chunks of HTML bundled here for convenience.
+//  Note that HTML files can also be loaded dynamically, as we do for
+//  the license and readme files.
+//===================================================================
+
+var htmlResources = {
+    copyright:
+        "&copy;2001 and beyond <a href='http://www.isomorphic.com' target='_blank'>" +
+        "Isomorphic Software, Inc.</a>",
+    clientModeTitle:
+        "Client-only mode",
+    clientModeNote:
+        "<b>Client-only mode.</b> Client-server examples and tools are disabled.<br>",
+    clientModeDetails:
+        "<b>The SmartClient SDK is currently running from your file system in client-only mode.</b>" +
+        "<br><br>This SDK includes examples and tools that use a server for live data/service " +
+        "integration, access, and persistence. These resources are currently disabled.<br><br>" +
+        "To start the embedded server and enable full client-server capabilties:<ol>" +
+        "<li>Ensure that Java Runtime or SDK 1.6+ is installed on your system " +
+        "(<a href='http://java.sun.com/javase/downloads/index.jsp' target='_blank'>download JDK 6.0 here</a>)" +
+        "<br>&nbsp;</li>" +
+        "<li>Execute <code>start_embedded_server.bat</code> (Windows), <code>.command</code> " +
+        "(Mac OS), or <code>.sh</code> (*nix) at the top level of the SmartClient SDK " +
+        "distribution<br>&nbsp;</li>" +
+        "<li>Open this page from <a href='http://localhost:8080'><b>http://localhost:8080</b></a>" +
+        "</li></ol>" +
+        "For more information, please see the <a href='../readme.html#quickstart' target='_blank'>" +
+        "Quick Start</a> section of the release notes."
+};
+
+
+//===================================================================
+//  Global settings for all components in this application
+//===================================================================
+
+isc.setAutoDraw(false);
+isc.Page.setAppImgDir("../images/sdk_icons/");
+
+
+
+//===================================================================
+//  Page layout for header and footer elements
+//===================================================================
+
+VLayout.create({
+    ID:"pageLayout",
+    height:"100%",
+    width:"100%",
+    overflow:"hidden",
+    layoutMargin:10,
+    members:[
+        LayoutSpacer.create({height:"*"}),
+        Label.create({height:20, width:400, overflow:"hidden", 
+            align:"right", layoutAlign:"right",
+            contents:htmlResources.copyright})
+    ]
+});
+
+isc.Page.setEvent("load", "pageLayout.draw()");
+
+
+//===================================================================
+//  Client-only mode: detection and notices
+//===================================================================
+if (!window.location.href.startsWith("http")) {
+    // set a client-only flag
+    isc.clientOnly = true;
+    // insert a client-only header at the top of the page layout
+    pageLayout.addMember(
+        HStack.create({ID:"clientOnlyHeader", layoutMargin:10, membersMargin:10, members:[
+            Img.create({width:32 ,height:32, src:"warning.png"}),
+            Label.create({width:550, valign:"top", className:"helpText",
+                contents:htmlResources.clientModeNote +
+                "<a href='' onclick='showClientOnlyDetails();return false'>More information...</a></b><br><br>"
+            })
+        ]}), 0);
+
+} else if (!isc.hasOptionalModules("SCServer")) {
+    // insert a header at the top of the page layout pointing to licensing page
+    pageLayout.addMember(
+        Label.create({width:550, valign:"top", className:"helpText",
+            contents: "<b>Note:</b> Greyed out resources require optional modules. "+
+            "<a href='' onclick='showOptionalModulesInfo();return false'>More information...</a></b><br><br>"
+        }), 0
+    );
+}
+
+function showOptionalModulesInfo () {
+    isc.warn(
+        "Some features, such as the Visual Builder and direct Java integration make" +
+        " use of the SmartClient server or other optional modules, which are licensed" +
+        " separately.  Please check the <a href='"+isc.licensingPage+"' target=_blank>Licensing Page</a>"+
+        " for more info.<p>A trimmed down server is included in this package to power"+
+        " the Feature Explorer shell.  Please see the <a target=_blank href='"+
+        "../../isomorphic/system/reference/SmartClient_Reference.html#featureExplorerOverview'>"+
+        "Feature Explorer Overview</a> for more information"
+        ,{
+            title:"Optional Modules",
+            top:20, left:20, width:500,
+            showCloseButton:false,
+            bodyColor:"#fff8f8",
+            autoCenter:false,
+            showHeaderIcon:true
+        }
+    )
+}
+
+function showClientOnlyDetails () {
+    isc.say(
+        htmlResources.clientModeDetails,
+        {
+            title:htmlResources.clientModeTitle,
+            top:20, left:20, width:500,
+            showCloseButton:false,
+            bodyColor:"#fff8f8",
+            autoCenter:false,
+            showHeaderIcon:true
+        }
+    )
+}
+
+
+//===================================================================
+//  Disable client-only resources and map icons for use in
+//	TreeGrid and Menu views
+//===================================================================
+
+processResourceTree(sdkTree, sdkTree.getRoot());
+
+//===================================================================
+//  Generate windows and icons from the SDK resource tree
+//===================================================================
+
+var topWindow = makeWindowsFromTree(
+    sdkTree,
+    sdkTree.getChildren(sdkTree.getRoot())[0],
+    "sdk",
+    // this position, plus 80x80 offsets for child windows, provides default
+    // window positions
+    {left:50, top:70}, 
+    {
+        canDragResize:false,
+        showFooter:false,
+        autoSize:true,
+        dragAppearance:"target",
+        // screen real estate is not an issue in this app (it shows
+        // a set of overlapping windows only), so we use deep shadows
+        // and extreme borders here 
+        showShadow:false,
+        shadowSoftness:10,
+        shadowOffset:8
+    }
+);
+
+topWindow.showCloseButton = false; // always show the top window
+topWindow.showMaximizeButton = true; // we extend this button to switch between tree/window view
+
+
+//===================================================================
+//  Save and restore window states (positions, visibility, etc)
+//  using a local cookie (since this app may be disconnected/offline)
+//===================================================================
+
+isc.Page.setEvent("load", function () {
+    // apply saved visibility / position information for all windows
+    isc.SimpleWindowManager.setAllWindowStates(isc.Cookie.get('SDKExplorerWindows')); 
+    isc.SimpleWindowManager.predrawWindows();
+
+    // move topWindow to stored coordinates (all other windows that are initially open have
+    // their positions restored in setSaveState())
+    topWindow.moveTo(topWindow._storedLeft, topWindow._storedTop);
+
+    // make sure the root window is visible, just in case someone hid it programmatically
+    // (eg from the Console) and it was saved as hidden in the cookie
+    if (!(topWindow.isVisible() && topWindow.isDrawn()) && !topWindow.showingDelayed)
+        topWindow.delayCall("show");
+});
+
+isc.Page.setEvent("unload",
+    "isc.Cookie.set('SDKExplorerWindows', isc.SimpleWindowManager.getAllWindowStates())"
+);
+
+
+
+//===================================================================
+//  Also create a TreeGrid using the same SDK resource tree,
+//  as an alternate presentation. We can show this tree either:
+//    - in the top-level window, with a window control to switch
+//      between tree and icon views (preferred), or
+//    - in its own window, with a page-level context menu to show
+//      the tree (and possibly hide other windows)
+//===================================================================
+
+TreeGrid.create({
+    ID:"viewTree",
+    data:sdkTree,
+    width:800, height:500,
+    fixedRecordHeights:false,
+    showAllRecords:true,
+    wrapCells:true,
+    alternateRecordStyles:true,
+    animateFolders:true,
+    animateRowsMaxTime:600,
+    fields:[
+        {name:"title", title:"Resource", treeField:true, width:300},
+        {name:"description", title:"Description"}
+    ],
+    canHover:true,
+    useCellEvents:true,
+    hoverWidth:200,
+    hoverHeight:20,
+    hoverStyle:"canvasHover",
+    cellHoverHTML: function (record, rowNum, colNum) {
+        if (this.fields[colNum].name == "description") {
+        return record[this.fields[colNum].name];
+        }
+    },
+    recordDoubleClick : function (viewer, record) {
+        // for folders, just use the standard opening behavior
+        if (this.data.isFolder(record)) return this.Super("recordDoubleClick", arguments);
+        // otherwise hand off to a function that opens different types of resources
+        openSDKResource(record);
+    }
+});
+// open the first level of the tree
+var packageTop = sdkTree.getChildren(sdkTree.getRoot())[0];
+sdkTree.openFolder(packageTop);
+
+Menu.getInstanceProperty("submenuInheritanceMask").add("cellHeight");
+Menu.create({
+	ID:"resourceMenu",
+	data:sdkTree,
+	mergeSingleParent:false,
+	cellHeight:30,
+	itemClick: function (item) {
+		openSDKResource(item);
+	}
+});
+
+
+Page.setEvent("showContextMenu", "resourceMenu.showContextMenu()");
+
+//===================================================================
+//  Logic for switching between presentations
+//  (temporary - trying to switch components inside a single window)
+//===================================================================
+
+topWindow.currentView = "window";
+
+function viewInWindows () {
+    if (topWindow.currentView == "window") return;
+    topWindow.currentView = "window";
+    topWindow.tree.hide();
+    topWindow.tree.resizeTo(0,0);
+    topWindow.icons[0].show();
+    topWindow.icons[1].show();
+}
+
+function viewInTree () {
+    if (topWindow.currentView == "tree") return;
+    topWindow.currentView = "tree";
+    isc.SimpleWindowManager.closeAllWindows();
+    topWindow.show();
+    if (!topWindow.tree) {
+        topWindow.addItem(viewTree);
+        topWindow.tree = viewTree;
+    } else {
+        topWindow.tree.resizeTo(800,500);
+        topWindow.tree.show()
+    }
+    topWindow.icons[0].hide();
+    topWindow.icons[1].hide();
+}
+
+// also save & restore the chosen view using cookie 'SDKExplorerView'
+
+</SCRIPT>
+</BODY></HTML>

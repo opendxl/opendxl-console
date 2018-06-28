@@ -1,0 +1,17 @@
+<DataSource
+    ID="reusableORMDataSource_country"
+    serverConstructor="com.isomorphic.examples.server.reusableORMDataSource.ReusableORMDataSource"
+    mappedBeanClass="com.isomorphic.examples.Country"
+>
+    <fields>
+        <field name="pk"            type="sequence"   hidden="true"            primaryKey="true" />
+        <field name="countryCode"   type="text"       title="Code"             required="true"   />
+        <field name="countryName"   type="text"       title="Country"          required="true"   />
+        <field name="capital"       type="text"       title="Capital"          />
+        <field name="area"          type="float"      title="Area (km&amp;sup2;)" />
+        <field name="population"    type="integer"    title="Population"          />
+        <field name="gdp"           type="float"      title="GDP ($M)"            />
+    </fields>
+    
+</DataSource>
+ 

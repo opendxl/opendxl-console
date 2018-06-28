@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/" />
+<title>fieldPicker-retitleField.rctest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">fieldPicker-retitle-field.rctest</td></tr>
+</thead><tbody>
+<tr>
+	<td>exampleOpen</td>
+	<td>smartgwt</td>
+	<td>grid_appearance_field_picker</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldPickerWindow/fieldPicker/currentFieldsGrid/body/row[name=field5||%249g=Field%205||1]/col[fieldName=%249g||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldPickerWindow/fieldPicker/currentFieldsGrid/body/row[name=field5||%249g=Field%205||1]/col[fieldName=%249g||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldPickerWindow/fieldPicker/currentFieldsGrid/body/row[name=field5||%249g=Field%205||1]/col[fieldName=%249g||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var browser = selenium.getAutWindow().isc.Browser; browser.seleniumPresent = false;</td>
+	<td>false</td>
+</tr>
+<tr>
+	<td>doubleClick</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldPickerWindow/fieldPicker/currentFieldsGrid/body/row[name=field5||%249g=Field%205||1]/col[fieldName=%249g||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var browser = selenium.getAutWindow().isc.Browser; browser.seleniumPresent = true;</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldPickerWindow/fieldPicker/currentFieldsGrid/editRowForm/item[name=%249g||title=Field%20Title||value=Field%205||index=1||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldPickerWindow/fieldPicker/currentFieldsGrid/editRowForm/item[name=%249g||title=Field%20Title||value=Field%205||index=1||Class=TextItem]/element</td>
+	<td>Scooby</td>
+</tr>
+<tr>
+	<td>waitForElementReadyForKeyPresses</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldPickerWindow/fieldPicker/currentFieldsGrid/editRowForm/item[name=%249g||title=Field%20Title||value=Scooby||index=1||Class=TextItem]/element</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldPickerWindow/fieldPicker/currentFieldsGrid/editRowForm/item[name=%249g||title=Field%20Title||value=Scooby||index=1||Class=TextItem]/element</td>
+	<td>${KEY_ENTER}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldPickerWindow/fieldPicker/saveAndExitButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/fieldPickerWindow/fieldPicker/saveAndExitButton/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/header/headerButton[fieldName=field5]/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/header/headerButton[fieldName=field5]/</td>
+	<td>Scooby</td>
+</tr>
+</tbody></table>
+</body>
+</html>

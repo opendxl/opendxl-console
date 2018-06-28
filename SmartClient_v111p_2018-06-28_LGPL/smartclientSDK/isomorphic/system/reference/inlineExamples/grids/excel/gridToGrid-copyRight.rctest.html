@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/" />
+<title>gridToGrid-copyRight.rctest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">gridToGrid-copyRight.rctest</td></tr>
+</thead><tbody>
+<tr>
+	<td>exampleOpen</td>
+	<td>smartgwt</td>
+	<td>grid_to_grid_category</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=TabSet||index=0||length=1||classIndex=0||classLength=1]/paneContainer/member[Class=VLayout||index=0||length=3||classIndex=0||classLength=3]/member[Class=ListGrid||index=0||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[B=text1||2]/col[fieldName=B||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=TabSet||index=0||length=1||classIndex=0||classLength=1]/paneContainer/member[Class=VLayout||index=0||length=3||classIndex=0||classLength=3]/member[Class=ListGrid||index=0||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[B=text1||2]/col[fieldName=B||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=TabSet||index=0||length=1||classIndex=0||classLength=1]/paneContainer/member[Class=VLayout||index=0||length=3||classIndex=0||classLength=3]/member[Class=ListGrid||index=0||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=TabSet||index=0||length=1||classIndex=0||classLength=1]/paneContainer/member[Class=VLayout||index=0||length=3||classIndex=0||classLength=3]/member[Class=ListGrid||index=0||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body</td>
+	<td>${KEY_SHIFT}${KEY_RIGHT}${KEY_RIGHT}${KEY_RIGHT}${KEY_SHIFT}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=TabSet||index=0||length=1||classIndex=0||classLength=1]/paneContainer/member[Class=VLayout||index=0||length=3||classIndex=0||classLength=3]/member[Class=ListGrid||index=0||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=TabSet||index=0||length=1||classIndex=0||classLength=1]/paneContainer/member[Class=VLayout||index=0||length=3||classIndex=0||classLength=3]/member[Class=ListGrid||index=0||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body</td>
+	<td>${KEY_CTRL}R${KEY_CTRL}</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/child[Class=TabSet||index=0||length=1||classIndex=0||classLength=1]/paneContainer/member[Class=VLayout||index=0||length=3||classIndex=0||classLength=3]/member[Class=ListGrid||index=0||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[2]/col[2]</td>
+	<td>text1</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/child[Class=TabSet||index=0||length=1||classIndex=0||classLength=1]/paneContainer/member[Class=VLayout||index=0||length=3||classIndex=0||classLength=3]/member[Class=ListGrid||index=0||length=2||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[2]/col[4]</td>
+	<td>text1</td>
+</tr>
+</tbody></table>
+</body>
+</html>

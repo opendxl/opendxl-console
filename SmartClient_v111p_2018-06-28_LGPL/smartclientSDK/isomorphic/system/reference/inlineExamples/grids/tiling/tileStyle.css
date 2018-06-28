@@ -1,0 +1,30 @@
+.commonName,
+.commonNameOver,
+.commonNameSelected,
+.commonNameSelectedOver,
+.endangered,
+.threatened,
+.notEndangered {
+    font-size:8pt;  
+}
+
+.commonName,
+.commonNameOver,
+.commonNameSelected,
+.commonNameSelectedOver {
+    color:darkblue;
+    font-weight:bold;    
+}
+
+.endangered {
+    color:red;
+    font-weight:bold;
+}
+
+.threatened {
+    color:orange;    
+}
+
+.notEndangered {
+    color:green;    
+}

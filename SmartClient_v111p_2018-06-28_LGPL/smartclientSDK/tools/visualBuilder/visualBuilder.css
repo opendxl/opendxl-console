@@ -1,0 +1,16 @@
+.rightBorderOnly {
+    border-right:1px solid #F9F9F9;
+}
+.headerItem {
+    font-family:Verdana,Helvetica,sans-serif; font-size:11px; font-weight:bold; 
+    background-color:#FFFFDD; 
+    border:1px solid black;
+}
+.toolWindowHeader {
+	filter:"progid:dximagetransform.microsoft.gradient(gradientType=1, startColorStr=#555555, endColorStr=#AAAAAA)";
+}
+
+.docHover {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; color:black;
+    background-color:#e0ebff; border:1px solid #808080; padding:5px;
+}

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/1999/XMLSchema-instance" xmlns:xsd="http://www.w3.org/1999/XMLSchema">
+<SOAP-ENV:Body>
+<ns1:doGoogleSearchResponse xmlns:ns1="urn:GoogleSearch" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+<return xsi:type="ns1:GoogleSearchResult">
+<directoryCategories xmlns:ns2="http://schemas.xmlsoap.org/soap/encoding/" xsi:type="ns2:Array" ns2:arrayType="ns1:DirectoryCategory[1]">
+<item xsi:type="ns1:DirectoryCategory">
+<fullViewableName xsi:type="xsd:string">Top/Sports/Soccer/UEFA/Netherlands/Division_1/Ajax</fullViewableName>
+<specialEncoding xsi:type="xsd:string"/>
+</item>
+</directoryCategories>
+<documentFiltering xsi:type="xsd:boolean">false</documentFiltering>
+<endIndex xsi:type="xsd:int">10</endIndex>
+<estimateIsExact xsi:type="xsd:boolean">false</estimateIsExact>
+<estimatedTotalResultsCount xsi:type="xsd:int">581000</estimatedTotalResultsCount>
+<resultElements xmlns:ns3="http://schemas.xmlsoap.org/soap/encoding/" xsi:type="ns3:Array" ns3:arrayType="ns1:ResultElement[10]">
+<item xsi:type="ns1:ResultElement">
+<URL xsi:type="xsd:string">http://www.ajax.nl/</URL>
+<cachedSize xsi:type="xsd:string">5k</cachedSize>
+<directoryCategory xsi:type="ns1:DirectoryCategory">
+<fullViewableName xsi:type="xsd:string">Top/Sports/Soccer/UEFA/Netherlands/Clubs/Ajax</fullViewableName>
+<specialEncoding xsi:type="xsd:string"/>
+</directoryCategory>
+<directoryTitle xsi:type="xsd:string">&lt;b&gt;Ajax&lt;/b&gt;</directoryTitle>
+<hostName xsi:type="xsd:string"/>
+<relatedInformationPresent xsi:type="xsd:boolean">true</relatedInformationPresent>
+<snippet xsi:type="xsd:string">De officiële site van AFC &lt;b&gt;Ajax&lt;/b&gt;.</snippet>
+<summary xsi:type="xsd:string">Official club site, including roster, history, wallpapers, and video clips.&lt;br&gt;  [English/Dutch]</summary>
+<title xsi:type="xsd:string">&lt;b&gt;Ajax&lt;/b&gt;.nl - Splashpagina</title>
+</item>
+<item xsi:type="ns1:ResultElement">
+<URL xsi:type="xsd:string">http://www.adaptivepath.com/publications/essays/archives/000385.php</URL>
+<cachedSize xsi:type="xsd:string">22k</cachedSize>
+<directoryCategory xsi:type="ns1:DirectoryCategory">
+<fullViewableName xsi:type="xsd:string"/>
+<specialEncoding xsi:type="xsd:string"/>
+</directoryCategory>
+<directoryTitle xsi:type="xsd:string"/>
+<hostName xsi:type="xsd:string"/>
+<relatedInformationPresent xsi:type="xsd:boolean">true</relatedInformationPresent>
+<snippet xsi:type="xsd:string">At Adaptive Path, weve been doing our own work with &lt;b&gt;Ajax&lt;/b&gt; over the last several&lt;br&gt;  &lt;b&gt;...&lt;/b&gt; Neither the &lt;b&gt;Ajax&lt;/b&gt; name nor the approach are proprietary to Adaptive Path. &lt;b&gt;...&lt;/b&gt;</snippet>
+<summary xsi:type="xsd:string"/>
+<title xsi:type="xsd:string">adaptive path » &lt;b&gt;ajax&lt;/b&gt;: a new approach to web applications</title>
+</item>
+<item xsi:type="ns1:ResultElement">
+<URL xsi:type="xsd:string">http://en.wikipedia.org/wiki/AJAX</URL>
+<cachedSize xsi:type="xsd:string">25k</cachedSize>
+<directoryCategory xsi:type="ns1:DirectoryCategory">
+<fullViewableName xsi:type="xsd:string"/>
+<specialEncoding xsi:type="xsd:string"/>
+</directoryCategory>
+<directoryTitle xsi:type="xsd:string"/>
+<hostName xsi:type="xsd:string"/>
+<relatedInformationPresent xsi:type="xsd:boolean">true</relatedInformationPresent>
+<snippet xsi:type="xsd:string">&lt;b&gt;AJAX&lt;/b&gt; or Asynchronous JavaScript and XML is a term describing a web &lt;b&gt;...&lt;/b&gt;&lt;br&gt;  &lt;b&gt;AJAX&lt;/b&gt; applications use web browsers that support the above technologies as a platform &lt;b&gt;...&lt;/b&gt;</snippet>
+<summary xsi:type="xsd:string"/>
+<title xsi:type="xsd:string">&lt;b&gt;AJAX&lt;/b&gt; - Wikipedia, the free encyclopedia</title>
+</item>
+<item xsi:type="ns1:ResultElement">
+<URL xsi:type="xsd:string">http://www.townofajax.com/</URL>
+<cachedSize xsi:type="xsd:string">23k</cachedSize>
+<directoryCategory xsi:type="ns1:DirectoryCategory">
+<fullViewableName xsi:type="xsd:string">Top/Regional/North_America/Canada/Ontario/Localities/A/Ajax</fullViewableName>
+<specialEncoding xsi:type="xsd:string"/>
+</directoryCategory>
+<directoryTitle xsi:type="xsd:string">Town of &lt;b&gt;Ajax&lt;/b&gt;</directoryTitle>
+<hostName xsi:type="xsd:string"/>
+<relatedInformationPresent xsi:type="xsd:boolean">true</relatedInformationPresent>
+<snippet xsi:type="xsd:string">Directory of local information, including business, events, education, government,&lt;br&gt;  entertainment, and tourism.</snippet>
+<summary xsi:type="xsd:string">Directory of local information, including business, events, education, government,&lt;br&gt;  entertainment, and tourism.</summary>
+<title xsi:type="xsd:string">&lt;b&gt;AJAX&lt;/b&gt; - Home</title>
+</item>
+<item xsi:type="ns1:ResultElement">
+<URL xsi:type="xsd:string">http://www.townofajax.com/scripts/home.asp?action=31&amp;P_ID=1&amp;N_ID=1&amp;U_ID=0&amp;OP_ID=2</URL>
+<cachedSize xsi:type="xsd:string">25k</cachedSize>
+<directoryCategory xsi:type="ns1:DirectoryCategory">
+<fullViewableName xsi:type="xsd:string"/>
+<specialEncoding xsi:type="xsd:string"/>
+</directoryCategory>
+<directoryTitle xsi:type="xsd:string"/>
+<hostName xsi:type="xsd:string"/>
+<relatedInformationPresent xsi:type="xsd:boolean">true</relatedInformationPresent>
+<snippet xsi:type="xsd:string">Clean Air Day Event Thanks Pickering - &lt;b&gt;Ajax&lt;/b&gt; Commuters for Riding Public Transit&lt;br&gt;  &lt;b&gt;...&lt;/b&gt; Town of &lt;b&gt;Ajax&lt;/b&gt; and Black&amp;#39;s Superstore Amateur Photography Contest &lt;b&gt;...&lt;/b&gt;</snippet>
+<summary xsi:type="xsd:string"/>
+<title xsi:type="xsd:string">&lt;b&gt;AJAX&lt;/b&gt; - Home</title>
+</item>
+<item xsi:type="ns1:ResultElement">
+<URL xsi:type="xsd:string">http://www.onlamp.com/pub/a/onlamp/2005/06/09/rails_ajax.html</URL>
+<cachedSize xsi:type="xsd:string">51k</cachedSize>
+<directoryCategory xsi:type="ns1:DirectoryCategory">
+<fullViewableName xsi:type="xsd:string"/>
+<specialEncoding xsi:type="xsd:string"/>
+</directoryCategory>
+<directoryTitle xsi:type="xsd:string"/>
+<hostName xsi:type="xsd:string"/>
+<relatedInformationPresent xsi:type="xsd:boolean">true</relatedInformationPresent>
+<snippet xsi:type="xsd:string">Curt Hibbs demonstrates the use of &lt;b&gt;Ajax&lt;/b&gt; within Ruby on Rails applications.</snippet>
+<summary xsi:type="xsd:string"/>
+<title xsi:type="xsd:string">ONLamp.com: &lt;b&gt;Ajax&lt;/b&gt; on Rails</title>
+</item>
+<item xsi:type="ns1:ResultElement">
+<URL xsi:type="xsd:string">http://sourcelabs.com/ajb/archives/2005/05/ajax_mistakes.html</URL>
+<cachedSize xsi:type="xsd:string">12k</cachedSize>
+<directoryCategory xsi:type="ns1:DirectoryCategory">
+<fullViewableName xsi:type="xsd:string"/>
+<specialEncoding xsi:type="xsd:string"/>
+</directoryCategory>
+<directoryTitle xsi:type="xsd:string"/>
+<hostName xsi:type="xsd:string"/>
+<relatedInformationPresent xsi:type="xsd:boolean">true</relatedInformationPresent>
+<snippet xsi:type="xsd:string">I&amp;#39;ve compiled a list of the many mistakes developers using &lt;b&gt;Ajax&lt;/b&gt; often make. &lt;b&gt;...&lt;/b&gt;&lt;br&gt;  As I&amp;#39;ve referenced in a previous posting, &lt;b&gt;Ajax&lt;/b&gt; applications introduce lots &lt;b&gt;...&lt;/b&gt;</snippet>
+<summary xsi:type="xsd:string"/>
+<title xsi:type="xsd:string">Alex Bosworth&amp;#39;s Weblog: &lt;b&gt;Ajax&lt;/b&gt; Mistakes</title>
+</item>
+<item xsi:type="ns1:ResultElement">
+<URL xsi:type="xsd:string">http://www.technorati.com/tag/ajax</URL>
+<cachedSize xsi:type="xsd:string">29k</cachedSize>
+<directoryCategory xsi:type="ns1:DirectoryCategory">
+<fullViewableName xsi:type="xsd:string"/>
+<specialEncoding xsi:type="xsd:string"/>
+</directoryCategory>
+<directoryTitle xsi:type="xsd:string"/>
+<hostName xsi:type="xsd:string"/>
+<relatedInformationPresent xsi:type="xsd:boolean">true</relatedInformationPresent>
+<snippet xsi:type="xsd:string">By nat Michal Migurski shows off a nifty &lt;b&gt;Ajax&lt;/b&gt; pan and scan trick. &lt;b&gt;...&lt;/b&gt; &lt;b&gt;Ajax&lt;/b&gt; Mistakes&lt;br&gt;  covers the top 10 things that Id like to avoid when working with &lt;b&gt;Ajax&lt;/b&gt; &lt;b&gt;...&lt;/b&gt;</snippet>
+<summary xsi:type="xsd:string"/>
+<title xsi:type="xsd:string">Technorati Tag: &lt;b&gt;ajax&lt;/b&gt;</title>
+</item>
+<item xsi:type="ns1:ResultElement">
+<URL xsi:type="xsd:string">http://www.sagal.com/ajax/</URL>
+<cachedSize xsi:type="xsd:string">2k</cachedSize>
+<directoryCategory xsi:type="ns1:DirectoryCategory">
+<fullViewableName xsi:type="xsd:string"/>
+<specialEncoding xsi:type="xsd:string"/>
+</directoryCategory>
+<directoryTitle xsi:type="xsd:string"/>
+<hostName xsi:type="xsd:string"/>
+<relatedInformationPresent xsi:type="xsd:boolean">true</relatedInformationPresent>
+<snippet xsi:type="xsd:string">Designed with Frames. To be viewed with Netscape 2.0 or greater. Click here to&lt;br&gt;  view our frameless site.</snippet>
+<summary xsi:type="xsd:string"/>
+<title xsi:type="xsd:string">&lt;b&gt;AJAX&lt;/b&gt; US &amp;amp; INTERNATIONAL GOVERNMENT MILITARY, INTELLIGENCE &amp;amp; LAW &lt;b&gt;...&lt;/b&gt;</title>
+</item>
+<item xsi:type="ns1:ResultElement">
+<URL xsi:type="xsd:string">http://developers.slashdot.org/article.pl?sid=05/06/11/1317218&amp;from=rss</URL>
+<cachedSize xsi:type="xsd:string">133k</cachedSize>
+<directoryCategory xsi:type="ns1:DirectoryCategory">
+<fullViewableName xsi:type="xsd:string"/>
+<specialEncoding xsi:type="xsd:string"/>
+</directoryCategory>
+<directoryTitle xsi:type="xsd:string"/>
+<hostName xsi:type="xsd:string"/>
+<relatedInformationPresent xsi:type="xsd:boolean">true</relatedInformationPresent>
+<snippet xsi:type="xsd:string">&lt;b&gt;Ajax&lt;/b&gt; On Rails -- article related to Developers and Programming.</snippet>
+<summary xsi:type="xsd:string"/>
+<title xsi:type="xsd:string">Slashdot | &lt;b&gt;Ajax&lt;/b&gt; On Rails</title>
+</item>
+</resultElements>
+<searchComments xsi:type="xsd:string"/>
+<searchQuery xsi:type="xsd:string">ajax</searchQuery>
+<searchTime xsi:type="xsd:double">0.094569</searchTime>
+<searchTips xsi:type="xsd:string"/>
+<startIndex xsi:type="xsd:int">1</startIndex>
+</return>
+</ns1:doGoogleSearchResponse>
+
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

@@ -1,0 +1,9 @@
+
+<DataSource ID="mediaLibraryJPA" serverType="jpa" 
+            beanClassName="com.isomorphic.examples.server.jpa.upload.MediaItem" >
+    <fields>
+        <field name="pk" type="sequence" hidden="true" primaryKey="true" />
+        <field name="title" type="text" required="true" />
+        <field name="image" type="imageFile" maxFileSize="5242880" required="true" />
+    </fields>
+</DataSource>

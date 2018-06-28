@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!-- Note: the runtime version of this file is bundled into isomorphic_examples.jar -->
+<hibernate-mapping>
+    <class name="com.isomorphic.examples.server.masterDetail.Order" table="masterDetail_order" >
+        <id name="orderID" type="long">
+            <generator class="native"/>
+        </id>
+        <property name="customerName" type="string" />
+        <property name="orderDate" type="date" />
+
+        <set name="items" cascade="all" lazy="true">
+        	<key column="orderID"/>
+        	<one-to-many class="com.isomorphic.examples.server.masterDetail.OrderItem"/>
+        </set>        
+        <property name="trackingNumber" type="long" />
+        
+    </class>
+</hibernate-mapping>

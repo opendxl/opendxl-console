@@ -1,0 +1,61 @@
+
+<DataSource ID="imageProcessing" serverType="sql" tableName="imageProcessing" dropExtraFields="false">
+    <fields>
+        <field name="pk" type="sequence" hidden="true" primaryKey="true"/>
+        <field name="image" type="imageFile" maxFileSize="5242880" />
+        <field name="width" type="integer"/>
+        <field name="height" type="integer"/>
+    </fields>
+
+    <operationBindings>
+        <binding operationType="add"><script language="groovy"><![CDATA[
+            import javax.imageio.ImageIO;
+            import java.awt.image.BufferedImage;
+
+            // client supplies available horizontal rendering space
+            def maxWidth = 300;
+
+            def img = ImageIO.read(dsRequest.getUploadedFileStream("image"));
+            def width = img.width;
+            def height = img.height;
+
+            if (width > maxWidth) {
+                log.warn("width: "+width+" exceeds maxWith: "+maxWidth+" - scaling");
+                // scale the image down, preserving aspect ratio
+                def scaledWidth = maxWidth as int;
+                def scaledHeight = Math.round(img.height*scaledWidth/width) as int;
+
+                def scaledImage = new BufferedImage(scaledWidth, scaledHeight, BufferedImage.TYPE_INT_ARGB);
+                def g = scaledImage.createGraphics();
+                g.drawImage(img, 0, 0, scaledWidth, scaledHeight, null, null);
+                g.dispose();
+                img = scaledImage;
+                
+                width = scaledWidth;
+                height = scaledHeight;
+             }
+
+            // store the width+height in db as image metadata
+            values.width = width;
+            values.height = height;
+
+            // write the image as a png 
+            def os = new ByteArrayOutputStream();
+            ImageIO.write(img, "png", os);
+            def bytes = os.toByteArray();
+
+            // put the scaled image and size into the values map for storage
+            values.image = new ByteArrayInputStream(bytes);
+            values.image_filesize = bytes.length;
+
+            // upload can be any format readable by awt, but we always generate PNGs, so update
+            // the filename to reflect the new media format so that the proper mimeType is sent
+            // when this file is streamed
+            values.image_filename = values.image_filename.substring(0, values.image_filename.lastIndexOf("."))+".png";
+
+            // call built-in logic to store image and metadata
+            def dsResponse = dsRequest.execute();
+            def record = dsResponse.data[0];
+        ]]></script></binding>
+    </operationBindings>
+</DataSource>

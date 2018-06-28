@@ -1,0 +1,906 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/" />
+<title>fetchOperation-shift-selection.rctest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">fetchOperation-shift-selection.rctest</td></tr>
+</thead><tbody>
+<tr>
+	<td>exampleOpen</td>
+	<td>smartclient</td>
+	<td>fetchOperation</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=6||itemName=Glue%20UHU%20Clear%20Gum%20250ml||5]/col[fieldName=itemName||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=6||itemName=Glue%20UHU%20Clear%20Gum%20250ml||5]/col[fieldName=itemName||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var isc = selenium.getAutWindow().isc;&nbsp;&nbsp;var grid = isc.AutoTest.getObject(&quot;scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/&quot;);&nbsp;&nbsp;var selection = grid.selection; var prop = selection.selectionProperty; var result=[];for (var i = 0; i &lt; 50; i++) {if (grid.data.localData[i][prop]) result.push(i);}; result</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=11||itemName=Glue%20UHU%20All%20Purpose%20Clear%2035ml%20No13||SKU=1042100||10]/col[fieldName=SKU||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>shiftKeyDown</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyDown</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=11||itemName=Glue%20UHU%20All%20Purpose%20Clear%2035ml%20No13||SKU=1042100||10]/col[fieldName=SKU||1]</td>
+	<td>16</td>
+</tr>
+<tr>
+	<td>keyPress</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=11||itemName=Glue%20UHU%20All%20Purpose%20Clear%2035ml%20No13||SKU=1042100||10]/col[fieldName=SKU||1]</td>
+	<td>16</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=11||itemName=Glue%20UHU%20All%20Purpose%20Clear%2035ml%20No13||SKU=1042100||10]/col[fieldName=SKU||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>shiftKeyUp</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=11||itemName=Glue%20UHU%20All%20Purpose%20Clear%2035ml%20No13||SKU=1042100||10]/col[fieldName=SKU||1]</td>
+	<td>16</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var isc = selenium.getAutWindow().isc;&nbsp;&nbsp;var grid = isc.AutoTest.getObject(&quot;scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/&quot;);&nbsp;&nbsp;var selection = grid.selection; var prop = selection.selectionProperty; var result=[];for (var i = 0; i &lt; 50; i++) {if (grid.data.localData[i][prop]) result.push(i);}; result</td>
+	<td>5,6,7,8,9,10</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=13||itemName=Bostik%20Blu-tack%20Pkt%2075gm||SKU=1087200||12]/col[fieldName=SKU||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>shiftKeyDown</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyDown</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=13||itemName=Bostik%20Blu-tack%20Pkt%2075gm||SKU=1087200||12]/col[fieldName=SKU||1]</td>
+	<td>16</td>
+</tr>
+<tr>
+	<td>keyPress</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=13||itemName=Bostik%20Blu-tack%20Pkt%2075gm||SKU=1087200||12]/col[fieldName=SKU||1]</td>
+	<td>16</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=13||itemName=Bostik%20Blu-tack%20Pkt%2075gm||SKU=1087200||12]/col[fieldName=SKU||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>shiftKeyUp</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=13||itemName=Bostik%20Blu-tack%20Pkt%2075gm||SKU=1087200||12]/col[fieldName=SKU||1]</td>
+	<td>16</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var isc = selenium.getAutWindow().isc;&nbsp;&nbsp;var grid = isc.AutoTest.getObject(&quot;scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/&quot;);&nbsp;&nbsp;var selection = grid.selection; var prop = selection.selectionProperty; var result=[];for (var i = 0; i &lt; 50; i++) {if (grid.data.localData[i][prop]) result.push(i);}; result</td>
+	<td>5,6,7,8,9,10,11,12</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td>${KEY_SHIFT}${KEY_DOWN}${KEY_SHIFT}</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var isc = selenium.getAutWindow().isc;&nbsp;&nbsp;var grid = isc.AutoTest.getObject(&quot;scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/&quot;);&nbsp;&nbsp;var selection = grid.selection; var prop = selection.selectionProperty; var result=[];for (var i = 0; i &lt; 50; i++) {if (grid.data.localData[i][prop]) result.push(i);}; result</td>
+	<td>5,6,7,8,9,10,11,12,13</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td>${KEY_SHIFT}${KEY_UP}${KEY_SHIFT}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td>${KEY_SHIFT}${KEY_UP}${KEY_SHIFT}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td>${KEY_SHIFT}${KEY_UP}${KEY_SHIFT}</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var isc = selenium.getAutWindow().isc;&nbsp;&nbsp;var grid = isc.AutoTest.getObject(&quot;scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/&quot;);&nbsp;&nbsp;var selection = grid.selection; var prop = selection.selectionProperty; var result=[];for (var i = 0; i &lt; 50; i++) {if (grid.data.localData[i][prop]) result.push(i);}; result</td>
+	<td>5,6,7,8,9,10</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td>${KEY_SHIFT}${KEY_UP}${KEY_SHIFT}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td>${KEY_SHIFT}${KEY_UP}${KEY_SHIFT}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td>${KEY_SHIFT}${KEY_UP}${KEY_SHIFT}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td>${KEY_SHIFT}${KEY_UP}${KEY_SHIFT}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td>${KEY_SHIFT}${KEY_UP}${KEY_SHIFT}</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var isc = selenium.getAutWindow().isc;&nbsp;&nbsp;var grid = isc.AutoTest.getObject(&quot;scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/&quot;);&nbsp;&nbsp;var selection = grid.selection; var prop = selection.selectionProperty; var result=[];for (var i = 0; i &lt; 50; i++) {if (grid.data.localData[i][prop]) result.push(i);}; result</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td>${KEY_SHIFT}${KEY_UP}${KEY_SHIFT}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td>${KEY_SHIFT}${KEY_UP}${KEY_SHIFT}</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var isc = selenium.getAutWindow().isc;&nbsp;&nbsp;var grid = isc.AutoTest.getObject(&quot;scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/&quot;);&nbsp;&nbsp;var selection = grid.selection; var prop = selection.selectionProperty; var result=[];for (var i = 0; i &lt; 50; i++) {if (grid.data.localData[i][prop]) result.push(i);}; result</td>
+	<td>3,4,5</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td>${KEY_SHIFT}${KEY_DOWN}${KEY_SHIFT}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td>${KEY_SHIFT}${KEY_DOWN}${KEY_SHIFT}</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var isc = selenium.getAutWindow().isc;&nbsp;&nbsp;var grid = isc.AutoTest.getObject(&quot;scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/&quot;);&nbsp;&nbsp;var selection = grid.selection; var prop = selection.selectionProperty; var result=[];for (var i = 0; i &lt; 50; i++) {if (grid.data.localData[i][prop]) result.push(i);}; result</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=6||itemName=Glue%20UHU%20Clear%20Gum%20250ml||SKU=724800||5]/col[fieldName=SKU||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>controlKeyDown</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyDown</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=6||itemName=Glue%20UHU%20Clear%20Gum%20250ml||SKU=724800||5]/col[fieldName=SKU||1]</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>keyPress</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=6||itemName=Glue%20UHU%20Clear%20Gum%20250ml||SKU=724800||5]/col[fieldName=SKU||1]</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=6||itemName=Glue%20UHU%20Clear%20Gum%20250ml||SKU=724800||5]/col[fieldName=SKU||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>controlKeyUp</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=6||itemName=Glue%20UHU%20Clear%20Gum%20250ml||SKU=724800||5]/col[fieldName=SKU||1]</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var isc = selenium.getAutWindow().isc;&nbsp;&nbsp;var grid = isc.AutoTest.getObject(&quot;scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/&quot;);&nbsp;&nbsp;var selection = grid.selection; var prop = selection.selectionProperty; var result=[];for (var i = 0; i &lt; 50; i++) {if (grid.data.localData[i][prop]) result.push(i);}; result</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=8||itemName=Spray%20Adhesive%20Multipurpose%20Can%20No.76%203M||SKU=951300||7]/col[fieldName=SKU||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=8||itemName=Spray%20Adhesive%20Multipurpose%20Can%20No.76%203M||SKU=951300||7]/col[fieldName=SKU||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=3||itemName=Adding%20Machine%20Roll%2057x76mm%20Standard||SKU=135900||2]/col[fieldName=SKU||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>shiftKeyDown</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyDown</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=3||itemName=Adding%20Machine%20Roll%2057x76mm%20Standard||SKU=135900||2]/col[fieldName=SKU||1]</td>
+	<td>16</td>
+</tr>
+<tr>
+	<td>keyPress</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=3||itemName=Adding%20Machine%20Roll%2057x76mm%20Standard||SKU=135900||2]/col[fieldName=SKU||1]</td>
+	<td>16</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=3||itemName=Adding%20Machine%20Roll%2057x76mm%20Standard||SKU=135900||2]/col[fieldName=SKU||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>shiftKeyUp</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=3||itemName=Adding%20Machine%20Roll%2057x76mm%20Standard||SKU=135900||2]/col[fieldName=SKU||1]</td>
+	<td>16</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var isc = selenium.getAutWindow().isc;&nbsp;&nbsp;var grid = isc.AutoTest.getObject(&quot;scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/&quot;);&nbsp;&nbsp;var selection = grid.selection; var prop = selection.selectionProperty; var result=[];for (var i = 0; i &lt; 50; i++) {if (grid.data.localData[i][prop]) result.push(i);}; result</td>
+	<td>2,3,4,5,6,7</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=11||itemName=Glue%20UHU%20All%20Purpose%20Clear%2035ml%20No13||10]/col[fieldName=itemName||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=11||itemName=Glue%20UHU%20All%20Purpose%20Clear%2035ml%20No13||10]/col[fieldName=itemName||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=11||itemName=Glue%20UHU%20All%20Purpose%20Clear%2035ml%20No13||10]/col[fieldName=itemName||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>controlKeyDown</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyDown</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=11||itemName=Glue%20UHU%20All%20Purpose%20Clear%2035ml%20No13||10]/col[fieldName=itemName||0]</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>keyPress</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=11||itemName=Glue%20UHU%20All%20Purpose%20Clear%2035ml%20No13||10]/col[fieldName=itemName||0]</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=11||itemName=Glue%20UHU%20All%20Purpose%20Clear%2035ml%20No13||10]/col[fieldName=itemName||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>controlKeyUp</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=11||itemName=Glue%20UHU%20All%20Purpose%20Clear%2035ml%20No13||10]/col[fieldName=itemName||0]</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=3||itemName=Adding%20Machine%20Roll%2057x76mm%20Standard||SKU=135900||2]/col[fieldName=SKU||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var isc = selenium.getAutWindow().isc;&nbsp;&nbsp;var grid = isc.AutoTest.getObject(&quot;scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/&quot;);&nbsp;&nbsp;var selection = grid.selection; var prop = selection.selectionProperty; var result=[];for (var i = 0; i &lt; 50; i++) {if (grid.data.localData[i][prop]) result.push(i);}; result</td>
+	<td></td>
+</tr>
+<tr>
+	<td>controlKeyDown</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyDown</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=3||itemName=Adding%20Machine%20Roll%2057x76mm%20Standard||SKU=135900||2]/col[fieldName=SKU||1]</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>keyPress</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=3||itemName=Adding%20Machine%20Roll%2057x76mm%20Standard||SKU=135900||2]/col[fieldName=SKU||1]</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=3||itemName=Adding%20Machine%20Roll%2057x76mm%20Standard||SKU=135900||2]/col[fieldName=SKU||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>controlKeyUp</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=3||itemName=Adding%20Machine%20Roll%2057x76mm%20Standard||SKU=135900||2]/col[fieldName=SKU||1]</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=6||itemName=Glue%20UHU%20Clear%20Gum%20250ml||SKU=724800||5]/col[fieldName=SKU||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>controlKeyDown</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyDown</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=6||itemName=Glue%20UHU%20Clear%20Gum%20250ml||SKU=724800||5]/col[fieldName=SKU||1]</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>keyPress</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=6||itemName=Glue%20UHU%20Clear%20Gum%20250ml||SKU=724800||5]/col[fieldName=SKU||1]</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=6||itemName=Glue%20UHU%20Clear%20Gum%20250ml||SKU=724800||5]/col[fieldName=SKU||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>controlKeyUp</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=6||itemName=Glue%20UHU%20Clear%20Gum%20250ml||SKU=724800||5]/col[fieldName=SKU||1]</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=9||itemName=Glue%20Pentel%2030CC%20Roll%20On%2030ml||SKU=996600||8]/col[fieldName=SKU||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>shiftKeyDown</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyDown</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=9||itemName=Glue%20Pentel%2030CC%20Roll%20On%2030ml||SKU=996600||8]/col[fieldName=SKU||1]</td>
+	<td>16</td>
+</tr>
+<tr>
+	<td>keyPress</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=9||itemName=Glue%20Pentel%2030CC%20Roll%20On%2030ml||SKU=996600||8]/col[fieldName=SKU||1]</td>
+	<td>16</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=9||itemName=Glue%20Pentel%2030CC%20Roll%20On%2030ml||SKU=996600||8]/col[fieldName=SKU||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>shiftKeyUp</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=9||itemName=Glue%20Pentel%2030CC%20Roll%20On%2030ml||SKU=996600||8]/col[fieldName=SKU||1]</td>
+	<td>16</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var isc = selenium.getAutWindow().isc;&nbsp;&nbsp;var grid = isc.AutoTest.getObject(&quot;scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/&quot;);&nbsp;&nbsp;var selection = grid.selection; var prop = selection.selectionProperty; var result=[];for (var i = 0; i &lt; 50; i++) {if (grid.data.localData[i][prop]) result.push(i);}; result</td>
+	<td>2,5,6,7,8</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=13||itemName=Bostik%20Blu-tack%20Pkt%2075gm||12]/col[fieldName=itemName||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=13||itemName=Bostik%20Blu-tack%20Pkt%2075gm||12]/col[fieldName=itemName||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=13||itemName=Bostik%20Blu-tack%20Pkt%2075gm||12]/col[fieldName=itemName||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>controlKeyDown</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyDown</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=13||itemName=Bostik%20Blu-tack%20Pkt%2075gm||12]/col[fieldName=itemName||0]</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>keyPress</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=13||itemName=Bostik%20Blu-tack%20Pkt%2075gm||12]/col[fieldName=itemName||0]</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=13||itemName=Bostik%20Blu-tack%20Pkt%2075gm||12]/col[fieldName=itemName||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>controlKeyUp</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=13||itemName=Bostik%20Blu-tack%20Pkt%2075gm||12]/col[fieldName=itemName||0]</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=3||itemName=Adding%20Machine%20Roll%2057x76mm%20Standard||2]/col[fieldName=itemName||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>controlKeyDown</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyDown</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=3||itemName=Adding%20Machine%20Roll%2057x76mm%20Standard||2]/col[fieldName=itemName||0]</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>keyPress</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=3||itemName=Adding%20Machine%20Roll%2057x76mm%20Standard||2]/col[fieldName=itemName||0]</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=3||itemName=Adding%20Machine%20Roll%2057x76mm%20Standard||2]/col[fieldName=itemName||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>controlKeyUp</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=3||itemName=Adding%20Machine%20Roll%2057x76mm%20Standard||2]/col[fieldName=itemName||0]</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=12||itemName=U-Tac%20UHU%20Pkt%2075gm||11]/col[fieldName=itemName||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>controlKeyDown</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyDown</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=12||itemName=U-Tac%20UHU%20Pkt%2075gm||11]/col[fieldName=itemName||0]</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>keyPress</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=12||itemName=U-Tac%20UHU%20Pkt%2075gm||11]/col[fieldName=itemName||0]</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=12||itemName=U-Tac%20UHU%20Pkt%2075gm||11]/col[fieldName=itemName||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>controlKeyUp</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=12||itemName=U-Tac%20UHU%20Pkt%2075gm||11]/col[fieldName=itemName||0]</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=3||itemName=Adding%20Machine%20Roll%2057x76mm%20Standard||SKU=135900||2]/col[fieldName=SKU||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>controlKeyDown</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyDown</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=3||itemName=Adding%20Machine%20Roll%2057x76mm%20Standard||SKU=135900||2]/col[fieldName=SKU||1]</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>keyPress</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=3||itemName=Adding%20Machine%20Roll%2057x76mm%20Standard||SKU=135900||2]/col[fieldName=SKU||1]</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=3||itemName=Adding%20Machine%20Roll%2057x76mm%20Standard||SKU=135900||2]/col[fieldName=SKU||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>controlKeyUp</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=3||itemName=Adding%20Machine%20Roll%2057x76mm%20Standard||SKU=135900||2]/col[fieldName=SKU||1]</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=9||itemName=Glue%20Pentel%2030CC%20Roll%20On%2030ml||SKU=996600||8]/col[fieldName=SKU||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>shiftKeyDown</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyDown</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=9||itemName=Glue%20Pentel%2030CC%20Roll%20On%2030ml||SKU=996600||8]/col[fieldName=SKU||1]</td>
+	<td>16</td>
+</tr>
+<tr>
+	<td>keyPress</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=9||itemName=Glue%20Pentel%2030CC%20Roll%20On%2030ml||SKU=996600||8]/col[fieldName=SKU||1]</td>
+	<td>16</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=9||itemName=Glue%20Pentel%2030CC%20Roll%20On%2030ml||SKU=996600||8]/col[fieldName=SKU||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>shiftKeyUp</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=9||itemName=Glue%20Pentel%2030CC%20Roll%20On%2030ml||SKU=996600||8]/col[fieldName=SKU||1]</td>
+	<td>16</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var isc = selenium.getAutWindow().isc;&nbsp;&nbsp;var grid = isc.AutoTest.getObject(&quot;scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/&quot;);&nbsp;&nbsp;var selection = grid.selection; var prop = selection.selectionProperty; var result=[];for (var i = 0; i &lt; 50; i++) {if (grid.data.localData[i][prop]) result.push(i);}; result</td>
+	<td>8,9,10,11</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=2||itemName=Adding%20Machine%20Roll%2057x64mm%20Standard||SKU=90600||1]/col[fieldName=SKU||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseMove</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=2||itemName=Adding%20Machine%20Roll%2057x64mm%20Standard||SKU=90600||1]/col[fieldName=SKU||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=2||itemName=Adding%20Machine%20Roll%2057x64mm%20Standard||SKU=90600||1]/col[fieldName=SKU||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=2||itemName=Adding%20Machine%20Roll%2057x64mm%20Standard||SKU=90600||1]/col[fieldName=SKU||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>controlKeyDown</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyDown</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=2||itemName=Adding%20Machine%20Roll%2057x64mm%20Standard||SKU=90600||1]/col[fieldName=SKU||1]</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>keyPress</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=2||itemName=Adding%20Machine%20Roll%2057x64mm%20Standard||SKU=90600||1]/col[fieldName=SKU||1]</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=2||itemName=Adding%20Machine%20Roll%2057x64mm%20Standard||SKU=90600||1]/col[fieldName=SKU||1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>controlKeyUp</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/row[itemID=2||itemName=Adding%20Machine%20Roll%2057x64mm%20Standard||SKU=90600||1]/col[fieldName=SKU||1]</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td>${KEY_CTRL}${KEY_DOWN}${KEY_CTRL}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td>${KEY_CTRL}${KEY_DOWN}${KEY_CTRL}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td>${KEY_CTRL}${KEY_SPACE}${KEY_CTRL}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td>${KEY_CTRL}${KEY_DOWN}${KEY_CTRL}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td>${KEY_CTRL}${KEY_DOWN}${KEY_CTRL}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td>${KEY_CTRL}${KEY_SPACE}${KEY_CTRL}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td>${KEY_CTRL}${KEY_DOWN}${KEY_CTRL}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td>${KEY_CTRL}${KEY_DOWN}${KEY_CTRL}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td>${KEY_CTRL}${KEY_DOWN}${KEY_CTRL}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td>${KEY_CTRL}${KEY_DOWN}${KEY_CTRL}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td>${KEY_SHIFT}${KEY_DOWN}${KEY_SHIFT}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td>${KEY_CTRL}${KEY_DOWN}${KEY_CTRL}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td>${KEY_CTRL}${KEY_DOWN}${KEY_CTRL}</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/body/</td>
+	<td>${KEY_CTRL}${KEY_SPACE}${KEY_CTRL}</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var isc = selenium.getAutWindow().isc;&nbsp;&nbsp;var grid = isc.AutoTest.getObject(&quot;scLocator=//testRoot[]/child[Class=ListGrid||index=0||length=1||classIndex=0||classLength=1||roleIndex=0||roleLength=1||scRole=list]/&quot;);&nbsp;&nbsp;var selection = grid.selection; var prop = selection.selectionProperty; var result=[];for (var i = 0; i &lt; 50; i++) {if (grid.data.localData[i][prop]) result.push(i);}; result</td>
+	<td>3,5,6,7,8,9,10,12</td>
+</tr>
+</tbody></table>
+</body>
+</html>

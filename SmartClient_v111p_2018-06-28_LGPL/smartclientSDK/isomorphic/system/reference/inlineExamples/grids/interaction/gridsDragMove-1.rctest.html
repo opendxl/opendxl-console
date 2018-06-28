@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/" />
+<title>gridsDragMove-1.rctest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">gridsDragMove-1.rctest</td></tr>
+</thead><tbody>
+<tr>
+	<td>exampleOpen</td>
+	<td>smartgwt</td>
+	<td>grid_interaction_drag_move</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=HStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=0||length=2||classIndex=0||classLength=2||roleIndex=0||roleLength=2||scRole=list]/body/row[countryCode=CH||0]/col[fieldName=countryCode||0]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>dragAndDropToObject</td>
+	<td>scLocator=//testRoot[]/child[Class=HStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=0||length=2||classIndex=0||classLength=2||roleIndex=0||roleLength=2||scRole=list]/body/row[countryCode=US||0]/col[fieldName=countryCode||0]</td>
+	<td>scLocator=//testRoot[]/child[Class=HStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=1||classLength=2||roleIndex=1||roleLength=2||scRole=list]/body/</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=HStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=1||classLength=2||roleIndex=1||roleLength=2||scRole=list]/body/row[0]/col[1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>dragAndDropToObject</td>
+	<td>scLocator=//testRoot[]/child[Class=HStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=0||length=2||classIndex=0||classLength=2||roleIndex=0||roleLength=2||scRole=list]/body/row[countryCode=FR||5]/col[fieldName=countryCode||0]</td>
+	<td>scLocator=//testRoot[]/child[Class=HStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=1||classLength=2||roleIndex=1||roleLength=2||scRole=list]/body/row[0]/col[1]</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=HStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=1||classLength=2||roleIndex=1||roleLength=2||scRole=list]/body/row[1]/col[1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>dragAndDropToObject</td>
+	<td>scLocator=//testRoot[]/child[Class=HStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=0||length=2||classIndex=0||classLength=2||roleIndex=0||roleLength=2||scRole=list]/body/row[countryCode=CA||8]/col[fieldName=countryCode||0]</td>
+	<td>scLocator=//testRoot[]/child[Class=HStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=1||classLength=2||roleIndex=1||roleLength=2||scRole=list]/body/row[1]/col[1]</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=HStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=1||classLength=2||roleIndex=1||roleLength=2||scRole=list]/body/row[2]/col[1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/child[Class=HStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=1||classLength=2||roleIndex=1||roleLength=2||scRole=list]/body/row[0]/col[fieldName=countryName||1]</td>
+	<td>United States</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/child[Class=HStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=1||classLength=2||roleIndex=1||roleLength=2||scRole=list]/body/row[1]/col[fieldName=countryName||1]</td>
+	<td>France</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>scLocator=//testRoot[]/child[Class=HStack||index=0||length=1||classIndex=0||classLength=1]/member[Class=ListGrid||index=1||length=2||classIndex=1||classLength=2||roleIndex=1||roleLength=2||scRole=list]/body/row[2]/col[fieldName=countryName||1]</td>
+	<td>Canada</td>
+</tr>
+</tbody></table>
+</body>
+</html>

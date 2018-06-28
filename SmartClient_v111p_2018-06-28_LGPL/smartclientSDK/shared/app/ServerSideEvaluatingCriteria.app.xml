@@ -1,0 +1,10 @@
+<Application>
+    <rpcBindings>
+        <ServerObject ID="ServerSideEvaluatingCriteria" className="com.isomorphic.test.ServerSideEvaluatingCriteria">
+            <visibleMethods>
+                <method name="evaluate"/>
+                <method name="evaluateSimpleCriteria"/>
+            </visibleMethods>
+        </ServerObject>
+    </rpcBindings>
+</Application>

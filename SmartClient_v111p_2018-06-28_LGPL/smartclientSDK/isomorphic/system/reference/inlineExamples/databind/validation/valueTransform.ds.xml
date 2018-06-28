@@ -1,0 +1,12 @@
+<DataSource ID="valueTransform">
+    <fields>
+        <field name="phone" title="Phone" type="text">
+            <validators>
+                <validator type="mask"
+                           mask="^\s*(1?)\s*\(?\s*(\d{3})\s*\)?\s*-?\s*(\d{3})\s*-?\s*(\d{4})\s*$"
+                           transformTo="$1($2) $3 - $4"/>
+            </validators>
+        </field>
+    </fields>
+</DataSource>
+    

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://www-vpn.smartclient.com:10011/" />
+<title>formShowAndHide-1.rctest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">formShowAndHide-1.rctest</td></tr>
+</thead><tbody>
+<tr>
+	<td>exampleOpen</td>
+	<td>smartgwt</td>
+	<td>form_dep_show_hide</td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/member[Class=DynamicForm||index=0||length=1||classIndex=0||classLength=1]/item[name=onOrder||title=Shipment%20on%20order||value=false||index=0||Class=CheckboxItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=DynamicForm||index=0||length=1||classIndex=0||classLength=1]/item[name=onOrder||title=Shipment%20on%20order||value=false||index=0||Class=CheckboxItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementClickable</td>
+	<td>scLocator=//testRoot[]/child[Class=DynamicForm||index=0||length=1||classIndex=0||classLength=1]/item[name=orderDate||title=Order%20Placed||value=Fri May 30 2014 12:00:00 GMT+0000 (UTC)||index=1||Class=DateItem]/title</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>scLocator=//testRoot[]/member[Class=DynamicForm||index=0||length=1||classIndex=0||classLength=1]/item[name=onOrder||title=Shipment%20on%20order||value=false||index=0||Class=CheckboxItem]/textbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>scLocator=//testRoot[]/child[Class=DynamicForm||index=0||length=1||classIndex=0||classLength=1]/item[name=orderDate||title=Order%20Placed||value=Fri May 30 2014 12:00:00 GMT+0000 (UTC)||index=1||Class=DateItem]/title</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

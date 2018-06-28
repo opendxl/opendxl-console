@@ -1,0 +1,5 @@
+<Window title="A Window" width="200" height="200">
+    <items>
+        <Label align="center" contents="Contents of the window"/>
+    </items>
+</Window>

@@ -1,0 +1,8 @@
+.blueMarker {
+        visibility: hidden;
+        background-color: blue;
+        max-width: 10px;
+        max-height: 10px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px 5px lightcyan;
+}

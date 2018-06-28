@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!-- Note: the runtime version of this file is bundled into isomorphic_examples.jar -->
+<hibernate-mapping>
+    <class name="com.isomorphic.examples.Country" table="countryDS" >
+        <id name="pk" type="long">
+            <generator class="native"/>
+        </id>
+        <property name="countryCode" type="string" />
+        <property name="countryName" type="string" />
+        <property name="capital" type="string" />
+        <property name="area" type="float" />
+        <property name="population" type="long" />
+        <property name="gdp" type="float" />
+    </class>
+</hibernate-mapping>

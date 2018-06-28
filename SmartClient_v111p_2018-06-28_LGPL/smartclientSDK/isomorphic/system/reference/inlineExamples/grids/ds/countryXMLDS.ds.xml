@@ -1,0 +1,10 @@
+<DataSource
+    ID="countryDS"
+    dataFormat="xml"
+    dataURL="[ISOMORPHIC]/system/reference/inlineExamples/grids/data/countryData.xml"
+    recordXPath="//country"
+><fields>
+    <field name="countryCode" title="Code"/>
+    <field name="countryName" title="Country"/>
+    <field name="capital" title="Capital"/>
+</fields></DataSource>

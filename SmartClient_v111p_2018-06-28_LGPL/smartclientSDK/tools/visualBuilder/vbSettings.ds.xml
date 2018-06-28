@@ -1,0 +1,5 @@
+<DataSource ID="vbSettings" serverType="projectFile" inheritsFrom="ProjectFile">
+    <projectFileLocations>
+        <location>[TOOLS]/visualBuilder/workspace</location>
+    </projectFileLocations>
+</DataSource>

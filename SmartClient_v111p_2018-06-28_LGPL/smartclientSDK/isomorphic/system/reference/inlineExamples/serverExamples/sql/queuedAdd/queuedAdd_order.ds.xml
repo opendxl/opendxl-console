@@ -1,0 +1,16 @@
+<DataSource
+    ID="queuedAdd_order"
+    serverType="sql"
+    tableName="queuedOrder"
+    testFileName="/examples/shared/ds/serverExamples/test_data/queuedOrder.data.xml"
+>
+    <fields>
+        <field name="orderID" type="sequence" primaryKey="true" hidden="true" />
+        <field name="customerName" type="text" />
+        <field name="customerRef" type="text" />
+        <field name="orderDate" type="date" />
+        <field name="shippingCost" type="float" />
+    </fields>
+    
+</DataSource>
+ 

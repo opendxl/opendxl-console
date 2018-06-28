@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!-- Note: the runtime version of this file is bundled into isomorphic_examples.jar -->
+<hibernate-mapping auto-import="false">
+    <class name="com.isomorphic.examples.server.largeValueMapHibernate.ValMapOrderItem" table="valMapOrderItemHB" >
+        <id name="pk">
+            <generator class="native"/>
+        </id>
+        <property name="orderID" type="long" />
+        <property name="orderDate" type="date" />
+        <property name="unitPrice" type="double" />
+        <property name="quantity" type="long" />
+
+        <many-to-one name="item" 
+                     column="itemID"
+                     class="com.isomorphic.examples.server.largeValueMapHibernate.ValMapSupplyItem" 
+                     update="false"
+                     insert="false"
+                     lazy="false"
+                     fetch="join" />
+    </class>
+</hibernate-mapping>

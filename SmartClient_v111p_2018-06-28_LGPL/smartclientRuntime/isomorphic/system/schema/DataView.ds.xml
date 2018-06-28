@@ -1,0 +1,11 @@
+<DataSource ID="DataView" inheritsFrom="VLayout" Constructor="DataView">
+    <fields>
+        <field name="operations" type="ServiceOperation" multiple="true"/>
+    </fields>
+    <methods>
+        <!--not active - was intended to allow taking action after DataView 
+            loaded WSDL and XML Schema
+        <method title="DataView Loaded" name="dataViewLoaded" />
+        -->
+    </methods>
+</DataSource>

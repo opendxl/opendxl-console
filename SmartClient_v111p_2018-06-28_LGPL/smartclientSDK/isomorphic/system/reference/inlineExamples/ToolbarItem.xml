@@ -1,0 +1,11 @@
+<DynamicForm width="300">
+    <fields>
+        <field type="toolbar">
+            <buttons>
+                <button title="Button 1"/>
+                <button title="Button 2"/>
+                <button title="Button 3"/>
+            </buttons>
+        </field>
+    </fields>
+</DynamicForm>

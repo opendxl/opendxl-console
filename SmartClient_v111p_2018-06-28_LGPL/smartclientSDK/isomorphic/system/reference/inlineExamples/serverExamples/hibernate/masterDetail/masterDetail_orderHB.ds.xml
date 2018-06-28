@@ -1,0 +1,21 @@
+<DataSource
+    ID="masterDetail_orderHB"
+    serverType="hibernate"
+    tableName="masterDetail_order"
+    beanClassName="com.isomorphic.examples.server.masterDetail.Order"
+    testFileName="/examples/shared/ds/serverExamples/test_data/masterDetail_order.data.xml"
+>
+    <fields>
+        <field name="orderID" type="sequence" primaryKey="true" canEdit="false" />
+        <field name="customerName" type="text" />
+        <field name="orderDate" type="date" />
+
+        <field name="items" title= "Order Items" multiple="true"
+               type="masterDetail_orderItemHB" 
+               javaClass="com.isomorphic.examples.server.masterDetail.OrderItem"
+        />
+        <field name="trackingNumber" type="integer" />
+    </fields>
+    
+</DataSource>
+ 

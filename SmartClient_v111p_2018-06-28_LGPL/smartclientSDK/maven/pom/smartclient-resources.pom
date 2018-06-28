@@ -1,0 +1,20 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  
+  <modelVersion>4.0.0</modelVersion>
+  
+  <description>
+  	A collection of resources from the smartclientRuntime/isomorphic and
+  	smartclientRuntime/WEB-INF folders of the SmartClient distribution,
+  	suitable for use with the Maven WAR Overlay feature.
+
+  	See http://maven.apache.org/plugins/maven-resources-plugin/overlays.html. 
+  </description>
+
+  <groupId>com.isomorphic.smartclient.lgpl</groupId>
+  <artifactId>smartclient-resources</artifactId>
+  <version>11.1-p20180628</version>
+  <packaging>war</packaging>
+
+</project>

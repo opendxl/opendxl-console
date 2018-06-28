@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+    <persistence-unit name="ds" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <class>com.isomorphic.examples.SupplyItemHB</class>
+        <class>com.isomorphic.examples.World</class>
+        <class>com.isomorphic.examples.server.jpa.relations.ContinentManyToOneSimple</class>
+        <class>com.isomorphic.examples.server.jpa.relations.CountryManyToOneSimple</class>
+        <class>com.isomorphic.examples.server.jpa.relations.CityManyToOneSimple</class>
+        <class>com.isomorphic.examples.server.jpa.relations.CountryOneToMany</class>
+        <class>com.isomorphic.examples.server.jpa.relations.CityOneToMany</class>
+        <class>com.isomorphic.examples.server.jpa.upload.MediaItem</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <properties>
+            <!--
+            <property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver"/>
+            <property name="hibernate.connection.url" value="jdbc:hsqldb:file:../db/hsqldb/isomorphic"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
+            -->
+
+            
+            <!-- Database connection settings
+                 Note: all databases configured in server.properties are automatically published to
+                 isomorphic/jdbc under their respective names.  The sql.defaultDatabase is
+                 published as isomorphic/jdbc/defaultDatabase.  This is done in order to enable the
+                 samples to use an embedded hsqldb without having to start an hsqldb server on a
+                 separate port.
+                 
+                 You can, of course, configure this however you like in your application.
+            -->
+            <property name="hibernate.connection.datasource" value="isomorphic/jdbc/defaultDatabase"/>
+            <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
+            <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.format_sql" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>
+

@@ -1,0 +1,13 @@
+<dependencies>
+   <!-- loading a custom component: include the JavaScript class definition -->
+<!--
+   <dependency type="js" url="/examples/custom_components/SimpleHeader/SimpleHeader.js"/>
+-->
+
+   <!-- loading a custom component: include the component schema.  Search for 
+        "component schema" in the SmartClient Reference for more information 
+        about component schema -->
+<!--
+   <dependency type="schema" id="SimpleHeader"/>
+-->
+</dependencies>

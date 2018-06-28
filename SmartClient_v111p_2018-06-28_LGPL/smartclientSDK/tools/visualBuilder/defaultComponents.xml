@@ -1,0 +1,622 @@
+<!-- list of default components for the visual builder component library -->
+<PaletteNodes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+<PaletteNode>
+    <title>&lt;b&gt;ListGrid&lt;/b&gt;</title>
+    <type>ListGrid</type>
+    <icon>ListGrid.png</icon>
+    <showDropIcon>true</showDropIcon>
+    <children>
+        <PaletteNode>
+            <title>ListGridField</title>
+            <type>ListGridField</type>
+            <icon>text.gif</icon>
+            <iconSize>18</iconSize>
+            <showDropIcon>true</showDropIcon>
+        </PaletteNode>
+    </children>
+</PaletteNode>
+
+<PaletteNode>
+    <title>&lt;b&gt;Editable ListGrid&lt;/b&gt;</title>
+    <type>ListGrid</type>
+    <icon>ListGrid.png</icon>
+    <showDropIcon>true</showDropIcon>
+    <defaults xsi:type="ListGrid">
+        <showFilterEditor>true</showFilterEditor>
+        <canEdit>true</canEdit>
+        <canRemoveRecords>true</canRemoveRecords>
+        <listEndEditAction>next</listEndEditAction>
+    </defaults>
+</PaletteNode>
+
+<PaletteNode>
+    <title>&lt;b&gt;TreeGrid&lt;/b&gt;</title>
+    <type>TreeGrid</type>
+    <icon>TreeGrid.png</icon>
+    <showDropIcon>true</showDropIcon>
+    <children>
+        <PaletteNode>
+            <title>TreeGridField</title>
+            <type>TreeGridField</type>
+            <icon>text.gif</icon>
+            <iconSize>18</iconSize>
+            <showDropIcon>true</showDropIcon>
+        </PaletteNode>
+    </children>
+</PaletteNode>
+
+<PaletteNode>
+    <title>&lt;b&gt;TileGrid&lt;/b&gt;</title>
+    <type>TileGrid</type>
+    <icon>DetailViewer.png</icon>
+    <showDropIcon>true</showDropIcon>
+    <children>
+        <PaletteNode>
+            <title>TileGridField</title>
+            <type>TileGridField</type>
+            <icon>text.gif</icon>
+            <iconSize>18</iconSize>
+            <showDropIcon>true</showDropIcon>
+        </PaletteNode>
+    </children>
+</PaletteNode>
+
+<PaletteNode>
+    <title>&lt;b&gt;DetailViewer&lt;/b&gt;</title>
+    <type>DetailViewer</type>
+    <icon>DetailViewer.png</icon>
+    <showDropIcon>true</showDropIcon>
+    <children>
+        <PaletteNode>
+            <title>DetailViewerField</title>
+            <type>DetailViewerField</type>
+            <icon>text.gif</icon>
+            <iconSize>18</iconSize>
+            <showDropIcon>true</showDropIcon>
+        </PaletteNode>
+    </children>
+</PaletteNode>
+
+<PaletteNode>
+    <title>&lt;b&gt;TabSet&lt;/b&gt;</title>
+    <children>
+        <PaletteNode>
+            <title>Tab</title>
+            <type>Tab</type>
+            <icon>Tab.png</icon>
+            <showDropIcon>true</showDropIcon>
+        </PaletteNode>
+    </children>
+    <type>TabSet</type>
+    <defaults>
+    	<destroyPanes xsi:type="boolean">false</destroyPanes>
+    </defaults>
+    <icon>TabSet.png</icon>
+    <showDropIcon>true</showDropIcon>
+</PaletteNode>
+
+<PaletteNode>
+    <title>&lt;b&gt;SplitPane&lt;/b&gt;</title>
+    <type>SplitPane</type>
+    <icon>layout.png</icon>
+    <showDropIcon>true</showDropIcon>
+</PaletteNode>
+
+<PaletteNode>
+    <title>&lt;b&gt;NavPanel&lt;/b&gt;</title>
+    <children>
+        <PaletteNode>
+            <title>NavItem</title>
+            <type>NavItem</type>
+            <icon>SectionStackSection.png</icon>
+            <showDropIcon>true</showDropIcon>
+        </PaletteNode>
+        <PaletteNode>
+            <title>Separator</title>
+            <type>NavItem</type>
+            <icon>SectionStackSection.png</icon>
+            <showDropIcon>true</showDropIcon>
+            <defaults>
+                <isSeparator>true</isSeparator>
+            </defaults>
+        </PaletteNode>
+        <PaletteNode>
+            <title>NavHeader</title>
+            <type>NavItem</type>
+            <icon>SectionStackSection.png</icon>
+            <showDropIcon>true</showDropIcon>
+            <defaults>
+                <isHeader>true</isHeader>
+            </defaults>
+        </PaletteNode>
+    </children>
+    <type>NavPanel</type>
+    <icon>SectionStack.png</icon>
+    <showDropIcon>true</showDropIcon>
+    <defaults>
+        <isTree>false</isTree>
+        <currentItemId></currentItemId>
+    </defaults>
+</PaletteNode>
+
+<PaletteNode>
+    <title>&lt;b&gt;Deck&lt;/b&gt;</title>
+    <type>Deck</type>
+    <icon>layout.png</icon>
+    <showDropIcon>true</showDropIcon>
+</PaletteNode>
+
+<PaletteNode>
+    <title>&lt;b&gt;SectionStack&lt;/b&gt;</title>
+    <children>
+        <PaletteNode>
+            <title>Section</title>
+            <type>SectionStackSection</type>
+            <icon>SectionStackSection.png</icon>
+            <showDropIcon>true</showDropIcon>
+            <defaults>
+            	<autoShow>true</autoShow>
+            </defaults>
+        </PaletteNode>
+    </children>
+    <type>SectionStack</type>
+    <icon>SectionStack.png</icon>
+    <showDropIcon>true</showDropIcon>
+    <defaults>
+    	<visibilityMode>multiple</visibilityMode>
+    </defaults>
+</PaletteNode>
+
+<PaletteNode>
+    <title>&lt;b&gt;VLayout&lt;/b&gt;</title>
+    <type>VLayout</type>
+    <icon>VLayout.png</icon>
+    <showDropIcon>true</showDropIcon>
+</PaletteNode>
+
+<PaletteNode>
+    <title>&lt;b&gt;HLayout&lt;/b&gt;</title>
+    <type>HLayout</type>
+    <icon>HLayout.png</icon>
+    <showDropIcon>true</showDropIcon>
+</PaletteNode>
+
+<PaletteNode>
+    <title>&lt;b&gt;Absolute Container&lt;/b&gt;</title>
+    <idPrefix>AbsoluteContainer</idPrefix>
+    <type>Canvas</type>
+    <icon>DetailViewer.png</icon>
+    <showDropIcon>true</showDropIcon>
+    <editProxyProperties>
+        <persistCoordinates>true</persistCoordinates>
+        <childrenSnapToGrid>true</childrenSnapToGrid>
+        <childrenSnapAlign>true</childrenSnapAlign>
+    </editProxyProperties>
+</PaletteNode>
+
+<PaletteNode>
+    <title>&lt;b&gt;ToolStrip&lt;/b&gt;</title>
+    <children>
+        <PaletteNode>
+            <title>Toolstrip Items</title>
+            <children>
+		        <PaletteNode>
+		            <title>ToolStripButton</title>
+		            <type>ToolStripButton</type>
+		            <icon>button.gif</icon>
+		        </PaletteNode>
+		        <PaletteNode>
+		            <title>ToolStripMenuButton</title>
+                    <children>
+                        <PaletteNode>
+                            <parentName>0</parentName>
+                            <title>&lt;b&gt;Menu&lt;/b&gt;</title>
+                            <children>
+                                <PaletteNode>
+                                    <title>Menu Item</title>
+                                    <type>MenuItem</type>
+                                </PaletteNode>
+                            </children>
+                            <type>Menu</type>
+                            <showDropIcon>true</showDropIcon>
+                        </PaletteNode>
+                    </children>
+		            <type>ToolStripMenuButton</type>
+		            <icon>button.gif</icon>
+		        </PaletteNode>
+				<PaletteNode>
+					<title>Separator</title>
+					<type>ToolStripSeparator</type>
+					<icon>Tab.png</icon>
+				</PaletteNode>
+                <PaletteNode>
+                    <title>Resizer</title>
+                    <type>ToolStripResizer</type>
+                    <icon>Tab.png</icon>
+                </PaletteNode>
+                <PaletteNode>
+                    <title>Spacer</title>
+                    <type>ToolStripSpacer</type>
+                    <icon>LayoutSpacer.png</icon>
+                </PaletteNode>
+            </children>
+        </PaletteNode>
+        
+    </children>
+    <type>ToolStrip</type>
+    <icon>toolbar.gif</icon>
+    <showDropIcon>true</showDropIcon>
+    <defaults>
+    	<visibilityMode>multiple</visibilityMode>
+    </defaults>
+</PaletteNode>
+
+<PaletteNode>
+    <title>&lt;b&gt;LayoutSpacer&lt;/b&gt;</title>
+    <type>LayoutSpacer</type>
+    <icon>LayoutSpacer.png</icon>
+</PaletteNode>
+
+<PaletteNode>
+    <title>&lt;b&gt;TileLayout&lt;/b&gt;</title>
+    <type>TileLayout</type>
+    <icon>ListGrid.png</icon>
+    <showDropIcon>true</showDropIcon>
+</PaletteNode>
+
+<PaletteNode>
+    <title>&lt;b&gt;FlowLayout&lt;/b&gt;</title>
+    <type>FlowLayout</type>
+    <icon>toolbar.gif</icon>
+    <iconSize>18</iconSize>
+</PaletteNode>
+
+<PaletteNode>
+    <title>&lt;b&gt;PortalLayout&lt;/b&gt;</title>
+    <type>PortalLayout</type>
+    <icon>HLayout.png</icon>
+    <showDropIcon>true</showDropIcon>
+    <children>
+        <PaletteNode>
+            <title>Portlet</title>
+            <type>Portlet</type>
+            <icon>Window.png</icon>
+            <showDropIcon>true</showDropIcon>
+        </PaletteNode>
+        <PaletteNode>
+            <title>PortalColumn</title>
+            <type>PortalColumn</type>
+            <icon>VLayout.png</icon>
+            <showDropIcon>true</showDropIcon>
+        </PaletteNode>
+    </children>
+</PaletteNode>
+
+<PaletteNode>
+    <title>&lt;b&gt;Button&lt;/b&gt;</title>
+    <type>IButton</type>
+    <icon>button.gif</icon>
+</PaletteNode>
+
+<PaletteNode>
+    <title>&lt;b&gt;DynamicForm&lt;/b&gt;</title>
+    <children>
+        <PaletteNode>
+            <title>Section</title>
+            <type>SectionItem</type>
+            <icon>SectionItem.png</icon>
+            <showDropIcon>true</showDropIcon>
+        </PaletteNode>
+        <PaletteNode>
+            <title>&lt;b&gt;Text&lt;/b&gt;</title>
+            <children>
+                <PaletteNode>
+                    <title>text</title>
+                    <type>TextItem</type>
+                    <icon>text.gif</icon>
+                    <iconSize>18</iconSize>
+                </PaletteNode>
+                <PaletteNode>
+                    <title>password</title>
+                    <type>PasswordItem</type>
+                    <icon>password.gif</icon>
+                    <iconSize>18</iconSize>
+                </PaletteNode>
+                <PaletteNode>
+                    <title>upload</title>
+                    <type>FileItem</type>
+                    <icon>upload.gif</icon>
+                    <iconSize>18</iconSize>
+                </PaletteNode>
+                <PaletteNode>
+                    <title>textArea</title>
+                    <type>TextAreaItem</type>
+                    <icon>textArea.gif</icon>
+                    <iconSize>18</iconSize>
+                </PaletteNode>
+                <PaletteNode>
+                    <title>hidden</title>
+                    <type>HiddenItem</type>
+                    <icon>hidden.gif</icon>
+                    <iconSize>18</iconSize>
+                </PaletteNode>
+                <PaletteNode>
+                    <title>staticText</title>
+                    <type>StaticTextItem</type>
+                    <icon>staticText.gif</icon>
+                    <iconSize>18</iconSize>
+                </PaletteNode>
+            </children>
+            <type>TextItem</type>
+            <icon>text.gif</icon>
+            <iconSize>18</iconSize>
+        </PaletteNode>
+        <PaletteNode>
+            <title>&lt;b&gt;Choosers&lt;/b&gt;</title>
+            <children>
+                <PaletteNode>
+                    <title>checkbox</title>
+                    <type>CheckboxItem</type>
+                    <icon>checkbox.gif</icon>
+                    <iconSize>18</iconSize>
+                </PaletteNode>
+                <PaletteNode>
+                    <title>radioGroup</title>
+                    <type>RadioGroupItem</type>
+                    <icon>radioGroup.png</icon>
+                    <showDropIcon>true</showDropIcon>
+                    <iconSize>18</iconSize>
+                </PaletteNode>
+                <PaletteNode>
+                    <title>select</title>
+                    <type>SelectItem</type>
+                    <icon>select.png</icon>
+                    <showDropIcon>true</showDropIcon>
+                    <iconSize>18</iconSize>
+                </PaletteNode>
+                <PaletteNode>
+                    <title>selectOther</title>
+                    <type>SelectOtherItem</type>
+                    <icon>selectOther.png</icon>
+                    <showDropIcon>true</showDropIcon>
+                    <iconSize>18</iconSize>
+                </PaletteNode>
+                <PaletteNode>
+                    <title>comboBox</title>
+                    <type>ComboBoxItem</type>
+                    <icon>comboBox.png</icon>
+                    <showDropIcon>true</showDropIcon>
+                    <iconSize>18</iconSize>
+                </PaletteNode>
+                <PaletteNode>
+                    <title>date</title>
+                    <type>DateItem</type>
+                    <icon>date.gif</icon>
+                    <iconSize>18</iconSize>
+                </PaletteNode>
+                <PaletteNode>
+                    <title>time</title>
+                    <type>TimeItem</type>
+                    <icon>time.gif</icon>
+                    <iconSize>18</iconSize>
+                </PaletteNode>
+            </children>
+            <type>SelectItem</type>
+            <icon>select.png</icon>
+            <showDropIcon>true</showDropIcon>
+            <iconSize>18</iconSize>
+        </PaletteNode>
+        <PaletteNode>
+            <title>&lt;b&gt;Buttons&lt;/b&gt;</title>
+            <children>
+                <PaletteNode>
+                    <title>button</title>
+                    <type>ButtonItem</type>
+                    <icon>button.gif</icon>
+                    <iconSize>18</iconSize>
+                </PaletteNode>
+                <PaletteNode>
+                    <title>submit</title>
+                    <type>SubmitItem</type>
+                    <icon>submit.gif</icon>
+                    <iconSize>18</iconSize>
+                </PaletteNode>
+                <PaletteNode>
+                    <title>reset</title>
+                    <type>ResetItem</type>
+                    <icon>reset.gif</icon>
+                    <iconSize>18</iconSize>
+                </PaletteNode>
+                <PaletteNode>
+                    <title>toolbar</title>
+                    <type>ToolbarItem</type>
+                    <icon>toolbar.gif</icon>
+                    <iconSize>18</iconSize>
+                </PaletteNode>
+            </children>
+            <type>ButtonItem</type>
+            <icon>button.gif</icon>
+            <iconSize>18</iconSize>
+        </PaletteNode>
+        <PaletteNode>
+            <title>&lt;b&gt;Display&lt;/b&gt;</title>
+            <children>
+                <PaletteNode>
+                    <title>staticText</title>
+                    <type>StaticTextItem</type>
+                    <icon>staticText.gif</icon>
+                    <iconSize>18</iconSize>
+                </PaletteNode>
+                <PaletteNode>
+                    <title>blurb</title>
+                    <type>BlurbItem</type>
+                    <icon>blurb.gif</icon>
+                    <iconSize>18</iconSize>
+                </PaletteNode>
+                <PaletteNode>
+                    <title>header</title>
+                    <type>HeaderItem</type>
+                    <icon>header.gif</icon>
+                    <iconSize>18</iconSize>
+                </PaletteNode>
+                <PaletteNode>
+                    <title>rowSpacer</title>
+                    <type>RowSpacerItem</type>
+                    <icon>rowSpacer.gif</icon>
+                    <iconSize>18</iconSize>
+                </PaletteNode>
+                <PaletteNode>
+                    <title>spacer</title>
+                    <type>SpacerItem</type>
+                    <icon>spacer.gif</icon>
+                    <iconSize>18</iconSize>
+                </PaletteNode>
+            </children>
+            <type>StaticTextItem</type>
+            <icon>staticText.gif</icon>
+            <iconSize>18</iconSize>
+        </PaletteNode>
+        <PaletteNode>
+            <title>Add Icon to Input</title>
+            <type>FormItemIcon</type>
+            <icon>cube_blue.gif</icon>
+            <showDropIcon>true</showDropIcon>
+            <defaults>
+                <parentProperty>icons</parentProperty>
+            </defaults>
+        </PaletteNode>
+    </children>
+    <type>DynamicForm</type>
+    <icon>DynamicForm.png</icon>
+    <showDropIcon>true</showDropIcon>
+</PaletteNode>
+
+<PaletteNode>
+    <title>&lt;b&gt;Absolute Form&lt;/b&gt;</title>
+    <idPrefix>AbsoluteForm</idPrefix>
+    <type>DynamicForm</type>
+    <icon>DynamicForm.png</icon>
+    <showDropIcon>true</showDropIcon>
+    <defaults>
+        <itemLayout>absolute</itemLayout>
+        <height>100</height>
+        <snapVGap>8</snapVGap>
+        <snapHGap>8</snapHGap>
+        <snapHDirection>nearest</snapHDirection>
+        <snapVDirection>nearest</snapVDirection>
+    </defaults>
+</PaletteNode>
+
+<PaletteNode>
+    <title>&lt;b&gt;SearchForm&lt;/b&gt;</title>
+    <type>SearchForm</type>
+    <icon>DynamicForm.png</icon>
+    <showDropIcon>true</showDropIcon>
+</PaletteNode>
+
+<PaletteNode>
+    <title>&lt;b&gt;Window&lt;/b&gt;</title>
+    <type>Window</type>
+    <defaults>
+    	<showShadow>false</showShadow>
+    </defaults>
+    <icon>Window.png</icon>
+    <showDropIcon>true</showDropIcon>
+    <isClosed>true</isClosed>
+    <children>
+        <PaletteNode>
+            <title>Header Controls</title>
+            <children>
+		        <PaletteNode>
+		            <title>Icon</title>
+		            <type>WindowHeaderIcon</type>
+		            <icon>[SKINIMG]Window/headerIcon.png</icon>
+		            <showDropIcon>true</showDropIcon>
+		        </PaletteNode>
+		        <PaletteNode>
+		            <title>Label</title>
+		            <type>WindowHeaderLabel</type>
+		            <icon>ui-label.png</icon>
+		            <showDropIcon>true</showDropIcon>
+		        </PaletteNode>
+		        <PaletteNode>
+		            <title>Minimize Button</title>
+		            <type>WindowMinimizeButton</type>
+		            <icon>[SKINIMG]Window/minimize.png</icon>
+		            <showDropIcon>true</showDropIcon>
+		        </PaletteNode>
+		        <PaletteNode>
+		            <title>Maximize Button</title>
+		            <type>WindowMaximizeButton</type>
+		            <icon>[SKINIMG]Window/maximize.png</icon>
+		            <showDropIcon>true</showDropIcon>
+		        </PaletteNode>
+		        <PaletteNode>
+		            <title>Close Button</title>
+		            <type>WindowMaximizeButton</type>
+		            <icon>[SKINIMG]Window/close.png</icon>
+		            <showDropIcon>true</showDropIcon>
+		        </PaletteNode>
+            </children>
+        </PaletteNode>
+        <PaletteNode>
+            <title>Footer Controls</title>
+            <children>
+                <PaletteNode>
+                    <title>Spacer</title>
+                    <type>WindowFooterSpacer</type>
+                    <icon>LayoutSpacer.png</icon>
+                    <showDropIcon>true</showDropIcon>
+                </PaletteNode>
+		        <PaletteNode>
+		            <title>Resizer</title>
+		            <type>WindowResizer</type>
+		            <icon>[SKINIMG]Window/resizer.png</icon>
+		            <showDropIcon>true</showDropIcon>
+		        </PaletteNode>
+	        </children>
+        </PaletteNode>
+    </children>
+</PaletteNode>
+
+<PaletteNode>
+    <title>&lt;b&gt;Label&lt;/b&gt;</title>
+    <type>Label</type>
+    <defaults>
+        <contents>Label</contents>
+        <height>20</height>
+    </defaults>
+    <icon>ui-label.png</icon>
+</PaletteNode>
+
+<PaletteNode>
+    <title>&lt;b&gt;HTMLPane&lt;/b&gt;</title>
+    <type>HTMLPane</type>
+    <icon>HTMLPane.png</icon>
+</PaletteNode>
+
+<PaletteNode>
+    <title>&lt;b&gt;Img&lt;/b&gt;</title>
+    <type>Img</type>
+    <defaults>
+        <imageType>tile</imageType>
+        <src>[SKIN]grid.gif</src>
+    </defaults>
+    <icon>image.png</icon>
+</PaletteNode>
+
+<PaletteNode>
+    <parentName>0</parentName>
+    <title>&lt;b&gt;Context Menu&lt;/b&gt;</title>
+    <children>
+        <PaletteNode>
+            <title>Menu Item</title>
+            <type>MenuItem</type>
+        </PaletteNode>
+    </children>
+    <type>Menu</type>
+    <showDropIcon>true</showDropIcon>
+</PaletteNode>
+
+</PaletteNodes>

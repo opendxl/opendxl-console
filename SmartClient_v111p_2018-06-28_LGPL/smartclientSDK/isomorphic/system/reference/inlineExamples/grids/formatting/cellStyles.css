@@ -1,0 +1,82 @@
+.myBoxedGridCell,
+.myBoxedGridCellDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:black;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color:#ffffff;
+}
+.myBoxedGridCellOver,
+.myBoxedGridCellOverDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:black;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color:#c0ffc0;
+}
+.myBoxedGridCellSelected,
+.myBoxedGridCellSelectedDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:white;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color:#000080;
+}
+.myBoxedGridCellSelectedOver,
+.myBoxedGridCellSelectedOverDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:white;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color:#8080ff;
+}
+.myBoxedGridCellDisabled,
+.myBoxedGridCellDisabledDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:#808080;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color:#ffffff;
+}
+
+
+.myOtherGridCell {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:black;
+    border-bottom:1px solid #ffffff; border-top:1px solid #ffffff;
+    background-color:#ffffff;
+}
+.myOtherGridCellDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:black;
+    border-bottom:1px solid #f0f0e8; border-top:1px solid #f0f0e8;
+    background-color:#f0f0e8;
+}
+.myOtherGridCellOver,
+.myOtherGridCellOverDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:black;
+    border-bottom:1px solid #c0c0c0; border-top:1px solid #c0c0c0;
+    background-color:#ffffc0;
+}
+.myOtherGridCellSelected,
+.myOtherGridCellSelectedDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:black;
+    border-bottom:1px solid #c0c0ff; border-top:1px solid #c0c0ff;
+    background-color:#c0c0ff;
+}
+.myOtherGridCellSelectedOver,
+.myOtherGridCellSelectedOverDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:black;
+    border-bottom:1px solid #a0a0a0; border-top:1px solid #a0a0a0;
+    background-color:#e0e0ff;
+}
+.myOtherGridCellDisabled {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:#808080;
+    border-bottom:1px solid #ffffff; border-top:1px solid #ffffff;
+    background-color:#ffffff;
+}
+.myOtherGridCellDisabledDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:#808080;
+    border-bottom:1px solid #f0f0e8; border-top:1px solid #f0f0e8;
+    background-color:#f0f0e8;
+}

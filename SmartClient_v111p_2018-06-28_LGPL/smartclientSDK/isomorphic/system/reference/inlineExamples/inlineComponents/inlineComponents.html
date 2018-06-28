@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<HTML><HEAD>
+	<SCRIPT>var isomorphicDir="../../../../../isomorphic/";</SCRIPT>
+    <SCRIPT SRC=../../../../../isomorphic/system/modules/ISC_Core.js></SCRIPT>
+    <SCRIPT SRC=../../../../../isomorphic/system/modules/ISC_Foundation.js></SCRIPT>
+    <SCRIPT SRC=../../../../../isomorphic/system/modules/ISC_Containers.js></SCRIPT>
+    <SCRIPT SRC=../../../../../isomorphic/system/modules/ISC_Grids.js></SCRIPT>
+    <SCRIPT SRC=../../../../../isomorphic/system/modules/ISC_DataBinding.js></SCRIPT>
+	<SCRIPT SRC=../../../../../isomorphic/skins/TreeFrog/load_skin.js></SCRIPT>
+    <link rel="stylesheet" type="text/css" href="cssLayout.css" />
+</HEAD><BODY>
+
+<div id="wholePage">
+
+<div id="pageHeader">
+<div id="pageHeaderContent">
+<table width="100%"><tr>
+<td>
+<SCRIPT>
+isc.Img.create({width:48, height:48, src:"inline_components.png", position:"relative"})
+</SCRIPT>
+</td>
+<td>
+HTML/CSS layout with inline SmartClient components
+</td>
+</tr></table>
+</div>
+</div>
+
+
+<div id="pageLeftColumn">
+<div id="pageLeftContent">
+SmartClient allows you to incrementally upgrade your applications.<br><br>
+<SCRIPT>
+isc.ListGrid.create({
+    ID: "benefitsList",
+    position: "relative",
+    width:175, height:180, alternateRecordStyles:true, 
+    fields:[
+        {name:"benefits", title:"Benefits"}
+    ],
+    leaveScrollbarGap:false,
+    canAcceptDroppedRecords:true,
+    canDragRecordsOut:true,
+    emptyMessage:"Drag benefits from right-hand list"
+});
+</SCRIPT>
+</div>
+</div>
+
+
+<div id="pageRightColumn">
+<div id="pageRightContent">
+Here are just a few examples of common upgrade targets in existing web applications:
+<br>
+
+<div id="gridDiv">
+<SCRIPT>
+isc.ListGrid.create({
+    ID: "inlineExampleList",
+    position: "relative",
+    width:365, height:180, alternateRecordStyles:true, showAllRecords:true,
+    wrapCells: true,
+    fixedRecordHeights: false,
+    canDragRecordsOut:true,
+    canReorderRecords:true,
+    canAcceptDroppedRecords:true,
+    fields:[
+        {name:"fromHTML", title:"HTML/CSS", width:80},
+        {name:"toISC", title:"SmartClient", width:100},
+        {name:"features", title:"Features"}
+    ],
+    data:[
+        {fromHTML:"Tables", toISC:"ListGrid", benefits:"Increased scalability", features:"in-place sorting, column drag &amp; drop, scrolling with automatic background data paging"},
+        {fromHTML:"Forms", toISC:"DynamicForm", benefits:"Greater user productivity", features:"rich input controls, inline validation, field dependencies"},
+        {fromHTML:"Popups", toISC:"Window", benefits:"Enhanced user experience", features:"single-page session management, modal dialogs, total control over look &amp; feel, no popup killer conflicts"},
+        {fromHTML:"Multi-page forms", toISC:"SectionStack", benefits:"Simplified development", features:"single-page forms, easy navigation, better usability"}
+    ]
+})
+</SCRIPT>
+</div>
+
+SmartClient is compatible with dynamic CSS and JavaScript in existing applications.  Click on
+these native HTML buttons to hide or show the SmartClient ListGrid component above:<br>
+<button name="hideGridBtn" id="hideGridBtn" title="hide btn" 
+        onclick="document.getElementById('gridDiv').style.display = 'none'">hide grid</button>
+<button name="showGridBtn" id="showGridBtn" title="show btn" 
+        onclick="document.getElementById('gridDiv').style.display = ''">show grid</button>
+</div>
+</div>
+</div>
+
+
+</BODY></HTML>

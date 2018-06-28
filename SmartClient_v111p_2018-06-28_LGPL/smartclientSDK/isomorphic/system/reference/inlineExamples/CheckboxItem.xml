@@ -1,0 +1,5 @@
+<DynamicForm width="300">
+    <fields>
+        <field title="In Stock" type="checkbox"/>
+    </fields>
+</DynamicForm>

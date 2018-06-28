@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+                           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+                           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
+
+  <!-- Bean used by RPC DMI example - just a simple invocation of a spring-managed bean directly
+  from the client. -->
+  <bean id="helloWorld" class="com.isomorphic.examples.spring.HelloWorld">
+      <property name="responsePrefix" value="Hi "/>
+  </bean>
+
+  <!-- Beans used by DMI validation autoTests -->
+  <!--  -->
+
+  <!-- Bean used by the autoDerive schema from Spring bean autoTest -->
+  <!--  -->
+
+
+
+  <!-- Beans used by Hibernate Data Binding example -->
+  <bean id="supplyItemDaoTarget" class="com.isomorphic.examples.spring.SupplyItemDao">
+    <property name="sessionFactory" ref="hibernateSessionFactory"/>
+  </bean>
+
+  <!-- Transaction proxy for supplyItemDMI -->
+  <bean id="supplyItemDao" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+     <property name="transactionManager" ref="txManager"/>
+     <property name="target" ref="supplyItemDaoTarget"/>
+     <property name="transactionAttributes">
+         <props>
+             <prop key="fetch">PROPAGATION_REQUIRED</prop>
+             <prop key="add">PROPAGATION_REQUIRED</prop>
+             <prop key="update">PROPAGATION_REQUIRED</prop>
+             <prop key="remove">PROPAGATION_REQUIRED</prop>
+         </props>
+     </property>
+  </bean>
+
+  <!-- Transaction manager for supplyItemDMI and generic Spring transaction support -->
+  <bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+    <property name="sessionFactory" ref="hibernateSessionFactory"/>
+  </bean>
+    
+  <!-- Hibernate SessionFactory -->
+  <bean id="hibernateSessionFactory" 
+        class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+    <property name="configLocation" value="classpath:hibernate.cfg.xml"/>
+    <property name="mappingLocations" value="classpath:com/isomorphic/examples/SupplyItem.hbm.xml"/>
+  </bean>
+
+
+<!--  -->
+  
+  
+  
+</beans>

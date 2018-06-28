@@ -1,0 +1,22 @@
+<VLayout membersMargin="10" width="400" height="300">
+    <members>
+        <ListGrid canDragRecordsOut="true" canAcceptDroppedRecords="true" canReorderRecords="true">
+            <fields>
+                <field name="itemName" title="Item" type="text"/>
+                <field name="unitCost" title="Unit Cost" type="number"/>
+            </fields>
+            <data>
+                <record itemName="17'' LCD Monitor" unitCost="330" category="Computer Products"/>
+                <record itemName="Corporate letterhead" unitCost="20" category="Stationery"/>
+                <record itemName="Dr. Grip Pens - Black" unitCost="4.99" category="Pens and Pencils"/>
+            </data>
+        </ListGrid>
+        
+        <ListGrid canDragRecordsOut="true" canAcceptDroppedRecords="true" canReorderRecords="true">
+            <fields>
+                <field name="itemName" title="Item" type="text"/>
+                <field name="category" title="Category" type="text"/>
+            </fields>
+        </ListGrid>
+    </members>
+</VLayout>

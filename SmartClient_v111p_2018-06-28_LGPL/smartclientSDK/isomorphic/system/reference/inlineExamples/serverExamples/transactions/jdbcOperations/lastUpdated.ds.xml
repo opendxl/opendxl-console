@@ -1,0 +1,35 @@
+<DataSource
+    ID="lastUpdated"
+    serverType="sql"
+    tableName="lastUpdated"
+    testFileName="/examples/shared/ds/serverExamples/test_data/lastUpdated.data.xml"
+>
+
+    <!-- This is a dummy dataSource, based on a table that contains a single row containing a
+         timestamp that is updated by various transaction samples to demonstrate that 
+         operations have been committed or rolled back  -->
+
+    <fields>
+        <field name="pk" type="integer" primaryKey="true" hidden="true" />
+        <field name="lastUpdatedTime"   type="datetime"  />
+    </fields>
+    
+    <operationBindings>
+        <operationBinding operationType="update" operationId="goodJDBCUpdate" 
+                          serverMethod="goodJDBCUpdate">
+            <serverObject 
+                lookupStyle="new" 
+                className="com.isomorphic.examples.server.transactions.JDBCOperations" 
+            />
+        </operationBinding>
+        <operationBinding operationType="update" operationId="badJDBCUpdate" 
+                          serverMethod="badJDBCUpdate">
+            <serverObject 
+                lookupStyle="new" 
+                className="com.isomorphic.examples.server.transactions.JDBCOperations" 
+            />
+        </operationBinding>
+    </operationBindings>
+    
+    
+</DataSource>

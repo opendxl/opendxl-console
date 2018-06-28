@@ -1,0 +1,7 @@
+<DataSource
+    ID="supplyItemJPAAutoDerive"
+    serverType="jpa"
+    autoDeriveSchema="true"
+    schemaBean="com.isomorphic.examples.SupplyItemHB"
+/>
+

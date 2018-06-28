@@ -1,0 +1,6 @@
+<DataSource ID="hostedDataSources_testData" serverType="sql" dbName="vbTeam" ownerIdField="ownerId" inheritsFrom="ProjectFile">
+    <fields>
+        <field name="id" primaryKey="true" type="sequence"/>
+        <field name="ownerId"/>
+    </fields>
+</DataSource>

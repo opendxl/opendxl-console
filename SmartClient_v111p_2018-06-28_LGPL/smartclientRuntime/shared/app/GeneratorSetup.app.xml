@@ -1,0 +1,9 @@
+<Application>
+    <rpcBindings>
+        <ServerObject ID="GeneratorSetup" className="com.isomorphic.examples.server.editableServerSideDataSource.GeneratorSetup">
+            <visibleMethods>
+                <method name="setupGenerator"/>
+            </visibleMethods>
+        </ServerObject>
+    </rpcBindings>
+</Application>

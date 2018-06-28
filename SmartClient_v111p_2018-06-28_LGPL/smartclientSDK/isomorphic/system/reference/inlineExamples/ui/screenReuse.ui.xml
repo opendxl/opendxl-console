@@ -1,0 +1,16 @@
+<HLayout xmlns:xsi="http://www.w3.org/1999/XMLSchema-instance"
+     ID="componentsLayout" autoDraw="false" membersMargin="10">
+    <members>
+        <ListGrid xmlns:xsi="http://www.w3.org/1999/XMLSchema-instance" 
+            ID="listGrid" autoDraw="false" autoFetchData="true" width="600" height="400">
+        </ListGrid>
+        
+        <VLayout  membersMargin="5">
+            <members>
+                <DynamicForm ID="editForm" autoDraw="false">
+                </DynamicForm>
+                <Button ID="saveButton" title="Save" autoDraw="false" layoutAlign="center" disabled="true"/>
+            </members>
+        </VLayout>
+    </members>
+</HLayout>

@@ -1,0 +1,27 @@
+<DataSource
+    ID="cartItem"
+    serverType="sql"
+    tableName="cartItem"
+    testFileName="/examples/shared/ds/serverExamples/test_data/salesOrderItem.data.xml"
+>
+    <fields>
+        <field name="pk" type="sequence" primaryKey="true" hidden="true" />
+        <field name="sessionId" type="text" />
+        <field name="itemID" type="integer" foreignKey="supplyItem.itemID" />
+        <field name="unitPrice" type="float" />
+        <field name="quantity" type="integer" />
+        <field name="itemName" type="text" tableName="supplyItem" />
+    </fields>
+    
+    <serverObject className="com.isomorphic.examples.server.userSpecificData.CartDMI"
+                  methodName="enforceUserAccess"/>
+
+    <operationBindings>
+        <operationBinding operationType="fetch">
+            <tableClause>cartItem, supplyItem</tableClause>
+            <whereClause>cartItem.itemID = supplyItem.itemID AND ($defaultWhereClause)</whereClause>
+        </operationBinding>
+    </operationBindings>
+    
+</DataSource>
+ 

@@ -1,0 +1,14 @@
+<VLayout ID="componentsLayout" autoDraw="false">
+     <members>
+        <DynamicForm ID="saveForm" dataSource="supplyItem" autoDraw="false" width="300" titleWidth="100">
+            <items>
+                <HeaderItem name="headerItem" defaultValue="Enter new Stock Item" />
+                <TextItem name="itemName" title="Item Name" />
+                <NumberItem name="unitCost" title="Price" />
+                <CheckboxItem name="inStock" title="In stock" defaultValue="false" />
+                <DateItem name="nextShipment" useTextField="true" title="Stock Date" />
+            </items>
+        </DynamicForm>
+        <Button ID="saveButton" title="Save" autoDraw="false" />
+    </members>
+</VLayout>
