@@ -41,9 +41,9 @@ class OpenDxlConsole(Application):
         self._password = None
         self._unique_id = None
         if unique_id:
-            m = hashlib.md5()
-            m.update(unique_id)
-            self._unique_id = m.hexdigest()
+            md5 = hashlib.md5()
+            md5.update(unique_id)
+            self._unique_id = md5.hexdigest()
 
     @property
     def user_cookie_name(self):

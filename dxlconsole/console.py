@@ -180,7 +180,8 @@ class LoginHandler(RequestHandler):
         password = self.get_argument("password")
         if name == self.application.bootstrap_app.username and \
                         password == self.application.bootstrap_app.password:
-            self.set_secure_cookie(self.application.bootstrap_app.user_cookie_name, self.get_argument("username"))
+            self.set_secure_cookie(self.application.bootstrap_app.user_cookie_name,
+                                   self.get_argument("username"))
             self.redirect("/")
         else:
             self.redirect("/login")

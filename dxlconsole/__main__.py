@@ -65,12 +65,12 @@ else:
     logger.setLevel(logging.INFO)
 
 # Determine the unique identifier (if applicable)
-unique_id = None
+UNIQUE_ID = None
 if len(sys.argv) >= 3:
-    unique_id = sys.argv[2]
+    UNIQUE_ID = sys.argv[2]
 
 # Create the application
-with OpenDxlConsole(sys.argv[1], unique_id) as app:
+with OpenDxlConsole(sys.argv[1], UNIQUE_ID) as app:
     try:
         # Run the application
         app.run()
