@@ -70,7 +70,7 @@ class ConsoleWebSocketHandler(WebSocketHandler):
         self._module = module
 
     def get_current_user(self):
-        return self.get_secure_cookie("user")
+        return self.get_secure_cookie(self.application.bootstrap_app.user_cookie_name)
 
     def data_received(self, chunk):
         pass

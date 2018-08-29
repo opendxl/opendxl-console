@@ -1,5 +1,6 @@
 from __future__ import absolute_import
 import logging
+import hashlib
 
 from dxlbootstrap.app import Application
 from .console import WebConsole
@@ -24,11 +25,12 @@ class OpenDxlConsole(Application):
     #: Whether the console is embedded in the broker
     GENERAL_LOCAL_BROKER_PROP = "localBroker"
 
-    def __init__(self, config_dir):
+    def __init__(self, config_dir, unique_id=None):
         """
         Constructor parameters:
 
         :param config_dir: The location of the configuration files for the application
+        :param unique_id: The unique identifier of the console (optional)
         """
         super(OpenDxlConsole, self).__init__(config_dir, "dxlconsole.config")
 
@@ -37,6 +39,20 @@ class OpenDxlConsole(Application):
         self._local_broker = False
         self._username = None
         self._password = None
+        self._unique_id = None
+        if unique_id:
+            m = hashlib.md5()
+            m.update(unique_id)
+            self._unique_id = m.hexdigest()
+
+    @property
+    def user_cookie_name(self):
+        """
+        Returns the cookie name to use for the user
+
+        :return: The cookie name to use for the user
+        """
+        return self._unique_id + "_user" if self._unique_id else "user"
 
     @property
     def console_name(self):
