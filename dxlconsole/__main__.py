@@ -39,8 +39,8 @@ signal.signal(signal.SIGTERM, signal_handler)
 signal.signal(signal.SIGINT, signal_handler)
 
 # Validate command line
-if len(sys.argv) != 2:
-    print("Usage: dxlconsole <configuration files directory>")
+if len(sys.argv) < 2:
+    print("Usage: dxlconsole <configuration files directory> [unique id]")
     sys.exit(1)
 
 #
@@ -64,8 +64,13 @@ else:
     logger.addHandler(console_handler)
     logger.setLevel(logging.INFO)
 
+# Determine the unique identifier (if applicable)
+UNIQUE_ID = None
+if len(sys.argv) >= 3:
+    UNIQUE_ID = sys.argv[2]
+
 # Create the application
-with OpenDxlConsole(sys.argv[1]) as app:
+with OpenDxlConsole(sys.argv[1], UNIQUE_ID) as app:
     try:
         # Run the application
         app.run()

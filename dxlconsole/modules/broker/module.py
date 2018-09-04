@@ -116,7 +116,7 @@ class BrokerInfoHandler(BaseRequestHandler):
                     dxl_response.error_message, dxl_response.error_code)
                 raise Exception(err_msg)
 
-            brokerinfo = list(dxl_response_dict['brokers'].values())[0]
+            brokerinfo = dxl_response_dict['brokers'][dxl_response.source_broker_id]
             # Send the broker health request
             req = Request(BrokerModule.BROKER_HEALTH_TOPIC)
             # targeting the connected broker

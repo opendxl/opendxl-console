@@ -13,7 +13,7 @@ class BaseRequestHandler(RequestHandler):
 
         :return: The current user for the request
         """
-        return self.get_secure_cookie("user")
+        return self.get_secure_cookie(self.application.bootstrap_app.user_cookie_name)
 
     def data_received(self, chunk):
         """Implement this method to handle streamed request data.

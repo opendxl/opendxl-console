@@ -160,7 +160,7 @@ class LoginHandler(RequestHandler):
                 details += ",".join([value.decode("utf8") for value in values])
             if username == self.application.bootstrap_app.username and \
                             password == self.application.bootstrap_app.password:
-                self.set_secure_cookie("user", username)
+                self.set_secure_cookie(self.application.bootstrap_app.user_cookie_name, username)
                 self.redirect(details)
             else:
                 self.set_status(401)
@@ -180,7 +180,8 @@ class LoginHandler(RequestHandler):
         password = self.get_argument("password")
         if name == self.application.bootstrap_app.username and \
                         password == self.application.bootstrap_app.password:
-            self.set_secure_cookie("user", self.get_argument("username"))
+            self.set_secure_cookie(self.application.bootstrap_app.user_cookie_name,
+                                   self.get_argument("username"))
             self.redirect("/")
         else:
             self.redirect("/login")
@@ -203,7 +204,7 @@ class LogoutHandler(RequestHandler):
         """
         HTTP GET
         """
-        self.clear_cookie("user")
+        self.clear_cookie(self.application.bootstrap_app.user_cookie_name)
         self.redirect("/login")
 
 
