@@ -14,8 +14,7 @@ The OpenDXL Console is a pluggable web-based console that provides a high-level 
 
 See the [Wiki](https://github.com/opendxl/opendxl-console/wiki) for an overview of the OpenDXL Console and usage instructions.
 
-See the [OpenDXL Console documentation](https://opendxl.github.io/opendxl-console/pydoc) for
-installation instructions.
+See the [OpenDXL Console documentation](https://opendxl.github.io/opendxl-console/pydoc) for installation instructions.
 
 ## Installation
 
@@ -28,8 +27,7 @@ To start using the OpenDXL Console:
 
 ## Docker Support
 
-A pre-built Docker image can be used as an alternative to installing a Python environment with the
-modules required for the OpenDXL Console.
+A pre-built Docker image can be used as an alternative to installing a Python environment with the modules required for the OpenDXL Console.
 
 See the [Docker Support Documentation](https://opendxl.github.io/opendxl-console/pydoc/docker.html) for details.
 
