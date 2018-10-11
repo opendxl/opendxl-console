@@ -6,13 +6,16 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>dxlconsole.modules.monitor.websocket_handler module &#8212; OpenDXL Console 0.2.1 documentation</title>
+    <title>dxlconsole.modules.monitor.websocket_handler module &#8212; OpenDXL Console 0.2.2 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" src="_static/documentation_options.js"></script>
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" /> 
   </head><body>
@@ -25,7 +28,7 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">OpenDXL Console 0.2.1 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">OpenDXL Console 0.2.2 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -84,6 +87,11 @@ phrase was supplied, these values will be available as the attributes
 <p>The arguments to <cite>open</cite> are extracted from the <cite>tornado.web.URLSpec</cite>
 regular expression, just like the arguments to
 <cite>tornado.web.RequestHandler.get</cite>.</p>
+<p><cite>open</cite> may be a coroutine. <cite>on_message</cite> will not be called until
+<cite>open</cite> has returned.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 5.1: </span><code class="docutils literal notranslate"><span class="pre">open</span></code> may be a coroutine.</p>
+</div>
 </dd></dl>
 
 </dd></dl>
@@ -128,12 +136,12 @@ regular expression, just like the arguments to
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">OpenDXL Console 0.2.1 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">OpenDXL Console 0.2.2 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, McAfee LLC.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.4.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.1.
     </div>
   </body>
 </html>
