@@ -31,6 +31,14 @@ class CertificateModule(Module):
     ZIP_CLIENT_CERT_FILE_NAME = "client.crt"
     # Client key file name in the zip file
     ZIP_CLIENT_KEY_FILE_NAME = "client.key"
+    # Client CA certificate file name in the zip file
+    ZIP_CLIENT_CA_CERT_FILE_NAME = "ca-client.crt"
+    # Broker certificate file name in the zip file
+    ZIP_BROKER_CERT_FILE_NAME = "broker.crt"
+    # Broker key file name in the zip file
+    ZIP_BROKER_KEY_FILE_NAME = "broker.key"
+    # Broker CA list file name in the zip file
+    ZIP_BROKER_CA_LIST_FILE_NAME = "ca-brokers.lst"
     # Broker CA bundle file name in the zip file
     ZIP_BROKER_CA_BUNDLE_FILE_NAME = "ca-broker.crt"
     # The DXL client configuration file name in the zip file
@@ -49,6 +57,12 @@ class CertificateModule(Module):
     CERTS_CLIENT_CA_PASSWORD_PROP = "clientCaPassword"
     #: The location of the broker CA bundle file
     CERTS_BROKER_CA_BUNDLE_FILE_PROP = "brokerCaBundleFile"
+    #: The location of the broker CA key file
+    CERTS_BROKER_CA_KEY_FILE_PROP = "brokerCaKeyFile"
+    #: The password for the broker CA
+    CERTS_BROKER_CA_PASSWORD_PROP = "brokerCaPassword"
+    #: The location of the broker CA list file
+    CERTS_BROKER_CA_LIST_FILE_PROP = "brokerCaListFile"
     #: The location of the client configuration template file
     CLIENT_CONFIG_TEMPLATE_FILE_PROP = "clientConfigTemplateFile"
 
@@ -64,11 +78,14 @@ class CertificateModule(Module):
         bootstrap_app = self.app.bootstrap_app
         config = bootstrap_app.config
 
-        self._client_ca_cert_file = None
-        self._client_ca_key_file = None
-        self._client_ca_password = None
-        self._broker_ca_bundle_file = None
-        self._client_config_template_file = None
+        self._client_ca_cert_file = ""
+        self._client_ca_key_file = ""
+        self._client_ca_password = ""
+        self._broker_ca_bundle_file = ""
+        self._broker_ca_key_file = ""
+        self._broker_ca_password = ""
+        self._broker_ca_list_file = ""
+        self._client_config_template_file = ""
 
         # Client CA certificate file
         try:
@@ -97,6 +114,31 @@ class CertificateModule(Module):
                                                      self.CERTS_BROKER_CA_BUNDLE_FILE_PROP)
         except Exception:
             pass
+
+        # Broker CA key file
+        try:
+            self._broker_ca_key_file = config.get(
+                self.CERTS_CONFIG_SECTION, self.CERTS_BROKER_CA_KEY_FILE_PROP)
+        except Exception:
+            if self._broker_ca_bundle_file:
+                self._broker_ca_key_file = os.path.splitext(
+                    self._broker_ca_bundle_file)[0] + ".key"
+
+        # Broker CA password
+        try:
+            self._broker_ca_password = config.get(
+                self.CERTS_CONFIG_SECTION, self.CERTS_BROKER_CA_PASSWORD_PROP)
+        except Exception:
+            pass
+
+        # Broker CA list file
+        try:
+            self._broker_ca_list_file = config.get(
+                self.CERTS_CONFIG_SECTION, self.CERTS_BROKER_CA_LIST_FILE_PROP)
+        except Exception:
+            if self._broker_ca_bundle_file:
+                self._broker_ca_list_file = os.path.splitext(
+                    self._broker_ca_bundle_file)[0] + "s.lst"
 
         # Client configuration template file
         try:
@@ -143,6 +185,33 @@ class CertificateModule(Module):
         return self._broker_ca_bundle_file
 
     @property
+    def broker_ca_key_file(self):
+        """
+        Returns the path to the broker CA key file
+
+        :return: The path to the broker CA key file
+        """
+        return self._broker_ca_key_file
+
+    @property
+    def broker_ca_password(self):
+        """
+        Returns the password for the broker CA
+
+        :return: The password for the broker CA
+        """
+        return self._broker_ca_password
+
+    @property
+    def broker_ca_list_file(self):
+        """
+        Returns the path to the broker CA list file
+
+        :return: The path to the broker CA list file
+        """
+        return self._broker_ca_list_file
+
+    @property
     def client_config_template_file(self):
         """
         Returns the path to the client configuration template file
@@ -169,7 +238,6 @@ class CertificateModule(Module):
         :return: Whether the module is enabled
         """
         bootstrap_app = self.app.bootstrap_app
-
         return \
             bootstrap_app.local_broker and \
             self.client_ca_cert_file and \
@@ -178,7 +246,10 @@ class CertificateModule(Module):
             os.path.isfile(self.client_ca_key_file) and \
             self.broker_ca_bundle_file and \
             os.path.isfile(self.broker_ca_bundle_file) and \
-            self.client_ca_password and \
+            self.broker_ca_key_file and \
+            os.path.isfile(self.broker_ca_key_file) and \
+            (not self.broker_ca_list_file or
+             os.path.isfile(self.broker_ca_list_file)) and \
             self.client_config_template_file and \
             os.path.isfile(self.client_config_template_file)
 
@@ -271,25 +342,26 @@ class _BaseCertHandler(BaseRequestHandler):
 
         return config_parser
 
-    def _create_client_cert(self, temp_csr_file, temp_cert_file):
+    @staticmethod
+    def _create_cert(temp_csr_file, temp_cert_file,
+                     ca_cert_file, ca_key_file, ca_password):
         """
-        Create a client certificate signed by the Client CA of the standalone broker.
+        Create a certificate signed by the supplied CA.
 
         :param temp_csr_file: CSR file for creating the certificate
         :param temp_cert_file: Certificate file created
+        :param ca_cert_file: Certificate file for the CA issuing the certificate
+        :param ca_key_file: Private key file for the CA issuing the certificate
+        :param ca_password: Password used to unencrypt the CA private key file
         :raise Exception: Error running the openssl command to create the certificate
         """
-        # load the client ca cert for signing
-        client_ca_file = self._module.client_ca_cert_file
-        client_ca_key_file = self._module.client_ca_key_file
+        password = 'pass:' + ca_password
 
-        password = 'pass:' + self._module.client_ca_password
         # Sign the CSR with the client cert file
         return_code = subprocess.call(
             ['openssl', 'x509', '-req', '-passin', password,
              '-CAcreateserial', '-days', '3650',
-             '-CA', client_ca_file, '-CAkey',
-             client_ca_key_file,
+             '-CA', ca_cert_file, '-CAkey', ca_key_file,
              '-outform', 'PEM',
              '-out', temp_cert_file.name, '-in',
              temp_csr_file.name],
@@ -319,8 +391,9 @@ class GenerateCertHandler(_BaseCertHandler):
         """
         pass
 
-    def _generate_client_cert(self, subject, temp_key_file, temp_csr_file,
-                              temp_cert_file):
+    def _generate_cert(self, subject, temp_key_file, temp_csr_file,
+                       temp_cert_file, ca_cert_file, ca_key_file,
+                       ca_password):
         """
         Uses openssl to create a csr with the info provided and sign the cert with the CA key
         The cert is written to the disk using the specified file names
@@ -329,6 +402,9 @@ class GenerateCertHandler(_BaseCertHandler):
         :param temp_key_file: temp key file name to persist the key
         :param temp_csr_file: temp csr file to persist the csr
         :param temp_cert_file: temp csr file to persist the certificate
+        :param ca_cert_file: Certificate file for the CA issuing the certificate
+        :param ca_key_file: Private key file for the CA issuing the certificate
+        :param ca_password: Password used to unencrypt the CA private key file
         """
 
         # Create the private key and csr using openssl command
@@ -346,7 +422,8 @@ class GenerateCertHandler(_BaseCertHandler):
         logger.debug("Temp csr file: %s", temp_csr_file.name)
 
         # call openssl command to create the cert
-        self._create_client_cert(temp_csr_file, temp_cert_file)
+        self._create_cert(temp_csr_file, temp_cert_file,
+                          ca_cert_file, ca_key_file, ca_password)
 
     @staticmethod
     def _generate_subject_str_from_request(request_params):
@@ -416,6 +493,74 @@ class GenerateCertHandler(_BaseCertHandler):
 
         return subject
 
+    def _create_cert_zip_file(self, cert_file, key_file, config_type="client"):
+        """
+        Create a zip file with certificate-related content.
+
+        :param config_type: Type of zip file to create. For "client" (the
+            default), fill the zip file with client configuration content. For
+            "broker", fill the zip file with broker keystore content.
+        :param cert_file: The certificate file to include in the zip file.
+        :param key_file: The key file to include in the zip file.
+        :return: Content of the zip file (as bytes)
+        """
+        logger.debug("Updating dxlclient.config information")
+
+        # create the dxlclient.config file
+        config_out = self._updateconfig_file()
+
+        # build the zip file in memory that is sent back to the caller
+        in_memory_output_file = BytesIO()
+        zip_file = ZipFile(in_memory_output_file, mode='w')
+
+        broker_ca_bundle_file = self._module.broker_ca_bundle_file
+        broker_ca_list_file = self._module.broker_ca_list_file
+        client_ca_cert_file = self._module.client_ca_cert_file
+
+        try:
+            if config_type == "broker":
+                # Broker keystore
+                logger.debug("Adding broker certificate key file to zip")
+                zip_file.write(
+                    key_file.name,
+                    arcname=CertificateModule.ZIP_BROKER_KEY_FILE_NAME)
+                logger.debug("Adding broker certificate file to zip")
+                zip_file.write(
+                    cert_file.name,
+                    arcname=CertificateModule.ZIP_BROKER_CERT_FILE_NAME)
+                if os.path.exists(broker_ca_list_file):
+                    logger.debug("Adding broker CA list file to zip")
+                    zip_file.write(
+                        broker_ca_list_file,
+                        arcname=CertificateModule.ZIP_BROKER_CA_LIST_FILE_NAME)
+                logger.debug(
+                    "Adding DXL Client certificate authority to zip")
+                zip_file.write(
+                    client_ca_cert_file,
+                    arcname=CertificateModule.ZIP_CLIENT_CA_CERT_FILE_NAME)
+            else:
+                # Client configuration
+                logger.debug("Adding client certificate file to zip")
+                zip_file.write(
+                    cert_file.name,
+                    arcname=CertificateModule.ZIP_CLIENT_CERT_FILE_NAME)
+                logger.debug("Adding client certificate key file to zip")
+                zip_file.write(
+                    key_file.name,
+                    arcname=CertificateModule.ZIP_CLIENT_KEY_FILE_NAME)
+                logger.debug("Adding DXL Config file to zip")
+                zip_file.writestr(CertificateModule.DXL_CONFIG_FILE_NAME,
+                                  config_out.encode("utf8"))
+            logger.debug("Adding DXL Broker certificate authority to zip")
+            zip_file.write(
+                broker_ca_bundle_file,
+                arcname=CertificateModule.ZIP_BROKER_CA_BUNDLE_FILE_NAME)
+        finally:
+            zip_file.close()  # have to close before we read the contents
+
+        in_memory_output_file.seek(0)
+        return in_memory_output_file.getvalue()
+
     @tornado.web.authenticated
     def post(self, *args, **kwargs):
         """
@@ -432,6 +577,22 @@ class GenerateCertHandler(_BaseCertHandler):
         try:
             request_params = json.loads(self.request.body.decode("utf8"))
 
+            # Determine the type of cert package to create
+            config_type = request_params.get("configType", "client").lower()
+            if config_type == "client":
+                # Client configuration
+                ca_cert_file = self._module.client_ca_cert_file
+                ca_key_file = self._module.client_ca_key_file
+                ca_password = self._module.client_ca_password
+            elif config_type == "broker":
+                # Broker keystore
+                ca_cert_file = self._module.broker_ca_bundle_file
+                ca_key_file = self._module.broker_ca_key_file
+                ca_password = self._module.broker_ca_password
+            else:
+                raise Exception(
+                    "Unsupported configType: {}".format(config_type))
+
             # generate the cert subject string
             subject = self._generate_subject_str_from_request(request_params)
 
@@ -440,37 +601,13 @@ class GenerateCertHandler(_BaseCertHandler):
             temp_cert_file = NamedTemporaryFile('w+b', delete=False)
 
             # generate the cert with the subject string using the temp files above
-            self._generate_client_cert(subject, temp_key_file, temp_csr_file,
-                                       temp_cert_file)
+            self._generate_cert(subject, temp_key_file, temp_csr_file,
+                                temp_cert_file, ca_cert_file, ca_key_file,
+                                ca_password)
 
-            logger.debug("Updating dxlclient.config information")
-
-            # create the dxlclient.config file
-            config_out = self._updateconfig_file()
-
-            # build the zip file in memory that is sent back to the caller
-            in_memory_output_file = BytesIO()
-            zip_file = ZipFile(in_memory_output_file, mode='w')
-
-            broker_ca_bundle_file = self._module.broker_ca_bundle_file
-
-            try:
-                logger.debug("Adding client certificate file to zip")
-                zip_file.write(temp_cert_file.name,
-                               arcname=CertificateModule.ZIP_CLIENT_CERT_FILE_NAME)
-                logger.debug("Adding client certificate key file to zip")
-                zip_file.write(temp_key_file.name,
-                               arcname=CertificateModule.ZIP_CLIENT_KEY_FILE_NAME)
-                logger.debug("Adding DXL Broker certificate authority to zip")
-                zip_file.write(broker_ca_bundle_file,
-                               arcname=CertificateModule.ZIP_BROKER_CA_BUNDLE_FILE_NAME)
-                logger.debug("Adding DXL Config file to zip")
-                zip_file.writestr(CertificateModule.DXL_CONFIG_FILE_NAME, config_out.encode("utf8"))
-            finally:
-                zip_file.close()  # have to close before we read the contents
-
-            in_memory_output_file.seek(0)
-            contents = in_memory_output_file.getvalue()
+            # Create the cert zip file package
+            contents = self._create_cert_zip_file(temp_cert_file,
+                                                  temp_key_file, config_type)
 
             # write the base64 encoded zip file to the response stream
             self.write(encode(contents, 'base64'))
@@ -572,7 +709,10 @@ class ProvisionManagementServiceHandler(_BaseCertHandler):
                 csr_file.write(csr_string)
             #
             # generate the cert with the subject string using the temp files above
-            self._create_client_cert(temp_csr_file, temp_cert_file)
+            self._create_cert(temp_csr_file, temp_cert_file,
+                              self._module.client_ca_cert_file,
+                              self._module.client_ca_key_file,
+                              self._module.client_ca_password)
 
             broker_ca_bundle_file = self._module.broker_ca_bundle_file
 

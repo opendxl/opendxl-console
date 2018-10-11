@@ -2,6 +2,7 @@
 openConsole.DynamicForm.create({
     ID: "certs_generate_form",
     fields: [
+        {name: "configType", title:"Configuration Type", type:"select", required:true, value: "client", valueMap: {client: "Client Configuration", broker: "Broker Keystore"}},
         {name: "cn", title:"Common Name", type:"text", required:true, hint: "(e.g. server FQDN or YOUR name)", wrapTitle:false, wrapHintText: false},
         {name: "country", title:"Country Name", required:false,hint: "(2 letter code)",
             validators:[{type:"lengthRange",errorMessage:"Value must be 2 characters long.",max:2}],
@@ -13,13 +14,20 @@ openConsole.DynamicForm.create({
         {name: "email", title:"Email Address", type:"text", required:false, wrapTitle:false,wrapHintText: false}
     ],
     doSubmit : function () {
-        certs_generateResponse.setContents("Generating client configuration...")
+        var formData = certs_generate_form.getValues();
+        var callbackFunc = "certs_downloadClientPackage";
+        var message = "client configuration";
+        if (formData.configType === "broker") {
+            callbackFunc = "certs_downloadBrokerKeystore";
+            message = "broker keystore";
+        }
+        certs_generateResponse.setContents("Generating " + message + "...");
         openConsole.RPCManager.sendRequest({
-            data: JSON.stringify(certs_generate_form.getValues()),
+            data: JSON.stringify(formData),
             actionURL: "/generate_cert",
-            callback: 'certs_downloadClientPackage(rpcResponse, data)',
+            callback: callbackFunc + "(rpcResponse, data)",
             willHandleError: true
-        })
+        });
     }
 });
 
@@ -42,28 +50,50 @@ openConsole.Form.VLayout.create({
 });
 
 openConsole.ModuleWindow.create({
-    ID:"certs_stack",
-    title: "Generate Client Configuration",
+    ID: "certs_stack",
+    title: "Generate Configuration",
     items: [ "certs_layout" ]
 });
 
 <!--https://github.com/danguer/blog-examples/blob/master/LICENSE-->
 /**
- * Converts the response data to bytes and saves the dxl client package into a zip file
+ * Converts the response data to bytes and saves the dxl package into a zip file
  *
+ * @param {String} packageType
+ * @param {String} packageName
  * @param {Object} rpcResponse
  * @param {Object} data
  */
-function certs_downloadClientPackage(rpcResponse, data) {
+function certs_downloadPackage(packageType, packageName, rpcResponse, data) {
     if(rpcResponse.httpResponseCode == 200) {
-        certs_generateResponse.setContents("Downloading cert package for...")
+        certs_generateResponse.setContents("Downloading cert package for...");
         var filedata = Base64Binary.decodeArrayBuffer(data);
-        certs_saveByteArrayToFile([filedata], 'opendxlclientconfig.zip');
-        certs_generateResponse.setContents("Successfully downloaded client package.")
+        certs_saveByteArrayToFile([filedata], packageName + ".zip");
+        certs_generateResponse.setContents("Successfully downloaded " + packageType + " package.")
     } else {
         //failure response
-        certs_generateResponse.setContents(rpcResponse.httpResponseText)
+        certs_generateResponse.setContents(rpcResponse.httpResponseText);
     }
+}
+
+/**
+* Converts the response data to bytes and saves the dxl client configuration package into a zip file
+*
+* @param {Object} rpcResponse
+* @param {Object} data
+*/
+function certs_downloadClientPackage(rpcResponse, data) {
+    certs_downloadPackage("client configuration", "opendxlclientconfig", rpcResponse, data);
+}
+
+/**
+* Converts the response data to bytes and saves the dxl broker keystore package into a zip file
+*
+* @param {Object} rpcResponse
+* @param {Object} data
+*/
+function certs_downloadBrokerKeystore(rpcResponse, data) {
+    certs_downloadPackage("broker keystore", "opendxlbrokerkeystore", rpcResponse, data);
 }
 
 <!--https://stackoverflow.com/questions/37522011/permission-denied-for-clicking-link-in-internet-explorer-11-->
