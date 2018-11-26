@@ -139,7 +139,8 @@ disable=print-statement,
         protected-access,
         similarities,
 	useless-object-inheritance,
-	unnecessary-pass
+	unnecessary-pass,
+	cyclic-import
 
 
 # Enable the message, report, category or checker with the given id(s). You can
