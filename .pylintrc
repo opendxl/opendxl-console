@@ -138,7 +138,8 @@ disable=print-statement,
         missing-docstring,
         protected-access,
         similarities,
-	useless-object-inheritance
+	useless-object-inheritance,
+	unnecessary-pass
 
 
 # Enable the message, report, category or checker with the given id(s). You can
