@@ -34,15 +34,16 @@ var monitor_serviceListPane = openConsole.TreeGrid.create({
                             {name:"managed", title:"Managed", type: "string"},
                             {name:"registrationTime", title:"Registration Time", type: "string"},
                             {name:"ttlMins", title:"TTL(min)", type: "string"},
-                            {name:"requestTopics", title:"Request Topics", type: "string"},
+                            {name:"requestChannels", title:"Request Topics", type: "string"},
                             {name:"unauthorizedTopics", title:"Unauthorized Topics", type: "string"},
                             {name:"certificates", title:"Certificates", type: "string"},
-                            {name:"metaData", title:"META Data", type: "string"}
+                            {name:"metaData", title:"Metadata", type: "string"}
                         ],
                         formatCellValue: function formatCellValue(value, record, field) {
                             if(value != null) {
-                                if(field.name === "requestTopics" || field.name === "certificates") {
-                                    return value.join(",<br/>");
+                                if(field.name === "requestChannels" || field.name === "certificates") {
+                                    if(Array.isArray(value))
+                                        return value.join(",<br/>");
                                 } else if(field.name === "unauthorizedTopics") {
                                     return "<span style=\"color: red;\">" + value.join(",<br/>") + "</span>";
                                 } else if(field.name === "registrationTime") {
