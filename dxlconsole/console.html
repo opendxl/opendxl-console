@@ -18,6 +18,8 @@
 <BODY style="overflow:hidden">
 <SCRIPT>
 
+var console_clientId = (new Date()).getTime();
+
 Canvas.resizeFonts(3);
 Canvas.resizeControls(5);
 
@@ -294,3 +296,74 @@ var openConsole = {
         }
     }
 };
+
+var console_ws = null;
+
+$(document).ready(function() {
+    connectWebSocket();
+});
+
+function connectWebSocket()
+{
+    console_ws = new WebSocket("wss://" + location.host + "/websocket?id=" + console_clientId);
+    console_ws.onmessage = function(e) {
+        ws.messageArrived(e.data);
+    };
+    console_ws.onclose = function() {
+        isc.Window.create({
+            ID: "disconnectedWindow",
+            title: "Client Disconnected",
+            autoSize: true,
+            width: 500,
+            autoCenter: true,
+            isModal: true,
+            showModalMask: true,
+            autoDraw: true,
+            showCloseButton: false,
+            showMinimizeButton: false,
+            canDragReposition: false,
+            canDragResize: false,
+            items: [
+                isc.HTMLFlow.create({
+                    ID: "disconnectedMessage",
+                    contents: "The DXL Console has been disconnected from the server. Please refresh the console to continue.",
+                    width: "100%",
+                    height: 200,
+                    padding:5
+                }),
+            ]
+        });
+    };
+}
+
+function WebSocketListener() {
+    this.handlers = [];
+}
+
+WebSocketListener.prototype = {
+
+    addHandler: function(handler) {
+        this.handlers.push(handler);
+    },
+
+    messageArrived: function(message, thisObj) {
+        this.handlers.forEach(function(handler) {
+            handler.call(thisObj, message);
+        });
+    },
+
+    sendMessage: function(message) {
+        console_ws.send(message);
+    }
+}
+
+var ws = new WebSocketListener();
+
+// Function to send a keep-alive over the web socket
+function clientKeepAlive()
+{
+    ws.sendMessage("still alive");
+}
+
+// Send a keep-alive every minute
+setInterval(clientKeepAlive, 60000);

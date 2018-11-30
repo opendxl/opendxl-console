@@ -17,8 +17,7 @@ from .services_handler import ServiceUpdateHandler
 from .subscriptions_handler import SubscriptionsHandler
 from .messages_handler import MessagesHandler
 from .send_message_handler import SendMessageHandler
-from .websocket_handler import ConsoleWebSocketHandler
-
+from .websocket_handler import MonitorWebSocketEventHandler
 
 # Configure local logger
 logger = logging.getLogger(__name__)
@@ -38,13 +37,9 @@ class MonitorModule(Module):
     # How long to retain clients without any keep alive before evicting them
     CLIENT_RETENTION_MINUTES = 30
 
-    # A default SmartClient JSON response to show no results
-    NO_RESULT_JSON = u"""{response:{status:0,startRow:0,endRow:0,totalRows:0,data:[]}}"""
-
     # Locks for the different dictionaries shared between Monitor Handlers
     _service_dict_lock = threading.Lock()
     _client_dict_lock = threading.Lock()
-    _web_socket_dict_lock = threading.Lock()
     _pending_messages_lock = threading.Lock()
 
     def __init__(self, app):
@@ -54,9 +49,6 @@ class MonitorModule(Module):
 
         # dictionary to store DXL Client instances unique to each "session"
         self._client_dict = {}
-
-        # dictionary to store web sockets for each "session"
-        self._web_socket_dict = {}
 
         # dictionary to store incoming messages for each "session"
         self._pending_messages = {}
@@ -69,14 +61,10 @@ class MonitorModule(Module):
         self._client_config = DxlClientConfig.create_dxl_config_from_file(
             self.app.bootstrap_app.client_config_path)
 
-        # DXL Client to perform operations that are the same for all users(svc registry queries)
-        self._dxl_service_client = DxlClient(self._client_config)
-        self._dxl_service_client.connect()
-
-        self._dxl_service_client.add_event_callback(
+        self.app.dxl_service_client.add_event_callback(
             MonitorModule.SERVICE_REGISTRY_REGISTER_EVENT_TOPIC,
             _ServiceEventCallback(self))
-        self._dxl_service_client.add_event_callback(
+        self.app.dxl_service_client.add_event_callback(
             MonitorModule.SERVICE_REGISTRY_UNREGISTER_EVENT_TOPIC,
             _ServiceEventCallback(self))
 
@@ -92,14 +80,15 @@ class MonitorModule(Module):
         self._dxl_client_cleanup_thread.daemon = True
         self._dxl_client_cleanup_thread.start()
 
+        self.app.add_web_socket_event_handler(MonitorWebSocketEventHandler(self))
+
     @property
     def handlers(self):
         return [
             (r'/update_services', ServiceUpdateHandler, dict(module=self)),
             (r'/subscriptions', SubscriptionsHandler, dict(module=self)),
             (r'/messages', MessagesHandler, dict(module=self)),
-            (r'/send_message', SendMessageHandler, dict(module=self)),
-            (r'/websocket', ConsoleWebSocketHandler, dict(module=self))
+            (r'/send_message', SendMessageHandler, dict(module=self))
         ]
 
     @property
@@ -165,35 +154,6 @@ class MonitorModule(Module):
         with self._client_dict_lock:
             return client_id in self._client_dict
 
-    @staticmethod
-    def create_smartclient_response_wrapper():
-        """
-        Creates a wrapper object containing the standard fields required by SmartClient responses
-
-        :return: an initial SmartClient response wrapper
-        """
-        response_wrapper = {"response": {}}
-        response = response_wrapper["response"]
-        response["status"] = 0
-        response["startRow"] = 0
-        response["endRow"] = 0
-        response["totalRows"] = 0
-        response["data"] = []
-        return response_wrapper
-
-    def create_smartclient_error_response(self, error_message):
-        """
-        Creates an error response for the SmartClient UI with the given message
-
-        :param error_message: The error message
-        :return: The SmartClient response in dict form
-        """
-        response_wrapper = self.create_smartclient_response_wrapper()
-        response = response_wrapper["response"]
-        response["status"] = -1
-        response["data"] = error_message
-        return response
-
     def queue_message(self, message, client_id):
         """
         Adds the given message to the pending messages queue for the give client.
@@ -235,11 +195,11 @@ class MonitorModule(Module):
         service list on an interval or if the DXL client reconnects
         """
         while True:
-            with self._dxl_service_client._connected_lock:
-                self._dxl_service_client._connected_wait_condition.wait(
+            with self.app.dxl_service_client._connected_lock:
+                self.app.dxl_service_client._connected_wait_condition.wait(
                     self.SERVICE_UPDATE_INTERVAL)
 
-            if self._dxl_service_client.connected:
+            if self.app.dxl_service_client.connected:
                 logger.debug("Refreshing service list.")
                 self._refresh_all_services()
 
@@ -254,7 +214,7 @@ class MonitorModule(Module):
                 for key in list(self._client_dict):
                     if self._client_dict[key][1] < \
                             (datetime.datetime.now() - datetime.timedelta(
-                                    minutes=self.CLIENT_RETENTION_MINUTES)):
+                                minutes=self.CLIENT_RETENTION_MINUTES)):
                         logger.debug(
                             "Evicting DXL client for client_id: %s", key)
                         del self._client_dict[key]
@@ -270,7 +230,7 @@ class MonitorModule(Module):
 
         req.payload = "{}"
         # Send the request
-        dxl_response = self._dxl_service_client.sync_request(req, 5)
+        dxl_response = self.app.dxl_service_client.sync_request(req, 5)
         dxl_response_dict = MessageUtils.json_payload_to_dict(dxl_response)
         logger.info("Service registry response: %s", dxl_response_dict)
 
@@ -284,7 +244,7 @@ class MonitorModule(Module):
 
     def update_service(self, service_event):
         """
-        Replaces a stored service data withe the one from the provided DXL service event
+        Replaces a stored service data with the one from the provided DXL service event
 
         :param service_event: the  DXL service event containing the service
         """
@@ -317,39 +277,11 @@ class MonitorModule(Module):
         """
         return self.app.io_loop
 
-    def add_web_socket(self, client_id, web_socket):
-        """
-        Stores a web socket associated with the given client id
-
-        :param client_id: the client id key the web socket to
-        :param web_socket:  the web socket to store
-        """
-        logger.debug("Adding web socket for client: %s", client_id)
-        with self._web_socket_dict_lock:
-            self._web_socket_dict[client_id] = web_socket
-
-    def remove_web_socket(self, client_id):
-        """
-        Removes any web socket associated with the given client_id
-
-        :param client_id: The client ID
-        """
-        logger.debug("Removing web socket for client: %s", client_id)
-        with self._web_socket_dict_lock:
-            self._web_socket_dict.pop(client_id, None)
-
     def notify_web_sockets(self):
         """
         Notifies all web sockets that there are pending service updates
         """
-        with self._web_socket_dict_lock:
-            for key in self._web_socket_dict:
-                try:
-                    self.io_loop.add_callback(
-                        self._web_socket_dict[key].write_message,
-                        u"serviceUpdates")
-                except Exception:
-                    pass
+        self.app.send_all_web_socket_message(u"serviceUpdates")
 
     def get_message_topic(self, message):
         """
@@ -360,7 +292,7 @@ class MonitorModule(Module):
         :return:  The topic to use
         """
         if (message.message_type == Message.MESSAGE_TYPE_RESPONSE or
-                message.message_type == Message.MESSAGE_TYPE_ERROR) and \
+            message.message_type == Message.MESSAGE_TYPE_ERROR) and \
                 message.request_message_id in self.message_id_topics:
             topic = self.message_id_topics[message.request_message_id]
             del self.message_id_topics[message.request_message_id]

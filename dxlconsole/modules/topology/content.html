@@ -1,0 +1,133 @@
+openConsole.RestDataSource.create({
+    ID:"topology_brokersDS",
+    fields:[
+        {name:"brokerId", title:"ID", primaryKey:true},
+        {name:"brokerParentId", title:"Parent", foreignKey:"brokerId"}
+    ],
+    dataURL:"/broker_registry_query"
+});
+
+var topology_brokersListPane = openConsole.TreeGrid.create({
+    ID: "topology_brokersTree",
+    width: "40%",
+    dataSource: "topology_brokersDS",
+    nodeIcon: "/public/images/service.png",
+    folderIcon: "/public/images/service.png",
+    emptyMessage: "No broker list returned by the fabric.",
+    dataProperties: {discardParentlessNodes: true},
+    canResizeFields: false,
+    canSort: false,
+    showSortArrow: "none",
+    showConnectors: true,
+    selectionUpdated : "if(record)topology_broker_details.fetchData({id:record.brokerId});else topology_broker_details.setData(null)",
+    fields: [
+        {name: "hostname", title: "Fabric", isOpen: true}
+    ]
+});
+
+openConsole.DetailViewer.create({
+        ID: "topology_broker_details",
+        dataSource: topology_brokersDS,
+        width: "60%",
+        emptyMessage: "No broker selected.",
+        fields:[
+            {name:"brokerId", title:"ID", primaryKey:true},
+            {name:"hostname", title:"Hostname", type: "string"},
+            {name:"policyHostname", title:"Hostname Override", type: "string"},
+            {name:"policyIpAddress", title:"IP Address", type: "string"},
+            {name:"policyHub", title:"Hub", type: "string"},
+            {name:"port", title:"Port", type: "string"},
+            {name:"version", title:"Version", type: "string"},
+            {name:"startTime", title:"Start Time", type: "string"},
+            {name:"bridges", title:"Bridged Brokers", type: "string"},
+            {name:"bridgeChildren", title:"Parent Broker", type: "string"},
+            {name:"connectionLimit", title:"Client Connection Limit", type: "string"},
+            {name:"epoName", title:"Managing ePO", type: "string",
+                    showIf:"valueList && valueList.localData && valueList.localData[0].epoName"},
+            {name:"ttlMins", title:"Broker Keep-alive Interval(minutes)", type: "string"}
+        ],
+        formatCellValue: function formatCellValue(value, record, field) {
+                if(value != null) {
+                    if(field.name === "bridgeChildren" || field.name === "bridges") {
+                        return value.join(",<br/>");
+                    } else if(field.name === "startTime") {
+                        var startDate = new Date(value * 1000);
+                        return startDate.toLocaleString();
+                    }
+                }
+                return value;
+            }
+})
+
+openConsole.HLayout.create({
+    ID: "topology_stack",
+    width: "100%",
+    height: "100%",
+    members: [
+        topology_brokersTree,
+        topology_broker_details
+    ]
+})
+
+openConsole.ModuleWindow.create({
+    ID: "topology_layout",
+    title: "Fabric Topology",
+    items: ["topology_stack"]
+});
+
+topology_brokersListPane.fetchData();
+topology_firstLoad = true;
+
+function topology_fetch_broker_data()
+{
+    topology_brokersDS.fetchData( null,
+        function( dsResponse, data ) {
+            var openState = topology_brokersListPane.getOpenState();
+            var selectedPaths = topology_brokersListPane.getSelectedState();
+            var gridData = topology_brokersListPane.getData();
+            gridData.reportCollisions = false;
+
+            var dataMap = data.reduce(function(map, broker) {
+                map[broker.brokerId] = broker;
+                return map;
+            }, {});
+
+            // Remove nodes from the tree that are not in the data
+            Object.keys(gridData.nodeIndex).filter(k => !dataMap.hasOwnProperty(k)).forEach(function(key) {
+                gridData.remove(gridData.nodeIndex[key]);
+            })
+
+            // Find newly added nodes and store both them and their parents to be expanded after updating the tree
+            var nodesToOpen = []
+            Object.keys(dataMap).filter(k => !gridData.nodeIndex.hasOwnProperty(k)).forEach(function(key) {
+                nodesToOpen.push(dataMap[key]);
+                if(dataMap[key].brokerParentId && gridData.nodeIndex[dataMap[key].brokerParentId])
+                    nodesToOpen.push(dataMap[dataMap[key].brokerParentId]);
+            })
+
+            gridData.linkNodes(Object.values(dataMap));
+
+            topology_brokersListPane.setOpenState(openState);
+            topology_brokersListPane.setSelectedState(selectedPaths);
+            topology_brokersListPane.resort();
+            gridData.openFolders(nodesToOpen);
+            if(topology_firstLoad)
+            {
+                topology_brokersListPane.getData().openAll();
+                topology_firstLoad = false;
+            }
+
+        }, { showPrompt: false }
+    );
+}
+topology_fetch_broker_data();
+
+function topologyWSHandler(message)
+{
+    if(message.includes("brokersUpdated"))
+        topology_fetch_broker_data();
+}
+
+$(document).ready(function() {
+    ws.addHandler(topologyWSHandler);
+});

@@ -3,6 +3,7 @@ import json
 
 import logging
 import tornado
+import dxlconsole.util
 
 from dxlconsole.handlers import BaseRequestHandler
 
@@ -26,13 +27,13 @@ class SubscriptionsHandler(BaseRequestHandler):
         client_id = self.get_query_argument("clientId")
 
         if client_id == "null":
-            self.write(self._module.create_smartclient_error_response(
+            self.write(dxlconsole.util.create_smartclient_error_response(
                 "No client ID sent with request."))
             return
 
         client = self._module.get_dxl_client(str(client_id))
 
-        response_wrapper = self._module.create_smartclient_response_wrapper()
+        response_wrapper = dxlconsole.util.create_smartclient_response_wrapper()
 
         response = response_wrapper["response"]
 
