@@ -103,6 +103,9 @@ class TopologyModule(Module):
         for broker_guid in dxl_response_dict["brokers"]:
             brokers[broker_guid] = dxl_response_dict["brokers"][
                 broker_guid]
+
+        self.current_connected_broker = dxl_response.source_broker_id
+
         return brokers
 
     def _refresh_broker_registry(self):
@@ -150,7 +153,7 @@ class BrokerRegistryQueryHandler(BaseRequestHandler):
         brokers = self._module.get_broker_registry(query_broker_id)
 
         current_broker = query_broker_id if query_broker_id \
-            else self._module.app.dxl_service_client.current_broker.unique_id
+            else self._module.current_connected_broker
 
         self._build_connected_broker_list(current_broker, brokers, response["data"])
 
