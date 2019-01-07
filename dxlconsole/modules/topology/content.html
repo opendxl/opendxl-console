@@ -21,7 +21,8 @@ var topology_brokersListPane = openConsole.TreeGrid.create({
     showConnectors: true,
     selectionUpdated : "update_selected_broker(record)",
     fields: [
-        {name: "hostname", title: "Fabric", isOpen: true}
+        {name: "hostname", title: "Hostname", isOpen: true},
+        {name: "brokerId", title: "ID", isOpen: true}
     ]
 });
 
