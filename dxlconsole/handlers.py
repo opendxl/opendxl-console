@@ -23,7 +23,7 @@ class BaseRequestHandler(RequestHandler):
         raise NotImplementedError()
 
 
-class WebSocketEventHandler:
+class WebSocketEventHandler(object):
     """
     The base class for handling web socket events
     """

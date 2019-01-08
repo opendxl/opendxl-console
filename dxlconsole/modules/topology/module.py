@@ -4,9 +4,6 @@ from __future__ import absolute_import
 import threading
 from threading import Thread
 
-from dxlclient import EventCallback
-
-import dxlconsole.util
 import tornado
 
 import logging
@@ -15,9 +12,12 @@ import json
 
 import pkg_resources
 
+from dxlclient import EventCallback
 from dxlclient.message import Request, Message
+
 from dxlbootstrap.util import MessageUtils
 
+import dxlconsole.util
 from dxlconsole.handlers import BaseRequestHandler
 from dxlconsole.module import Module
 
@@ -55,6 +55,7 @@ class TopologyModule(Module):
             target=self._refresh_broker_registry)
         self._reconnect_refresh_thread.daemon = True
         self._reconnect_refresh_thread.start()
+        self.current_connected_broker = None
 
     @property
     def content(self):
@@ -79,8 +80,9 @@ class TopologyModule(Module):
 
     def get_broker_registry(self, client_id=None):
         """
-        Queries the broker for the broker registry and replaces the currently stored one with the new
-        results. Notifies all connected web sockets that new broker information is available.
+        Queries the broker for the broker registry and replaces the currently stored one with
+        the new results. Notifies all connected web sockets that new broker information
+        is available.
         """
         req = Request(TopologyModule.BROKER_REGISTRY_QUERY_TOPIC)
 
@@ -93,7 +95,8 @@ class TopologyModule(Module):
         dxl_response = self.app.dxl_service_client.sync_request(req, 5)
 
         if dxl_response.message_type == Message.MESSAGE_TYPE_ERROR:
-            logger.error("Error response returned from the broker registry: %s",  dxl_response.error_message)
+            logger.error("Error response returned from the broker registry: %s",
+                    dxl_response.error_message)
             return {}
 
         dxl_response_dict = MessageUtils.json_payload_to_dict(dxl_response)
@@ -116,7 +119,8 @@ class TopologyModule(Module):
         while True:
             # Wait for a connect notification from the DXL client or the update interval
             with self.app.dxl_service_client._connected_lock:
-                self.app.dxl_service_client._connected_wait_condition.wait(self.BROKER_UPDATE_INTERVAL)
+                self.app.dxl_service_client._connected_wait_condition.wait(
+                        self.BROKER_UPDATE_INTERVAL)
                 if self.app.dxl_service_client.connected:
                     logger.info("Refreshing broker registry...")
                     self.update_broker_registry()
@@ -144,7 +148,7 @@ class BrokerRegistryQueryHandler(BaseRequestHandler):
     @tornado.web.authenticated
     def get(self, *args, **kwargs):
 
-        response_wrapper = dxlconsole.util.create_smartclient_response_wrapper()
+        response_wrapper = dxlconsole.util.create_sc_response_wrapper()
 
         response = response_wrapper["response"]
 
@@ -182,7 +186,8 @@ class BrokerRegistryQueryHandler(BaseRequestHandler):
                  "local": broker.get("local"),
                  "bridgeChildren": broker.get("bridgeChildren"),
                  "bridges": broker.get("bridges"),
-                 "brokerParentId": broker.get("bridgeChildren")[0] if broker.get("bridgeChildren") else None}
+                 "brokerParentId":
+                     broker.get("bridgeChildren")[0] if broker.get("bridgeChildren") else None}
 
         connected_broker_list.append(entry)
 

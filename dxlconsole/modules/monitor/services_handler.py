@@ -30,7 +30,7 @@ class ServiceUpdateHandler(BaseRequestHandler):
             self.write(dxlconsole.util.NO_RESULT_JSON)
             return
 
-        response_wrapper = dxlconsole.util.create_smartclient_response_wrapper()
+        response_wrapper = dxlconsole.util.create_sc_response_wrapper()
 
         response = response_wrapper["response"]
 
@@ -50,7 +50,8 @@ class ServiceUpdateHandler(BaseRequestHandler):
                      "brokerGuid": service.get("brokerGuid"),
                      "local": service.get("local"),
                      "metaData": "<pre><code>" +
-                                 json.dumps(service.get("metaData"), indent=4, sort_keys=True) + "</code></pre>"}
+                                 json.dumps(service.get("metaData"), indent=4, sort_keys=True)
+                                 + "</code></pre>"}
             response["data"].append(entry)
 
             response['totalRows'] += 1

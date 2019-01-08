@@ -214,7 +214,7 @@ class MonitorModule(Module):
                 for key in list(self._client_dict):
                     if self._client_dict[key][1] < \
                             (datetime.datetime.now() - datetime.timedelta(
-                                minutes=self.CLIENT_RETENTION_MINUTES)):
+                                    minutes=self.CLIENT_RETENTION_MINUTES)):
                         logger.debug(
                             "Evicting DXL client for client_id: %s", key)
                         del self._client_dict[key]
@@ -292,8 +292,8 @@ class MonitorModule(Module):
         :return:  The topic to use
         """
         if (message.message_type == Message.MESSAGE_TYPE_RESPONSE or
-            message.message_type == Message.MESSAGE_TYPE_ERROR) and \
-                message.request_message_id in self.message_id_topics:
+                message.message_type == Message.MESSAGE_TYPE_ERROR) and \
+                        message.request_message_id in self.message_id_topics:
             topic = self.message_id_topics[message.request_message_id]
             del self.message_id_topics[message.request_message_id]
         else:

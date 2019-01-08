@@ -2,16 +2,17 @@ from __future__ import absolute_import
 import base64
 import logging
 import uuid
+import threading
 
 import pkg_resources
+
 import tornado
-import threading
 from tornado.web import RequestHandler, Application, StaticFileHandler
 from tornado.httpserver import HTTPServer
+from tornado.websocket import WebSocketHandler
 from tornado.ioloop import IOLoop
 
 from dxlclient.client_config import DxlClientConfig
-from tornado.websocket import WebSocketHandler
 
 import dxlconsole
 from .modules.certificates.module import CertificateModule
@@ -337,7 +338,8 @@ class WebConsole(Application):
 
     def on_web_socket_message(self, client_id, message):
         """
-        Called when a new web socket message is received. Notifies all listeners of the message and client
+        Called when a new web socket message is received. Notifies all listeners of
+        the message and client
 
         :param client_id: The client owning the web socket
         :param message: the message received

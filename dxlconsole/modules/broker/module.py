@@ -94,7 +94,7 @@ class BrokerInfoHandler(BaseRequestHandler):
         Sends requests to get broker information (health and the broker registry topic)
         """
         try:
-            response_wrapper = dxlconsole.util.create_smartclient_response_wrapper()
+            response_wrapper = dxlconsole.util.create_sc_response_wrapper()
             # build the the response data
             response = response_wrapper["response"]
             # the DXL client for retrieving broker info
