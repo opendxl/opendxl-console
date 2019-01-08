@@ -4,11 +4,11 @@ from __future__ import absolute_import
 import threading
 from threading import Thread
 
-import tornado
-
 import logging
 
 import json
+
+import tornado
 
 import pkg_resources
 
@@ -96,7 +96,7 @@ class TopologyModule(Module):
 
         if dxl_response.message_type == Message.MESSAGE_TYPE_ERROR:
             logger.error("Error response returned from the broker registry: %s",
-                    dxl_response.error_message)
+                         dxl_response.error_message)
             return {}
 
         dxl_response_dict = MessageUtils.json_payload_to_dict(dxl_response)
@@ -120,7 +120,7 @@ class TopologyModule(Module):
             # Wait for a connect notification from the DXL client or the update interval
             with self.app.dxl_service_client._connected_lock:
                 self.app.dxl_service_client._connected_wait_condition.wait(
-                        self.BROKER_UPDATE_INTERVAL)
+                    self.BROKER_UPDATE_INTERVAL)
                 if self.app.dxl_service_client.connected:
                     logger.info("Refreshing broker registry...")
                     self.update_broker_registry()
