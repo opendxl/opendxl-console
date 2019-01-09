@@ -225,6 +225,8 @@ function topologyWSHandler(message)
 {
     if(message.includes("brokersUpdated"))
         topology_fetch_broker_data();
+    else if(message.includes("serviceUpdates"))
+        update_selected_broker(topology_brokersListPane.getSelectedRecord());
 }
 
 $(document).ready(function() {
