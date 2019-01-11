@@ -9,13 +9,12 @@ openConsole.RestDataSource.create({
 
 var topology_brokersListPane = openConsole.TreeGrid.create({
     ID: "topology_brokersTree",
-    width: "40%",
     dataSource: "topology_brokersDS",
     nodeIcon: "/public/images/service.png",
     folderIcon: "/public/images/service.png",
     emptyMessage: "No broker list returned by the fabric.",
     dataProperties: {discardParentlessNodes: true},
-    canResizeFields: false,
+    canResizeFields: true,
     canSort: false,
     showSortArrow: "none",
     showConnectors: true,
@@ -28,8 +27,8 @@ var topology_brokersListPane = openConsole.TreeGrid.create({
 
 openConsole.DetailViewer.create({
         ID: "topology_broker_details",
+        overflow: "auto",
         dataSource: topology_brokersDS,
-        height: "40%",
         emptyMessage: "No broker selected.",
         fields:[
             {name:"brokerId", title:"ID", primaryKey:true},
@@ -80,8 +79,9 @@ var topology_serviceDS = openConsole.RestDataSource.create({
 
 openConsole.DetailViewer.create({
         ID: "topology_service_details",
+        overflow: "auto",
         dataSource: topology_serviceDS,
-        emptyMessage: "No local services registered with this broker.",
+        emptyMessage: "No local services.",
         fields:[
             {name:"itemId", title:"Service ID", primaryKey:true},
             {name:"serviceType", title:"Service Type", type: "string"},
@@ -121,26 +121,27 @@ openConsole.Form.VLayout.create({
     ]
 });
 
-;
-
 openConsole.HLayout.create({
     ID: "topology_content_layout",
     members: [
-        openConsole.HLayout.create({
-            overflow: "auto",
-            width: "30%",
-            height: "100%",
-            members: [
-                topology_brokersTree
+        openConsole.SectionStack.create({
+            width: 325,
+            sections: [
+                {title: "Services", expanded: true, showHeader: false, items: [ "topology_brokersTree" ]},
             ]
         }),
         openConsole.SectionStack.create({
             ID: "topology_broker_section_stack",
-            overflow: "auto",
             showResizeBar: false,
             sections: [
-                {title: "Broker Information", expanded: true, canCollapse: false, resizeable: false, items: [ "topology_broker_details" ]},
-                {ID:"local_service_stack", title: "Local Services", canCollapse: false, expanded: true, resizeable: false, items: [ "topology_service_details" ]}
+                {title: "Broker Information", expanded: true, items: [
+                    isc.VLayout.create({
+                        members: [
+                            "topology_broker_details"
+                        ]
+                    })
+                ]},
+                {ID:"local_service_stack", title: "Local Services", expanded: true, items: [ "topology_service_details" ]}
             ]
         })
     ]
@@ -165,14 +166,14 @@ function update_selected_broker( broker )
             // Remove services that are not local to this broker
             var broker_services = data.filter(service => service.brokerGuid == topology_brokersTree.getSelectedRecord().brokerId);
             topology_service_details.setData(broker_services);
-            topology_broker_section_stack.expandSection("local_service_stack");
+            //topology_broker_section_stack.expandSection("local_service_stack");
             }, { showPrompt: false }
         );
     }
     else
     {
         topology_broker_details.setData(null);
-        topology_broker_section_stack.collapseSection("local_service_stack");
+        //topology_broker_section_stack.collapseSection("local_service_stack");
         topology_service_details.setData(null);
     }
 }

@@ -281,9 +281,9 @@ class WebConsole(Application):
 
         self._modules = [
             MonitorModule(self),
+            TopologyModule(self),
             CertificateModule(self),
-            BrokerModule(self),
-            TopologyModule(self)
+            BrokerModule(self)
         ]
 
         handlers = [

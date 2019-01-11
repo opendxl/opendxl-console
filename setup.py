@@ -96,6 +96,7 @@ setup(
         "dxlconsole.modules.broker",
         "dxlconsole.modules.certificates",
         "dxlconsole.modules.monitor",
+        "dxlconsole.modules.topology",
         "dxlconsole.web",
         "dxlconsole.web.jquery",
         "dxlconsole.web.images",

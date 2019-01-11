@@ -45,7 +45,7 @@ class TopologyModule(Module):
         """
         super(TopologyModule, self).__init__(
             app, "topology", "Fabric Topology",
-            "/public/images/monitor.png", "topology_layout")
+            "/public/images/topology.png", "topology_layout")
 
         self.app.dxl_service_client.add_event_callback(
             TopologyModule.FABRIC_CHANGE_EVENT_TOPIC,
