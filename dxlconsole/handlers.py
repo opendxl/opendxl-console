@@ -21,3 +21,39 @@ class BaseRequestHandler(RequestHandler):
         Requires the `.stream_request_body` decorator.
         """
         raise NotImplementedError()
+
+
+class WebSocketEventHandler(object):
+    """
+    The base class for handling web socket events
+    """
+
+    def __init__(self):
+        pass
+
+    def on_web_socket_opened(self, client_id, web_socket):
+        """
+        Invoked whenever a new web socket is opened
+
+        :param client_id: the client owning the web socket
+        :param web_socket: the newly opened web socket
+        """
+        pass
+
+    def on_web_socket_closed(self, client_id, web_socket):
+        """
+        Invoked whenever a web socket is closed
+
+        :param client_id: the client owning the web socket
+        :param web_socket:  the web socket being closed
+        """
+        pass
+
+    def on_web_socket_message(self, client_id, message):
+        """
+        Invoked when a new message is received from a web socket
+
+        :param client_id: the client owning the web socket
+        :param message: the message received
+        """
+        pass

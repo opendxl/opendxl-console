@@ -3,6 +3,7 @@ import json
 
 import logging
 import tornado
+import dxlconsole.util
 
 from dxlconsole.handlers import BaseRequestHandler
 
@@ -26,10 +27,10 @@ class ServiceUpdateHandler(BaseRequestHandler):
 
         # We're only ever one level deep so if a parent is specified return an empty response
         if self.get_query_argument("parentId", "null") != "null":
-            self.write(self._module.NO_RESULT_JSON)
+            self.write(dxlconsole.util.NO_RESULT_JSON)
             return
 
-        response_wrapper = self._module.create_smartclient_response_wrapper()
+        response_wrapper = dxlconsole.util.create_sc_response_wrapper()
 
         response = response_wrapper["response"]
 
@@ -48,9 +49,9 @@ class ServiceUpdateHandler(BaseRequestHandler):
                      "requestChannels": service.get("requestChannels"),
                      "brokerGuid": service.get("brokerGuid"),
                      "local": service.get("local"),
-                     "metaData": "<pre><code>" + json.dumps(
-                         service.get("metaData"), indent=4, sort_keys=True) +
-                                 "</code></pre>"}
+                     "metaData": "<pre><code>" +
+                                 json.dumps(service.get("metaData"), indent=4, sort_keys=True)
+                                 + "</code></pre>"}
             response["data"].append(entry)
 
             response['totalRows'] += 1

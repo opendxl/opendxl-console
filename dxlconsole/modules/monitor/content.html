@@ -1,5 +1,3 @@
-var monitor_clientId = (new Date()).getTime();
-
 var monitor_serviceDS = openConsole.RestDataSource.create({
     ID:"monitor_serviceDS",
     fields:[
@@ -36,15 +34,16 @@ var monitor_serviceListPane = openConsole.TreeGrid.create({
                             {name:"managed", title:"Managed", type: "string"},
                             {name:"registrationTime", title:"Registration Time", type: "string"},
                             {name:"ttlMins", title:"TTL(min)", type: "string"},
-                            {name:"requestTopics", title:"Request Topics", type: "string"},
+                            {name:"requestChannels", title:"Request Topics", type: "string"},
                             {name:"unauthorizedTopics", title:"Unauthorized Topics", type: "string"},
                             {name:"certificates", title:"Certificates", type: "string"},
-                            {name:"metaData", title:"META Data", type: "string"}
+                            {name:"metaData", title:"Metadata", type: "string"}
                         ],
                         formatCellValue: function formatCellValue(value, record, field) {
                             if(value != null) {
-                                if(field.name === "requestTopics" || field.name === "certificates") {
-                                    return value.join(",<br/>");
+                                if(field.name === "requestChannels" || field.name === "certificates") {
+                                    if(Array.isArray(value))
+                                        return value.join(",<br/>");
                                 } else if(field.name === "unauthorizedTopics") {
                                     return "<span style=\"color: red;\">" + value.join(",<br/>") + "</span>";
                                 } else if(field.name === "registrationTime") {
@@ -108,7 +107,7 @@ openConsole.RestDataSource.create({
     ],
     dataURL:"/subscriptions",
     transformRequest : function (dsRequest) {
-        dsRequest.data.clientId = monitor_clientId;
+        dsRequest.data.clientId = console_clientId;
         return this.Super("transformRequest", arguments);
     }
 });
@@ -142,7 +141,7 @@ var monitor_messagesDS = openConsole.RestDataSource.create({
     dataURL:"/messages",
     transformRequest : function (dsRequest) {
         if(dsRequest.data)
-            dsRequest.data.clientId = monitor_clientId;
+            dsRequest.data.clientId = console_clientId;
         return this.Super("transformRequest", arguments);
     }
 });
@@ -279,7 +278,7 @@ var monitor_sendMessageForm = openConsole.DynamicForm.create({
             changed: "monitor_serviceListPane.setSelectedState(null)"
         },
         { name: "payload", type: "textArea", width: 400, height: 150, wrap: "OFF", title: "Payload" },
-        { name: "clientId", type: "hidden", value: monitor_clientId }
+        { name: "clientId", type: "hidden", value: console_clientId }
     ],
     doSubmit : function () {
         messageStatusResponse.setContents("");
@@ -398,7 +397,7 @@ monitor_subscriptionList.fetchData();
 
 function monitor_fetch_new_messages()
 {
-    monitor_messagesDS.fetchData( { clientId: monitor_clientId },
+    monitor_messagesDS.fetchData( { clientId: console_clientId },
         function( dsResponse, data ) {
             var gridData = monitor_messagesGrid.getOriginalData();
             for( var i = 0; i < data.length; i++ ) {
@@ -456,54 +455,17 @@ function monitor_fetch_service_data()
 monitor_fetch_service_data();
 monitor_fetch_new_messages();
 
-var monitor_ws = null;
+function monitorWSHandler(message)
+{
+    if(message.includes("messagesPending"))
+        monitor_fetch_new_messages();
+    else if(message.includes("serviceUpdates"))
+        monitor_fetch_service_data();
+
+}
 
 $(document).ready(function() {
-    connectWebSocket();
+    ws.addHandler(monitorWSHandler);
 });
 
-function connectWebSocket()
-{
-    monitor_ws = new WebSocket("wss://" + location.host + "/websocket?id=" + monitor_clientId);
-    monitor_ws.onmessage = function(e) {
-        if(e.data.includes("messagesPending"))
-            monitor_fetch_new_messages();
-        else if(e.data.includes("serviceUpdates"))
-            monitor_fetch_service_data();
-    };
-    monitor_ws.onclose = function() {
-        isc.Window.create({
-            ID: "disconnectedWindow",
-            title: "Client Disconnected",
-            autoSize: true,
-            width: 500,
-            autoCenter: true,
-            isModal: true,
-            showModalMask: true,
-            autoDraw: true,
-            showCloseButton: false,
-            showMinimizeButton: false,
-            canDragReposition: false,
-            canDragResize: false,
-            items: [
-                isc.HTMLFlow.create({
-                    ID: "disconnectedMessage",
-                    contents: "The DXL Console has been disconnected from the server. Please refresh the console to continue.",
-                    width: "100%",
-                    height: 200,
-                    padding:5
-                }),
-            ]
-        });
-    };
-}
-
-// Function to send a keep-alive over the web socket
-function clientKeepAlive()
-{
-    monitor_ws.send("still alive");
-}
-
-// Send a keep-alive every minute
-setInterval(clientKeepAlive, 60000);
 Offline.goOnline();

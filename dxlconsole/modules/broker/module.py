@@ -4,7 +4,6 @@ import logging
 import traceback
 
 import pkg_resources
-import tornado
 import tornado.httputil
 
 from dxlclient.message import Request, Message
@@ -12,9 +11,9 @@ from dxlbootstrap.util import MessageUtils
 from dxlconsole.handlers import BaseRequestHandler
 from dxlconsole.module import Module
 
-# Configure local logger
-from dxlconsole.modules.monitor.module import MonitorModule
+import dxlconsole.util
 
+# Configure local logger
 logger = logging.getLogger(__name__)
 
 
@@ -84,7 +83,7 @@ class BrokerInfoHandler(BaseRequestHandler):
         """
         super(BrokerInfoHandler, self).__init__(application, request)
         self._module = module
-        self._bootstrap_app = application.bootstrap_app
+        self._app = application
 
     def data_received(self, chunk):
         pass
@@ -95,18 +94,18 @@ class BrokerInfoHandler(BaseRequestHandler):
         Sends requests to get broker information (health and the broker registry topic)
         """
         try:
-            response_wrapper = MonitorModule.create_smartclient_response_wrapper()
+            response_wrapper = dxlconsole.util.create_sc_response_wrapper()
             # build the the response data
             response = response_wrapper["response"]
-            # the dxlclient for retrieving broker info
-            dxlclient = self._bootstrap_app.client
+            # the DXL client for retrieving broker info
+            dxl_client = self._app.dxl_service_client
 
             req = Request(BrokerModule.BROKER_REGISTRY_QUERY_TOPIC)
             # targeting the connected broker
             MessageUtils.dict_to_json_payload(req, {})
 
             # Send the broker registry request
-            dxl_response = dxlclient.sync_request(req, 5)
+            dxl_response = dxl_client.sync_request(req, 5)
             if dxl_response.message_type != Message.MESSAGE_TYPE_ERROR:
                 dxl_response_dict = MessageUtils.json_payload_to_dict(
                     dxl_response)
@@ -116,12 +115,12 @@ class BrokerInfoHandler(BaseRequestHandler):
                     dxl_response.error_message, dxl_response.error_code)
                 raise Exception(err_msg)
 
-            brokerinfo = dxl_response_dict['brokers'][dxl_response.source_broker_id]
+            broker_info = dxl_response_dict['brokers'][dxl_response.source_broker_id]
             # Send the broker health request
             req = Request(BrokerModule.BROKER_HEALTH_TOPIC)
             # targeting the connected broker
             MessageUtils.dict_to_json_payload(req, {})
-            dxl_response = dxlclient.sync_request(req, 15)
+            dxl_response = dxl_client.sync_request(req, 15)
 
             if dxl_response.message_type != Message.MESSAGE_TYPE_ERROR:
                 dxl_response_dict = MessageUtils.json_payload_to_dict(
@@ -133,8 +132,8 @@ class BrokerInfoHandler(BaseRequestHandler):
                 raise Exception(err_msg)
 
             entry = {
-                "version": brokerinfo['version'],
-                "guid": brokerinfo['guid'],
+                "version": broker_info['version'],
+                "guid": broker_info['guid'],
                 "connectedClients": dxl_response_dict['connectedClients'],
                 "localServiceCounter": dxl_response_dict['localServiceCounter'],
                 "incomingMessages": dxl_response_dict['incomingMessages'],

@@ -1,20 +1,28 @@
 from __future__ import absolute_import
 import base64
+import logging
 import uuid
+import threading
 
 import pkg_resources
+
 import tornado
 from tornado.web import RequestHandler, Application, StaticFileHandler
 from tornado.httpserver import HTTPServer
+from tornado.websocket import WebSocketHandler
 from tornado.ioloop import IOLoop
 
 from dxlclient.client_config import DxlClientConfig
 
 import dxlconsole
 from .modules.certificates.module import CertificateModule
+from .modules.topology.module import TopologyModule
 from .modules.broker.module import BrokerModule
 from .modules.monitor.module import MonitorModule
 from .handlers import BaseRequestHandler
+
+logger = logging.getLogger(__name__)
+
 
 class ConsoleStaticFileRequestHandler(StaticFileHandler):
     """
@@ -159,7 +167,7 @@ class LoginHandler(RequestHandler):
             for values in self.request.arguments.values():
                 details += ",".join([value.decode("utf8") for value in values])
             if username == self.application.bootstrap_app.username and \
-                            password == self.application.bootstrap_app.password:
+                    password == self.application.bootstrap_app.password:
                 self.set_secure_cookie(self.application.bootstrap_app.user_cookie_name, username)
                 self.redirect(details)
             else:
@@ -179,7 +187,7 @@ class LoginHandler(RequestHandler):
         name = self.get_argument("username")
         password = self.get_argument("password")
         if name == self.application.bootstrap_app.username and \
-                        password == self.application.bootstrap_app.password:
+                password == self.application.bootstrap_app.password:
             self.set_secure_cookie(self.application.bootstrap_app.user_cookie_name,
                                    self.get_argument("username"))
             self.redirect("/")
@@ -208,10 +216,51 @@ class LogoutHandler(RequestHandler):
         self.redirect("/login")
 
 
+class ConsoleWebSocketHandler(WebSocketHandler):
+    """
+    Handles the WebSocket connection used to notify the client of updates in real time
+    """
+
+    def __init__(self, application, request, module):
+        super(ConsoleWebSocketHandler, self).__init__(application, request)
+        self._event_callback = None
+        self._response_callback = None
+        self._client = None
+        self._client_id = None
+        self._module = module
+
+    def get_current_user(self):
+        return self.get_secure_cookie(self.application.bootstrap_app.user_cookie_name)
+
+    def data_received(self, chunk):
+        pass
+
+    @tornado.web.authenticated
+    def open(self, *args, **kwargs):
+        client_id = self.get_query_argument("id", "null")
+        if client_id == "null":
+            logger.error("No client ID sent with web socket connection.")
+            return
+
+        logger.debug("Creating web socket for client: %s", client_id)
+        self._client_id = client_id
+        self._module.add_web_socket(client_id, self)
+
+    def on_message(self, message):
+        self._module.on_web_socket_message(self._client_id, message)
+
+    def on_close(self):
+        logger.debug("Web socket closed for client: %s", self._client_id)
+
+        self._module.remove_web_socket(self._client_id, self)
+
+
 class WebConsole(Application):
     """
     The web console application
     """
+
+    _web_socket_dict_lock = threading.Lock()
 
     def __init__(self, app):
         """
@@ -220,8 +269,19 @@ class WebConsole(Application):
         :param app: The OpenDXL bootstrap application that the console is a part of
         """
         self._bootstrap_app = app
+
+        # Store the bootstrap DXL client to allow access for modules
+        self._dxl_service_client = self._bootstrap_app.client
+
+        # dictionary to store web sockets for each "session"
+        self._web_socket_dict = {}
+
+        # handlers for web socket events
+        self._web_socket_event_handlers = []
+
         self._modules = [
             MonitorModule(self),
+            TopologyModule(self),
             CertificateModule(self),
             BrokerModule(self)
         ]
@@ -232,7 +292,8 @@ class WebConsole(Application):
              {'path': 'images/favicon.ico'}),
             (r'/login', LoginHandler),
             (r'/logout', LogoutHandler),
-            (r'/', ConsoleRequestHandler)
+            (r'/', ConsoleRequestHandler),
+            (r'/websocket', ConsoleWebSocketHandler, dict(module=self))
         ]
 
         settings = {
@@ -246,6 +307,89 @@ class WebConsole(Application):
 
         self._io_loop = IOLoop.instance()
         super(WebConsole, self).__init__(handlers, **settings)
+
+    def add_web_socket(self, client_id, web_socket):
+        """
+        Stores a web socket associated with the given client id
+
+        :param client_id: the client id key the web socket to
+        :param web_socket:  the web socket to store
+        """
+        logger.debug("Adding web socket for client: %s", client_id)
+        with self._web_socket_dict_lock:
+            self._web_socket_dict[client_id] = web_socket
+
+        for handler in self._web_socket_event_handlers:
+            handler.on_web_socket_opened(client_id, web_socket)
+
+    def remove_web_socket(self, client_id, web_socket):
+        """
+        Removes any web socket associated with the given client_id
+
+        :param web_socket: The web socket to remove
+        :param client_id: The client ID
+        """
+        logger.debug("Removing web socket for client: %s", client_id)
+        with self._web_socket_dict_lock:
+            self._web_socket_dict.pop(client_id, None)
+
+        for handler in self._web_socket_event_handlers:
+            handler.on_web_socket_closed(client_id, web_socket)
+
+    def on_web_socket_message(self, client_id, message):
+        """
+        Called when a new web socket message is received. Notifies all listeners of
+        the message and client
+
+        :param client_id: The client owning the web socket
+        :param message: the message received
+        """
+        for handler in self._web_socket_event_handlers:
+            handler.on_web_socket_message(client_id, message)
+
+    def add_web_socket_event_handler(self, handler):
+        """
+        Adds a new handler for web socket events. Expects a WebSocketEventHandler
+
+        :param handler: a WebSocketEventHandler to handle events
+        """
+        self._web_socket_event_handlers.append(handler)
+
+    def send_web_socket_message(self, client_id, message):
+        """
+        Sends a message to the specified web socket
+
+        :param client_id: the client ID owning the desired web socket
+        :param message: the message to send
+        """
+        with self._web_socket_dict_lock:
+            self.io_loop.add_callback(
+                self._web_socket_dict[client_id].write_message,
+                message)
+
+    def send_all_web_socket_message(self, message):
+        """
+        Sends a message to all active web sockets
+
+        :param message: the message to send
+        """
+        with self._web_socket_dict_lock:
+            for key in self._web_socket_dict:
+                try:
+                    self.io_loop.add_callback(
+                        self._web_socket_dict[key].write_message,
+                        message)
+                except Exception:
+                    pass
+
+    @property
+    def dxl_service_client(self):
+        """
+        Returns the general purpose DXL client for modules
+
+        :return: the general purpose DXL client for modules
+        """
+        return self._dxl_service_client
 
     @property
     def bootstrap_app(self):

@@ -6,6 +6,7 @@ import logging
 import os
 import socket
 import subprocess
+import re
 from tempfile import NamedTemporaryFile
 import traceback
 from zipfile import ZipFile
@@ -63,6 +64,8 @@ class CertificateModule(Module):
     CERTS_BROKER_CA_PASSWORD_PROP = "brokerCaPassword"
     #: The location of the broker CA list file
     CERTS_BROKER_CA_LIST_FILE_PROP = "brokerCaListFile"
+    #: The location of the broker state policy file
+    CERTS_BROKER_STATE_POLICY_FILE_PROP = "brokerStatePolicyFile"
     #: The location of the client configuration template file
     CLIENT_CONFIG_TEMPLATE_FILE_PROP = "clientConfigTemplateFile"
 
@@ -78,48 +81,40 @@ class CertificateModule(Module):
         bootstrap_app = self.app.bootstrap_app
         config = bootstrap_app.config
 
-        self._client_ca_cert_file = ""
-        self._client_ca_key_file = ""
-        self._client_ca_password = ""
-        self._broker_ca_bundle_file = ""
-        self._broker_ca_key_file = ""
-        self._broker_ca_password = ""
-        self._broker_ca_list_file = ""
-        self._client_config_template_file = ""
-
         # Client CA certificate file
         try:
             self._client_ca_cert_file = config.get(self.CERTS_CONFIG_SECTION,
                                                    self.CERTS_CLIENT_CA_CERT_FILE_PROP)
         except Exception:
-            pass
+            self._client_ca_cert_file = ""
 
         # Client CA key file
         try:
             self._client_ca_key_file = config.get(self.CERTS_CONFIG_SECTION,
                                                   self.CERTS_CLIENT_CA_KEY_FILE_PROP)
         except Exception:
-            pass
+            self._client_ca_key_file = ""
 
         # Client CA password
         try:
             self._client_ca_password = config.get(self.CERTS_CONFIG_SECTION,
                                                   self.CERTS_CLIENT_CA_PASSWORD_PROP)
         except Exception:
-            pass
+            self._client_ca_password = ""
 
         # Broker CA bundle file
         try:
             self._broker_ca_bundle_file = config.get(self.CERTS_CONFIG_SECTION,
                                                      self.CERTS_BROKER_CA_BUNDLE_FILE_PROP)
         except Exception:
-            pass
+            self._broker_ca_bundle_file = ""
 
         # Broker CA key file
         try:
             self._broker_ca_key_file = config.get(
                 self.CERTS_CONFIG_SECTION, self.CERTS_BROKER_CA_KEY_FILE_PROP)
         except Exception:
+            self._broker_ca_key_file = ""
             if self._broker_ca_bundle_file:
                 self._broker_ca_key_file = os.path.splitext(
                     self._broker_ca_bundle_file)[0] + ".key"
@@ -129,13 +124,14 @@ class CertificateModule(Module):
             self._broker_ca_password = config.get(
                 self.CERTS_CONFIG_SECTION, self.CERTS_BROKER_CA_PASSWORD_PROP)
         except Exception:
-            pass
+            self._broker_ca_password = ""
 
         # Broker CA list file
         try:
             self._broker_ca_list_file = config.get(
                 self.CERTS_CONFIG_SECTION, self.CERTS_BROKER_CA_LIST_FILE_PROP)
         except Exception:
+            self._broker_ca_list_file = ""
             if self._broker_ca_bundle_file:
                 self._broker_ca_list_file = os.path.splitext(
                     self._broker_ca_bundle_file)[0] + "s.lst"
@@ -146,7 +142,15 @@ class CertificateModule(Module):
                 self.CERTS_CONFIG_SECTION,
                 self.CLIENT_CONFIG_TEMPLATE_FILE_PROP)
         except Exception:
-            pass
+            self._client_config_template_file = ""
+
+        # Broker state policy file
+        try:
+            self._broker_state_policy_file = config.get(
+                self.CERTS_CONFIG_SECTION,
+                self.CERTS_BROKER_STATE_POLICY_FILE_PROP)
+        except Exception:
+            self._broker_state_policy_file = ""
 
     @property
     def client_ca_cert_file(self):
@@ -221,6 +225,15 @@ class CertificateModule(Module):
         return self._client_config_template_file
 
     @property
+    def broker_state_policy_file(self):
+        """
+        Returns the location of the broker state policy file
+
+        :return: The location of the broker state policy file
+        """
+        return self._broker_state_policy_file
+
+    @property
     def content(self):
         """
         The content of the module (JS code)
@@ -289,6 +302,26 @@ class _BaseCertHandler(BaseRequestHandler):
         """
         pass
 
+    @staticmethod
+    def _comment_remover(text):
+        """
+        Removes C-style comments from the text
+
+        :param text: The text to remove comment from
+        :return: The text with comments removed
+        """
+        def replacer(match):
+            match_string = match.group(0)
+            if match_string.startswith('/'):
+                return " "  # note: a space and not an empty string
+            return match_string
+
+        pattern = re.compile(
+            r'//.*?$|/\*.*?\*/|\'(?:\\.|[^\\\'])*\'|"(?:\\.|[^\\"])*"',
+            re.DOTALL | re.MULTILINE
+        )
+        return re.sub(pattern, replacer, text)
+
     def _updateconfig_file(self):
         """
         Creates the dxlclient.config file
@@ -296,7 +329,7 @@ class _BaseCertHandler(BaseRequestHandler):
         :return: The ``dxlclient.config`` contents
         """
         with open(self._module.client_config_template_file, 'r') as f:
-            content = f.read()
+            content = f.read().decode("utf8")
 
         content = content.replace("@BROKER_CA_BUNDLE_FILE@",
                                   CertificateModule.ZIP_BROKER_CA_BUNDLE_FILE_NAME)
@@ -306,8 +339,7 @@ class _BaseCertHandler(BaseRequestHandler):
                                   CertificateModule.ZIP_CLIENT_KEY_FILE_NAME)
 
         # Host and IP address from incoming request
-        server_host = tornado.httputil.split_host_and_port(self.request.host)[
-            0]
+        server_host = tornado.httputil.split_host_and_port(self.request.host)[0]
         try:
             server_addr = socket.gethostbyname(server_host)
         except socket.gaierror:
@@ -324,6 +356,25 @@ class _BaseCertHandler(BaseRequestHandler):
                 shell=True).strip()
         content = content.replace("@DOCKER_BROKER_IP@",
                                   docker_ip.decode("utf8"))
+
+        # Add other brokers from broker state file
+        state_policy_file = self._module.broker_state_policy_file
+        if state_policy_file and os.path.isfile(state_policy_file):
+            try:
+                with open(state_policy_file, 'r') as f:
+                    policy_content = f.read()
+                    policy_content = _BaseCertHandler._comment_remover(policy_content)
+                    policy = json.loads(policy_content)
+                if "brokers" in policy:
+                    for broker in policy["brokers"]:
+                        broker_str = "\n{id}={id};{port};{host};{alt}".format(
+                            id=broker["id"], port=broker["port"],
+                            host=broker["hostname"], alt=broker.get("altHostname", ""))
+                        content += broker_str
+            except Exception as ex:
+                logger.error("Error reading broker state policy file: %s, %s",
+                             state_policy_file, ex)
+
         return content
 
     def _get_configparser(self):

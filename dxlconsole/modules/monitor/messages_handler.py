@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 from dxlbootstrap.util import MessageUtils
 from dxlclient import Message, json
 
+import dxlconsole.util
 from dxlconsole.handlers import BaseRequestHandler
 
 logger = logging.getLogger(__name__)
@@ -56,11 +57,11 @@ class MessagesHandler(BaseRequestHandler):
         """HTTP GET"""
         client_id = self.get_query_argument("clientId", "null")
         if client_id == "null":
-            self.write(self._module.create_smartclient_error_response(
+            self.write(dxlconsole.util.create_sc_error_response(
                 "No client ID sent with request."))
             return
 
-        response_wrapper = self._module.create_smartclient_response_wrapper()
+        response_wrapper = dxlconsole.util.create_sc_response_wrapper()
 
         response = response_wrapper["response"]
 
