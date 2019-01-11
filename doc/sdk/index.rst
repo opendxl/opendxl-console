@@ -25,6 +25,7 @@ Console
 * `Overview <https://github.com/opendxl/opendxl-console/wiki/Console-Overview>`_
 * `Login Page <https://github.com/opendxl/opendxl-console/wiki/Login-Page>`_
 * `Fabric Monitor Page <https://github.com/opendxl/opendxl-console/wiki/Fabric-Monitor-Page>`_
+* `Fabric Topology Page <https://github.com/opendxl/opendxl-console/wiki/Fabric-Topology-Page>`_
 
 Docker
 ------
