@@ -6,16 +6,13 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>dxlconsole.handlers module &#8212; OpenDXL Console 0.2.2 documentation</title>
+    <title>dxlconsole.handlers module &#8212; OpenDXL Console 0.3.1 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" /> 
   </head><body>
@@ -28,7 +25,7 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">OpenDXL Console 0.2.2 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">OpenDXL Console 0.3.1 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -60,6 +57,67 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The current user for the request</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dxlconsole.handlers.WebSocketEventHandler">
+<em class="property">class </em><code class="descclassname">dxlconsole.handlers.</code><code class="descname">WebSocketEventHandler</code><a class="headerlink" href="#dxlconsole.handlers.WebSocketEventHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The base class for handling web socket events</p>
+<dl class="method">
+<dt id="dxlconsole.handlers.WebSocketEventHandler.on_web_socket_closed">
+<code class="descname">on_web_socket_closed</code><span class="sig-paren">(</span><em>client_id</em>, <em>web_socket</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.handlers.WebSocketEventHandler.on_web_socket_closed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invoked whenever a web socket is closed</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>client_id</strong> -- the client owning the web socket</li>
+<li><strong>web_socket</strong> -- the web socket being closed</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="dxlconsole.handlers.WebSocketEventHandler.on_web_socket_message">
+<code class="descname">on_web_socket_message</code><span class="sig-paren">(</span><em>client_id</em>, <em>message</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.handlers.WebSocketEventHandler.on_web_socket_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invoked when a new message is received from a web socket</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>client_id</strong> -- the client owning the web socket</li>
+<li><strong>message</strong> -- the message received</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="dxlconsole.handlers.WebSocketEventHandler.on_web_socket_opened">
+<code class="descname">on_web_socket_opened</code><span class="sig-paren">(</span><em>client_id</em>, <em>web_socket</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.handlers.WebSocketEventHandler.on_web_socket_opened" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invoked whenever a new web socket is opened</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>client_id</strong> -- the client owning the web socket</li>
+<li><strong>web_socket</strong> -- the newly opened web socket</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
@@ -107,12 +165,12 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">OpenDXL Console 0.2.2 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">OpenDXL Console 0.3.1 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, McAfee LLC.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.1.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.2.
     </div>
   </body>
 </html>

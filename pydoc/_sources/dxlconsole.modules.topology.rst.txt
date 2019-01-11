@@ -1,0 +1,17 @@
+dxlconsole.modules.topology package
+===================================
+
+Submodules
+----------
+
+.. toctree::
+
+   dxlconsole.modules.topology.module
+
+Module contents
+---------------
+
+.. automodule:: dxlconsole.modules.topology
+    :members:
+    :undoc-members:
+    :show-inheritance:

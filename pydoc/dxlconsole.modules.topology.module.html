@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>dxlconsole.modules.broker.module module &#8212; OpenDXL Console 0.3.1 documentation</title>
+    <title>dxlconsole.modules.topology.module module &#8212; OpenDXL Console 0.3.1 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" src="_static/documentation_options.js"></script>
@@ -34,47 +34,32 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="module-dxlconsole.modules.broker.module">
-<span id="dxlconsole-modules-broker-module-module"></span><h1>dxlconsole.modules.broker.module module<a class="headerlink" href="#module-dxlconsole.modules.broker.module" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-dxlconsole.modules.topology.module">
+<span id="dxlconsole-modules-topology-module-module"></span><h1>dxlconsole.modules.topology.module module<a class="headerlink" href="#module-dxlconsole.modules.topology.module" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
-<dt id="dxlconsole.modules.broker.module.BrokerInfoHandler">
-<em class="property">class </em><code class="descclassname">dxlconsole.modules.broker.module.</code><code class="descname">BrokerInfoHandler</code><span class="sig-paren">(</span><em>application</em>, <em>request</em>, <em>module</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.broker.module.BrokerInfoHandler" title="Permalink to this definition">¶</a></dt>
+<dt id="dxlconsole.modules.topology.module.BrokerRegistryQueryHandler">
+<em class="property">class </em><code class="descclassname">dxlconsole.modules.topology.module.</code><code class="descname">BrokerRegistryQueryHandler</code><span class="sig-paren">(</span><em>application</em>, <em>request</em>, <em>module</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.topology.module.BrokerRegistryQueryHandler" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="dxlconsole.handlers.html#dxlconsole.handlers.BaseRequestHandler" title="dxlconsole.handlers.BaseRequestHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">dxlconsole.handlers.BaseRequestHandler</span></code></a></p>
-<p>Handles post requests to get broker information</p>
-<p>Constructor parameters:</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>application</strong> -- The application associated with the request handler</li>
-<li><strong>request</strong> -- The request</li>
-<li><strong>module</strong> -- The module this request handler is associated with</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
+<p>Handles requests to get broker registry output</p>
 <dl class="method">
-<dt id="dxlconsole.modules.broker.module.BrokerInfoHandler.data_received">
-<code class="descname">data_received</code><span class="sig-paren">(</span><em>chunk</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.broker.module.BrokerInfoHandler.data_received" title="Permalink to this definition">¶</a></dt>
+<dt id="dxlconsole.modules.topology.module.BrokerRegistryQueryHandler.data_received">
+<code class="descname">data_received</code><span class="sig-paren">(</span><em>chunk</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.topology.module.BrokerRegistryQueryHandler.data_received" title="Permalink to this definition">¶</a></dt>
 <dd><p>Implement this method to handle streamed request data.</p>
 <p>Requires the <cite>.stream_request_body</cite> decorator.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="dxlconsole.modules.broker.module.BrokerInfoHandler.get">
-<code class="descname">get</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.broker.module.BrokerInfoHandler.get" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sends requests to get broker information (health and the broker registry topic)</p>
-</dd></dl>
+<dt id="dxlconsole.modules.topology.module.BrokerRegistryQueryHandler.get">
+<code class="descname">get</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.topology.module.BrokerRegistryQueryHandler.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
-<dt id="dxlconsole.modules.broker.module.BrokerModule">
-<em class="property">class </em><code class="descclassname">dxlconsole.modules.broker.module.</code><code class="descname">BrokerModule</code><span class="sig-paren">(</span><em>app</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.broker.module.BrokerModule" title="Permalink to this definition">¶</a></dt>
+<dt id="dxlconsole.modules.topology.module.TopologyModule">
+<em class="property">class </em><code class="descclassname">dxlconsole.modules.topology.module.</code><code class="descname">TopologyModule</code><span class="sig-paren">(</span><em>app</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.topology.module.TopologyModule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="dxlconsole.module.html#dxlconsole.module.Module" title="dxlconsole.module.Module"><code class="xref py py-class docutils literal notranslate"><span class="pre">dxlconsole.module.Module</span></code></a></p>
-<p>Module that provides information about the OpenDXL broker that is being managed</p>
+<p>Module used to display the topology of the DXL fabric</p>
 <p>Constructor parameters:</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -85,18 +70,23 @@
 </tbody>
 </table>
 <dl class="attribute">
-<dt id="dxlconsole.modules.broker.module.BrokerModule.BROKER_HEALTH_TOPIC">
-<code class="descname">BROKER_HEALTH_TOPIC</code><em class="property"> = '/mcafee/service/dxl/broker/health'</em><a class="headerlink" href="#dxlconsole.modules.broker.module.BrokerModule.BROKER_HEALTH_TOPIC" title="Permalink to this definition">¶</a></dt>
+<dt id="dxlconsole.modules.topology.module.TopologyModule.BROKER_REGISTRY_QUERY_TOPIC">
+<code class="descname">BROKER_REGISTRY_QUERY_TOPIC</code><em class="property"> = '/mcafee/service/dxl/brokerregistry/query'</em><a class="headerlink" href="#dxlconsole.modules.topology.module.TopologyModule.BROKER_REGISTRY_QUERY_TOPIC" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="dxlconsole.modules.broker.module.BrokerModule.BROKER_REGISTRY_QUERY_TOPIC">
-<code class="descname">BROKER_REGISTRY_QUERY_TOPIC</code><em class="property"> = '/mcafee/service/dxl/brokerregistry/query'</em><a class="headerlink" href="#dxlconsole.modules.broker.module.BrokerModule.BROKER_REGISTRY_QUERY_TOPIC" title="Permalink to this definition">¶</a></dt>
+<dt id="dxlconsole.modules.topology.module.TopologyModule.BROKER_UPDATE_INTERVAL">
+<code class="descname">BROKER_UPDATE_INTERVAL</code><em class="property"> = 60</em><a class="headerlink" href="#dxlconsole.modules.topology.module.TopologyModule.BROKER_UPDATE_INTERVAL" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="dxlconsole.modules.broker.module.BrokerModule.content">
-<code class="descname">content</code><a class="headerlink" href="#dxlconsole.modules.broker.module.BrokerModule.content" title="Permalink to this definition">¶</a></dt>
+<dt id="dxlconsole.modules.topology.module.TopologyModule.FABRIC_CHANGE_EVENT_TOPIC">
+<code class="descname">FABRIC_CHANGE_EVENT_TOPIC</code><em class="property"> = '/mcafee/event/dxl/fabricchange'</em><a class="headerlink" href="#dxlconsole.modules.topology.module.TopologyModule.FABRIC_CHANGE_EVENT_TOPIC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dxlconsole.modules.topology.module.TopologyModule.content">
+<code class="descname">content</code><a class="headerlink" href="#dxlconsole.modules.topology.module.TopologyModule.content" title="Permalink to this definition">¶</a></dt>
 <dd><p>The content of the module (JS code)</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -108,23 +98,17 @@
 </table>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="dxlconsole.modules.broker.module.BrokerModule.enabled">
-<code class="descname">enabled</code><a class="headerlink" href="#dxlconsole.modules.broker.module.BrokerModule.enabled" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns whether the module is enabled</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Whether the module is enabled</td>
-</tr>
-</tbody>
-</table>
+<dl class="method">
+<dt id="dxlconsole.modules.topology.module.TopologyModule.get_broker_registry">
+<code class="descname">get_broker_registry</code><span class="sig-paren">(</span><em>client_id=None</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.topology.module.TopologyModule.get_broker_registry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Queries the broker for the broker registry and replaces the currently stored one with
+the new results. Notifies all connected web sockets that new broker information
+is available.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="dxlconsole.modules.broker.module.BrokerModule.handlers">
-<code class="descname">handlers</code><a class="headerlink" href="#dxlconsole.modules.broker.module.BrokerModule.handlers" title="Permalink to this definition">¶</a></dt>
+<dt id="dxlconsole.modules.topology.module.TopologyModule.handlers">
+<code class="descname">handlers</code><a class="headerlink" href="#dxlconsole.modules.topology.module.TopologyModule.handlers" title="Permalink to this definition">¶</a></dt>
 <dd><p>Web (Tornado) handlers for the module</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -134,6 +118,12 @@
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+<dl class="method">
+<dt id="dxlconsole.modules.topology.module.TopologyModule.update_broker_registry">
+<code class="descname">update_broker_registry</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.topology.module.TopologyModule.update_broker_registry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the broker registry and notifies all clients</p>
 </dd></dl>
 
 </dd></dl>
@@ -149,7 +139,7 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/dxlconsole.modules.broker.module.rst.txt"
+      <li><a href="_sources/dxlconsole.modules.topology.module.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>

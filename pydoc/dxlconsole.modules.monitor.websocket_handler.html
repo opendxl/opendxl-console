@@ -6,16 +6,13 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>dxlconsole.modules.monitor.websocket_handler module &#8212; OpenDXL Console 0.2.2 documentation</title>
+    <title>dxlconsole.modules.monitor.websocket_handler module &#8212; OpenDXL Console 0.3.1 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" /> 
   </head><body>
@@ -28,7 +25,7 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">OpenDXL Console 0.2.2 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">OpenDXL Console 0.3.1 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -40,58 +37,62 @@
   <div class="section" id="module-dxlconsole.modules.monitor.websocket_handler">
 <span id="dxlconsole-modules-monitor-websocket-handler-module"></span><h1>dxlconsole.modules.monitor.websocket_handler module<a class="headerlink" href="#module-dxlconsole.modules.monitor.websocket_handler" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
-<dt id="dxlconsole.modules.monitor.websocket_handler.ConsoleWebSocketHandler">
-<em class="property">class </em><code class="descclassname">dxlconsole.modules.monitor.websocket_handler.</code><code class="descname">ConsoleWebSocketHandler</code><span class="sig-paren">(</span><em>application</em>, <em>request</em>, <em>module</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.monitor.websocket_handler.ConsoleWebSocketHandler" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tornado.websocket.WebSocketHandler</span></code></p>
-<p>Handles the WebSocket connection used to notify the client of updates in real time</p>
+<dt id="dxlconsole.modules.monitor.websocket_handler.MonitorWebSocketEventHandler">
+<em class="property">class </em><code class="descclassname">dxlconsole.modules.monitor.websocket_handler.</code><code class="descname">MonitorWebSocketEventHandler</code><span class="sig-paren">(</span><em>module</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.monitor.websocket_handler.MonitorWebSocketEventHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dxlconsole.handlers.html#dxlconsole.handlers.WebSocketEventHandler" title="dxlconsole.handlers.WebSocketEventHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">dxlconsole.handlers.WebSocketEventHandler</span></code></a></p>
+<p>Handles the WebSocket events to notify the client when monitor updates are available</p>
 <dl class="method">
-<dt id="dxlconsole.modules.monitor.websocket_handler.ConsoleWebSocketHandler.data_received">
-<code class="descname">data_received</code><span class="sig-paren">(</span><em>chunk</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.monitor.websocket_handler.ConsoleWebSocketHandler.data_received" title="Permalink to this definition">¶</a></dt>
-<dd><p>Implement this method to handle streamed request data.</p>
-<p>Requires the <cite>.stream_request_body</cite> decorator.</p>
+<dt id="dxlconsole.modules.monitor.websocket_handler.MonitorWebSocketEventHandler.on_web_socket_closed">
+<code class="descname">on_web_socket_closed</code><span class="sig-paren">(</span><em>client_id</em>, <em>web_socket</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.monitor.websocket_handler.MonitorWebSocketEventHandler.on_web_socket_closed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invoked whenever a web socket is closed</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>client_id</strong> -- the client owning the web socket</li>
+<li><strong>web_socket</strong> -- the web socket being closed</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
-<dt id="dxlconsole.modules.monitor.websocket_handler.ConsoleWebSocketHandler.get_current_user">
-<code class="descname">get_current_user</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.monitor.websocket_handler.ConsoleWebSocketHandler.get_current_user" title="Permalink to this definition">¶</a></dt>
-<dd><p>Override to determine the current user from, e.g., a cookie.</p>
-<p>This method may not be a coroutine.</p>
+<dt id="dxlconsole.modules.monitor.websocket_handler.MonitorWebSocketEventHandler.on_web_socket_message">
+<code class="descname">on_web_socket_message</code><span class="sig-paren">(</span><em>client_id</em>, <em>message</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.monitor.websocket_handler.MonitorWebSocketEventHandler.on_web_socket_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invoked when a new message is received from a web socket</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>client_id</strong> -- the client owning the web socket</li>
+<li><strong>message</strong> -- the message received</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
-<dt id="dxlconsole.modules.monitor.websocket_handler.ConsoleWebSocketHandler.on_close">
-<code class="descname">on_close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.monitor.websocket_handler.ConsoleWebSocketHandler.on_close" title="Permalink to this definition">¶</a></dt>
-<dd><p>Invoked when the WebSocket is closed.</p>
-<p>If the connection was closed cleanly and a status code or reason
-phrase was supplied, these values will be available as the attributes
-<code class="docutils literal notranslate"><span class="pre">self.close_code</span></code> and <code class="docutils literal notranslate"><span class="pre">self.close_reason</span></code>.</p>
-<div class="versionchanged">
-<p><span class="versionmodified">Changed in version 4.0: </span>Added <code class="docutils literal notranslate"><span class="pre">close_code</span></code> and <code class="docutils literal notranslate"><span class="pre">close_reason</span></code> attributes.</p>
-</div>
-</dd></dl>
-
-<dl class="method">
-<dt id="dxlconsole.modules.monitor.websocket_handler.ConsoleWebSocketHandler.on_message">
-<code class="descname">on_message</code><span class="sig-paren">(</span><em>message</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.monitor.websocket_handler.ConsoleWebSocketHandler.on_message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Handle incoming messages on the WebSocket</p>
-<p>This method must be overridden.</p>
-<div class="versionchanged">
-<p><span class="versionmodified">Changed in version 4.5: </span><code class="docutils literal notranslate"><span class="pre">on_message</span></code> can be a coroutine.</p>
-</div>
-</dd></dl>
-
-<dl class="method">
-<dt id="dxlconsole.modules.monitor.websocket_handler.ConsoleWebSocketHandler.open">
-<code class="descname">open</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.monitor.websocket_handler.ConsoleWebSocketHandler.open" title="Permalink to this definition">¶</a></dt>
-<dd><p>Invoked when a new WebSocket is opened.</p>
-<p>The arguments to <cite>open</cite> are extracted from the <cite>tornado.web.URLSpec</cite>
-regular expression, just like the arguments to
-<cite>tornado.web.RequestHandler.get</cite>.</p>
-<p><cite>open</cite> may be a coroutine. <cite>on_message</cite> will not be called until
-<cite>open</cite> has returned.</p>
-<div class="versionchanged">
-<p><span class="versionmodified">Changed in version 5.1: </span><code class="docutils literal notranslate"><span class="pre">open</span></code> may be a coroutine.</p>
-</div>
+<dt id="dxlconsole.modules.monitor.websocket_handler.MonitorWebSocketEventHandler.on_web_socket_opened">
+<code class="descname">on_web_socket_opened</code><span class="sig-paren">(</span><em>client_id</em>, <em>web_socket</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlconsole.modules.monitor.websocket_handler.MonitorWebSocketEventHandler.on_web_socket_opened" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invoked whenever a new web socket is opened</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>client_id</strong> -- the client owning the web socket</li>
+<li><strong>web_socket</strong> -- the newly opened web socket</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>
@@ -136,12 +137,12 @@ regular expression, just like the arguments to
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">OpenDXL Console 0.2.2 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">OpenDXL Console 0.3.1 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, McAfee LLC.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.1.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.2.
     </div>
   </body>
 </html>

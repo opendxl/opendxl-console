@@ -18,6 +18,7 @@ Submodules
    dxlconsole.console
    dxlconsole.handlers
    dxlconsole.module
+   dxlconsole.util
 
 Module contents
 ---------------

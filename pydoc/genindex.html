@@ -7,16 +7,13 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Index &#8212; OpenDXL Console 0.2.2 documentation</title>
+    <title>Index &#8212; OpenDXL Console 0.3.1 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" /> 
   </head><body>
@@ -29,7 +26,7 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">OpenDXL Console 0.2.2 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">OpenDXL Console 0.3.1 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -47,6 +44,7 @@
  | <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
  | <a href="#E"><strong>E</strong></a>
+ | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
  | <a href="#H"><strong>H</strong></a>
  | <a href="#I"><strong>I</strong></a>
@@ -68,10 +66,12 @@
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="dxlconsole.modules.monitor.module.html#dxlconsole.modules.monitor.module.MonitorModule.add_web_socket">add_web_socket() (dxlconsole.modules.monitor.module.MonitorModule method)</a>
+      <li><a href="dxlconsole.console.html#dxlconsole.console.WebConsole.add_web_socket">add_web_socket() (dxlconsole.console.WebConsole method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dxlconsole.console.html#dxlconsole.console.WebConsole.add_web_socket_event_handler">add_web_socket_event_handler() (dxlconsole.console.WebConsole method)</a>
+</li>
       <li><a href="dxlconsole.module.html#dxlconsole.module.Module.app">app (dxlconsole.module.Module attribute)</a>
 </li>
   </ul></td>
@@ -90,17 +90,27 @@
 </li>
       <li><a href="dxlconsole.modules.certificates.module.html#dxlconsole.modules.certificates.module.CertificateModule.broker_ca_list_file">broker_ca_list_file (dxlconsole.modules.certificates.module.CertificateModule attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dxlconsole.modules.certificates.module.html#dxlconsole.modules.certificates.module.CertificateModule.broker_ca_password">broker_ca_password (dxlconsole.modules.certificates.module.CertificateModule attribute)</a>
 </li>
       <li><a href="dxlconsole.modules.broker.module.html#dxlconsole.modules.broker.module.BrokerModule.BROKER_HEALTH_TOPIC">BROKER_HEALTH_TOPIC (dxlconsole.modules.broker.module.BrokerModule attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dxlconsole.modules.broker.module.html#dxlconsole.modules.broker.module.BrokerModule.BROKER_REGISTRY_QUERY_TOPIC">BROKER_REGISTRY_QUERY_TOPIC (dxlconsole.modules.broker.module.BrokerModule attribute)</a>
+
+      <ul>
+        <li><a href="dxlconsole.modules.topology.module.html#dxlconsole.modules.topology.module.TopologyModule.BROKER_REGISTRY_QUERY_TOPIC">(dxlconsole.modules.topology.module.TopologyModule attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="dxlconsole.modules.certificates.module.html#dxlconsole.modules.certificates.module.CertificateModule.broker_state_policy_file">broker_state_policy_file (dxlconsole.modules.certificates.module.CertificateModule attribute)</a>
+</li>
+      <li><a href="dxlconsole.modules.topology.module.html#dxlconsole.modules.topology.module.TopologyModule.BROKER_UPDATE_INTERVAL">BROKER_UPDATE_INTERVAL (dxlconsole.modules.topology.module.TopologyModule attribute)</a>
 </li>
       <li><a href="dxlconsole.modules.broker.module.html#dxlconsole.modules.broker.module.BrokerInfoHandler">BrokerInfoHandler (class in dxlconsole.modules.broker.module)</a>
 </li>
       <li><a href="dxlconsole.modules.broker.module.html#dxlconsole.modules.broker.module.BrokerModule">BrokerModule (class in dxlconsole.modules.broker.module)</a>
+</li>
+      <li><a href="dxlconsole.modules.topology.module.html#dxlconsole.modules.topology.module.BrokerRegistryQueryHandler">BrokerRegistryQueryHandler (class in dxlconsole.modules.topology.module)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -117,6 +127,8 @@
       <li><a href="dxlconsole.modules.certificates.module.html#dxlconsole.modules.certificates.module.CertificateModule.CERTS_BROKER_CA_LIST_FILE_PROP">CERTS_BROKER_CA_LIST_FILE_PROP (dxlconsole.modules.certificates.module.CertificateModule attribute)</a>
 </li>
       <li><a href="dxlconsole.modules.certificates.module.html#dxlconsole.modules.certificates.module.CertificateModule.CERTS_BROKER_CA_PASSWORD_PROP">CERTS_BROKER_CA_PASSWORD_PROP (dxlconsole.modules.certificates.module.CertificateModule attribute)</a>
+</li>
+      <li><a href="dxlconsole.modules.certificates.module.html#dxlconsole.modules.certificates.module.CertificateModule.CERTS_BROKER_STATE_POLICY_FILE_PROP">CERTS_BROKER_STATE_POLICY_FILE_PROP (dxlconsole.modules.certificates.module.CertificateModule attribute)</a>
 </li>
       <li><a href="dxlconsole.modules.certificates.module.html#dxlconsole.modules.certificates.module.CertificateModule.CERTS_CLIENT_CA_CERT_FILE_PROP">CERTS_CLIENT_CA_CERT_FILE_PROP (dxlconsole.modules.certificates.module.CertificateModule attribute)</a>
 </li>
@@ -158,7 +170,7 @@
 </li>
       <li><a href="dxlconsole.console.html#dxlconsole.console.ConsoleStaticFileRequestHandler">ConsoleStaticFileRequestHandler (class in dxlconsole.console)</a>
 </li>
-      <li><a href="dxlconsole.modules.monitor.websocket_handler.html#dxlconsole.modules.monitor.websocket_handler.ConsoleWebSocketHandler">ConsoleWebSocketHandler (class in dxlconsole.modules.monitor.websocket_handler)</a>
+      <li><a href="dxlconsole.console.html#dxlconsole.console.ConsoleWebSocketHandler">ConsoleWebSocketHandler (class in dxlconsole.console)</a>
 </li>
       <li><a href="dxlconsole.module.html#dxlconsole.module.Module.content">content (dxlconsole.module.Module attribute)</a>
 
@@ -169,10 +181,12 @@
 </li>
         <li><a href="dxlconsole.modules.monitor.module.html#dxlconsole.modules.monitor.module.MonitorModule.content">(dxlconsole.modules.monitor.module.MonitorModule attribute)</a>
 </li>
-      </ul></li>
-      <li><a href="dxlconsole.modules.monitor.module.html#dxlconsole.modules.monitor.module.MonitorModule.create_smartclient_error_response">create_smartclient_error_response() (dxlconsole.modules.monitor.module.MonitorModule method)</a>
+        <li><a href="dxlconsole.modules.topology.module.html#dxlconsole.modules.topology.module.TopologyModule.content">(dxlconsole.modules.topology.module.TopologyModule attribute)</a>
 </li>
-      <li><a href="dxlconsole.modules.monitor.module.html#dxlconsole.modules.monitor.module.MonitorModule.create_smartclient_response_wrapper">create_smartclient_response_wrapper() (dxlconsole.modules.monitor.module.MonitorModule static method)</a>
+      </ul></li>
+      <li><a href="dxlconsole.util.html#dxlconsole.util.create_sc_error_response">create_sc_error_response() (in module dxlconsole.util)</a>
+</li>
+      <li><a href="dxlconsole.util.html#dxlconsole.util.create_sc_response_wrapper">create_sc_response_wrapper() (in module dxlconsole.util)</a>
 </li>
       <li><a href="dxlconsole.modules.certificates.module.html#dxlconsole.modules.certificates.module.CreateClientBundleManagementServiceHandler">CreateClientBundleManagementServiceHandler (class in dxlconsole.modules.certificates.module)</a>
 </li>
@@ -186,6 +200,8 @@
 
       <ul>
         <li><a href="dxlconsole.console.html#dxlconsole.console.ConsoleStaticFileRequestHandler.data_received">(dxlconsole.console.ConsoleStaticFileRequestHandler method)</a>
+</li>
+        <li><a href="dxlconsole.console.html#dxlconsole.console.ConsoleWebSocketHandler.data_received">(dxlconsole.console.ConsoleWebSocketHandler method)</a>
 </li>
         <li><a href="dxlconsole.console.html#dxlconsole.console.LoginHandler.data_received">(dxlconsole.console.LoginHandler method)</a>
 </li>
@@ -205,19 +221,21 @@
 </li>
         <li><a href="dxlconsole.modules.monitor.subscriptions_handler.html#dxlconsole.modules.monitor.subscriptions_handler.SubscriptionsHandler.data_received">(dxlconsole.modules.monitor.subscriptions_handler.SubscriptionsHandler method)</a>
 </li>
-        <li><a href="dxlconsole.modules.monitor.websocket_handler.html#dxlconsole.modules.monitor.websocket_handler.ConsoleWebSocketHandler.data_received">(dxlconsole.modules.monitor.websocket_handler.ConsoleWebSocketHandler method)</a>
+        <li><a href="dxlconsole.modules.topology.module.html#dxlconsole.modules.topology.module.BrokerRegistryQueryHandler.data_received">(dxlconsole.modules.topology.module.BrokerRegistryQueryHandler method)</a>
 </li>
       </ul></li>
       <li><a href="dxlconsole.modules.certificates.module.html#dxlconsole.modules.certificates.module.CertificateModule.DIGEST">DIGEST (dxlconsole.modules.certificates.module.CertificateModule attribute)</a>
 </li>
       <li><a href="dxlconsole.modules.certificates.module.html#dxlconsole.modules.certificates.module.CertificateModule.DXL_CONFIG_FILE_NAME">DXL_CONFIG_FILE_NAME (dxlconsole.modules.certificates.module.CertificateModule attribute)</a>
 </li>
+      <li><a href="dxlconsole.console.html#dxlconsole.console.WebConsole.dxl_service_client">dxl_service_client (dxlconsole.console.WebConsole attribute)</a>
+</li>
       <li><a href="dxlconsole.html#module-dxlconsole">dxlconsole (module)</a>
+</li>
+      <li><a href="dxlconsole.app.html#module-dxlconsole.app">dxlconsole.app (module)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="dxlconsole.app.html#module-dxlconsole.app">dxlconsole.app (module)</a>
-</li>
       <li><a href="dxlconsole.console.html#module-dxlconsole.console">dxlconsole.console (module)</a>
 </li>
       <li><a href="dxlconsole.handlers.html#module-dxlconsole.handlers">dxlconsole.handlers (module)</a>
@@ -248,6 +266,12 @@
 </li>
       <li><a href="dxlconsole.modules.monitor.websocket_handler.html#module-dxlconsole.modules.monitor.websocket_handler">dxlconsole.modules.monitor.websocket_handler (module)</a>
 </li>
+      <li><a href="dxlconsole.modules.topology.html#module-dxlconsole.modules.topology">dxlconsole.modules.topology (module)</a>
+</li>
+      <li><a href="dxlconsole.modules.topology.module.html#module-dxlconsole.modules.topology.module">dxlconsole.modules.topology.module (module)</a>
+</li>
+      <li><a href="dxlconsole.util.html#module-dxlconsole.util">dxlconsole.util (module)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -265,6 +289,14 @@
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dxlconsole.modules.monitor.messages_handler.html#dxlconsole.modules.monitor.messages_handler.MessagesHandler.escape">escape() (dxlconsole.modules.monitor.messages_handler.MessagesHandler static method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dxlconsole.modules.topology.module.html#dxlconsole.modules.topology.module.TopologyModule.FABRIC_CHANGE_EVENT_TOPIC">FABRIC_CHANGE_EVENT_TOPIC (dxlconsole.modules.topology.module.TopologyModule attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -305,15 +337,19 @@
 </li>
         <li><a href="dxlconsole.modules.monitor.subscriptions_handler.html#dxlconsole.modules.monitor.subscriptions_handler.SubscriptionsHandler.get">(dxlconsole.modules.monitor.subscriptions_handler.SubscriptionsHandler method)</a>
 </li>
+        <li><a href="dxlconsole.modules.topology.module.html#dxlconsole.modules.topology.module.BrokerRegistryQueryHandler.get">(dxlconsole.modules.topology.module.BrokerRegistryQueryHandler method)</a>
+</li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dxlconsole.console.html#dxlconsole.console.ConsoleStaticFileRequestHandler.get_absolute_path">get_absolute_path() (dxlconsole.console.ConsoleStaticFileRequestHandler class method)</a>
 </li>
-      <li><a href="dxlconsole.handlers.html#dxlconsole.handlers.BaseRequestHandler.get_current_user">get_current_user() (dxlconsole.handlers.BaseRequestHandler method)</a>
+      <li><a href="dxlconsole.modules.topology.module.html#dxlconsole.modules.topology.module.TopologyModule.get_broker_registry">get_broker_registry() (dxlconsole.modules.topology.module.TopologyModule method)</a>
+</li>
+      <li><a href="dxlconsole.console.html#dxlconsole.console.ConsoleWebSocketHandler.get_current_user">get_current_user() (dxlconsole.console.ConsoleWebSocketHandler method)</a>
 
       <ul>
-        <li><a href="dxlconsole.modules.monitor.websocket_handler.html#dxlconsole.modules.monitor.websocket_handler.ConsoleWebSocketHandler.get_current_user">(dxlconsole.modules.monitor.websocket_handler.ConsoleWebSocketHandler method)</a>
+        <li><a href="dxlconsole.handlers.html#dxlconsole.handlers.BaseRequestHandler.get_current_user">(dxlconsole.handlers.BaseRequestHandler method)</a>
 </li>
       </ul></li>
       <li><a href="dxlconsole.modules.monitor.module.html#dxlconsole.modules.monitor.module.MonitorModule.get_dxl_client">get_dxl_client() (dxlconsole.modules.monitor.module.MonitorModule method)</a>
@@ -342,6 +378,8 @@
         <li><a href="dxlconsole.modules.certificates.module.html#dxlconsole.modules.certificates.module.CertificateModule.handlers">(dxlconsole.modules.certificates.module.CertificateModule attribute)</a>
 </li>
         <li><a href="dxlconsole.modules.monitor.module.html#dxlconsole.modules.monitor.module.MonitorModule.handlers">(dxlconsole.modules.monitor.module.MonitorModule attribute)</a>
+</li>
+        <li><a href="dxlconsole.modules.topology.module.html#dxlconsole.modules.topology.module.TopologyModule.handlers">(dxlconsole.modules.topology.module.TopologyModule attribute)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -380,13 +418,15 @@
 </li>
       <li><a href="dxlconsole.modules.monitor.messages_handler.html#dxlconsole.modules.monitor.messages_handler.MessagesHandler">MessagesHandler (class in dxlconsole.modules.monitor.messages_handler)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dxlconsole.module.html#dxlconsole.module.Module">Module (class in dxlconsole.module)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dxlconsole.console.html#dxlconsole.console.WebConsole.modules">modules (dxlconsole.console.WebConsole attribute)</a>
 </li>
       <li><a href="dxlconsole.modules.monitor.module.html#dxlconsole.modules.monitor.module.MonitorModule">MonitorModule (class in dxlconsole.modules.monitor.module)</a>
+</li>
+      <li><a href="dxlconsole.modules.monitor.websocket_handler.html#dxlconsole.modules.monitor.websocket_handler.MonitorWebSocketEventHandler">MonitorWebSocketEventHandler (class in dxlconsole.modules.monitor.websocket_handler)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -398,8 +438,6 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="dxlconsole.modules.monitor.module.html#dxlconsole.modules.monitor.module.MonitorModule.NO_RESULT_JSON">NO_RESULT_JSON (dxlconsole.modules.monitor.module.MonitorModule attribute)</a>
-</li>
       <li><a href="dxlconsole.modules.monitor.module.html#dxlconsole.modules.monitor.module.MonitorModule.notify_web_sockets">notify_web_sockets() (dxlconsole.modules.monitor.module.MonitorModule method)</a>
 </li>
   </ul></td>
@@ -408,7 +446,7 @@
 <h2 id="O">O</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="dxlconsole.modules.monitor.websocket_handler.html#dxlconsole.modules.monitor.websocket_handler.ConsoleWebSocketHandler.on_close">on_close() (dxlconsole.modules.monitor.websocket_handler.ConsoleWebSocketHandler method)</a>
+      <li><a href="dxlconsole.console.html#dxlconsole.console.ConsoleWebSocketHandler.on_close">on_close() (dxlconsole.console.ConsoleWebSocketHandler method)</a>
 </li>
       <li><a href="dxlconsole.app.html#dxlconsole.app.OpenDxlConsole.on_dxl_connect">on_dxl_connect() (dxlconsole.app.OpenDxlConsole method)</a>
 </li>
@@ -416,13 +454,33 @@
 </li>
       <li><a href="dxlconsole.app.html#dxlconsole.app.OpenDxlConsole.on_load_configuration">on_load_configuration() (dxlconsole.app.OpenDxlConsole method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="dxlconsole.modules.monitor.websocket_handler.html#dxlconsole.modules.monitor.websocket_handler.ConsoleWebSocketHandler.on_message">on_message() (dxlconsole.modules.monitor.websocket_handler.ConsoleWebSocketHandler method)</a>
+      <li><a href="dxlconsole.console.html#dxlconsole.console.ConsoleWebSocketHandler.on_message">on_message() (dxlconsole.console.ConsoleWebSocketHandler method)</a>
 </li>
       <li><a href="dxlconsole.app.html#dxlconsole.app.OpenDxlConsole.on_run">on_run() (dxlconsole.app.OpenDxlConsole method)</a>
 </li>
-      <li><a href="dxlconsole.modules.monitor.websocket_handler.html#dxlconsole.modules.monitor.websocket_handler.ConsoleWebSocketHandler.open">open() (dxlconsole.modules.monitor.websocket_handler.ConsoleWebSocketHandler method)</a>
+      <li><a href="dxlconsole.handlers.html#dxlconsole.handlers.WebSocketEventHandler.on_web_socket_closed">on_web_socket_closed() (dxlconsole.handlers.WebSocketEventHandler method)</a>
+
+      <ul>
+        <li><a href="dxlconsole.modules.monitor.websocket_handler.html#dxlconsole.modules.monitor.websocket_handler.MonitorWebSocketEventHandler.on_web_socket_closed">(dxlconsole.modules.monitor.websocket_handler.MonitorWebSocketEventHandler method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dxlconsole.console.html#dxlconsole.console.WebConsole.on_web_socket_message">on_web_socket_message() (dxlconsole.console.WebConsole method)</a>
+
+      <ul>
+        <li><a href="dxlconsole.handlers.html#dxlconsole.handlers.WebSocketEventHandler.on_web_socket_message">(dxlconsole.handlers.WebSocketEventHandler method)</a>
+</li>
+        <li><a href="dxlconsole.modules.monitor.websocket_handler.html#dxlconsole.modules.monitor.websocket_handler.MonitorWebSocketEventHandler.on_web_socket_message">(dxlconsole.modules.monitor.websocket_handler.MonitorWebSocketEventHandler method)</a>
+</li>
+      </ul></li>
+      <li><a href="dxlconsole.handlers.html#dxlconsole.handlers.WebSocketEventHandler.on_web_socket_opened">on_web_socket_opened() (dxlconsole.handlers.WebSocketEventHandler method)</a>
+
+      <ul>
+        <li><a href="dxlconsole.modules.monitor.websocket_handler.html#dxlconsole.modules.monitor.websocket_handler.MonitorWebSocketEventHandler.on_web_socket_opened">(dxlconsole.modules.monitor.websocket_handler.MonitorWebSocketEventHandler method)</a>
+</li>
+      </ul></li>
+      <li><a href="dxlconsole.console.html#dxlconsole.console.ConsoleWebSocketHandler.open">open() (dxlconsole.console.ConsoleWebSocketHandler method)</a>
 </li>
       <li><a href="dxlconsole.app.html#dxlconsole.app.OpenDxlConsole">OpenDxlConsole (class in dxlconsole.app)</a>
 </li>
@@ -466,7 +524,7 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="dxlconsole.modules.monitor.module.html#dxlconsole.modules.monitor.module.MonitorModule.remove_web_socket">remove_web_socket() (dxlconsole.modules.monitor.module.MonitorModule method)</a>
+      <li><a href="dxlconsole.console.html#dxlconsole.console.WebConsole.remove_web_socket">remove_web_socket() (dxlconsole.console.WebConsole method)</a>
 </li>
       <li><a href="dxlconsole.module.html#dxlconsole.module.Module.root_content_name">root_content_name (dxlconsole.module.Module attribute)</a>
 </li>
@@ -476,16 +534,20 @@
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dxlconsole.console.html#dxlconsole.console.WebConsole.send_all_web_socket_message">send_all_web_socket_message() (dxlconsole.console.WebConsole method)</a>
+</li>
+      <li><a href="dxlconsole.console.html#dxlconsole.console.WebConsole.send_web_socket_message">send_web_socket_message() (dxlconsole.console.WebConsole method)</a>
+</li>
       <li><a href="dxlconsole.modules.monitor.send_message_handler.html#dxlconsole.modules.monitor.send_message_handler.SendMessageHandler">SendMessageHandler (class in dxlconsole.modules.monitor.send_message_handler)</a>
 </li>
       <li><a href="dxlconsole.modules.monitor.module.html#dxlconsole.modules.monitor.module.MonitorModule.SERVICE_REGISTRY_QUERY_TOPIC">SERVICE_REGISTRY_QUERY_TOPIC (dxlconsole.modules.monitor.module.MonitorModule attribute)</a>
 </li>
       <li><a href="dxlconsole.modules.monitor.module.html#dxlconsole.modules.monitor.module.MonitorModule.SERVICE_REGISTRY_REGISTER_EVENT_TOPIC">SERVICE_REGISTRY_REGISTER_EVENT_TOPIC (dxlconsole.modules.monitor.module.MonitorModule attribute)</a>
 </li>
-      <li><a href="dxlconsole.modules.monitor.module.html#dxlconsole.modules.monitor.module.MonitorModule.SERVICE_REGISTRY_UNREGISTER_EVENT_TOPIC">SERVICE_REGISTRY_UNREGISTER_EVENT_TOPIC (dxlconsole.modules.monitor.module.MonitorModule attribute)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dxlconsole.modules.monitor.module.html#dxlconsole.modules.monitor.module.MonitorModule.SERVICE_REGISTRY_UNREGISTER_EVENT_TOPIC">SERVICE_REGISTRY_UNREGISTER_EVENT_TOPIC (dxlconsole.modules.monitor.module.MonitorModule attribute)</a>
+</li>
       <li><a href="dxlconsole.modules.monitor.module.html#dxlconsole.modules.monitor.module.MonitorModule.SERVICE_UPDATE_INTERVAL">SERVICE_UPDATE_INTERVAL (dxlconsole.modules.monitor.module.MonitorModule attribute)</a>
 </li>
       <li><a href="dxlconsole.modules.monitor.module.html#dxlconsole.modules.monitor.module.MonitorModule.services">services (dxlconsole.modules.monitor.module.MonitorModule attribute)</a>
@@ -505,11 +567,17 @@
       <li><a href="dxlconsole.module.html#dxlconsole.module.Module.title">title (dxlconsole.module.Module attribute)</a>
 </li>
   </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dxlconsole.modules.topology.module.html#dxlconsole.modules.topology.module.TopologyModule">TopologyModule (class in dxlconsole.modules.topology.module)</a>
+</li>
+  </ul></td>
 </tr></table>
 
 <h2 id="U">U</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dxlconsole.modules.topology.module.html#dxlconsole.modules.topology.module.TopologyModule.update_broker_registry">update_broker_registry() (dxlconsole.modules.topology.module.TopologyModule method)</a>
+</li>
       <li><a href="dxlconsole.modules.monitor.module.html#dxlconsole.modules.monitor.module.MonitorModule.update_service">update_service() (dxlconsole.modules.monitor.module.MonitorModule method)</a>
 </li>
   </ul></td>
@@ -533,6 +601,10 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dxlconsole.console.html#dxlconsole.console.WebConsole">WebConsole (class in dxlconsole.console)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dxlconsole.handlers.html#dxlconsole.handlers.WebSocketEventHandler">WebSocketEventHandler (class in dxlconsole.handlers)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -591,12 +663,12 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">OpenDXL Console 0.2.2 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">OpenDXL Console 0.3.1 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, McAfee LLC.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.1.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.2.
     </div>
   </body>
 </html>
