@@ -179,6 +179,10 @@ class BrokerRegistryQueryHandler(BaseRequestHandler):
                  "policyIpAddress": broker.get("policyIpAddress"),
                  "policyPort": str(broker.get("policyPort")),
                  "port": str(broker.get("port")),
+                 "webSocketPort":
+                     str(broker.get("webSocketPort"))
+                     if (broker.get("webSocketPort") != None and broker.get("webSocketPort") != 0)
+                     else "",
                  "topicRouting": str(broker.get("topicRouting")),
                  "ttlMins": str(broker.get("ttlMins")),
                  "startTime": broker.get("startTime"),
