@@ -380,7 +380,9 @@ class _BaseCertHandler(BaseRequestHandler):
                             brokers_websockets_str += broker_str
                     if brokers_str:
                         websockets_start_index = content.find("\n\n[BrokersWebSockets]")
-                        content = content[:websockets_start_index] + brokers_str + content[websockets_start_index:]
+                        content = content[:websockets_start_index] \
+                                  + brokers_str \
+                                  + content[websockets_start_index:]
                     if brokers_websockets_str:
                         content += brokers_websockets_str
 
