@@ -181,7 +181,8 @@ class BrokerRegistryQueryHandler(BaseRequestHandler):
                  "port": str(broker.get("port")),
                  "webSocketPort":
                      str(broker.get("webSocketPort"))
-                     if (broker.get("webSocketPort") is not None and broker.get("webSocketPort") != 0)
+                     if (broker.get("webSocketPort") is not None
+                         and broker.get("webSocketPort") != 0)
                      else "",
                  "topicRouting": str(broker.get("topicRouting")),
                  "ttlMins": str(broker.get("ttlMins")),
