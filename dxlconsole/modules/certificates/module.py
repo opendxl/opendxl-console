@@ -366,11 +366,24 @@ class _BaseCertHandler(BaseRequestHandler):
                     policy_content = _BaseCertHandler._comment_remover(policy_content)
                     policy = json.loads(policy_content)
                 if "brokers" in policy:
+                    brokers_str = ""
+                    brokers_websockets_str = ""
                     for broker in policy["brokers"]:
                         broker_str = "\n{id}={id};{port};{host};{alt}".format(
                             id=broker["id"], port=broker["port"],
                             host=broker["hostname"], alt=broker.get("altHostname", ""))
-                        content += broker_str
+                        brokers_str += broker_str
+                        if "webSocketPort" in broker:
+                            broker_str = "\n{id}={id};{port};{host};{alt}".format(
+                                id=broker["id"], port=broker["webSocketPort"],
+                                host=broker["hostname"], alt=broker.get("altHostname", ""))
+                            brokers_websockets_str += broker_str
+                    if brokers_str:
+                        websockets_start_index = content.find("\n\n[BrokersWebSockets]")
+                        content = content[:websockets_start_index] + brokers_str + content[websockets_start_index:]
+                    if brokers_websockets_str:
+                        content += brokers_websockets_str
+
             except Exception as ex:
                 logger.error("Error reading broker state policy file: %s, %s",
                              state_policy_file, ex)
@@ -709,6 +722,13 @@ class ProvisionManagementServiceHandler(_BaseCertHandler):
         # extract the broker list from the config
         for name, value in config_parser.items("Brokers"):
             content.append('{}={}\n'.format(name, value))
+
+        content.append(",")
+
+        # extract the WebSocket broker list from the config
+        if config_parser.has_section("BrokersWebSockets"):
+            for name, value in config_parser.items("BrokersWebSockets"):
+                content.append('{}={}\n'.format(name, value))
 
         return ''.join(content)
 
