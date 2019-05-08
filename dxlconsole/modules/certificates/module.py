@@ -1,6 +1,6 @@
 from __future__ import absolute_import
 from codecs import encode
-from io import BytesIO, StringIO
+from io import BytesIO
 import json
 import logging
 import os
@@ -17,7 +17,7 @@ import tornado.httputil
 
 from dxlconsole.handlers import BaseRequestHandler
 from dxlconsole.module import Module
-from ..._compat import ConfigParser, read_file
+from ..._compat import ConfigParser, read_file, StringIO
 
 # Configure local logger
 logger = logging.getLogger(__name__)
@@ -357,6 +357,19 @@ class _BaseCertHandler(BaseRequestHandler):
         content = content.replace("@DOCKER_BROKER_IP@",
                                   docker_ip.decode("utf8"))
 
+        buf = StringIO(content)
+        config_parser = ConfigParser()
+        read_file(config_parser, buf)
+
+        if not config_parser.has_section("BrokersWebSockets"):
+            config_parser.add_section("BrokersWebSockets")
+            config_parser.set("BrokersWebSockets", "local", "local;443;localhost;127.0.0.1")
+            config_parser.set("BrokersWebSockets", "external",
+                              "external;443;{};{}".format(server_host, server_addr))
+            config_parser.set("BrokersWebSockets", "docker",
+                              "docker;443;{};{}".format(docker_ip.decode("utf8"),
+                                                        docker_ip.decode("utf8")))
+
         # Add other brokers from broker state file
         state_policy_file = self._module.broker_state_policy_file
         if state_policy_file and os.path.isfile(state_policy_file):
@@ -367,15 +380,27 @@ class _BaseCertHandler(BaseRequestHandler):
                     policy = json.loads(policy_content)
                 if "brokers" in policy:
                     for broker in policy["brokers"]:
-                        broker_str = "\n{id}={id};{port};{host};{alt}".format(
+                        broker_str = "{id};{port};{host};{alt}".format(
                             id=broker["id"], port=broker["port"],
                             host=broker["hostname"], alt=broker.get("altHostname", ""))
-                        content += broker_str
+                        config_parser.set("Brokers", broker["id"], broker_str)
+                        if "webSocketPort" in broker:
+                            broker_str = "{id};{port};{host};{alt}".format(
+                                id=broker["id"], port=broker["webSocketPort"],
+                                host=broker["hostname"], alt=broker.get("altHostname", ""))
+                            config_parser.set("BrokersWebSockets", broker["id"], broker_str)
+
             except Exception as ex:
                 logger.error("Error reading broker state policy file: %s, %s",
                              state_policy_file, ex)
 
-        return content
+        config_buffer = StringIO()
+        config_parser.write(config_buffer)
+
+        contents = config_buffer.getvalue()
+        config_buffer.close()
+
+        return contents
 
     def _get_configparser(self):
         """
@@ -709,6 +734,13 @@ class ProvisionManagementServiceHandler(_BaseCertHandler):
         # extract the broker list from the config
         for name, value in config_parser.items("Brokers"):
             content.append('{}={}\n'.format(name, value))
+
+        content.append(",")
+
+        # extract the WebSocket broker list from the config
+        if config_parser.has_section("BrokersWebSockets"):
+            for name, value in config_parser.items("BrokersWebSockets"):
+                content.append('{}={}\n'.format(name, value))
 
         return ''.join(content)
 
