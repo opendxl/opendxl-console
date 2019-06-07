@@ -9,7 +9,7 @@ except ImportError:
     from io import StringIO
 
 def read_file(config_parser, file_like_obj):
-    # Setting optionxform to str .This makes option/key names case sensitive
+    # Setting optionxform to str.This makes option/key names case sensitive
     config_parser.optionxform = str
     return config_parser.read_file(file_like_obj) \
         if hasattr(config_parser, "read_file") else \
