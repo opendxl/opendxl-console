@@ -906,7 +906,7 @@ class GetBrokerListManagementServiceHandler(_BaseCertHandler):
     @tornado.web.authenticated
     def get(self, *args, **kwargs):
         """
-        Returns the broker list.The HTTP response payload for this request should look
+        Returns the MQTT and WebSocket broker lists. The HTTP response payload for this request should look
         like the following:
 
         OK:
@@ -936,14 +936,29 @@ class GetBrokerListManagementServiceHandler(_BaseCertHandler):
                         "port": 8883
                     }
                 ],
+                "brokersWebSockets": [
+                    {
+                        "guid": "{2c5b107c-7f51-11e7-0ebf-0800271cfa58}",
+                        "hostName": "broker1",
+                        "ipAddress": "10.10.100.100",
+                        "port": 443
+                    },
+                    {
+                        "guid": "{e90335b2-8dc8-11e7-1bc3-0800270989e4}",
+                        "hostName": "broker2",
+                        "ipAddress": "10.10.100.101",
+                        "port": 443
+                    }
+                ],
                 "certVersion": 0
               }
 
         :return: Json broker list
         """
         try:
-            # response is the broker list in json format
+            # response is the MQTT broker and WebSocket broker list in json format
             brokers = []
+            brokers_web_sockets = []
             # read as a config
             config_parser = self._get_configparser()
             # extract the broker list from the config
@@ -954,8 +969,17 @@ class GetBrokerListManagementServiceHandler(_BaseCertHandler):
                           "ipAddress": ip_address}
                 brokers.append(broker)
 
+            # extract the WebSocket broker list from the config
+            if config_parser.has_section("BrokersWebSockets"):
+                for name, value in config_parser.items("BrokersWebSockets"):
+                    # split the value on ";". format is guid;port;host;ip
+                    _, port, host, ip_address = value.split(';')
+                    broker = {"hostName": host, "port": int(port), "guid": name,
+                              "ipAddress": ip_address}
+                    brokers_web_sockets.append(broker)
+
             # build the json
-            json_data = {"brokers": brokers, "certVersion": 0}
+            json_data = {"brokers": brokers, "brokersWebSockets": brokers_web_sockets, "certVersion": 0}
             # this the json of our response
             json_string_data = json.dumps(json_data)
             # ePO output=json creates json again

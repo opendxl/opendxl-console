@@ -3,3 +3,10 @@ dist/
 *.pyc
 build/
 dxlconsole.egg-info/
+
+# IntelliJ
+.idea
+*.iml
+*.ipr
+*.iws
+out
