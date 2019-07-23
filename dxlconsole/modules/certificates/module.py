@@ -906,8 +906,8 @@ class GetBrokerListManagementServiceHandler(_BaseCertHandler):
     @tornado.web.authenticated
     def get(self, *args, **kwargs):
         """
-        Returns the MQTT and WebSocket broker lists. The HTTP response payload for this request should look
-        like the following:
+        Returns the MQTT and WebSocket broker lists. The HTTP response payload for this request
+        should look like the following:
 
         OK:
         "[broker config]"
@@ -979,7 +979,9 @@ class GetBrokerListManagementServiceHandler(_BaseCertHandler):
                     brokers_web_sockets.append(broker)
 
             # build the json
-            json_data = {"brokers": brokers, "brokersWebSockets": brokers_web_sockets, "certVersion": 0}
+            json_data = {"brokers": brokers,
+                         "brokersWebSockets": brokers_web_sockets,
+                         "certVersion": 0}
             # this the json of our response
             json_string_data = json.dumps(json_data)
             # ePO output=json creates json again
