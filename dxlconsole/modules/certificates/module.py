@@ -14,6 +14,7 @@ from zipfile import ZipFile
 import pkg_resources
 import tornado
 import tornado.httputil
+import dxlconsole.util
 
 from dxlconsole.handlers import BaseRequestHandler
 from dxlconsole.module import Module
@@ -960,11 +961,11 @@ class GetBrokerListManagementServiceHandler(_BaseCertHandler):
             # read as a config
             config_parser = self._get_configparser()
             # extract the broker list from the config
-            brokers = self._create_broker_list_from_config(config_parser, "Brokers")
+            brokers = dxlconsole.util.create_broker_list_from_config(config_parser, "Brokers")
 
             # extract the WebSocket broker list from the config
-            brokers_web_sockets = self._create_broker_list_from_config(config_parser,
-                                                                       "BrokersWebSockets")
+            brokers_web_sockets = \
+                dxlconsole.util.create_broker_list_from_config(config_parser, "BrokersWebSockets")
 
             # build the json
             json_data = {"brokers": brokers,
@@ -986,24 +987,3 @@ class GetBrokerListManagementServiceHandler(_BaseCertHandler):
             # Raising exception again so the python client will show the error
             raise tornado.web.HTTPError(500, reason=error_string,
                                         log_message=error_string)
-
-    def _create_broker_list_from_config(self, config_parser, section):
-        """
-        Method to create a broker list with data from the config for the
-        specified section (ie either Brokers or BrokersWebSockets).
-
-        :param config_parser: The config parser
-        :param section: The section of the config to read
-        data from (ie either Brokers or BrokersWebSockets)
-        :return: A broker list populated with data from the
-        specified section in the config
-        """
-        broker_list = []
-        if config_parser.has_section(section):
-            for name, value in config_parser.items(section):
-                # split the value on ";". format is guid;port;host;ip
-                _, port, host, ip_address = value.split(';')
-                broker = {"hostName": host, "port": int(port), "guid": name,
-                          "ipAddress": ip_address}
-                broker_list.append(broker)
-        return broker_list
