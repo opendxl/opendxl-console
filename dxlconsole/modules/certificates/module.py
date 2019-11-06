@@ -14,6 +14,7 @@ from zipfile import ZipFile
 import pkg_resources
 import tornado
 import tornado.httputil
+import dxlconsole.util
 
 from dxlconsole.handlers import BaseRequestHandler
 from dxlconsole.module import Module
@@ -906,8 +907,8 @@ class GetBrokerListManagementServiceHandler(_BaseCertHandler):
     @tornado.web.authenticated
     def get(self, *args, **kwargs):
         """
-        Returns the broker list.The HTTP response payload for this request should look
-        like the following:
+        Returns the MQTT and WebSocket broker lists. The HTTP response payload for this request
+        should look like the following:
 
         OK:
         "[broker config]"
@@ -936,26 +937,40 @@ class GetBrokerListManagementServiceHandler(_BaseCertHandler):
                         "port": 8883
                     }
                 ],
+                "brokersWebSockets": [
+                    {
+                        "guid": "{2c5b107c-7f51-11e7-0ebf-0800271cfa58}",
+                        "hostName": "broker1",
+                        "ipAddress": "10.10.100.100",
+                        "port": 443
+                    },
+                    {
+                        "guid": "{e90335b2-8dc8-11e7-1bc3-0800270989e4}",
+                        "hostName": "broker2",
+                        "ipAddress": "10.10.100.101",
+                        "port": 443
+                    }
+                ],
                 "certVersion": 0
               }
 
         :return: Json broker list
         """
         try:
-            # response is the broker list in json format
-            brokers = []
+            # response is the MQTT broker and WebSocket broker list in json format
             # read as a config
             config_parser = self._get_configparser()
             # extract the broker list from the config
-            for name, value in config_parser.items("Brokers"):
-                # split the value on ";". format is guid;port;host;ip
-                _, port, host, ip_address = value.split(';')
-                broker = {"hostName": host, "port": int(port), "guid": name,
-                          "ipAddress": ip_address}
-                brokers.append(broker)
+            brokers = dxlconsole.util.create_broker_list_from_config(config_parser, "Brokers")
+
+            # extract the WebSocket broker list from the config
+            brokers_web_sockets = \
+                dxlconsole.util.create_broker_list_from_config(config_parser, "BrokersWebSockets")
 
             # build the json
-            json_data = {"brokers": brokers, "certVersion": 0}
+            json_data = {"brokers": brokers,
+                         "brokersWebSockets": brokers_web_sockets,
+                         "certVersion": 0}
             # this the json of our response
             json_string_data = json.dumps(json_data)
             # ePO output=json creates json again
